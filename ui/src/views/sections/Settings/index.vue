@@ -125,128 +125,11 @@
               </template>
             </v-item>
           </v-item-group>
-
-          <v-btn
-            block
-            class="mb-3"
-            color="success"
-            href="https://www.creative-tim.com/product/vuetify-material-dashboard"
-            default
-            rel="noopener"
-            target="_blank"
-          >
-            Free Download
-          </v-btn>
-
-          <v-btn
-            block
-            class="mb-3"
-            color="grey darken-1"
-            dark
-            href="https://vuetifyjs.com/components/api-explorer"
-            default
-            rel="noopener"
-            target="_blank"
-          >
-            Documentation
-          </v-btn>
-
-          <div class="my-12" />
-
-          <div>
-            <strong class="mb-3 d-inline-block">THANK YOU FOR SHARING!</strong>
-          </div>
-
-          <v-btn
-            class="ma-1"
-            color="#55acee"
-            dark
-            default
-            rounded
-          >
-            <v-icon>mdi-twitter</v-icon>
-            - 45
-          </v-btn>
-
-          <v-btn
-            class="ma-1"
-            color="#3b5998"
-            dark
-            default
-            rounded
-          >
-            <v-icon>mdi-facebook</v-icon>
-            - 50
-          </v-btn>
         </v-card-text>
       </v-card>
     </v-menu>
   </div>
 </template>
-
-<script>
-  // Mixins
-  import Proxyable from 'vuetify/lib/mixins/proxyable'
-  import { mapMutations, mapState } from 'vuex'
-
-  export default {
-    name: 'DashboardCoreSettings',
-
-    mixins: [Proxyable],
-
-    data: () => ({
-      color: '#E91E63',
-      colors: [
-        '#9C27b0',
-        '#00CAE3',
-        '#4CAF50',
-        '#ff9800',
-        '#E91E63',
-        '#FF5252',
-      ],
-      image: 'https://demos.creative-tim.com/material-dashboard/assets/img/sidebar-1.jpg',
-      images: [
-        'https://demos.creative-tim.com/material-dashboard/assets/img/sidebar-1.jpg',
-        'https://demos.creative-tim.com/material-dashboard/assets/img/sidebar-2.jpg',
-        'https://demos.creative-tim.com/material-dashboard/assets/img/sidebar-3.jpg',
-        'https://demos.creative-tim.com/material-dashboard/assets/img/sidebar-4.jpg',
-      ],
-      menu: false,
-      saveImage: '',
-      showImg: true,
-    }),
-
-    computed: {
-      ...mapState(['barImage']),
-    },
-
-    watch: {
-      color (val) {
-        this.$vuetify.theme.themes[this.isDark ? 'dark' : 'light'].primary = val
-      },
-      showImg (val) {
-        if (!val) {
-          this.saveImage = this.barImage
-          this.setBarImage('')
-        } else if (this.saveImage) {
-          this.setBarImage(this.saveImage)
-          this.saveImage = ''
-        } else {
-          this.setBarImage(val)
-        }
-      },
-      image (val) {
-        this.setBarImage(val)
-      },
-    },
-
-    methods: {
-      ...mapMutations({
-        setBarImage: 'SET_BAR_IMAGE',
-      }),
-    },
-  }
-</script>
 
 <style lang="sass">
   .v-settings
@@ -261,3 +144,5 @@
       &--active
         border-color: #00cae3 !important
 </style>
+<script src='./Settings.js' />
+<style scoped lang="scss" src="./Settings.scss"></style>
