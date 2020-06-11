@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/views/Index'
-import Dashboard from '@/views/Dashboard'
+import Dashboard from '@/views/pages/Dashboard/index'
+import Login from '@/views/pages/Login/index'
 
 Vue.use(Router)
 
@@ -10,7 +11,7 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '/dashboard',
       component: Index,
       children: [
         // Dashboard
@@ -19,11 +20,11 @@ export default new Router({
           path: '',
           component: Dashboard,
         },
-        // // Pages
+        // Pages
         // {
         //   name: 'User Profile',
         //   path: 'pages/user',
-        //   component: () => import('@/views/dashboard/pages/UserProfile'),
+        //   component: () => import('@/views/pages/UserProfile'),
         // },
         // {
         //   name: 'Notifications',
@@ -53,6 +54,11 @@ export default new Router({
         //   component: () => import('@/views/dashboard/maps/GoogleMaps'),
         // },
       ],
+    },
+    {
+      name: 'Login',
+      path: '/',
+      component: Login,
     },
   ],
 })

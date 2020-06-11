@@ -42,11 +42,20 @@ export default {
 
   data: () => ({
     notifications: [
-      'Mike John Responded to your email',
-      'You have 5 new tasks',
-      'You\'re now friends with Andrew',
+      'Notification 1',
+      'Notification 2',
+      'You\'re now friends with Waylon Smithers',
       'Another Notification',
       'Another one',
+    ],
+    items: [
+      {
+        icon: 'mdi-account',
+        href: '#',
+        title: 'Profile',
+        click: (e) => {
+        },
+      },
     ],
   }),
 
@@ -59,4 +68,7 @@ export default {
       setDrawer: 'SET_DRAWER',
     }),
   },
+  logout () {
+
+  }
 }

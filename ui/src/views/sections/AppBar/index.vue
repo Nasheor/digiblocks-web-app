@@ -59,7 +59,7 @@
       text
       to="/"
     >
-      <v-icon>mdi-view-dashboard</v-icon>
+      <v-icon>mdi-logout</v-icon>
     </v-btn>
 
     <v-menu
@@ -106,14 +106,55 @@
       </v-list>
     </v-menu>
 
-    <v-btn
-      class="ml-2"
-      min-width="0"
-      text
-      to="/pages/user"
+    <v-menu
+      bottom
+      left
+      offset-y
+      origin="top right"
+      transition="scale-transition"
     >
-      <v-icon>mdi-account</v-icon>
-    </v-btn>
+      <template v-slot:activator="{ attrs, on }">
+        <v-btn
+          class="ml-2"
+          min-width="0"
+          text
+          v-bind="attrs"
+          v-on="on"
+        >
+          <v-list-item-avatar
+            class="align-self-center"
+            color="white"
+            contain
+          >
+            <v-img
+              src="https://i.ibb.co/T16ZtGW/homer.png"
+              max-height="30"
+            />
+          </v-list-item-avatar>
+        </v-btn>
+      </template>
+      <v-list
+        :tile="false"
+        nav
+      >
+        <v-list-item
+          v-for="(item,index) in items"
+          :key="index"
+          :to="!item.href ? { name: item.name } : null"
+          :href="item.href"
+          :disabled="item.disabled"
+          :target="item.target"
+          @click="item.click"
+        >
+          <v-list-item-action v-if="item.icon">
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-menu>
   </v-app-bar>
 </template>
 

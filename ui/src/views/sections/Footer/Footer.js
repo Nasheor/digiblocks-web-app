@@ -13,11 +13,7 @@ data: () => ({
     },
     {
         href: '#',
-        text: 'Blog',
-    },
-    {
-        href: '#',
-        text: 'Licenses',
+        text: 'Contact',
     },
     ],
 }),
