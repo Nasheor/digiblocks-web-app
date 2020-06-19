@@ -9,8 +9,8 @@
           <v-flex xs12 sm8 md4 lg4>
             <v-card class="elevation-1 pa-3">
               <v-card-text>
-                <div class="layout column align-center">
-                  <h1 class="flex my-4 primary--text">Digiblocks</h1>
+                <div class="layout column align-center login-logo">                 
+                  <img src="../../../assets/images/digilogo.png">
                 </div>
                 <v-form>
                   <v-text-field
