@@ -57,4 +57,4 @@
 
 
 <script src='./Login.js' />
-<style scoped lang="css" src="./Login.css"></style>
+<style scoped lang="scss" src="./Login.scss"></style>
