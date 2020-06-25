@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Index from '@/views/Index'
 import Dashboard from '@/views/pages/Dashboard/index'
 import Login from '@/views/pages/Login/index'
+import Register from '@/views/pages/Register/index'
+import Buildings from '@/views/pages/Buildings/index'
 
 Vue.use(Router)
 
@@ -17,8 +19,13 @@ export default new Router({
         // Dashboard
         {
           name: 'Dashboard',
-          path: '',
+          path: '/dashboard',
           component: Dashboard,
+        },
+        {
+          name: 'Buildings',
+          path: '/buildings',
+          component: Buildings,
         },
       ],
     },
@@ -27,5 +34,10 @@ export default new Router({
       path: '/',
       component: Login,
     },
+    {
+      name: 'Register',
+      path: '/register',
+      component: Register,
+    }
   ],
 })

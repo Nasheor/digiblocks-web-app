@@ -1,11 +1,11 @@
 <template>
   <v-app-bar
     id="app-bar"
-    absolute
     app
-    color="transparent"
     flat
     height="75"
+    hide-on-scroll
+    fixed
   >
     <v-btn
       class="mr-3"

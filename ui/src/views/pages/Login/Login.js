@@ -8,9 +8,15 @@ export default {
         error: false,
         showResult: false,
         result: '',
-        rules: {
-          required: value => !!value || 'Required.',
-        },
+        checkbox: '',
+        emailRules: [
+          v => !!v || "E-mail is required",
+          v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        ],
+        passwordRules: [
+          v => !!v || "Password is required",
+          v => (v && v.length <= 7) || "Password must be less than 10 characters"
+        ],
       }
     },
 
@@ -31,5 +37,8 @@ export default {
           vm.showResult = true
         }
     },
+    register() {
+      this.$router.push({name: 'Register'});
+    }
 },
 }

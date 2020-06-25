@@ -18,13 +18,13 @@ data: () => ({
     {
         icon: 'mdi-view-dashboard',
         title: 'dashboard',
-        to: '/',
+        to: '/dashboard',
     },
-    // {
-    //     icon: 'mdi-account',
-    //     title: 'user',
-    //     to: '/pages/user',
-    // },
+    {
+        icon: 'mdi-hospital-building',
+        title: 'Buildings',
+        to: '/buildings',
+    },
     // {
     //     title: 'rtables',
     //     icon: 'mdi-clipboard-outline',
