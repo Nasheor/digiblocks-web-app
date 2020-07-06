@@ -1,0 +1,15 @@
+{
+    "base_login_route": {
+        "name": "/auth/login",
+        "method": "post"
+    },
+    "admin_settings_testMail_route": {
+        "name": "/admin/settings/testMail",
+        "method": "post"
+    },
+   "tenant_assets_route" : {
+       "name": "/tenant/assets?limit=%limit%",
+       "method": "get"
+   }
+
+}

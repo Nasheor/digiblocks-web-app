@@ -3,6 +3,11 @@
       class="d-flex flex-column justify-space-between pa-0"
       max-width="350"
     >
+        <v-list-item-action>
+            <v-checkbox
+                color="secondary"
+            />
+        </v-list-item-action>
         <div class="mt-4">
             <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
                 <template v-slot:activator="{ on }">

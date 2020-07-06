@@ -1,0 +1,7 @@
+{
+    "thingsboard": {
+        "username": "avinash.nagarajan@mycit.ie",
+        "password": "Test@1234",
+        "endpoint": "http://157.190.53.15:8080/api"
+    }
+}

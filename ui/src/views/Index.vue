@@ -15,6 +15,7 @@
   import Drawer from './sections/Drawer/index'
   import Settings from './sections/Settings/index'
   import View from './sections/View/index'
+  import ThingsboardController from './controller/thingsboardController'
 
   export default {
     name: 'DashboardIndex',
@@ -28,6 +29,25 @@
 
     data: () => ({
       expandOnHover: false,
+      assetData: '',
+      devices: '',
     }),
+
+    methods: {
+      getAssets() {
+        return ThingsboardController.getTenantAssets(30);
+      },
+      async refresh() {
+        this.assetData = await this.getAssets();
+      },
+    },
+    async mounted() {
+      const newAssets = await this.getAssets();
+      this.assetData = newAssets; 
+      // Refresh data every 5 minutes
+      setInterval(() => {
+        this.refresh();
+      }, 300000);
+    }
   }
 </script>
