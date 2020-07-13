@@ -55,7 +55,7 @@ watch: {
 
 methods: {
     ...mapMutations({
-    setBarImage: 'SET_BAR_IMAGE',
+    setBarImage: 'setBarImage',
     }),
 },
 }

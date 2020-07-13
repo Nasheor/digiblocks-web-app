@@ -4,7 +4,6 @@
     app
     flat
     height="75"
-    hide-on-scroll
     fixed
   >
     <v-btn

@@ -6,24 +6,25 @@
         <v-list-item-action>
             <v-checkbox
                 color="secondary"
+               v-model="isSelected"
             />
         </v-list-item-action>
         <div class="mt-4">
             <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
                 <template v-slot:activator="{ on }">
                     <v-img
-                        src="../../../assets/images/cit.jpg"
+                        :src="require(`../../../assets/images/${src}`)"
                         height="200px"
                         dark 
                         v-on="on"
-                    ></v-img>
+                    ></v-img> 
                 </template>
                 <v-card  >
                     <v-toolbar dark  color="#f79026">
                         <v-btn icon dark @click="dialog = false">
                             <v-icon>mdi-close</v-icon>
                         </v-btn>
-                        <v-toolbar-title>Cork Institute of Technology</v-toolbar-title>
+                        <v-toolbar-title>{{ name }}</v-toolbar-title>
                         <v-spacer></v-spacer>
                         <v-toolbar-items>
                             <v-btn dark text @click="dialog = false">Save</v-btn>
@@ -35,7 +36,7 @@
         </div>
       
         <v-card-subtitle class="overline">
-            Cork Institute of Technology
+            {{name}}
         </v-card-subtitle>
     
         <v-card-actions>  

@@ -65,7 +65,7 @@ export default {
 
   methods: {
     ...mapMutations({
-      setDrawer: 'SET_DRAWER',
+      setDrawer: 'setDrawer',
     }),
   },
   logout () {
