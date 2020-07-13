@@ -5,6 +5,7 @@ import Dashboard from '@/views/pages/Dashboard/index'
 import Login from '@/views/pages/Login/index'
 import Register from '@/views/pages/Register/index'
 import Buildings from '@/views/pages/Buildings/index'
+import Certificate from '@/views/pages/Certificate/index'
 
 Vue.use(Router)
 
@@ -27,6 +28,11 @@ export default new Router({
           path: '/buildings',
           component: Buildings,
         },
+        {
+          name: 'Energy Certificate',
+          path: '/certificate',
+          component: Certificate,
+        }
       ],
     },
     {

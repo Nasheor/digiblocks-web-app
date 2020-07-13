@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid dark class="mx-auto mt-0">
+    <v-container fluid dark class="mx-auto mt-0"> 
       <v-toolbar
         dense
         elevation="0"
@@ -9,32 +9,30 @@
 
         <div class="mx-3" />
         <div>
-          <v-dialog fullscreen hide-overlay transition="dialog-bottom-transition">
-              <template v-slot:activator="{ on }">
+          <!-- <v-dialog fullscreen hide-overlay transition="dialog-bottom-transition">
+              <template v-slot:activator="{ on }"> -->
                 <v-btn
-                  class="ml-2"
                   min-width="0"
                   color="success"
                   v-on="on"
                   @click="open"
                 >
-                  <!-- <v-icon>mdi-logout</v-icon> -->
-                  Compare
+                  Community View
                 </v-btn>
-              </template>
+              <!-- </template>
               <v-card v-if="getCompareDialogStatus" >
                   <CompareView />
               </v-card>
-          </v-dialog>          
+          </v-dialog>           -->
         </div>
-      </v-toolbar>      
+      </v-toolbar>  
       <v-row>
         <v-col cols="84">
           <v-row
             align="start"
             justify="start"
           >
-          <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+          <v-dialog v-model="dialog" persistent max-width="490" transition="dialog-bottom-transition">
               <template v-slot:activator="{ on }">
                 <div
                   v-on="on"
@@ -45,7 +43,6 @@
                     v-bind:id="1"
                     v-bind:src="buildings[0].src"
                     v-bind:name="buildings[0].name"
-                    v-bind:compare="true"
                     @click.native="name=buildings[0].name"
                     outlined
                     tile
@@ -55,7 +52,6 @@
                     v-bind:id="2"
                     v-bind:src="buildings[1].src"
                     v-bind:name="buildings[1].name"
-                    v-bind:compare="true"
                     @click.native="name=buildings[1].name"
                     outlined
                     tile
@@ -69,7 +65,7 @@
                       </v-btn>
                       <v-toolbar-title>{{ name }}</v-toolbar-title>
                   </v-toolbar>
-                  <BCard />
+                  <CertificateModal v-bind:chartData="data.barChart" />
               </v-card>
           </v-dialog>
           </v-row>
@@ -78,5 +74,5 @@
     </v-container> 
 </template>
 
- <script src='./Buildings.js' />
- <style scoped lang="scss" src="./Buildings.scss"></style>
+<script src="./Certificate.js" />
+<style lang="scss" scoped src="./Certificate.scss" />

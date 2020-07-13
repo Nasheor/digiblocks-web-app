@@ -15,41 +15,21 @@ props: {
 
 data: () => ({
     items: [
-    {
-        icon: 'mdi-view-dashboard',
-        title: 'dashboard',
-        to: '/dashboard',
-    },
-    {
-        icon: 'mdi-hospital-building',
-        title: 'Buildings',
-        to: '/buildings',
-    },
-    // {
-    //     title: 'rtables',
-    //     icon: 'mdi-clipboard-outline',
-    //     to: '/tables/regular-tables',
-    // },
-    // {
-    //     title: 'typography',
-    //     icon: 'mdi-format-font',
-    //     to: '/widgets/typography',
-    // },
-    // {
-    //     title: 'icons',
-    //     icon: 'mdi-chart-bubble',
-    //     to: '/widgets/icons',
-    // },
-    // {
-    //     title: 'google',
-    //     icon: 'mdi-map-marker',
-    //     to: '/maps/google-maps',
-    // },
-    // {
-    //     title: 'notifications',
-    //     icon: 'mdi-bell',
-    //     to: '/widgets/notifications',
-    // },
+        {
+            icon: 'mdi-view-dashboard',
+            title: 'dashboard',
+            to: '/dashboard',
+        },
+        {
+            icon: 'mdi-hospital-building',
+            title: 'Buildings',
+            to: '/buildings',
+        },
+        {
+            title: 'Certificate',
+            icon: 'mdi-format-font',
+            to: '/certificate',
+        },
     ],
 }),
 

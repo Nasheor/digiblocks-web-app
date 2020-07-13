@@ -4,11 +4,10 @@ export default {
     components: {
         BCard,
     },
-    props: ["id", "name", "src"], 
+    props: ["id", "name", "src","compare"], 
     data() {
         return {
             show: false,
-            dialog: false,
             notifications: false,
             sound: true,
             widgets: false,

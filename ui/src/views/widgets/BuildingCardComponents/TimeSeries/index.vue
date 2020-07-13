@@ -2,10 +2,10 @@
   <v-card class="mb-7">
     <v-row>
       <v-col cols="12" lg="6" sm="4" class="py-0">
-        <div class="pa-5">
+        <div class="pa-5 ml-16">
           <h3 class="text-truncate font-weight-regular">1 Vs 2</h3>
           <h6
-            class="body-2 mb-0 blue-grey--text text--lighten-2 font-weight-light"
+            class="body-2 mb-0 mt-4 blue-grey--text text--lighten-2 font-weight-light"
           >check the difference of Admin</h6>
         </div>
       </v-col>

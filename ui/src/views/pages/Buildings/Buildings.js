@@ -1,10 +1,13 @@
 import BuildingCard from '../../sections/BuildingCard/index'
+import BCard from '../../widgets/BuildingCardComponents/index'
 import CompareView from '../../widgets/CompareView/index'
 import { mapGetters } from 'vuex'
 
 export default {
     data() {
         return {
+            dialog: false,
+            name: '', 
             buildings: [ {
                     'name': "Cork Institute of Technology",
                     'src': "cit.jpg"
@@ -18,6 +21,7 @@ export default {
     components: {
         BuildingCard,
         CompareView,
+        BCard,
     },
     computed: {
         ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings']),
@@ -31,8 +35,9 @@ export default {
                 this.$store.commit("statusCompareDialog", false);
                 location.reload();
             }
-
-
         },
+        setName() {
+            console.log("name is et");
+        }
     }
 }

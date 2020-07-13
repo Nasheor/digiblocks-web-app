@@ -1,0 +1,11 @@
+.display {
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1 1 auto;
+}
+
+.toolbar-position {
+    display: flex;
+    z-index: 1; 
+    flex-direction: row-reverse;
+}

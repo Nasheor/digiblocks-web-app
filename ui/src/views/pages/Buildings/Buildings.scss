@@ -1,6 +1,17 @@
 .toolbar-position {
     display: flex;
+    z-index: 1; 
+    flex-direction: row-reverse;
+}
+
+.display {
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1 1 auto;
+}
+
+.an-toolbar-position {
+    display: flex;
     position: fixed;
     z-index: 1; 
-    margin-left: 65%;
 }
