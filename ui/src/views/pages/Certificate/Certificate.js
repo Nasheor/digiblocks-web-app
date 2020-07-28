@@ -5,6 +5,8 @@ import chartData from './energyData.js'
 export default {
     data() {
         return {
+            name: '',
+            band: 'B1',
             dialog: false,
             data: chartData,
             buildings: [ {
@@ -25,6 +27,13 @@ export default {
         CertificateModal,
     },
     methods: {
-
+        open() {
+            console.log("Community view");
+        },
+        setData(i) {
+            this.name = this.buildings[i].name;
+            localStorage.setItem('band', this.band);
+            localStorage.setItem('rating', '149.1' );
+        }
     }
 }

@@ -50,6 +50,11 @@
                           label="Remember me?"
                           required
                         ></v-checkbox>
+                        <v-checkbox
+                          class="ml-4"
+                          v-model="admin"
+                          label="Admin"
+                        ></v-checkbox>
                         <div class="ml-auto">
                           <a href="javascript:void(0)" class="link mb-5">Forgot pwd?</a>
                         </div> 

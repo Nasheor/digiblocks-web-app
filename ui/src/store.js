@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
+localStorage.setItem('isAdmin', false);
 
 export default new Vuex.Store({
   state: {
@@ -11,8 +12,13 @@ export default new Vuex.Store({
     buildings: [],
     compare_buildings: [], 
     compare_dialog_status: false,
+    admin: localStorage.getItem('isAdmin'),
   },
   mutations: {
+    setPrivileges(state, payload) {
+      state.admin = payload;
+      localStorage.setItem("isAdmin", payload);
+    },
     setBarImage (state, payload) {
       state.barImage = payload;
     },
@@ -36,6 +42,9 @@ export default new Vuex.Store({
     },
     getCompareDialogStatus(state) {
       return state.compare_dialog_status;
+    },
+    getPrivilegeStatus(state) {
+      return state.admin;
     }
   },
 })

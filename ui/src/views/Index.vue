@@ -11,6 +11,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
   import AppBar from './sections/AppBar/index'
   import Drawer from './sections/Drawer/index'
   import Settings from './sections/Settings/index'
@@ -40,6 +41,9 @@
       async refresh() {
         this.assetData = await this.getAssets();
       },
+    },
+    computed: {
+      ...mapGetters(["getPrivilegeStatus"]),
     },
     async mounted() {
       const newAssets = await this.getAssets();

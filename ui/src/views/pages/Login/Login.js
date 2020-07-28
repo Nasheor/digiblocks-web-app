@@ -9,6 +9,7 @@ export default {
         showResult: false,
         result: '',
         checkbox: '',
+        admin: false,
         emailRules: [
           v => !!v || "E-mail is required",
           v => /.+@.+\..+/.test(v) || "E-mail must be valid"
@@ -30,6 +31,7 @@ export default {
           return
         }
         if (vm.userEmail === "admin@yopmail.com"&& vm.password === "123456") {
+          this.$store.commit("setPrivileges", this.admin);
           vm.$router.push({ name: 'Dashboard' })
         } else {
           vm.error = true

@@ -14,7 +14,6 @@
                 <v-btn
                   min-width="0"
                   color="success"
-                  v-on="on"
                   @click="open"
                 >
                   Community View
@@ -32,7 +31,7 @@
             align="start"
             justify="start"
           >
-          <v-dialog v-model="dialog" persistent max-width="490" transition="dialog-bottom-transition">
+          <v-dialog v-model="dialog" persistent max-width="650" transition="dialog-bottom-transition">
               <template v-slot:activator="{ on }">
                 <div
                   v-on="on"
@@ -43,7 +42,7 @@
                     v-bind:id="1"
                     v-bind:src="buildings[0].src"
                     v-bind:name="buildings[0].name"
-                    @click.native="name=buildings[0].name"
+                    @click.native="setData(0)"
                     outlined
                     tile
                   />  
@@ -52,7 +51,7 @@
                     v-bind:id="2"
                     v-bind:src="buildings[1].src"
                     v-bind:name="buildings[1].name"
-                    @click.native="name=buildings[1].name"
+                    @click.native="setData(1)"
                     outlined
                     tile
                   />                  

@@ -1,66 +1,76 @@
 // Utilities
 import {
-mapState,
+    mapState,
+    mapGetters,
 } from 'vuex'
 
 export default {
-name: 'DashboardCoreDrawer',
 
-props: {
-    expandOnHover: {
-    type: Boolean,
-    default: false,
+    props: {
+        expandOnHover: {
+        type: Boolean,
+        default: false,
+        },
     },
-},
 
-data: () => ({
-    items: [
-        {
-            icon: 'mdi-view-dashboard',
-            title: 'dashboard',
-            to: '/dashboard',
-        },
-        {
-            icon: 'mdi-hospital-building',
-            title: 'Buildings',
-            to: '/buildings',
-        },
-        {
-            title: 'Certificate',
-            icon: 'mdi-format-font',
-            to: '/certificate',
-        },
-    ],
-}),
+    data: () => ({
+        items: [
+            {
+                icon: 'mdi-view-dashboard',
+                title: 'dashboard',
+                to: '/dashboard',
+                isAdmin: false,
+            },
+            {
+                icon: 'mdi-hospital-building',
+                title: 'Buildings',
+                to: '/buildings',
+                isAdmin: false,
+            },
+            {
+                title: 'Certificate',
+                icon: 'mdi-format-font',
+                to: '/certificate',
+                isAdmin: false,
+            },
+            {
+                title: 'All Assets',
+                icon: 'mdi-android-debug-bridge',
+                to: '/',
+                isAdmin: true,
+            }
+        ],
+    }),
 
-computed: {
-    ...mapState(['barColor', 'barImage']),
-    drawer: {
-        get () {
-            return this.$store.state.drawer
+    computed: {
+        ...mapState(['barColor', 'barImage']),
+        ...mapGetters(['getPrivilegeStatus']),
+        drawer: {
+            get () {
+                return this.$store.state.drawer
+            },
+            set (val) {
+                this.$store.commit('setDrawer', val)
+            },
         },
-        set (val) {
-            this.$store.commit('setDrawer', val)
+        computedItems () {
+            return this.items.map(this.mapItem)
+        },
+        profile () {
+            return {
+                avatar: true,
+                title: this.$t('avatar'),
+            }
         },
     },
-    computedItems () {
-        return this.items.map(this.mapItem)
-    },
-    profile () {
-        return {
-            avatar: true,
-            title: this.$t('avatar'),
-        }
-    },
-},
 
-methods: {
-    mapItem (item) {
-    return {
-        ...item,
-        children: item.children ? item.children.map(this.mapItem) : undefined,
-        title: this.$t(item.title),
-    }
+    methods: {
+        mapItem (item) {
+            return {
+                ...item,
+                children: item.children ? item.children.map(this.mapItem) : undefined,
+                title: this.$t(item.title),
+            }
+        },
     },
-},
 }
