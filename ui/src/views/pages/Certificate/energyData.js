@@ -42,7 +42,7 @@ export default {
             },
             dataLabels: {
                 enabled: true,
-                offsetX: 70,
+                offsetX: 90,
                 background: {
                     enabled: true,
                     forecolor: "white",

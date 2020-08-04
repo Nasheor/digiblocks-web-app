@@ -34,7 +34,7 @@ export default new Vuex.Store({
     },
     statusCompareDialog(state, payload) {
       state.compare_dialog_status = payload;
-    }
+    },
    },
   getters: {
     getCompareBuildings(state) {
@@ -45,6 +45,6 @@ export default new Vuex.Store({
     },
     getPrivilegeStatus(state) {
       return state.admin;
-    }
+    },
   },
 })

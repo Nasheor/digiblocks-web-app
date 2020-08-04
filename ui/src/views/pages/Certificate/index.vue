@@ -9,20 +9,27 @@
 
         <div class="mx-3" />
         <div>
-          <!-- <v-dialog fullscreen hide-overlay transition="dialog-bottom-transition">
-              <template v-slot:activator="{ on }"> -->
+          <v-dialog v-model="community_dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+              <template v-slot:activator="{ on }">
                 <v-btn
                   min-width="0"
                   color="success"
+                  v-on="on"
                   @click="open"
                 >
                   Community View
                 </v-btn>
-              <!-- </template>
-              <v-card v-if="getCompareDialogStatus" >
-                  <CompareView />
+              </template>
+              <v-card v-if="community_dialog">
+                  <v-toolbar class="an-toolbar-position" dark  color="#f79026">
+                      <v-btn icon dark @click="community_dialog = false">
+                          <v-icon>mdi-close</v-icon>
+                      </v-btn>
+                      <v-toolbar-title>Community Energy Certificate</v-toolbar-title>
+                  </v-toolbar>
+                  <CommunityModal v-bind:chartData="data.barChart" />
               </v-card>
-          </v-dialog>           -->
+          </v-dialog>          
         </div>
       </v-toolbar>  
       <v-row>
