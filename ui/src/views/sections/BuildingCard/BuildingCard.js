@@ -15,18 +15,13 @@ export default {
         };
     },
     methods: {
-        deleteBuilding() {
-
-        },
-    },
-    watch: {
-        isSelected() {
+        addBuilding() {
             if(this.isSelected) {
                 console.log("Add Something");
                 this.$store.commit("addBuildingToCompare", this.id);
             } else {
                 this.$store.commit("removeBuildingCompare", this.id);
             }
-        }
-    }
+        },
+    },
 }

@@ -6,7 +6,7 @@
         <v-list-item-action>
             <v-checkbox
                 color="secondary"
-               @click.stop="isSelected=!isSelected"
+               @click.stop="addBuilding"
                v-model="isSelected"
                v-if="compare===true"
             />
