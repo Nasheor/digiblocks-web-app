@@ -11,7 +11,5 @@ export default class ThingsboardService {
         return http.get(ro)
         .then(res => Promise.resolve(res.data))
         .catch(err => Promise.reject(err));
-        // console.log(data);
-        // return data; 
     }
 }

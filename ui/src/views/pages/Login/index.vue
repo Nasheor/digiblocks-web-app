@@ -1,7 +1,6 @@
 <template>
   <v-app
   >
-    <v-content>
       <v-row>
         <v-col cols="12" lg="7" xl="6" class="info d-none d-md-flex align-center justify-center" fill-width>
           <v-container class="flex-grow-1" >
@@ -75,14 +74,13 @@
             </v-layout>
           </v-container>
         </v-col>
-      </v-row>
-      <v-snackbar
-        v-model="showResult"
-        :timeout="2000"
-        top>
-        {{ result }}
-      </v-snackbar>
-    </v-content>
+        <v-snackbar
+          v-model="showResult"
+          :timeout="2000"
+          top>
+          {{ result }}
+        </v-snackbar>
+        </v-row>
   </v-app>
 </template>
 
