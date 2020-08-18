@@ -43,6 +43,10 @@ export default {
     },
     register() {
       this.$router.push({name: 'Register'});
+    },
+    openWebsite() {
+      let win = window.open("http://www.nimbus.cit.ie/digiblocks/index.html", '_blank')
+      win.focus()
     }
 },
 }

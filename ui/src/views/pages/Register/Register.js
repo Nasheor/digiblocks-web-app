@@ -29,6 +29,10 @@ export default {
             if (this.$refs.form.validate(true)) {
               this.$router.push({ path: "/pages/fulllogin" });
             }
+          },
+          openWebsite() {
+            let win = window.open("http://www.nimbus.cit.ie/digiblocks/index.html", '_blank')
+            win.focus()
           }
     }
 }

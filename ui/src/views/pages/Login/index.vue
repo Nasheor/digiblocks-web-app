@@ -10,11 +10,11 @@
                     <v-img class="ml-12" max-height="450" max-width="450" src="@/assets/images/logo-icon.png" />
                     <h2
                       class="display-1 white--text font-weight-medium"
-                    >Elegant Design with unlimited features, built with love</h2>
+                    >DLT for smarter energy communities</h2>
                     <h6
                       class="subtitle-1 mt-4 white--text op-5 font-weight-regular"
-                    >Wrappixel helps developers to build organized and well-coded admin dashboards full of beautiful and feature rich modules.</h6>
-                    <v-btn class="mt-4 text-capitalize" x-large outlined color="white">Learn More</v-btn>
+                    >DigiBlocks will help facilitate the transformation of the energy sector through digitisation and support the fundamental shift in the energy landscape from a rigid centralised infrastructure towards decentralisation and energy-based communities, motivated in part by the increasing penetration of renewables and need for cities to move towards being positive energy districts.</h6>
+                    <v-btn @click="openWebsite" class="mt-4 text-capitalize" x-large outlined color="white">Learn More</v-btn>
                   </div>
                 </div>
               </div>
@@ -24,7 +24,7 @@
                 <h2 class="font-weight-bold mt-4 blue-grey--text text--darken-2">Sign in</h2>
                 <h6 class="subtitle-1">
                   Don't have an account?
-                  <a href="#/register" class>Sign Up</a>
+                  <a href="#/register">Sign Up</a>
                 </h6>
 
                 <v-form ref="form" v-model="valid" lazy-validation action="/dashboards/analytical">
