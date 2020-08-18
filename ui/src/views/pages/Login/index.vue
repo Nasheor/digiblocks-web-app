@@ -1,87 +1,82 @@
 <template>
-  <v-app
-  >
-      <v-row>
-        <v-col cols="12" lg="7" xl="6" class="info d-none d-md-flex align-center justify-center" fill-width>
-          <v-container class="flex-grow-1" >
-            <div>
-              <v-row justify="center">
-                <v-col cols="8" xl="5">
-                    <div class="layout column align-center login-logo">                 
-                      <v-img src="../../../assets/images/digilogo.png" class="mt-12" height="100%"></v-img>
-                    </div>
-                </v-col>
-              </v-row>
-            </div>
-          </v-container>
-        </v-col>
-        <v-col cols="12" lg="5" xl="6" class="d-flex align-center">
-          <v-container fluid fill-height>
-            <v-layout align-center justify-center>
-                <v-card class="elevation-1 mt-12 pa-4" min-height="100%">
-                  <v-card-text>
-                    <div class="align-center login-logo pl-5">                 
-                      <v-img src="../../../assets/images/no_tagline.png"></v-img>
-                    </div>
-                    <v-form>
-                      <v-text-field
-                        append-icon="mdi-account"
-                        name="login"
-                        label="Login"
-                        type="text"
-                        v-model="userEmail"
-                        :error="error"
-                        :rules="emailRules"/>
-                      <v-text-field
-                        :type="hidePassword ? 'password' : 'text'"
-                        :append-icon="hidePassword ? 'mdi-eye-off' : 'mdi-eye'"
-                        name="password"
-                        label="Password"
-                        id="password"
-                        :rules="passwordRules"
-                        v-model="password"
-                        :error="error"
-                        @click:append="hidePassword = !hidePassword"/>
-                      <div class="d-block d-sm-flex align-center mb-4 mb-sm-0">
-                        <v-checkbox
-                          v-model="checkbox"
-                          :rules="[v => !!v || 'You must agree to continue!']"
-                          label="Remember me?"
-                          required
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="ml-4"
-                          v-model="admin"
-                          label="Admin"
-                        ></v-checkbox>
-                        <div class="ml-auto">
-                          <a href="javascript:void(0)" class="link mb-5">Forgot pwd?</a>
-                        </div> 
-                      </div>
-                      <div class="d-block d-sm-flex align-center mb-4 mb-sm-0">
-                          <h6 class="subtitle-1">
-                            Don't have an account?
-                            <a @click="register" >Sign Up</a>
-                          </h6>                        
-                      </div>
-                    </v-form>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn block color="#f79026" @click="login" :loading="loading">Login</v-btn>
-                  </v-card-actions>
-                </v-card>
-            </v-layout>
-          </v-container>
-        </v-col>
-        <v-snackbar
-          v-model="showResult"
-          :timeout="2000"
-          top>
-          {{ result }}
-        </v-snackbar>
-        </v-row>
-  </v-app>
+<v-app color="pink">
+  <v-container class="fill-height justify-center" >
+        <v-card class="align-center">
+          <v-row>
+            <v-col lg="7" class="info d-none d-md-flex align-center justify-center">
+              <div class="d-none d-sm-block">
+                <div class="d-flex align-center pa-10">
+                  <div>
+                    <v-img class="ml-12" max-height="450" max-width="450" src="@/assets/images/logo-icon.png" />
+                    <h2
+                      class="display-1 white--text font-weight-medium"
+                    >Elegant Design with unlimited features, built with love</h2>
+                    <h6
+                      class="subtitle-1 mt-4 white--text op-5 font-weight-regular"
+                    >Wrappixel helps developers to build organized and well-coded admin dashboards full of beautiful and feature rich modules.</h6>
+                    <v-btn class="mt-4 text-capitalize" x-large outlined color="white">Learn More</v-btn>
+                  </div>
+                </div>
+              </div>
+            </v-col>
+            <v-col lg="5">
+              <div class="pa-7 pa-sm-12">
+                <h2 class="font-weight-bold mt-4 blue-grey--text text--darken-2">Sign in</h2>
+                <h6 class="subtitle-1">
+                  Don't have an account?
+                  <a href="#/register" class>Sign Up</a>
+                </h6>
+
+                <v-form ref="form" v-model="valid" lazy-validation action="/dashboards/analytical">
+                  <v-text-field
+                    v-model="userEmail"
+                    :rules="emailRules"
+                    label="E-mail"
+                    class="mt-4"
+                    required
+                    outlined
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="password"
+                    :counter="10"
+                    :rules="passwordRules"
+                    label="Password"
+                    required
+                    outlined
+                    :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="show1 ? 'text' : 'password'"
+                  ></v-text-field>
+
+                  <v-row>
+                    <v-col>
+                      <v-checkbox
+                        v-model="checkbox"
+                        :rules="[v => !!v || 'You must agree to continue!']"
+                        label="Remember me?"
+                        required
+                      ></v-checkbox>
+                    </v-col>
+                    <v-col>
+                    <v-checkbox
+                      v-model="admin"
+                      label="Admin"
+                    ></v-checkbox>
+                    </v-col>
+                  </v-row>
+                  <v-btn
+                    color="orange"
+                    block
+                    class="mr-4"
+                    submit
+                    @click="login"
+                  >Sign In</v-btn>
+                </v-form>
+              </div>
+            </v-col>
+          </v-row>
+        </v-card>
+  </v-container>
+</v-app>
 </template>
 
 <script src='./Login.js' />

@@ -9,14 +9,16 @@ export default {
         showResult: false,
         result: '',
         checkbox: '',
+        show1: false,
         admin: false,
+        valid: true,
         emailRules: [
           v => !!v || "E-mail is required",
           v => /.+@.+\..+/.test(v) || "E-mail must be valid"
         ],
         passwordRules: [
           v => !!v || "Password is required",
-          v => (v && v.length <= 7) || "Password must be less than 10 characters"
+          v => (v && v.length <= 10) || "Password must be less than 10 characters"
         ],
       }
     },
