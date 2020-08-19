@@ -1,5 +1,5 @@
 <template>
-<v-app color="pink">
+<v-app id="particles-js">
   <v-container class="fill-height justify-center" >
         <v-card class="align-center">
           <v-row>

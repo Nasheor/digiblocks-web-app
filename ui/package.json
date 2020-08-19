@@ -15,6 +15,7 @@
     "apexcharts": "^3.19.2",
     "core-js": "^3.6.2",
     "d3": "^5.16.0",
+    "particles.js": "^2.0.0",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.5.3",
     "vue-i18n": "^8.15.3",
