@@ -24,7 +24,7 @@ export default {
             this.community_dialog = true;
         },
         setData(i) {
-            this.name = this.buildings[i].name;
+            this.name = this.getBuildings[i].name;
             localStorage.setItem('band', this.band);
             localStorage.setItem('rating', '149.1' );
         }
