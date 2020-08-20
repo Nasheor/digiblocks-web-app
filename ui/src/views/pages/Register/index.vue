@@ -11,8 +11,8 @@
                 <h2 class="font-weight-bold mt-4 blue-grey--text text--darken-2">Sign Up</h2>
                 <h6 class="subtitle-1">
                   Don't have an account?
-                  <a href="#/login" class>Sign in</a>
-                </h6>
+                  <a href="#/" class>Sign in</a>
+                </h6>cd
 
                 <v-form ref="form" v-model="valid" lazy-validation action="/pages/boxedlogin">
                   <v-text-field

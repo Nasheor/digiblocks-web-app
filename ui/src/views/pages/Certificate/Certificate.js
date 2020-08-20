@@ -12,17 +12,6 @@ export default {
             dialog: false,
             data: chartData,
             community_dialog: false,
-            buildings: [ {
-                'name': "Cork Institute of Technology",
-                'src': "cit.jpg"
-            },
-            {
-                'name': "Nimbus Research Center",
-                'src': "nimbus.jpg"                    
-            }],
-            chart: {
-
-            }
         };
     },
     components: {
@@ -41,6 +30,6 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(["getStatusCerts"])
+        ...mapGetters(["getStatusCerts", "getBuildings"])
     }
 }

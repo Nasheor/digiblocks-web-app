@@ -44,24 +44,16 @@
                   v-on="on"
                   class="display"
                 >
-                  <BuildingCard
+                  <BuildingCard 
+                    v-for="(building, index) of getBuildings"
+                    :key="building.src"
                     class="ma-3 pa-2"
-                    v-bind:id="1"
-                    v-bind:src="buildings[0].src"
-                    v-bind:name="buildings[0].name"
-                    @click.native="setData(0)"
+                    :src="building.src"
+                    :name="building.name"
+                    @click.native="setData(index)"
                     outlined
                     tile
-                  />  
-                  <BuildingCard
-                    class="ma-3 pa-2"
-                    v-bind:id="2"
-                    v-bind:src="buildings[1].src"
-                    v-bind:name="buildings[1].name"
-                    @click.native="setData(1)"
-                    outlined
-                    tile
-                  />                  
+                  />                    
                 </div>
               </template>
               <v-card  >

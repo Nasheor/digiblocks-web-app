@@ -23,7 +23,7 @@ export default {
             },
             {
                 icon: 'mdi-hospital-building',
-                title: 'Buildings',
+                title: 'Cork Institute of Technology',
                 to: '/buildings',
                 isAdmin: false,
             },

@@ -9,7 +9,38 @@ export default new Vuex.Store({
     barColor: 'rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)',
     barImage: 'https://demos.creative-tim.com/material-dashboard/assets/img/sidebar-1.jpg',
     drawer: null,
-    buildings: [],
+    buildings: [{
+        'name': "Main Building",
+        'src': "cit.jpg"
+      },
+      {
+        'name': "Rubicon Center",
+        'src': "rubicon.jpeg"                    
+      },
+      {
+        'name': "Nimbus Research Center",
+        'src': "nimbus.jpg"                    
+      },
+      {
+        'name': "Melbourne Building",
+        'src': "melbourne.jpeg"                    
+      },
+      {
+        'name': "Student Center",
+        'src': "student_center.jpeg"                    
+      },
+      {
+        'name': "Create Building",
+        'src': "create.jpeg"                    
+      },
+      {
+        'name': "Tourism Building",
+        'src': "tourism.jpeg"                    
+      },
+      {
+        'name': "Admin Building",
+        'src': "admin.jpeg"                    
+    }],
     compare_buildings: [], 
     compare_dialog_status: false,
     admin: localStorage.getItem('isAdmin'),
@@ -46,5 +77,8 @@ export default new Vuex.Store({
     getPrivilegeStatus(state) {
       return state.admin;
     },
+    getBuildings(state) {
+      return state.buildings;
+    }
   },
 })
