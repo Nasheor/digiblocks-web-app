@@ -31,7 +31,7 @@ export default {
         window.particlesJS('particles-js', {
           "particles": {
             "number": {
-              "value": 3000,
+              "value": 1000,
               "density": {
                 "enable": true,
                 "value_area": 10000 // Denser the smaller the number.
@@ -70,7 +70,7 @@ export default {
               "speed": 2,
               "direction": "bottom-left", // Move them off the canvas, either "none", "top", "right", "bottom", "left", "top-right", "bottom-right" et cetera...
               "random": true,
-              "straight": false, // Whether they'll shift left and right while moving.
+              "straight": true, // Whether they'll shift left and right while moving.
               "out_mode": "bounce", // What it'll do when it reaches the end of the canvas, either "out" or "bounce".
               "bounce": false,
               "attract": { // Make them start to clump together while moving.
