@@ -10,6 +10,10 @@
    "tenant_assets_route" : {
        "name": "/tenant/assets?limit=%limit%",
        "method": "get"
+   },
+   "tenant_dashboard_route": {
+       "name": "/tenant/dashboards?limit=%limit%",
+       "method": "get"
    }
 
 }

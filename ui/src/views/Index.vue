@@ -31,27 +31,35 @@
     data: () => ({
       expandOnHover: false,
       assetData: '',
+      dashboardData: '',
       devices: '',
     }),
 
     methods: {
       getAssets() {
-        return ThingsboardController.getTenantAssets(30);
+        return ThingsboardController.getTenantAssets(30)
+      },
+      getDashboards() {
+        return ThingsboardController.getTenantDashboards(30)
       },
       async refresh() {
-        this.assetData = await this.getAssets();
+        this.assetData = await this.getAssets()
       },
     },
     computed: {
       ...mapGetters(["getPrivilegeStatus"]),
     },
     async mounted() {
-      const newAssets = await this.getAssets();
-      this.assetData = newAssets; 
+      const newAssets = await this.getAssets()
+      const newDashboardData = await this.getDashboards()
+      console.log("Dashboard "+newDashboardData)
+      this.assetData = newAssets
+      this.dashboardData = newDashboardData
+
       // Refresh data every 5 minutes
       setInterval(() => {
-        this.refresh();
-      }, 300000);
+        this.refresh()
+      }, 300000)
     }
   }
 </script>

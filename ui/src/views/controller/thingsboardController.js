@@ -13,4 +13,15 @@ export default class ThingsBoardController {
             return e;
         }
     }
+
+    static async getTenantDashboards(limit) {
+        try {
+            const dashboard = await ThingsboardService.getDashboards(limit);
+            return dashboard;
+                                                                                                                                                                                                                                                                    v 
+        } catch(e) {
+            log.log('error', 'Cannot fetch data from assets' +e);
+            return e;
+        }
+    }
 }
