@@ -1,6 +1,6 @@
 <template>
-<v-app id="particles-js">
-  <v-container class="fill-height justify-center" >
+<v-app  id="particles-js">
+  <v-container class="fill-height fill-width justify-center loc" max-width="900px">
         <v-card class="align-center">
           <v-row>
             <v-col lg="7" class="info d-none d-md-flex align-center justify-center">
