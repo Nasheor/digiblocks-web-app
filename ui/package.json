@@ -13,9 +13,12 @@
   },
   "dependencies": {
     "apexcharts": "^3.19.2",
+    "axios": "^0.19.2",
+    "axios-auth-refresh": "^2.2.8",
     "core-js": "^3.6.2",
     "d3": "^5.16.0",
     "particles.js": "^2.0.0",
+    "simple-node-logger": "^18.12.24",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.5.3",
     "vue-i18n": "^8.15.3",
