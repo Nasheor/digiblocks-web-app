@@ -33,12 +33,12 @@ export default {
                 to: '/certificate',
                 isAdmin: false,
             },
-            {
-                title: 'All Assets',
-                icon: 'mdi-android-debug-bridge',
-                to: '/',
-                isAdmin: true,
-            }
+            // {
+            //     title: 'All Assets',
+            //     icon: 'mdi-android-debug-bridge',
+            //     to: '/',
+            //     isAdmin: true,
+            // }
         ],
     }),
 
