@@ -30,32 +30,25 @@
 
     data: () => ({
       expandOnHover: false,
-      assetData: '',
-      dashboardData: '',
-      devices: '',
+      asset_data: '',
     }),
 
     methods: {
-      getAssets() {
-        return ThingsboardController.getTenantAssets(30)
-      },
-      getDashboards() {
-        return ThingsboardController.getTenantDashboards(30)
+      getAssetData() {
+        return ThingsboardController.getAssets(999)
+       
       },
       async refresh() {
-        this.assetData = await this.getAssets()
+        this.assetData = await this.getAssetData()
+        this.$store.commit("setAssetData", this.asset_data)
       },
     },
     computed: {
       ...mapGetters(["getPrivilegeStatus"]),
     },
     async mounted() {
-      const newAssets = await this.getAssets()
-      const newDashboardData = await this.getDashboards()
-      console.log("Dashboard "+newDashboardData)
-      this.assetData = newAssets
-      this.dashboardData = newDashboardData
-
+      this.asset_data = await this.getAssetData()
+      this.$store.commit("setAssetData", this.asset_data)
       // Refresh data every 5 minutes
       setInterval(() => {
         this.refresh()

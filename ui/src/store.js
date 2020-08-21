@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import ThingsboardController from  './views/controller/thingsboardController'
 
 Vue.use(Vuex)
 localStorage.setItem('isAdmin', false);
@@ -44,6 +45,8 @@ export default new Vuex.Store({
     compare_buildings: [], 
     compare_dialog_status: false,
     admin: localStorage.getItem('isAdmin'),
+    asset_data: [],
+    dashboard_data: []
   },
   mutations: {
     setPrivileges(state, payload) {
@@ -66,6 +69,9 @@ export default new Vuex.Store({
     statusCompareDialog(state, payload) {
       state.compare_dialog_status = payload;
     },
+    setAssetData(state, payload) {
+      state.asset_data = payload;
+    }
    },
   getters: {
     getCompareBuildings(state) {
@@ -79,6 +85,12 @@ export default new Vuex.Store({
     },
     getBuildings(state) {
       return state.buildings;
+    },
+    getDashboardData(state) {
+        let dashboard_asset = state.asset_data.filter(asset => asset.type === "DASHBOARD")
+        console.log(dashboard_asset);
+        state.dashboard_data = ThingsboardController.getDashboardData(dashboard_asset[0].id)
+        return state.dashboard_data;
     }
   },
 })

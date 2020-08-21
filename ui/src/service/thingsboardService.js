@@ -3,20 +3,26 @@ import http from './http';
 
 export default class ThingsboardService {
 
-    static getAssets(limit){
-        console.log(limit);
-        const ro = routes.tenant_assets_route.name
-        .replace('%limit%', limit)
-        console.log(http)
-        return http.get(ro)
-        .then(res => Promise.resolve(res.data))
-        .catch(err => Promise.reject(err));
+    static async getAssets(limit) {
+        let ro = routes.base_asset_route.name.replace("%limit%", limit)
+        try {
+            const res = await http.get(ro)
+            return await Promise.resolve(res.data)
+        }
+        catch (err) {
+            return await Promise.reject(err)
+        }        
     }
 
-    static getDashboards(limit) {
-        const ro = routes.tenant_dashboard_route.name.replace('%limit%', limit)
-        return http.get(ro)
-        .then(res => Promise.resolve(res.data))
-        .catch(err => Promise.reject(err));
+    static async getDashboardData(id) {
+        let ro = routes.asset_by_id_route.name
+        console.log(ro)
+        try {
+            const res = await http.get(ro)
+            return await Promise.resolve(res.data)
+        }
+        catch (err) {
+            return await Promise.reject(err)
+        }  
     }
 }

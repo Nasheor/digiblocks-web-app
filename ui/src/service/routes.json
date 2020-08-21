@@ -3,17 +3,12 @@
         "name": "/auth/login",
         "method": "post"
     },
-    "admin_settings_testMail_route": {
-        "name": "/admin/settings/testMail",
-        "method": "post"
-    },
-   "tenant_assets_route" : {
+   "base_asset_route": {
        "name": "/tenant/assets?limit=%limit%",
-       "method": "get"
+       "method":"get"
    },
-   "tenant_dashboard_route": {
-       "name": "/tenant/dashboards?limit=%limit%",
+   "asset_by_id_route": {
+       "name":"/plugins/telemetry/ASSET/75f36bd0-e399-11ea-bdd4-376cbbd450da/values/attributes",
        "method": "get"
    }
-
 }

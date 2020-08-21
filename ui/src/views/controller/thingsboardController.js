@@ -3,25 +3,32 @@ import ThingsboardService from "../../service/thingsboardService";
 
 export default class ThingsBoardController {
 
-    static async getTenantAssets(limit) {
+    static async getAssets(limit) {
         try {
-            const assets = await ThingsboardService.getAssets(limit);
-            return assets;
+            const assets = await ThingsboardService.getAssets(limit)
+            let filteredData = []
+            assets.data.map(item => {
+                filteredData.push({
+                    "id": item.id.id,
+                    "type": item.type
+                })
+            })
+            return filteredData
                                                                                                                                                                                                                                                                     v 
         } catch(e) {
-            log.log('error', 'Cannot fetch data from assets' +e);
-            return e;
+            log.log('error', 'Cannot fetch data from assets' +e)
+            return e
         }
     }
 
-    static async getTenantDashboards(limit) {
+    static async getDashboardData(id) {
         try {
-            const dashboard = await ThingsboardService.getDashboards(limit);
-            return dashboard;
-                                                                                                                                                                                                                                                                    v 
-        } catch(e) {
-            log.log('error', 'Cannot fetch data from assets' +e);
-            return e;
+            const data = await ThingsboardService.getDashboardData(id)
+            console.log(data)
+            return data
+        }catch(e) {
+            log.log('error', 'Cannot fetch data from asset' +e)
+            return e
         }
     }
 }

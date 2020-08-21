@@ -22,8 +22,6 @@ const refreshAuthLogic = async failedRequest => {
     .then(async tokenRefreshResponse => {
         console.log(tokenRefreshResponse);        
         localStorage.setItem('token', tokenRefreshResponse.data.token);
-        //eslint-disable-next-line
-        console.log("login success");
         failedRequest.response.config.headers['X-Authorization'] = 'Bearer ' + tokenRefreshResponse.data.token;
         return await Promise.resolve();
         }).catch(err => {
