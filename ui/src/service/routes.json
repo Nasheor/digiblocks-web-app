@@ -8,7 +8,7 @@
        "method":"get"
    },
    "asset_by_id_route": {
-       "name":"/plugins/telemetry/ASSET/75f36bd0-e399-11ea-bdd4-376cbbd450da/values/attributes",
+       "name":"/plugins/telemetry/ASSET/%id%/values/attributes",
        "method": "get"
    }
 }

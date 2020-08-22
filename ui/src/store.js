@@ -71,6 +71,9 @@ export default new Vuex.Store({
     },
     setAssetData(state, payload) {
       state.asset_data = payload;
+    },
+    setDashboardData(state, payload) {
+      state.dashboard_data = payload
     }
    },
   getters: {
@@ -86,11 +89,11 @@ export default new Vuex.Store({
     getBuildings(state) {
       return state.buildings;
     },
+    getAssetData(state) {
+      return state.asset_data;
+    },
     getDashboardData(state) {
-        let dashboard_asset = state.asset_data.filter(asset => asset.type === "DASHBOARD")
-        console.log(dashboard_asset);
-        state.dashboard_data = ThingsboardController.getDashboardData(dashboard_asset[0].id)
-        return state.dashboard_data;
+      return state.dashboard_data;
     }
   },
 })

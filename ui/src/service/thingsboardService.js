@@ -15,7 +15,7 @@ export default class ThingsboardService {
     }
 
     static async getDashboardData(id) {
-        let ro = routes.asset_by_id_route.name
+        let ro = routes.asset_by_id_route.name.replace("%id%", id)
         console.log(ro)
         try {
             const res = await http.get(ro)
