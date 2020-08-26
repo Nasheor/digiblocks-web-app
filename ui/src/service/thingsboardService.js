@@ -26,7 +26,7 @@ export default class ThingsboardService {
     }
 
     static async getAssetDevices(id) {
-        let ro = routes.devices_by_asset_id.name
+        let ro = routes.devices_by_asset_id.name.replace("%id%", id)
         console.log(ro)
         try {
             const res = await http.get(ro)

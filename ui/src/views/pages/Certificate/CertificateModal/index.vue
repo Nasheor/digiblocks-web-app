@@ -4,17 +4,17 @@
         <v-col cols="12" sm="12" lg="4">
             <v-card color="#eeeeee" outlined >
                 <v-card-text >
-                    <v-list color="#eeeeee" dense max-height="290">
+                    <v-list color="#eeeeee" dense max-height="195">
                       <v-list-item
-                        v-for="(item, i) in data"
+                        v-for="(item, i) in certificate_keys"
                         :key="i"
                       >
-                        <v-list-item-content  v-if="i < 3">
+                        <v-list-item-content  v-if="i < 3 && item.text != 'BAND' && item.text != 'RATING'">
                           <v-list-item-title>
-                            <strong> {{keys[i]}} </strong> 
+                            <strong> {{item.text}} </strong> 
                           </v-list-item-title> 
                           <v-list-item-subtitle>
-                            {{data[i]}}
+                            {{certificate_data[item.value]}}
                           </v-list-item-subtitle>
                         </v-list-item-content>
                       </v-list-item>                      
@@ -26,7 +26,7 @@
             <v-card color="#eeeeee" outlined >
                 <v-card-text class="pt-0" >
                     <v-list 
-                        v-for="(item, i) in data"
+                        v-for="(item, i) in certificate_keys"
                         :key="i"                    
                         dense
                         class="pt-0"
@@ -37,10 +37,10 @@
                       >
                         <v-list-item-content class="mt-0" >
                           <v-list-item-title>
-                            <strong> {{keys[i]}} </strong> 
+                            <strong> {{item.text}} </strong> 
                           </v-list-item-title> 
-                          <v-list-item-subtitle class="text-wrap">
-                            {{data[i]}}
+                          <v-list-item-subtitle>
+                            {{certificate_data[item.value]}}
                           </v-list-item-subtitle>
                         </v-list-item-content>
                       </v-list-item>                      
@@ -52,21 +52,22 @@
             <v-card color="#eeeeee" outlined>
                 <v-card-text class="pt-0" >
                     <v-list 
-                        v-for="(item, i) in data"
+                        v-for="(item, i) in certificate_keys"
                         :key="i"                    
                         dense
                         class="pt-0"
                         color="#eeeeee"
+                        min-height="14"
                     >
                       <v-list-item
                         v-if="i > 6"
                       >
-                        <v-list-item-content class="mt-0" >
+                        <v-list-item-content >
                           <v-list-item-title>
-                            <strong> {{keys[i]}} </strong> 
+                            <strong> {{item.text}} </strong> 
                           </v-list-item-title> 
-                          <v-list-item-subtitle class="text-wrap">
-                            {{data[i]}}
+                          <v-list-item-subtitle>
+                            {{certificate_data[item.value]}}
                           </v-list-item-subtitle>
                         </v-list-item-content>
                       </v-list-item>                      
@@ -80,7 +81,7 @@
                     <h3 class="font-weight-regular">Band</h3>
                     <div class="mt-3">
                     <div style="width: 90px;margin: 0 auto;">
-                        <h2>B1</h2>
+                        <h2>{{certificate_data.band}}</h2>
                     </div>
                     </div>
                 </v-card-text>

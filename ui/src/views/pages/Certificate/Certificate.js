@@ -8,6 +8,7 @@ export default {
     data() {
         return {
             name: '',
+            id: '',
             band: 'B1',
             dialog: false,
             data: chartData,
@@ -25,6 +26,7 @@ export default {
         },
         setData(i) {
             this.name = this.building_data[i].name;
+            this.id=this.building_data[i].id;
             localStorage.setItem('band', this.band);
             localStorage.setItem('rating', '149.1' );
         }

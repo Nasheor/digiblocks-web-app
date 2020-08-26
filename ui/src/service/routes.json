@@ -12,7 +12,7 @@
        "method": "get"
    },
    "devices_by_asset_id": {
-       "name": "/relations/info?fromId=007e5590-3c6e-11ea-8b01-0552beb3b3f6&fromType=ASSET",
+       "name": "/relations/info?fromId=%id%&fromType=ASSET",
        "method": "get"
    }
 }

@@ -40,10 +40,10 @@ export default {
                     this.co2.push(data)
                 }
             })
-            this.items.push({name: 'Gas(Wh)', measurement: this.gas})
-            this.items.push({name: 'Electricity(mA)', measurement: this.electricity})
-            this.items.push({name: 'Water(L)', measurement: this.water})
-            this.items.push({name: 'Carbon Dioxide(Kg)', measurement: this.co2})
+            this.items.push({name: 'Gas', measurement: this.gas, key: "Wh"})
+            this.items.push({name: 'Electricity', measurement: this.electricity, key: "mA"})
+            this.items.push({name: 'Water', measurement: this.water, key: "L"})
+            this.items.push({name: 'Carbon Dioxide', measurement: this.co2, key: "Kg"})
         },
     },
     computed: {

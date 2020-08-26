@@ -63,7 +63,7 @@
                       </v-btn>
                       <v-toolbar-title>{{ name }}</v-toolbar-title>
                   </v-toolbar>
-                  <CertificateModal v-bind:chartData="data.barChart" />
+                  <CertificateModal :chartData="data.barChart" :id="id"/>
               </v-card>
           </v-dialog>
           </v-row>

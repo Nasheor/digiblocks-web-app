@@ -3,12 +3,12 @@ import { mapGetters } from 'vuex'
 export default {
     data() {
         return {
-          // default to Montreal to keep it simple
-          // change this to whatever makes sense
           center: { lat: 51.886136, lng: -8.535202 },
           markers: [],
           places: [],
-          currentPlace: null
+          currentPlace: null,
+          headers: ["Name", "Band"],
+          campus_data: [],
         };
       },  
       methods: {
@@ -28,6 +28,17 @@ export default {
             this.currentPlace = null;
           }
         },
+        populateTable() {
+          this.building_data.map(building => {
+            this.campus_data.push({
+              "name": building.name,
+              "category": building.category,
+              "image": building.image,
+              "band": building.band,
+
+            })
+          })
+        },
         populateMarkers() {
           this.building_data.map(building => {
             this.markers.push({
@@ -44,5 +55,6 @@ export default {
       },
       created() {
         this.populateMarkers()
+        this.populateTable()
       }
 }
