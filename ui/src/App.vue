@@ -4,6 +4,14 @@
   </div>
 </template>
 
+<script>
+  export default {
+    async created() {
+      this.$store.dispatch("LOAD_DATA", 999)
+    }
+  }
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

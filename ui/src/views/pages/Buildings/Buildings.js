@@ -9,31 +9,6 @@ export default {
             dialog: false,
             add_building_status: false,
             name: '', 
-            buildings: [ {
-                    'name': "Main Building",
-                    'src': "cit.jpg"
-                },
-                {
-                    'name': "Nimbus Research Center",
-                    'src': "nimbus.jpg"                    
-                },
-                {
-                    'name': "Rubicon",
-                    'src': "nimbus.jpg"                    
-                },
-                {
-                    'name': "Melbourne",
-                    'src': "nimbus.jpg"                    
-                },
-                {
-                    'name': "Student Center",
-                    'src': "nimbus.jpg"                    
-                },
-                {
-                    'name': "Admin Building",
-                    'src': "nimbus.jpg"                    
-                },
-            ],
             valid: false,
             building_name: '',
             address: '',
@@ -62,12 +37,13 @@ export default {
         BCard,
     },
     computed: {
-        ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildings']),
+        ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData']),
     },
     methods: {
         open() {
             if(this.getCompareBuildings.length>1) {
                 this.$store.commit("statusCompareDialog", true);
+                console.log(this.getCompareBuildings)
             } else {
                 alert("You need to select atleast two buildings to compare");
                 this.$store.commit("statusCompareDialog", false);

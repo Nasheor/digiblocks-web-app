@@ -16,8 +16,7 @@
   import Drawer from './sections/Drawer/index'
   import Settings from './sections/Settings/index'
   import View from './sections/View/index'
-  import ThingsboardController from './controller/thingsboardController'
-
+  
   export default {
     name: 'DashboardIndex',
 
@@ -30,36 +29,9 @@
 
     data: () => ({
       expandOnHover: false,
-      asset_data: '',
-      dashboard_data: '',
     }),
-
-    methods: {
-      getAssetData() {
-        return ThingsboardController.getAssets(999)
-       
-      },
-      getDashboardData() {
-        let dashboard_asset = this.asset_data.filter(asset => asset.type === "DASHBOARD")    
-        return ThingsboardController.getDashboardData(dashboard_asset[0].id)
-      },
-      async refresh() {
-        this.asset_data = await this.getAssetData()
-        this.$store.commit("setAssetData", this.asset_data)
-        this.dashboard_data = await this.getDashboardData()
-        this.$store.commit("setDashboardData", this.dashboard_data)
-      },
-    },
     computed: {
       ...mapGetters(["getPrivilegeStatus"]),
     },
-    async mounted() {
-      this.refresh()
-      
-      // Refresh data every 5 minutes
-      setInterval(() => {
-        this.refresh()
-      }, 300000)
-    }
   }
 </script>

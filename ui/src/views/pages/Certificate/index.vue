@@ -45,10 +45,10 @@
                   class="display"
                 >
                   <BuildingCard 
-                    v-for="(building, index) of getBuildings"
+                    v-for="(building, index) of building_data"
                     :key="building.src"
                     class="ma-3 pa-2"
-                    :src="building.src"
+                    :src="building.image"
                     :name="building.name"
                     @click.native="setData(index)"
                     outlined

@@ -24,12 +24,12 @@ export default {
             this.community_dialog = true;
         },
         setData(i) {
-            this.name = this.getBuildings[i].name;
+            this.name = this.building_data[i].name;
             localStorage.setItem('band', this.band);
             localStorage.setItem('rating', '149.1' );
         }
     },
     computed: {
-        ...mapGetters(["getStatusCerts", "getBuildings"])
+        ...mapGetters({ building_data: "getBuildingData"})
     }
 }

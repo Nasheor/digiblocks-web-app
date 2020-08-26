@@ -15,7 +15,6 @@ export default {
     methods: {
         complete (index) {
             this.list[index] = !this.list[index]
-            console.log(this.getDashboardData)
         },
     },
     computed: {

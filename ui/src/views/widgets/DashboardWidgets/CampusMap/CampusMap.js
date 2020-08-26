@@ -1,42 +1,16 @@
+import { mapGetters } from 'vuex'
+
 export default {
     data() {
         return {
           // default to Montreal to keep it simple
           // change this to whatever makes sense
           center: { lat: 51.886136, lng: -8.535202 },
-          markers: [{
-            position: {
-              lat: 51.8851366,
-              lng: -8.537603
-            },
-          }, 
-          {
-            position:{
-              lat:51.8865029,
-              lng:-8.535737799999998
-            }
-          },
-          {
-            position:{
-              lat:51.8863186,
-              lng:-8.535412899999999
-            }
-          },
-          {
-            position:{
-              lat:51.886229,
-              lng:-8.533397
-            }
-          }],
+          markers: [],
           places: [],
           currentPlace: null
         };
-      },
-    
-      mounted() {
-        this.geolocate();
-      },
-    
+      },  
       methods: {
         // receives a place object via the autocomplete component
         setPlace(place) {
@@ -54,13 +28,21 @@ export default {
             this.currentPlace = null;
           }
         },
-        geolocate: function() {
-          navigator.geolocation.getCurrentPosition(position => {
-            this.center = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-          });
+        populateMarkers() {
+          this.building_data.map(building => {
+            this.markers.push({
+              "position": {
+                "lat": parseFloat(building.latitude),
+                "lng": parseFloat(building.longitude)
+              }
+            })
+          })
         }
+      },
+      computed: {
+        ...mapGetters({building_data: "getBuildingData"})
+      },
+      created() {
+        this.populateMarkers()
       }
 }

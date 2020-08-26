@@ -1,7 +1,6 @@
+import { mapGetters } from 'vuex'
+
 export default {
-    props: [
-        'summary_card_data'
-    ],
     data() {
         return {
             from_period: '',
@@ -47,7 +46,10 @@ export default {
             this.items.push({name: 'Carbon Dioxide(Kg)', measurement: this.co2})
         },
     },
-    mounted() {
+    computed: {
+        ...mapGetters({ summary_card_data: "getDashboardData"} )
+    },
+    created() {
         this.populateData()
     }
 }

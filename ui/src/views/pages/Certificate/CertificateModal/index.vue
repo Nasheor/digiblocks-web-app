@@ -10,9 +10,9 @@
                         :key="i"
                       >
                         <v-list-item-content  v-if="i < 3">
-                          <v-list-title>
+                          <v-list-item-title>
                             <strong> {{keys[i]}} </strong> 
-                          </v-list-title> 
+                          </v-list-item-title> 
                           <v-list-item-subtitle>
                             {{data[i]}}
                           </v-list-item-subtitle>
@@ -36,9 +36,9 @@
                         v-if="i > 3 && i < 7"
                       >
                         <v-list-item-content class="mt-0" >
-                          <v-list-title>
+                          <v-list-item-title>
                             <strong> {{keys[i]}} </strong> 
-                          </v-list-title> 
+                          </v-list-item-title> 
                           <v-list-item-subtitle class="text-wrap">
                             {{data[i]}}
                           </v-list-item-subtitle>
@@ -62,9 +62,9 @@
                         v-if="i > 6"
                       >
                         <v-list-item-content class="mt-0" >
-                          <v-list-title>
+                          <v-list-item-title>
                             <strong> {{keys[i]}} </strong> 
-                          </v-list-title> 
+                          </v-list-item-title> 
                           <v-list-item-subtitle class="text-wrap">
                             {{data[i]}}
                           </v-list-item-subtitle>
@@ -142,10 +142,7 @@
             <sub>2</sub>) emissions indicator
           </v-card>
           <v-card outlined class="pa-4" min-width="100" color="#eeeeee">
-            Annual Co
-            <sub>2</sub> emissions 30.11 kgCo
-            <sub>2</sub>/m
-            <sup>2</sup>/yr
+            Annual Co<sub>2</sub> emissions 30.11 kgCo<sub>2</sub>/m<sup>2</sup>/yr
             <br />31.76
           </v-card>
         </v-col>

@@ -124,11 +124,17 @@
                   class="display"
                 >
                   <BuildingCard 
-                    v-for="building of getBuildings"
-                    :key="building.src"
+                    v-for="building of getBuildingData"
+                    :key="building.key"
                     class="ma-3 pa-2"
-                    :src="building.src"
+                    :src="building.image"
                     :name="building.name"
+                    :floor_area="building.floor_area"
+                    :category="building.category"
+                    :hours="building.hours"
+                    :latitude="building.latitude"
+                    :longitude="building.longitude"
+                    :id="building.id"
                     :compare="true"
                     @click.native="name=building.name"
                     outlined

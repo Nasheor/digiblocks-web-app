@@ -4,7 +4,9 @@ export default {
     components: {
         BCard,
     },
-    props: ["id", "name", "src","compare"], 
+    props: ["id", "name", "src","compare","floor_area", 
+            "latitude", "longitude", "category", "environment",
+            "hours"], 
     data() {
         return {
             show: false,
@@ -17,7 +19,6 @@ export default {
     methods: {
         addBuilding() {
             if(this.isSelected) {
-                console.log("Add Something");
                 this.$store.commit("addBuildingToCompare", this.id);
             } else {
                 this.$store.commit("removeBuildingCompare", this.id);
