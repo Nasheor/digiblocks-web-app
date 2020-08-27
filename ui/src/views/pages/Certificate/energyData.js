@@ -41,7 +41,7 @@ export default {
 
             },
             dataLabels: {
-                enabled: true,
+                enabled: false,
                 offsetX: 90,
                 background: {
                     enabled: true,
@@ -49,11 +49,11 @@ export default {
                     borderColor: "pink",
                     opacity: 3,
                 },
-                formatter: function (val, opt) {
-                if (opt.w.globals.labels[opt.dataPointIndex] === localStorage.getItem('band')) {
-                    return opt.w.globals.labels[opt.dataPointIndex] + ": "+localStorage.getItem('rating');
-                    }
-                },
+                // formatter: function (val, opt) {
+                // if (opt.w.globals.labels[opt.dataPointIndex] === localStorage.getItem('band')) {
+                //     return opt.w.globals.labels[opt.dataPointIndex] + ": "+localStorage.getItem('rating');
+                //     }
+                // },
                 style: {
                     colors: ['black']
                 }

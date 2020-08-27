@@ -32,6 +32,8 @@ export default {
             })
             this.building_data.map(building => {
                 if(building.id === this.building_data[i].id) {
+                    localStorage.setItem('band', building.band);
+                    localStorage.setItem('rating', building.rating[0].value );
                     this.certificate_keys.map(item => {
                         Object.assign(this.certificate_data, {[item.value]: building[item.value]})
                     })
@@ -39,8 +41,6 @@ export default {
             })
             this.name = this.building_data[i].name;
             this.id=this.building_data[i].id;
-            localStorage.setItem('band', this.band);
-            localStorage.setItem('rating', '149.1' );
         }
     },
     computed: {

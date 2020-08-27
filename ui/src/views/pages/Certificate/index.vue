@@ -65,7 +65,6 @@
                   </v-toolbar>
                   <CertificateModal 
                     :chartData="data.barChart" 
-                    :id="id "
                     :certificate_keys="certificate_keys"
                     :certificate_data="certificate_data"/>
               </v-card>
