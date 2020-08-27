@@ -7,6 +7,9 @@
             <v-col cols="12" class="py-0">
                 <CampusMap />
             </v-col>
+            <v-col cols="12" class="py-0">
+                <CampusActivity />
+            </v-col>
         </v-row>
     </v-container>
 </template>
