@@ -1,5 +1,4 @@
 import VueApexCharts from 'vue-apexcharts'
-import { mapGetters } from 'vuex'
 
 export default {
     props: {
@@ -9,9 +8,5 @@ export default {
     },
     components: {
         VueApexCharts,
-    },
-    data() {
-        return {
-        };
     },
 }
