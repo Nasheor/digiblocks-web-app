@@ -70,9 +70,6 @@
                     <v-row>
                     <v-col cols="4" sm="4" lg="6">
                         <div class="d-flex align-center">
-                        <div>
-                            <skycon condition="partly-cloudy-day" :width="40" :height="40" />
-                        </div>
                         <div class="ml-3">
                             <h1 class="font-weight-light info--text mb-0 display-1">
                             {{dashboard_data[15].value}}
