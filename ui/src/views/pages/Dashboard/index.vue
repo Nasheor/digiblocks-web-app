@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid class="down-top-padding">
+    <v-container fluid class="down-top-padding background">
         <v-row>
             <v-col cols="12" class="py-0">
                 <SummaryCard />

@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <v-main >
     <router-view />
 
     <dashboard-core-footer />

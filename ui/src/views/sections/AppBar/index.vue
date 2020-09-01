@@ -61,47 +61,34 @@
       <v-icon>mdi-logout</v-icon>
     </v-btn>
 
-    <v-menu
-      bottom
-      left
-      offset-y
-      origin="top right"
-      transition="scale-transition"
-    >
-      <template v-slot:activator="{ attrs, on }">
-        <v-btn
-          class="ml-2"
-          min-width="0"
-          text
-          v-bind="attrs"
-          v-on="on"
-        >
-          <v-badge
-            color="red"
-            overlap
-            bordered
-          >
-            <template v-slot:badge>
-              <span>5</span>
-            </template>
-
+    <v-menu bottom center offset-y origin="top right" min-width="300px" transition="scale-transition">
+      <template v-slot:activator="{ on }">
+        <v-btn icon v-on="on" class="mr-1">
+          <v-badge>
             <v-icon>mdi-bell</v-icon>
           </v-badge>
         </v-btn>
       </template>
 
-      <v-list
-        :tile="false"
-        nav
-      >
-        <div>
-          <app-bar-item
-            v-for="(n, i) in notifications"
-            :key="`item-${i}`"
-          >
-            <v-list-item-title v-text="n" />
-          </app-bar-item>
-        </div>
+      <v-list class="pa-5 pl-9">
+        <h4 class="px-5 py-3 pt-2 font-weight-medium">Notifications</h4>
+        <v-divider></v-divider>
+        <v-list-item v-for="(notification, i) in notifications" :key="i" @click="href">
+          <v-list-item-title>
+            <div class="d-flex align-center py-3">
+              <div>
+                    <v-avatar class="mr-3">
+                        <img :src="require('@/assets/images/'+ notification.image)" />
+                    </v-avatar>
+              </div>
+              <div>
+                <h4 class="font-weight-medium">{{ notification.name }}</h4>
+                <span class="text--secondary caption descpart d-block text-truncate">{{notification.value}}</span>
+                <small class="text--secondary">{{notification.time}} {{notification.unit}} ago</small>
+              </div>
+            </div>
+          </v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-menu>
 

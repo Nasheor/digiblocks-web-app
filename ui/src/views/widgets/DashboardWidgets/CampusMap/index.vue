@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-2 d-flex" color="#21c1d6">
+  <v-card flat class="pa-2 d-flex" color="#eef5f9">
     <gmap-map
       :center="center"
       :zoom="14"

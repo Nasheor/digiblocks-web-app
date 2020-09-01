@@ -2,7 +2,8 @@
 import { VHover, VListItem } from 'vuetify/lib'
 
 // Utilities
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapGetters } from 'vuex'
+
 
 export default {
   name: 'DashboardCoreAppBar',
@@ -41,13 +42,7 @@ export default {
   },
 
   data: () => ({
-    notifications: [
-      'Notification 1',
-      'Notification 2',
-      'You\'re now friends with Waylon Smithers',
-      'Another Notification',
-      'Another one',
-    ],
+    notifications: [],
     items: [
       {
         icon: 'mdi-account',
@@ -61,14 +56,27 @@ export default {
 
   computed: {
     ...mapState(['drawer']),
+    ...mapGetters({building_data: "getBuildingData"}),
+    ...mapGetters({dashboard_data: "getDashboardData"})
   },
 
   methods: {
     ...mapMutations({
       setDrawer: 'setDrawer',
     }),
+    populateActivity() {
+      this.building_data.map(building => {
+          this.notifications.push(Object.assign({}, {"name": building.name, 
+                                  "image": building.image
+                                  }, building.activity[0]))
+      })
+      console.log(this.notifications)
+    },
+    href() {
+      return undefined;
+    }
   },
-  logout () {
-
+  created() {
+    this.populateActivity()
   }
 }

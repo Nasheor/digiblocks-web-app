@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app >
     <dashboard-core-app-bar />
 
     <dashboard-core-drawer />
