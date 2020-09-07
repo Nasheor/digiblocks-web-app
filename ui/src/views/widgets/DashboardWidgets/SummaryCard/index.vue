@@ -17,21 +17,36 @@
                 </div>
                 <v-row class="mt-1">
                     <v-col cols="5" class="d-flex align-center">
-                    <h5 class="font-weight-light black--text text-nowrap">{{from_period[0].value}}</h5>
+                        <h5 class="font-weight-light black--text text-nowrap">{{from_period[0].value}}</h5>
                     </v-col>
                     <v-col cols="7">
-                    <h5 class="font-weight-strong black--text text-nowrap">{{item.measurement[0].value}}</h5>
+                        <h5 class="font-weight-strong black--text text-nowrap">{{item.measurement[0].value}}</h5>
                     </v-col>
                     <v-col cols="5" class="d-flex align-center">
-                    <h5 class="font-weight-light black--text text-nowrap">{{to_period[0].value}}</h5>
+                        <h5 class="font-weight-light black--text text-nowrap">{{to_period[0].value}}</h5>
                     </v-col>
                     <v-col cols="7">
-                    <h5 class="font-weight-strong black--text text-nowrap">{{item.measurement[1].value}}</h5>
+                        <h5 class="font-weight-strong black--text text-nowrap">{{item.measurement[1].value}}</h5>
                     </v-col>
                 </v-row>
                 </v-card-text>
             </v-card>
         </v-col>
+        <!-- <v-col cols="12" sm="6" lg="3" class="py-0">
+            <v-card>
+
+            </v-card>
+        </v-col>
+        <v-col cols="12" sm="6" lg="3" class="py-0">
+            <v-card>
+                <v-card-text>
+
+                </v-card-text>
+                <v-simple-table>
+
+                </v-simple-table>
+            </v-card>
+        </v-col> -->
     </v-row>
 </template>
 

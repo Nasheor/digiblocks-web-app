@@ -36,4 +36,13 @@ export default class ThingsboardService {
             return await Promise.reject(err)
         }
     }
+    static async getSensorData(device_id) {
+        let tmp_ro = routes.sensor_values.name.replace("%id%", device_id)
+        try {
+            let r = await http.get(tmp_ro)
+            return await Promise.resolve(r.data)
+        } catch (err) {
+            return await Promise.reject(err)
+        }
+    }
 }

@@ -9,7 +9,8 @@ export default {
             electricity: '',
             water: '',
             co2: '',
-            items: []
+            items: [],
+            years: [], 
         }
     },
     methods: {

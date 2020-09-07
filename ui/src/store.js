@@ -15,7 +15,11 @@ export default new Vuex.Store({
     compare_dialog_status: false,
     admin: localStorage.getItem('isAdmin'),
     dashboard_data: [],
-    building_data: []
+    building_data: [],
+    gas_value: '',
+    co_value: '',
+    water_value: '',
+    electricity_value: '',
   },
   mutations: {
     setPrivileges(state, payload) {
@@ -71,6 +75,13 @@ export default new Vuex.Store({
         assets.data.map(item => {
                 ThingsboardService.getAssetData(item.id.id).then((data) => {
                 if(item.type === "DASHBOARD") {
+                  // ThingsboardService.getAssetDevices(item.id.id).then(devices => {
+                  //   devices.map(device => {
+                  //     if(device.toName === 'Gas') {
+                  //       context.state.gas_value = await device.value
+                  //     }
+                  //   })
+                  // })
                   context.commit("setDashboardData", data)
                 } else {
                   ThingsboardService.getAssetDevices(item.id.id).then(devices => {

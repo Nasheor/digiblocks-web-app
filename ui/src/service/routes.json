@@ -14,5 +14,9 @@
    "devices_by_asset_id": {
        "name": "/relations/info?fromId=%id%&fromType=ASSET",
        "method": "get"
+   },
+   "sensor_values": {
+       "name": "/plugins/telemetry/DEVICE/%id%/values/timeseries",
+       "method": "get"
    }
 }
