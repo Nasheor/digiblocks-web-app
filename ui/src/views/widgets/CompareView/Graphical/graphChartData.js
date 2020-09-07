@@ -631,20 +631,63 @@ export default {
     },
     bubbleChart: {
         series: [{
-            name: 'Product1',
+            name: 'Main Building',
             data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
                 min: 10,
                 max: 60
             })
         },
         {
-            name: 'Product2',
+            name: 'Admin Building',
             data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
                 min: 10,
                 max: 60
             })
-        }
-        ],
+        },
+        {
+            name: 'Tourism Building',
+            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+                min: 10,
+                max: 60
+            })
+        },
+        {
+            name: 'Melbourne Building',
+            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+                min: 10,
+                max: 60
+            })
+        },
+        {
+            name: 'Rubicon Center',
+            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+                min: 10,
+                max: 60
+            })
+        },
+        {
+            name: 'Nimbus Center',
+            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+                min: 10,
+                max: 60
+            })
+        },
+        {
+            name: 'Create Building',
+            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+                min: 10,
+                max: 60
+            })
+        },
+        {
+            name: 'Student Center',
+            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+                min: 10,
+                max: 60
+            })
+        },
+
+    ],
         chartOptions: {
             colors: themeColors,
             dataLabels: {
