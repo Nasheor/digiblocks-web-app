@@ -9,11 +9,10 @@
 6. Cypress - End to end testing framework
 7. Jest - Ensures correctness of the project codebase
 8. i18n - Internationalisation plugin for some localization features
-9. ES6 - ES6 javascript falvor
-10. NPM - Package Manager
-11. Babel- Compiler to ensure backward compatibility
-12. ESlint - Code Formatter
-13. SASS - Bundles the javascript to ensure fast load in the browser. 
+9. NPM - Package Manager
+10. Babel- Compiler to ensure backward compatibility
+11. ESlint - Code Formatter
+12. SASS - Bundles the javascript to ensure fast load in the browser. 
 
 ## Brief Overview
 The DigiBlocks UI Platform provides a dashboard interface that helps the user view and conduct analysis of the data retrieved from the Thingsboard platform. It primarily consists of five different views which in its own right constitutes a feature of the DigiBlocks dashboard. The dashboard also has an additional view where custom features are implemented. This may include anything from user specific features to permission based access. These are the following views:
