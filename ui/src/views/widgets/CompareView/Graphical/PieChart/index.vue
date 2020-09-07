@@ -1,7 +1,7 @@
 <template>
     <v-card class="mb-7">
         <v-toolbar flat>
-            <v-toolbar-title>Pie Chart</v-toolbar-title>
+            <v-toolbar-title>Water Consumption</v-toolbar-title>
         </v-toolbar>
         <v-divider></v-divider>
         <div class="mt-4 pa-4">

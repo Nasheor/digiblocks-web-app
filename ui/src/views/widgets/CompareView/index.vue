@@ -24,10 +24,10 @@
             >
                 <v-card flat>
                     <template v-if="tab===0">
-                        <Tabular />
+                        <Tabular :compare_buildings="buildings"/>
                     </template>
                     <template v-else>
-                       <Graphical />
+                       <Graphical :compare_buildings="buildings" />
                     </template>
                 </v-card>
             </v-tab-item>

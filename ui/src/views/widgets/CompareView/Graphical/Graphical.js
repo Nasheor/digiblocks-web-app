@@ -9,6 +9,9 @@ import BubbleChart from './BubbleChart/index.vue'
 import graphChartData from './graphChartData.js'
 
 export default {
+    props: [
+        "compare_buildings",
+    ],
     data() {
         return {
             chartData: graphChartData,

@@ -116,7 +116,9 @@ export default new Vuex.Store({
                       "ber": data.filter(item=> item.key==="ber")[0].value,
                       "fuel":data.filter(item=> item.key==="main_fuel")[0].value,
                       "certificate_keys": data.filter(item=> item.key==="certificate_keys")[0].value.split(','),
-                      "activity": JSON.parse(data.filter(item=> item.key==="activity")[0].value)
+                      "activity": JSON.parse(data.filter(item=> item.key==="activity")[0].value),
+                      "devices": data.filter(item=> item.key==="devices")[0].value,
+
                     })
                   })
                 }

@@ -155,14 +155,14 @@ export default {
     },
     columnChart: {
         series: [{
-            name: 'Net Profit',
-            data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+            name: 'Gas',
+            data: [44, 55, 57, 56, 61, 58, 63, 60]
         }, {
-            name: 'Revenue',
-            data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+            name: 'Water',
+            data: [76, 85, 101, 98, 87, 105, 91, 114]
         }, {
-            name: 'Free Cash Flow',
-            data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+            name: 'Electricity',
+            data: [35, 41, 36, 26, 45, 48, 52, 53]
         }],
         chartOptions: {
             colors: themeColors,
@@ -183,7 +183,8 @@ export default {
             },
 
             xaxis: {
-                categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                categories: ['Main', 'Melbourne ', 
+                'Rubicon Center', 'Nimbus Center', 'Student Center', 'Create', 'Tourism', 'Admin'],
                 labels: {
                     style: {
                         cssClass: 'grey--text lighten-2--text fill-color',
@@ -192,7 +193,7 @@ export default {
             },
             yaxis: {
                 title: {
-                    text: '$ (thousands)'
+                    text: ''
                 },
                 labels: {
                     style: {
@@ -211,7 +212,7 @@ export default {
                 theme: 'dark',
                 y: {
                     formatter: function (val) {
-                        return "$ " + val + " thousands"
+                        return "" + val + " Units"
                     }
                 }
             }
@@ -239,9 +240,8 @@ export default {
                 enabled: false
             },
             xaxis: {
-                categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-                    'United States', 'China', 'Germany'
-                ],
+                categories: ['Main', 'Melbourne ', 
+                'Rubicon Center', 'Nimbus Center', 'Student Center', 'Create', 'Tourism', 'Admin'],
                 labels: {
                     style: {
                         cssClass: 'grey--text lighten-2--text fill-color',
@@ -265,17 +265,17 @@ export default {
     },
     mixedChart: {
         series: [{
-            name: 'TEAM A',
+            name: 'Labs',
             type: 'column',
-            data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
+            data: [23, 11, 22, 27, 13, 22, 37, 40]
         }, {
-            name: 'TEAM B',
+            name: 'Class Rooms',
             type: 'area',
-            data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
+            data: [44, 55, 41, 67, 22, 43, 21, 41]
         }, {
-            name: 'TEAM C',
+            name: 'Other',
             type: 'line',
-            data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
+            data: [30, 25, 36, 30, 45, 35, 64, 52]
         }],
         chartOptions: {
             colors: themeColors,
@@ -309,7 +309,8 @@ export default {
                 size: 0
             },
             xaxis: {
-                categories: ['10', '20', '30', '40', '50', '60', '70', '80'],
+                categories: ['Main', 'Melbourne ', 
+                'Rubicon Center', 'Nimbus Center', 'Student Center', 'Create', 'Tourism', 'Admin'],
                 labels: {
                     style: {
                         cssClass: 'grey--text lighten-2--text fill-color',
@@ -879,9 +880,10 @@ export default {
         }
     },
     pieChart: {
-        series: [44, 55, 13, 43],
+        series: [44, 55, 13, 43, 30, 13, 20, 60],
         chartOptions: {
-            labels: ['Team A', 'Team B', 'Team C', 'Team D'],
+            labels:  ['Main', 'Melbourne ', 
+            'Rubicon Center', 'Nimbus Center', 'Student Center', 'Create', 'Tourism', 'Admin'],
             colors: themeColors,
             responsive: [{
                 breakpoint: 480,
@@ -957,12 +959,13 @@ export default {
         }
     },
     radialBarChart: {
-        series: [44, 55, 67, 83],
+        series: [44, 55, 67, 83, 30, 70, 20, 80],
         chartOptions: {
             colors: themeColors,
             plotOptions: {
                 radialBar: {
                     dataLabels: {
+                        show: true,
                         name: {
                             fontSize: '22px',
                         },
@@ -980,7 +983,8 @@ export default {
                     }
                 }
             },
-            labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
+            labels:  ['Main', 'Melbourne ', 
+            'Rubicon Center', 'Nimbus Center', 'Student Center', 'Create', 'Tourism', 'Admin'],
             tooltip: {
                 theme: "dark"
             }

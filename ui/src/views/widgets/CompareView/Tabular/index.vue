@@ -11,7 +11,7 @@
                 hide-details
                 ></v-text-field>
             </v-card-title>
-            <v-data-table :headers="headers" :items="data" :search="search" class="border"></v-data-table>
+            <v-data-table :headers="headers" :items="compare_buildings" :search="search" class="border"></v-data-table>
         </v-card>
     </div>
 </template>

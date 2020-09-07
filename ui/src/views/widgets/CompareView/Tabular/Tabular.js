@@ -1,4 +1,7 @@
 export default {    
+    props: [
+      "compare_buildings",
+    ],
     data() {
         return {
             search: "",
@@ -9,11 +12,11 @@ export default {
                 sortable: false,
                 value: "name"
               },
-              { text: "Labs", value: "labs" },
+              { text: "Band", value: "band" },
               { text: "Devices ", value: "devices" },
-              { text: "Equipment (g)", value: "equipment" },
-              { text: "Canteen (g)", value: "canteen" },
-              { text: "Maintenance (%)", value: "maintenance" }
+              { text: "Floor Area (g)", value: "floor_area" },
+              { text: "Fuel", value: "fuel" },
+              { text: "Assessor", value: "assessor" }
             ],
             data: [
               {

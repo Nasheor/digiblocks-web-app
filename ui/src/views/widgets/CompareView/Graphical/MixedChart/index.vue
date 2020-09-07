@@ -1,7 +1,7 @@
 <template>
     <v-card class="mb-7">
         <v-toolbar flat>
-            <v-toolbar-title>Mixed Chart</v-toolbar-title>
+            <v-toolbar-title>Useage breakdown</v-toolbar-title>
         </v-toolbar>
         <v-divider></v-divider>
         <div class="mt-4 pa-4">

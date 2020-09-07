@@ -1,5 +1,6 @@
-import Tabular from './Tabular/index';
-import Graphical from './Graphical/index';
+import Tabular from './Tabular/index'
+import Graphical from './Graphical/index'
+import { mapGetters } from 'vuex'
 
 export default {
     components: {
@@ -19,8 +20,8 @@ export default {
                     'icon': 'mdi-chart-bar'
                 }
             ], 
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        };
+            buildings: [],
+        }
     },
     methods: {
         close() {
@@ -28,4 +29,26 @@ export default {
             location.reload();
         },
     },
+    computed: {
+        ...mapGetters({
+            compare_buildings: "getCompareBuildings"
+        }),
+        ...mapGetters({
+            building_data: "getBuildingData"
+        })
+    },
+    created() {
+        this.compare_buildings.map(building => {
+            let found = this.building_data.find(item => item.id === building)
+            if(found != null)
+                this.buildings.push({
+                    "name":found.name,
+                    "fuel":found.fuel,
+                    "band": found.band,
+                    "floor_area": found.floor_area[3].value,
+                    "devices": found.devices,
+                    "assessor": found.assessor
+                })
+        })
+    }
 }
