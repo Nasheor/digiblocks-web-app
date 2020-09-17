@@ -16,7 +16,7 @@
        "method": "get"
    },
    "sensor_values": {
-       "name": "/plugins/telemetry/DEVICE/%id%/values/timeseries",
+       "name": "/plugins/telemetry/DEVICE/%id%/values/attributes",
        "method": "get"
    }
 }

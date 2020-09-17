@@ -67,6 +67,18 @@ export default new Vuex.Store({
     getBuildingData(state) {
       return state.building_data;
     },
+    getGasValue(state) {
+      return state.gas_value;
+    },
+    getElectricityValue(state) {
+      return state.electricity_value;
+    },
+    getWaterValue(state) {
+      return state.water_value;
+    },
+    getCoValue(state) {
+      return state.co_value;
+    }
   },
   actions: {
     async LOAD_DATA(context, payload) {
@@ -75,13 +87,31 @@ export default new Vuex.Store({
         assets.data.map(item => {
                 ThingsboardService.getAssetData(item.id.id).then((data) => {
                 if(item.type === "DASHBOARD") {
-                  // ThingsboardService.getAssetDevices(item.id.id).then(devices => {
-                  //   devices.map(device => {
-                  //     if(device.toName === 'Gas') {
-                  //       context.state.gas_value = await device.value
-                  //     }
-                  //   })
-                  // })
+                  ThingsboardService.getAssetDevices(item.id.id).then(devices => {
+                    devices.map(device => {
+                      ThingsboardService.getSensorData(device.to.id).then(sensor => {
+                        switch(device.toName) {
+                          case 'Gas':
+                            console.log(sensor)
+                            context.state.gas_value = [sensor[1].value, sensor[3].value]
+                          break
+                          
+                          case 'Electricity':
+                            context.state.electricity_value = [sensor[1].value, sensor[3].value]
+                          break
+
+                          case 'Water':
+                            context.state.water_value =  [sensor[1].value, sensor[3].value]
+                          break
+
+                          case 'Carbon Dioxide':
+                            context.state.co_value = [sensor[1].value, sensor[3].value]
+                          break
+                          
+                        }
+                      })
+                    })
+                  })
                   context.commit("setDashboardData", data)
                 } else {
                   ThingsboardService.getAssetDevices(item.id.id).then(devices => {

@@ -48,7 +48,11 @@ export default {
         },
     },
     computed: {
-        ...mapGetters({ summary_card_data: "getDashboardData"} )
+        ...mapGetters({ summary_card_data: "getDashboardData"} ),
+        ...mapGetters({gas_value: 'getGasValue'}),
+        ...mapGetters({electricity_value: 'getElectricityValue'}),
+        ...mapGetters({co_value: 'getCoValue'}),
+        ...mapGetters({water_value: 'getWaterValue'}),
     },
     created() {
         this.populateData()

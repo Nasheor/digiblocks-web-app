@@ -15,18 +15,60 @@
                     >{{item.key}}</h5>
                     </div>
                 </div>
-                <v-row class="mt-1">
+                <v-row class="mt-1" v-if="item.name==='Gas'">
                     <v-col cols="5" class="d-flex align-center">
                         <h5 class="font-weight-light black--text text-nowrap">{{from_period[0].value}}</h5>
                     </v-col>
                     <v-col cols="7">
-                        <h5 class="font-weight-strong black--text text-nowrap">{{item.measurement[0].value}}</h5>
+                        <h5 class="font-weight-strong black--text text-nowrap">{{gas_value[0]}}</h5>
                     </v-col>
                     <v-col cols="5" class="d-flex align-center">
                         <h5 class="font-weight-light black--text text-nowrap">{{to_period[0].value}}</h5>
                     </v-col>
                     <v-col cols="7">
-                        <h5 class="font-weight-strong black--text text-nowrap">{{item.measurement[1].value}}</h5>
+                        <h5 class="font-weight-strong black--text text-nowrap">{{gas_value[1]}}</h5>
+                    </v-col>
+                </v-row>
+                <v-row class="mt-1" v-else-if="item.name==='Electricity'">
+                    <v-col cols="5" class="d-flex align-center">
+                        <h5 class="font-weight-light black--text text-nowrap">{{from_period[0].value}}</h5>
+                    </v-col>
+                    <v-col cols="7">
+                        <h5 class="font-weight-strong black--text text-nowrap">{{electricity_value[0]}}</h5>
+                    </v-col>
+                    <v-col cols="5" class="d-flex align-center">
+                        <h5 class="font-weight-light black--text text-nowrap">{{to_period[0].value}}</h5>
+                    </v-col>
+                    <v-col cols="7">
+                        <h5 class="font-weight-strong black--text text-nowrap">{{electricity_value[1]}}</h5>
+                    </v-col>
+                </v-row>
+                <v-row class="mt-1" v-if="item.name==='Water'">
+                    <v-col cols="5" class="d-flex align-center">
+                        <h5 class="font-weight-light black--text text-nowrap">{{from_period[0].value}}</h5>
+                    </v-col>
+                    <v-col cols="7">
+                        <h5 class="font-weight-strong black--text text-nowrap">{{water_value[0]}}</h5>
+                    </v-col>
+                    <v-col cols="5" class="d-flex align-center">
+                        <h5 class="font-weight-light black--text text-nowrap">{{to_period[0].value}}</h5>
+                    </v-col>
+                    <v-col cols="7">
+                        <h5 class="font-weight-strong black--text text-nowrap">{{water_value[1]}}</h5>
+                    </v-col>
+                </v-row>
+                <v-row class="mt-1" v-if="item.name==='Carbon Dioxide'">
+                    <v-col cols="5" class="d-flex align-center">
+                        <h5 class="font-weight-light black--text text-nowrap">{{from_period[0].value}}</h5>
+                    </v-col>
+                    <v-col cols="7">
+                        <h5 class="font-weight-strong black--text text-nowrap">{{co_value[0]}}</h5>
+                    </v-col>
+                    <v-col cols="5" class="d-flex align-center">
+                        <h5 class="font-weight-light black--text text-nowrap">{{to_period[0].value}}</h5>
+                    </v-col>
+                    <v-col cols="7">
+                        <h5 class="font-weight-strong black--text text-nowrap">{{co_value[1]}}</h5>
                     </v-col>
                 </v-row>
                 </v-card-text>
