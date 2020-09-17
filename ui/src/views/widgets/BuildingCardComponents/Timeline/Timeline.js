@@ -1,4 +1,7 @@
 export default {
+    props: [
+      "building_data",
+    ],
     data: () => ({
       reverse: false,
       tab: null,
@@ -14,7 +17,7 @@ export default {
         value => (value && value.length >= 3) || "Min 3 characters"
       ],
       select: null,
-      items: ["India", "United Kingdom", "Africa", "California"]
+      items: ["India", "United Kingdom", "Africa", "California"],
     }),
     components: {}
   };

@@ -149,7 +149,7 @@
                       </v-btn>
                       <v-toolbar-title>{{ name }}</v-toolbar-title>
                   </v-toolbar>
-                  <BCard />
+                  <BCard :name="name" />
               </v-card>
           </v-dialog>
           </v-row>

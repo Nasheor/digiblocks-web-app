@@ -1,6 +1,9 @@
 import VueApexCharts from "vue-apexcharts";
 import BandwidthChart from "./data";
 export default {
+    props:[
+      "building_data"
+    ],
     data: () => ({
       elementVisible: false,
       BandwidthChart: BandwidthChart

@@ -2,7 +2,9 @@ import VueApexCharts from "vue-apexcharts";
 import DownloadChart from "./data";
 
 export default {
-  name: "TheDownloadCount",
+  props: [
+    "building_data"
+  ],
   data: () => ({
     elementVisible: false,
     DownloadChart: DownloadChart

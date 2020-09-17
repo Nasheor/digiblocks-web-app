@@ -3,10 +3,10 @@
     <v-row>
       <v-col cols="12" lg="6" sm="4" class="py-0">
         <div class="pa-5 ml-16">
-          <h3 class="text-truncate font-weight-regular">1 Vs 2</h3>
+          <h3 class="text-truncate font-weight-regular">{{building_data.band}}</h3>
           <h6
             class="body-2 mb-0 mt-4 blue-grey--text text--lighten-2 font-weight-light"
-          >check the difference of Admin</h6>
+          >Rating</h6>
         </div>
       </v-col>
       <v-col cols="12" lg="3" sm="4" class="border-right py-0">
@@ -39,14 +39,14 @@
       </v-col>
     </v-row>
     <v-divider></v-divider>
-    <v-card-text dark class>
+    <!-- <v-card-text dark class>
       <vue-apex-charts
         type="area"
         height="350px"
         :options="SalesAmpleChart.SalesAmpleChart.chartOptions"
         :series="SalesAmpleChart.SalesAmpleChart.series"
       ></vue-apex-charts>
-    </v-card-text>
+    </v-card-text> -->
   </v-card>
 </template>
 

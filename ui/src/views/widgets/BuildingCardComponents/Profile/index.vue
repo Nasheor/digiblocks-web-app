@@ -29,7 +29,7 @@
           allowfullscreen
         ></iframe>
       </div>
-      <small class="blue-grey--text text--lighten-2 py-4 d-block">Social Profile</small>
+      <!-- <small class="blue-grey--text text--lighten-2 py-4 d-block">Social Profile</small>
 
       <v-btn class="mx-2 elevation-0" fab dark small color="light-blue darken-4">
         <i class="fab fa-facebook-f" dark></i>
@@ -39,7 +39,7 @@
       </v-btn>
       <v-btn class="mx-2 elevation-0" fab dark small color="red darken-3">
         <i class="fab fa-youtube" dark></i>
-      </v-btn>
+      </v-btn> -->
     </v-card-text>
   </v-card>
 </template>

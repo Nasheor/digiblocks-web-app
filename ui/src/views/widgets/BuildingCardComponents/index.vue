@@ -1,26 +1,26 @@
 <template>
     <v-row>
       <v-col cols="12" sm="12">
-        <TimeSeries />
+        <TimeSeries :building_data="building_data"/>
       </v-col>
       <v-col cols="12" lg="7">
-        <BarGraph />
+        <BarGraph :building_data="building_data"/>
       </v-col>
       <v-col cols="12" lg="5">
-        <LineMetrics />
-        <BarMetrics />
+        <LineMetrics :building_data="building_data"/>
+        <BarMetrics :building_data="building_data"/>
       </v-col>
-      <v-col cols="12" lg="7">
-        <MetricsTable />
+      <!-- <v-col cols="12" lg="7">
+        <MetricsTable :building_data="building_data"/>
       </v-col>
       <v-col cols="12" lg="4">
-        <PieChart />
-      </v-col>
+        <PieChart :building_data="building_data"/>
+      </v-col> -->
       <v-col cols="12" sm="12" lg="8">
-        <Timeline />
+        <Timeline :building_data="building_data"/>
       </v-col>
       <v-col cols="12" lg="4">
-        <Profile />
+        <Profile :building_data="building_data"/>
       </v-col>
     </v-row>
 </template>

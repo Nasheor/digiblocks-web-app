@@ -3,11 +3,11 @@ export default {
   CountChart: {
     series: [
       {
-        name: "Ample",
+        name: "Gas",
         data: [9, 5, 3, 7, 5, 10, 3]
       },
       {
-        name: "Pixel",
+        name: "Electricity",
         data: [6, 3, 9, 5, 4, 6, 4]
       }
     ],

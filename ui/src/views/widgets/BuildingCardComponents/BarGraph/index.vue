@@ -3,7 +3,7 @@
     <v-card-text class="pa-5">
       <div class="d-sm-flex align-center">
         <div>
-          <h3 class="title font-weight-regular">Energy metrics</h3>
+          <h3 class="title font-weight-regular">Gas vs Electricity</h3>
         </div>
         <v-spacer></v-spacer>
         <div class="ml-auto mt-4 mt-md-0">

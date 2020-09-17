@@ -1,5 +1,4 @@
 export default {
-    name: "TheProductAvailibility",
     data: () => ({
       select: { state: "Electronics", abbr: "FL" },
       items: [
