@@ -1,4 +1,5 @@
 import VueApexCharts from 'vue-apexcharts'
+import { mapGetters } from 'vuex'
 
 export default {
     components: {
@@ -14,7 +15,6 @@ export default {
                   sortable: false,
                   value: "name"
                 },
-                { text: "Parent", value: "parent" },
                 { text: "Address", value: "address" },
                 { text: "Useful Floor Area", value: "ufa" },
                 { text: "Main Heating Fuel", value: "mhf" },
@@ -23,32 +23,24 @@ export default {
                 { text: "Expiry", value: "expiry" },
                 { text: "Assessor", value: "assessor" }
               ],
-              buildings: [
-                {
-                  name: "Cork Institute of Technology",
-                  parent: "CIT",
-                  address:"Bishopstown, Cork",
-                  ufa: 3000,
-                  mhf: "Mains Gas",
-                  ber: 80570244,
-                  doi: "21st June 2017",
-                  expiry:  "21st June 2018",
-                  assessor: 104737
-                },
-                {
-                    name: "Nimbus Research Center",
-                    parent: "CIT",
-                    address:"Bishopstown, Cork",
-                    ufa: 3000,
-                    mhf: "Mains Gas",
-                    ber: 80570244,
-                    doi: "21st June 2017",
-                    expiry:  "21st June 2018",
-                    assessor: 104737
-                  },
-            ]
+              buildings: []
         };
     },
-    methods: {
+    computed: {
+      ...mapGetters({building_data: 'getBuildingData'})
+    },
+    created() {
+      this.building_data.map(building => {
+        this.buildings.push( {
+          name: building.name,
+          address: building.address,
+          ufa: building.floor_area[3].value,
+          mhf: building.fuel,
+          ber: building.ber,
+          doi: building.issue,
+          expiry:  building.expiry,
+          assessor: building.assessor
+        })
+      })
     }
 }

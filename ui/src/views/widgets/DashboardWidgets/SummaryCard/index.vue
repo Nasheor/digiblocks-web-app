@@ -43,7 +43,7 @@
                         <h5 class="font-weight-strong black--text text-nowrap">{{electricity_value[1]}}</h5>
                     </v-col>
                 </v-row>
-                <v-row class="mt-1" v-if="item.name==='Water'">
+                <v-row class="mt-1" v-else-if="item.name==='Water'">
                     <v-col cols="5" class="d-flex align-center">
                         <h5 class="font-weight-light black--text text-nowrap">{{from_period[0].value}}</h5>
                     </v-col>
@@ -57,7 +57,7 @@
                         <h5 class="font-weight-strong black--text text-nowrap">{{water_value[1]}}</h5>
                     </v-col>
                 </v-row>
-                <v-row class="mt-1" v-if="item.name==='Carbon Dioxide'">
+                <v-row class="mt-1" v-else-if="item.name==='Carbon Dioxide'">
                     <v-col cols="5" class="d-flex align-center">
                         <h5 class="font-weight-light black--text text-nowrap">{{from_period[0].value}}</h5>
                     </v-col>
@@ -74,21 +74,6 @@
                 </v-card-text>
             </v-card>
         </v-col>
-        <!-- <v-col cols="12" sm="6" lg="3" class="py-0">
-            <v-card>
-
-            </v-card>
-        </v-col>
-        <v-col cols="12" sm="6" lg="3" class="py-0">
-            <v-card>
-                <v-card-text>
-
-                </v-card-text>
-                <v-simple-table>
-
-                </v-simple-table>
-            </v-card>
-        </v-col> -->
     </v-row>
 </template>
 
