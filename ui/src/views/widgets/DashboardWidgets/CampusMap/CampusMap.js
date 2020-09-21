@@ -35,6 +35,7 @@ export default {
               "category": building.category,
               "image": building.image,
               "band": building.band,
+              "color": building.color
 
             })
           })

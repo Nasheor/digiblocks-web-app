@@ -47,7 +47,7 @@
                 </div>
               </td>
               <td>
-                <v-chip class="ma-2" color="#bfeef4" small label>{{ item.band }}</v-chip>
+                <v-chip class="ma-2" :color="item.color" small label>{{ item.band }}</v-chip>
               </td>
               <td>
                 <h5 class="font-weight-light subtitle-2">{{ item.money }}</h5>
