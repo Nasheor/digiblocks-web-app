@@ -3,12 +3,16 @@ import { mapGetters } from 'vuex'
 export default {
     data() {
         return {
-          center: { lat: 51.886136, lng: -8.535202 },
+          centers: { lat: 51.886136, lng: -8.535202 },
           markers: [],
           places: [],
           currentPlace: null,
           headers: ["Name", "Band"],
           campus_data: [],
+          zoom: 17,
+          center: [ -8.533763936897916, 51.88524466008951],
+          rotation: 0,
+          geolocPosition: undefined,
         };
       },  
       methods: {

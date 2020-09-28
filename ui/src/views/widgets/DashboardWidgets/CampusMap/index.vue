@@ -1,6 +1,6 @@
 <template>
   <v-card flat class="pa-2 d-flex" color="#eef5f9">
-    <gmap-map
+    <!-- <gmap-map
       :center="center"
       :zoom="14"
       style="width:80%;  height: 450px; background-color: pink;"
@@ -11,7 +11,26 @@
         :position="m.position"
         @click="center=m.position"
       ></gmap-marker>
-    </gmap-map>
+    </gmap-map> -->
+    <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
+             data-projection="EPSG:4326" style="height: 430px" class="mt-4">
+      <vl-view :zoom.sync="zoom" :center.sync="center" :rotation.sync="rotation"></vl-view>
+
+      <vl-geoloc @update:position="geolocPosition = $event">
+        <template slot-scope="geoloc">
+          <vl-feature v-if="geoloc.position" id="position-feature">
+            <vl-geom-point :coordinates="[-8.533155899776915, 51.88693636362339 ]"></vl-geom-point>
+            <vl-style-box>
+              <vl-style-icon :src="require('@/assets/images/marker.png')" :scale="0.4" :anchor="[0.5, 1]"></vl-style-icon>
+            </vl-style-box>
+          </vl-feature>
+        </template>
+      </vl-geoloc>
+
+      <vl-layer-tile id="osm">
+        <vl-source-osm></vl-source-osm>
+      </vl-layer-tile>
+    </vl-map>
     <v-card-text>
       <v-simple-table class="month-table">
         <template v-slot:default>

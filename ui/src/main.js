@@ -8,6 +8,14 @@ import './plugins/vee-validate'
 import vuetify from './plugins/vuetify'
 import i18n from './i18n'
 import * as VueGoogleMaps from "vue2-google-maps"
+import VueLayers from 'vuelayers'
+import 'vuelayers/lib/style.css' // needs css-loader
+
+Vue.use(VueLayers)
+// all input/output coordinates, GeoJSON features in EPSG:4326 projection
+Vue.use(VueLayers, {
+  dataProjection: 'EPSG:4326',
+})
 
 Vue.config.productionTip = false
 Vue.use(VueGoogleMaps, {
