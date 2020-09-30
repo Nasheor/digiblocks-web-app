@@ -1,6 +1,6 @@
 <template>
     <v-card flat tile color="#eef5f9" class="d-flex pa-2 mt-0 ml-3" >
-        <v-card tile width="40%" height="200px" class="mr-8">
+        <v-card tile width="40%" height="200px" class="mr-8" color="#20bd7b">
             <v-img
                 src="@/assets/images/weatherbg.jpg"
                 class="sundaycard-img-height rounded"
@@ -30,9 +30,9 @@
                 </v-row>
             </div>
         </v-card>
-        <v-card width="50%" class="ml-4 mt- " height="420px"  color="#eef5f9" flat>
+        <v-card width="45%" class="ml-12" height="320px"  color="#26adad" flat>
             <v-card-text>
-            <v-card flat class="text-center ml-4 mt-1" width="405px">
+            <v-card flat class="text-center ml-1" width="405px" color="#26adad">
                 <div class="d-flex justify-center mt-n5">
                 <img
                     :src="require('@/assets/images/'+ dashboard_data[5].value)"

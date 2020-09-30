@@ -3,16 +3,12 @@ import { mapGetters } from 'vuex'
 export default {
     data() {
         return {
-          centers: { lat: 51.886136, lng: -8.535202 },
           markers: [],
-          places: [],
-          currentPlace: null,
           headers: ["Name", "Band"],
           campus_data: [],
           zoom: 17,
           center: [ -8.533763936897916, 51.88524466008951],
           rotation: 0,
-          geolocPosition: undefined,
         };
       },  
       methods: {
@@ -46,12 +42,7 @@ export default {
         },
         populateMarkers() {
           this.building_data.map(building => {
-            this.markers.push({
-              "position": {
-                "lat": parseFloat(building.latitude),
-                "lng": parseFloat(building.longitude)
-              }
-            })
+            this.markers.push(building.coordinates)
           })
         }
       },

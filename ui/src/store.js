@@ -58,9 +58,6 @@ export default new Vuex.Store({
     getPrivilegeStatus(state) {
       return state.admin;
     },
-    getBuildings(state) {
-      return state.buildings;
-    },
     getDashboardData(state) {
       return state.dashboard_data;
     },
@@ -92,20 +89,19 @@ export default new Vuex.Store({
                       ThingsboardService.getSensorData(device.to.id).then(sensor => {
                         switch(device.toName) {
                           case 'Gas':
-                            console.log(sensor)
-                            context.state.gas_value = [sensor[1].value, sensor[3].value]
+                            context.state.gas_value = [sensor[2].value, sensor[5].value,  sensor[1].value, sensor[3].value ]
                           break
                           
                           case 'Electricity':
-                            context.state.electricity_value = [sensor[1].value, sensor[3].value]
+                            context.state.electricity_value = [sensor[2].value, sensor[5].value,  sensor[1].value, sensor[3].value ]
                           break
 
                           case 'Water':
-                            context.state.water_value =  [sensor[1].value, sensor[3].value]
+                            context.state.water_value = [sensor[2].value, sensor[5].value,  sensor[1].value, sensor[3].value ]
                           break
 
                           case 'Carbon Dioxide':
-                            context.state.co_value = [sensor[1].value, sensor[3].value]
+                            context.state.co_value = [sensor[2].value, sensor[5].value,  sensor[1].value, sensor[3].value ]
                           break
                           
                         }
@@ -133,8 +129,9 @@ export default new Vuex.Store({
                       "environment":data.filter(item=> item.key==="environment")[0].value,
                       "image": data.filter(item=> item.key==="image")[0].value,
                       "hours": JSON.parse(data.filter(item=> item.key==="hours")[0].value),
-                      "latitude": data.filter(item=> item.key==="latitude")[0].value,
-                      "longitude":data.filter(item=> item.key==="longitude")[0].value,
+                      "coordinates": [parseFloat(data.filter(item=> item.key==="latitude")[0].value), parseFloat(data.filter(item=> item.key==="longitude")[0].value)],
+                      // "latitude": data.filter(item=> item.key==="latitude")[0].value,
+                      // "longitude":data.filter(item=> item.key==="longitude")[0].value,
                       "floor_area": JSON.parse(data.filter(item=> item.key==="floor_area")[0].value),
                       "devices": devices_data,
                       "address": data.filter(item=> item.key==="address")[0].value,

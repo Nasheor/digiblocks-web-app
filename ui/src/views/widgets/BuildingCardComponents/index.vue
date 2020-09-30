@@ -10,12 +10,6 @@
         <LineMetrics :building_data="building_data"/>
         <BarMetrics :building_data="building_data"/>
       </v-col>
-      <!-- <v-col cols="12" lg="7">
-        <MetricsTable :building_data="building_data"/>
-      </v-col>
-      <v-col cols="12" lg="4">
-        <PieChart :building_data="building_data"/>
-      </v-col> -->
       <v-col cols="12" sm="12" lg="8">
         <Timeline :building_data="building_data"/>
       </v-col>

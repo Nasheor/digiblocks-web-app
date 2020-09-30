@@ -21,13 +21,19 @@
         <h6 class="body-2">Bishopstown, Cork</h6>
       </div>
       <div class="map-box">
-        <iframe
-          src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;coord=51.8839904, -8.53398985310417&amp;q=+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=13&amp;iwloc=B&amp;output=embed"
-          height="300"
-          class="w-100"
-          style="border:0"
-          allowfullscreen
-        ></iframe>
+        <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
+                data-projection="EPSG:4326" style="height: 430px" class="mt-4">
+          <vl-view :zoom.sync="zoom" :center.sync="center" :rotation.sync="rotation"></vl-view>
+          <vl-feature>
+            <vl-geom-point  :coordinates="building_data.coordinates"></vl-geom-point>
+            <vl-style-box>
+              <vl-style-icon  :src="require('@/assets/images/marker.png')" :scale="0.12"></vl-style-icon>
+            </vl-style-box>        
+          </vl-feature>
+          <vl-layer-tile id="osm">
+            <vl-source-osm></vl-source-osm>
+          </vl-layer-tile>
+        </vl-map>
       </div>
       <!-- <small class="blue-grey--text text--lighten-2 py-4 d-block">Social Profile</small>
 

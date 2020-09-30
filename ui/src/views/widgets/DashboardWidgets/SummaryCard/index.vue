@@ -1,18 +1,18 @@
 <template>
     <v-row>
         <v-col v-for="item of items" :key="item.name" cols="12" sm="6" lg="3" class="py-0">
-            <v-card flat class="mb-2" color="white" max-height="158">
+            <v-card flat class="mb-2" :color="item.color" max-height="158">
                 <v-card-text>
                 <div class="d-flex align-center">
                     <div class="align-self-center">
                         <h1 class="black--text display-1">
-                            <v-icon dark size="30">mdi-apple-keyboard-command</v-icon>
+                            <v-icon dark size="30">{{item.icon}}</v-icon>
                         </h1>
                     </div>
                     <div class="mx-4">
                     <h2 class="black--text font-weight-regular">{{item.name}}</h2>
                     <h5 class=" black--text subtitle-2 text-no-wrap font-weight-regular"
-                    >{{item.key}}</h5>
+                    >({{item.key}})</h5>
                     </div>
                 </div>
                 <v-row class="mt-1" v-if="item.name==='Gas'">
