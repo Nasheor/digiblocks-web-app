@@ -26,7 +26,7 @@ export default {
     methods: {
         close() {
             this.$store.commit("statusCompareDialog", false);
-            location.reload();
+            this.$router.push({name: "Dashboard"})
         },
     },
     computed: {

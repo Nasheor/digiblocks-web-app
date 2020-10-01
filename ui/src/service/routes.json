@@ -3,8 +3,16 @@
         "name": "/auth/login",
         "method": "post"
     },
+    "customer_route" : {
+        "name": "/customers?limit=999",
+        "method": "get"
+    },
+    "customer_details_route": {
+        "name": "plugins/telemetry/CUSTOMER/%id%/values/attributes",
+        "method": "get"
+    },
    "base_asset_route": {
-       "name": "/tenant/assets?limit=%limit%",
+       "name": "/customer/%customer_id%/assets?limit=%limit%",
        "method":"get"
    },
    "asset_by_id_route": {
@@ -16,7 +24,7 @@
        "method": "get"
    },
    "sensor_values": {
-       "name": "/plugins/telemetry/DEVICE/%id%/values/attributes",
-       "method": "get"
-   }
+    "name": "/plugins/telemetry/DEVICE/%id%/values/attributes",
+    "method": "get"
+}
 }

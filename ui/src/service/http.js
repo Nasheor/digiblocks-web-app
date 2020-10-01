@@ -24,7 +24,7 @@ const refreshAuthLogic = async failedRequest => {
         failedRequest.response.config.headers['X-Authorization'] = 'Bearer ' + tokenRefreshResponse.data.token;
         return await Promise.resolve();
         }).catch(err => {
-      return Promise.reject(err);
+              return Promise.reject(err);
     });
 };
 /**

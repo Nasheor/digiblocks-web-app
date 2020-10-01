@@ -1,11 +1,12 @@
 import 'particles.js'
+import { mapGetters } from 'vuex'
 
 export default {
     data () {
       return {
         loading: false,
         userEmail: 'admin@yopmail.com',
-        password: '123456',
+        password: 'admin@123',
         hidePassword: true,
         error: false,
         showResult: false,
@@ -24,7 +25,14 @@ export default {
         ],
       }
     },
-
+    computed: {
+      ...mapGetters({
+          login_status: 'getLoginStatus'
+      }),
+      ...mapGetters({
+        building_data: "getBuildingData"
+      })
+    },
     methods: {
       initParticles () {
         /* eslint-disable */
@@ -83,21 +91,28 @@ export default {
         })
       },
       login () {
-        const vm = this
-
         if (!this.userEmail || !this.password) {
-          vm.result = "Email and Password can't be null."
-          vm.showResult = true
+          this.result = "Email and Password can't be null."
+          this.showResult = true
           return
         }
-        if (vm.userEmail === "admin@yopmail.com"&& vm.password === "123456") {
-          this.$store.commit("setPrivileges", this.admin);
-          vm.$router.push({ name: 'Dashboard' })
-        } else {
-          vm.error = true
-          vm.result = 'Email or Password is incorrect.'
-          vm.showResult = true
+        const payload = {
+          "email": this.userEmail,
+          "password": this.password
         }
+        if(this.building_data.length === 0)
+          this.$store.dispatch("LOAD_CUSTOMER_DETAILS", payload )
+
+        console.log(this.login_status)
+        if (this.login_status == true)
+          this.$router.push({name: 'Dashboard'})
+
+        else {
+            this.result = "Email and Password can't be null."
+            this.showResult = true
+            return
+        }
+
     },
     register() {
       this.$router.push({name: 'Register'});
@@ -109,5 +124,5 @@ export default {
   },
   mounted() {
     this.initParticles();
-  }
+  },
 }

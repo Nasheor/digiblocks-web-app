@@ -25,7 +25,10 @@ export default {
         ...mapGetters({co_value: 'getCoValue'}),
         ...mapGetters({water_value: 'getWaterValue'}),
     },
-    created() {
+    mounted() {
         this.populateData()
-    }
+    },
+    // created() {
+    //     this.populateData()
+    // }
 }

@@ -43,11 +43,10 @@ export default {
         open() {
             if(this.getCompareBuildings.length>1) {
                 this.$store.commit("statusCompareDialog", true);
-                console.log(this.getCompareBuildings)
             } else {
                 alert("You need to select atleast two buildings to compare");
                 this.$store.commit("statusCompareDialog", false);
-                location.reload();
+                this.$router.push({name: "Dashboard"})
             }
         },
         setName() {

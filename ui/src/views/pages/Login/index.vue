@@ -20,12 +20,12 @@
               </div>
             </v-col>
             <v-col lg="5">
-              <div class="pa-7 pa-sm-12">
+              <div class="pa-4 pa-sm-12">
                 <h2 class="font-weight-bold mt-4 blue-grey--text text--darken-2">Sign in</h2>
-                <h6 class="subtitle-1">
+                <!-- <h6 class="subtitle-1">
                   Don't have an account?
                   <a href="#/register">Sign Up</a>
-                </h6>
+                </h6> -->
 
                 <v-form ref="form" v-model="valid" lazy-validation action="/dashboards/analytical">
                   <v-text-field
@@ -56,12 +56,12 @@
                         required
                       ></v-checkbox>
                     </v-col>
-                    <v-col>
+                    <!-- <v-col>
                     <v-checkbox
                       v-model="admin"
                       label="Admin"
                     ></v-checkbox>
-                    </v-col>
+                    </v-col> -->
                   </v-row>
                   <v-btn
                     color="orange"

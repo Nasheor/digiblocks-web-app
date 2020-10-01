@@ -5,9 +5,16 @@
 </template>
 
 <script>
+
+  import { mapGetters } from 'vuex'
   export default {
+    computed: {
+      ...mapGetters(["getLoginStatus"])
+    },
     async created() {
-      this.$store.dispatch("LOAD_DATA", 999)
+      console.log(this.getLoginStatus)
+        if(this.getLoginStatus)
+          this.$store.dispatch("LOAD_DATA", 999)
     }
   }
 </script>

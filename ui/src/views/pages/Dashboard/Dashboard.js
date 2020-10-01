@@ -23,5 +23,5 @@ export default {
         ...mapGetters({
             summary_card_data: 'getDashboardData'
         })
-    }
+    },
 }

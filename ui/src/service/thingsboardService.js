@@ -3,10 +3,35 @@ import http from './http';
 
 export default class ThingsboardService {
 
-    static async getAssetsMetaData(limit) {
-        let ro = routes.base_asset_route.name.replace("%limit%", limit)
+    static async getCustomers() {
+        let ro = routes.customer_route.name.replace()
         try {
             const res = await http.get(ro)
+            return await Promise.resolve(res.data)
+        }
+        catch (err) {
+            return await Promise.reject(err)
+        }           
+    }
+
+    static async getCustomerDetails(id) {
+        let ro = routes.customer_details_route.name.replace("%id%", id)
+        try {
+            const res = await http.get(ro)
+            return await Promise.resolve(res.data)
+        }
+        catch (err) {
+            return await Promise.reject(err)
+        }  
+    }
+
+    static async getAssetsMetaData(customer_id, limit) {
+        let r = routes.base_asset_route.name.replace("%limit%", limit)
+        let ro = r.replace("%customer_id%", customer_id)
+        // console.log(ro)
+        try {
+            const res = await http.get(ro)
+            console.log(res)
             return await Promise.resolve(res.data)
         }
         catch (err) {
