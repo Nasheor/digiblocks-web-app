@@ -94,8 +94,15 @@ export default new Vuex.Store({
       const customers = await ThingsboardService.getCustomers()
       let customer_id = ''
       customers.data.map(customer => {
+        console.log(customer)
         if (customer.email === payload.email) {
           customer_id = customer.id.id
+          context.state.username = customer.title
+          localStorage.setItem("title", customer.title)
+          context.state.address = customer.zip
+          localStorage.setItem("address", customer.zip)
+          context.state.country = customer.country
+          localStorage.setItem("country", customer.country)
         }
       })
 

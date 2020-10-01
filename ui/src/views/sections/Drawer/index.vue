@@ -39,7 +39,7 @@
         <v-list-item-content>
           <v-list-item-title
             class="display-1"
-            v-text="profile.title"
+            v-text="title"
           />
         </v-list-item-content>
       </v-list-item>

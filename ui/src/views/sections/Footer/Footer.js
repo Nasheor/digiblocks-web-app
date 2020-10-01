@@ -4,16 +4,16 @@ name: 'DashboardCoreFooter',
 data: () => ({
     links: [
     {
-        href: '#',
-        text: 'Homer Simpson',
+        href: '/dashboard',
+        text: localStorage.getItem("title"),
     },
     {
-        href: '#',
-        text: 'About Us',
+        href: '/dashboard',
+        text: localStorage.getItem("country"),
     },
     {
-        href: '#',
-        text: 'Contact',
+        href: '/dashboard',
+        text: localStorage.getItem("address"),
     },
     ],
 }),

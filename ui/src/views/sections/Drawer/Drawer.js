@@ -14,6 +14,7 @@ export default {
     },
 
     data: () => ({
+        title: localStorage.getItem("title"),
         items: [
             {
                 icon: 'mdi-view-dashboard',
