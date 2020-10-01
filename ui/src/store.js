@@ -156,14 +156,15 @@ export default new Vuex.Store({
                     ThingsboardService.getAssetDevices(item.id.id).then(devices => {
                       let devices_data = []
                       devices.map(device => {
-                        devices_data.push({
-                          'name': device.toName,
-                          'id': device.to.id,
-                          'consumption': device.additionalInfo.consumption,
-                          'years': device.additionalInfo.years,
-                          'type': device.additionalInfo.type,
-                          'unit': device.additionalInfo.unit
-                        })
+                        if(device.additionalInfo != null)
+                          devices_data.push({
+                            'name': device.toName,
+                            'id': device.to.id,
+                            'consumption': device.additionalInfo.consumption,
+                            'years': device.additionalInfo.years,
+                            'type': device.additionalInfo.type,
+                            'unit': device.additionalInfo.unit
+                          })
                       })
                       context.commit("setBuildingData", {
                         "name": item.name,
@@ -171,9 +172,9 @@ export default new Vuex.Store({
                         "category": data.filter(item=> item.key==="category")[0].value,
                         "environment":data.filter(item=> item.key==="environment")[0].value,
                         "image": data.filter(item=> item.key==="image")[0].value,
-                        "hours": JSON.parse(data.filter(item=> item.key==="hours")[0].value),
+                        "hours": JSON.parse(data.filter(item=> item.key==="hours_of_occupancy")[0].value),
                         "coordinates": [parseFloat(data.filter(item=> item.key==="latitude")[0].value), parseFloat(data.filter(item=> item.key==="longitude")[0].value)],
-                        "floor_area": JSON.parse(data.filter(item=> item.key==="floor_area")[0].value),
+                        "floor_area": JSON.parse(data.filter(item=> item.key==="total_useful_floor_area")[0].value),
                         "devices": devices_data,
                         "address": data.filter(item=> item.key==="address")[0].value,
                         "assessor": data.filter(item=> item.key==="assessor")[0].value,

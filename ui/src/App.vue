@@ -7,14 +7,15 @@
 <script>
 
   import { mapGetters } from 'vuex'
+
   export default {
     computed: {
-      ...mapGetters(["getLoginStatus"])
+      ...mapGetters(["getLoginStatus", "getCustomerID"])
     },
     async created() {
-      console.log(this.getLoginStatus)
-        if(this.getLoginStatus)
-          this.$store.dispatch("LOAD_DATA", 999)
+      if(this.getCustomerID === "") {
+        localStorage.setItem("login", false);
+      }
     }
   }
 </script>

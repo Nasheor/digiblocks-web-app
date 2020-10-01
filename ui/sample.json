@@ -1,4 +1,33 @@
-{
-    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhdmluYXNoLm5hZ2FyYWphbkBteWNpdC5pZSIsInNjb3BlcyI6WyJURU5BTlRfQURNSU4iXSwidXNlcklkIjoiZTg1NmQzNjAtYmMzZS0xMWVhLTkzMjktZTdhNDJmYzhkYzJkIiwiZmlyc3ROYW1lIjoiQXZpbmFzaCIsImxhc3ROYW1lIjoiTmFnYXJhamFuIiwiZW5hYmxlZCI6dHJ1ZSwiaXNQdWJsaWMiOmZhbHNlLCJ0ZW5hbnRJZCI6IjlkYTRhNWQwLWFhMTEtMTFlOS1iYjU4LTM5NTNkMjc5MGY2NCIsImN1c3RvbWVySWQiOiIxMzgxNDAwMC0xZGQyLTExYjItODA4MC04MDgwODA4MDgwODAiLCJpc3MiOiJ0aGluZ3Nib2FyZC5pbyIsImlhdCI6MTU5ODk2OTY1MiwiZXhwIjoxNTk4OTc4NjUyfQ.UN8D9CWE_StBqcI38jUoyKI-ThQ-FBy6KfiLlQPw_Rt43iHZtvsu81H-YFRYgikjw_fikN29gIN0xCmCf0eNjw",
-    "refreshToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhdmluYXNoLm5hZ2FyYWphbkBteWNpdC5pZSIsInNjb3BlcyI6WyJSRUZSRVNIX1RPS0VOIl0sInVzZXJJZCI6ImU4NTZkMzYwLWJjM2UtMTFlYS05MzI5LWU3YTQyZmM4ZGMyZCIsImlzUHVibGljIjpmYWxzZSwiaXNzIjoidGhpbmdzYm9hcmQuaW8iLCJqdGkiOiI3MTFhNmVhYi1hMDQzLTRmNTAtYmM5OS1lNjI1Y2VlMzgzNTgiLCJpYXQiOjE1OTg5Njk2NTIsImV4cCI6MTU5OTU3NDQ1Mn0.qBUIDjnMUQ2JEb_XXRUNXPW9Q28cwvtqJ3SQ3r0IVIQVCnS9b1HXnyYOb4dQ4jvtf7ZsDJoTxrwoOX4005DA4g"
-}
+[
+    {
+        "year":"2016",
+        "consumption": 185250,
+        "unit": "kWh"
+    },
+    {
+        "year":"2017",
+        "consumption": 185250,
+        "unit": "kWh"        
+    }
+]
+[ 
+    {
+        "year": "2016",
+        "consumption": 23412,
+        "unit": "kWh"
+    }
+]
+[ 
+    {
+        "year": "2016",
+        "consumption": 23412,
+        "unit": "Kg"
+    }
+]
+[ 
+    {
+        "year": "2016",
+        "consumption": 23412,
+        "unit": "L"
+    }
+]
