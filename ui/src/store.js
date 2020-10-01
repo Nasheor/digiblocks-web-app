@@ -173,7 +173,7 @@ export default new Vuex.Store({
                         "environment":data.filter(item=> item.key==="environment")[0].value,
                         "image": data.filter(item=> item.key==="image")[0].value,
                         "hours": JSON.parse(data.filter(item=> item.key==="hours_of_occupancy")[0].value),
-                        "coordinates": [parseFloat(data.filter(item=> item.key==="latitude")[0].value), parseFloat(data.filter(item=> item.key==="longitude")[0].value)],
+                        "coordinates": [data.filter(item=> item.key==="latitude")[0].value *1, data.filter(item=> item.key==="longitude")[0].value * 1],
                         "floor_area": JSON.parse(data.filter(item=> item.key==="total_useful_floor_area")[0].value),
                         "devices": devices_data,
                         "address": data.filter(item=> item.key==="address")[0].value,
