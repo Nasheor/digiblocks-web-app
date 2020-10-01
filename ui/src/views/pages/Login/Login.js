@@ -39,7 +39,7 @@ export default {
         window.particlesJS('particles-js', {
           "particles": {
             "number": {
-              "value": 1000,
+              "value": 5000,
               "density": {
                 "enable": true,
                 "value_area": 10000 // Denser the smaller the number.
@@ -55,7 +55,7 @@ export default {
                   "color": "#145ea8"
                 },
                 "polygon": { // if the shape is a polygon
-                  "nb_sides": 123
+                  "nb_sides": 4
                 },
             },
             "opacity": {
