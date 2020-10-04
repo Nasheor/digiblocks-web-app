@@ -20,7 +20,7 @@
               </div>
             </v-col>
             <v-col lg="5">
-              <div class="pa-4 pa-sm-12">
+              <div class="pa-2 pa-sm-2">
                 <h2 class="font-weight-bold mt-4 blue-grey--text text--darken-2">Sign in</h2>
                 <!-- <h6 class="subtitle-1">
                   Don't have an account?
@@ -56,12 +56,6 @@
                         required
                       ></v-checkbox>
                     </v-col>
-                    <!-- <v-col>
-                    <v-checkbox
-                      v-model="admin"
-                      label="Admin"
-                    ></v-checkbox>
-                    </v-col> -->
                   </v-row>
                   <v-btn
                     color="orange"
