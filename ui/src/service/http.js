@@ -17,7 +17,6 @@ let http = axios.create({
 
 const refreshAuthLogic = async failedRequest => {
   const body = {username: config.thingsboard.username, password: config.thingsboard.password};
-  console.log(body)
   return await axios.post(HOST + routes.base_login_route.name, body, {headers: BASE_HEADERS})
     .then(async tokenRefreshResponse => {  
         localStorage.setItem('token', tokenRefreshResponse.data.token);

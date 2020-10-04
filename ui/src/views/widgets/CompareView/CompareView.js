@@ -26,6 +26,7 @@ export default {
     methods: {
         close() {
             this.$store.commit("statusCompareDialog", false);
+            this.$store.commit("clearBuildingCompare");
             this.$router.push({name: "Dashboard"})
         },
     },

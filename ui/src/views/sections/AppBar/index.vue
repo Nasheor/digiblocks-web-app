@@ -57,6 +57,7 @@
       min-width="0"
       text
       to="/"
+      @click="logout"
     >
       <v-icon>mdi-logout</v-icon>
     </v-btn>

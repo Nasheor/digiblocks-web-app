@@ -74,6 +74,9 @@ export default {
     },
     href() {
       return undefined;
+    },
+    logout(){
+      this.$store.commit("clearData")
     }
   },
   created() {

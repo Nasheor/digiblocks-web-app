@@ -26,6 +26,10 @@ export default new Vuex.Store({
     country: ''
   },
   mutations: {
+    clearData(state) {
+      state.dashboard_data = [];
+      state.building_data = [];
+    },
     setBarImage (state, payload) {
       state.barImage = payload;
     },
@@ -34,6 +38,9 @@ export default new Vuex.Store({
     },
     addBuildingToCompare(state, id) {
       state.compare_buildings.push(id); 
+    },
+    clearBuildingCompare(state) {
+      state.compare_buildings = [];
     },
     removeBuildingCompare(state, id) {
       state.compare_buildings = state.compare_buildings.filter(item => item != id); 
@@ -94,7 +101,6 @@ export default new Vuex.Store({
       const customers = await ThingsboardService.getCustomers()
       let customer_id = ''
       customers.data.map(customer => {
-        console.log(customer)
         if (customer.email === payload.email) {
           customer_id = customer.id.id
           context.state.username = customer.title
