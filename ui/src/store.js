@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import ThingsboardService from "./service/thingsboardService";
+import ThingsboardService from "./service/thingsboard/thingsboardService";
 import log from "./utils/logger";
 
 Vue.use(Vuex)

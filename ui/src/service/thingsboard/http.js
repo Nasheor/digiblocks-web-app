@@ -1,6 +1,6 @@
-import config from "../config.json";
+import config from "../../config.json";
 import axios from "axios";
-import log from '../utils/logger';
+import log from '../../utils/logger';
 import routes from './routes.json'
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
