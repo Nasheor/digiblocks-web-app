@@ -811,5 +811,6 @@
             "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDE1MTY5NTEsInVzZXJuYW1lIjoidGhhcmluZHUiLCJvcmdOYW1lIjoiT3JnMSIsImlhdCI6MTYwMTQ4MDk1MX0.k-CnI_YaryB_C37eIMoQBN4Vpq_uWWa_b9dvLJiuayM"
         }
     ],
-    "protocolProfileBehavior": {}
+    "protocolProfileBehavior": {},
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDE1MTc3MTEsInVzZXJuYW1lIjoidGhhcmluZHUiLCJvcmdOYW1lIjoiT3JnMSIsImlhdCI6MTYwMTQ4MTcxMX0.G9Dqq5LcydujK3VXzf8XJuVACe60YxSv4wAC8OkSBdI"
 }

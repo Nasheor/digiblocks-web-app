@@ -3,5 +3,10 @@
         "username": "avinash.nagarajan@mycit.ie",
         "password": "Test@1234",
         "endpoint": "http://157.190.53.15:8080/api"
+    },
+    "gcp": {
+        "username":"tharindu4",
+        "orgName":"Org2",
+        "endpoint": "http://104.154.191.130:4000"
     }
 }
