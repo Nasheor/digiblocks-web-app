@@ -1,0 +1,30 @@
+{
+    "base_login_route": {
+        "name": "/auth/login",
+        "method": "post"
+    },
+    "customer_route" : {
+        "name": "/customers?limit=999",
+        "method": "get"
+    },
+    "customer_details_route": {
+        "name": "plugins/telemetry/CUSTOMER/%id%/values/attributes",
+        "method": "get"
+    },
+   "base_asset_route": {
+       "name": "/customer/%customer_id%/assets?limit=%limit%",
+       "method":"get"
+   },
+   "asset_by_id_route": {
+       "name":"/plugins/telemetry/ASSET/%id%/values/attributes",
+       "method": "get"
+   },
+   "devices_by_asset_id": {
+       "name": "/relations/info?fromId=%id%&fromType=ASSET",
+       "method": "get"
+   },
+   "sensor_values": {
+    "name": "/plugins/telemetry/DEVICE/%id%/values/attributes",
+    "method": "get"
+   }
+}

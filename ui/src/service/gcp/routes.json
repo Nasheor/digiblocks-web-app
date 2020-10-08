@@ -1,0 +1,30 @@
+{
+    "base_login_route": {
+        "name": "/users",
+        "method": "post"
+    },
+    "create_dec": {
+        "name": "/channels/mychannel/chaincodes/deccontract",
+        "method": "post"
+    },
+    "update_dec":{
+        "name": "/channels/mychannel/chaincodes/deccontract",
+        "method": "post"
+    },
+    "add_subject":{
+        "name": "/channels/mychannel/chaincodes/assetcontract",
+        "method": "post"
+    },
+    "get_subject":{
+        "name":"channels/mychannel/chaincodes/assetcontract?fcn=%fcn%&chainCodeName=%chainCodeName%&channelName=%channelName%&args=%args%",
+        "method": "get"
+    },
+    "get_dec" :{
+        "name": "/channels/mychannel/chaincodes/deccontract?fcn=%fcn%&chainCodeName=%chainCodeName%&channelName=%channelName%&args=%args%",
+        "method": "get"
+    },
+    "trace_dec" :{
+        "name": "/channels/mychannel/chaincodes/deccontract?fcn=%fcn%&chainCodeName=%chainCodeName%&channelName=%channelName%&args=%args%",
+        "method": "get"
+    }
+}
