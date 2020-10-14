@@ -15,6 +15,7 @@ export default new Vuex.Store({
     compare_dialog_status: false,
     dashboard_data: [],
     building_data: [],
+    devices_data: [],
     gas_value: '',
     co_value: '',
     water_value: '',
@@ -52,7 +53,28 @@ export default new Vuex.Store({
       state.dashboard_data = payload;
     },
     setBuildingData(state, payload) {
-      state.building_data.push(payload)
+      let flag = false
+      if(state.building_data.length > 0) {
+        state.building_data.map(building => {
+          if(building.name === payload.name) {
+            flag = true 
+          }
+        })
+      }
+      if(flag === false)
+        state.building_data.push(payload)
+    },
+    setDevicesData(state, payload) {
+      let flag = false
+      if(state.devices_data.length > 0) {
+        state.devices_data.map(device => {
+          if(device.name === payload.name) {
+            flag = true 
+          }
+        })
+      }
+      if(flag === false)
+        state.devices_data.push(payload)
     },
     setLoginStatus(state, payload) {
       state.login_status = payload;
@@ -160,18 +182,16 @@ export default new Vuex.Store({
                     context.commit("setDashboardData", data)
                   } else {
                     ThingsboardService.getAssetDevices(item.id.id).then(devices => {
-                      let devices_data = []
                       devices.map(device => {
-                        if(device.additionalInfo != null)
-                          devices_data.push({
+                        let tmp_holder = device.toName.split(" ")
+                        if(tmp_holder[1] === "Sensor" || tmp_holder[2] === "Sensor") {
+                          context.commit("setDevicesData", {
                             'name': device.toName,
-                            'id': device.to.id,
-                            'consumption': device.additionalInfo.consumption,
-                            'years': device.additionalInfo.years,
-                            'type': device.additionalInfo.type,
-                            'unit': device.additionalInfo.unit
+                            'id': device.to.id,                     
                           })
+                        }
                       })
+                      // context.dispatch("UPDATE_TELEMETRY")
                       context.commit("setBuildingData", {
                         "name": item.name,
                         "id": item.id.id,
@@ -181,7 +201,6 @@ export default new Vuex.Store({
                         "hours": JSON.parse(data.filter(item=> item.key==="hours_of_occupancy")[0].value),
                         "coordinates": [data.filter(item=> item.key==="latitude")[0].value *1, data.filter(item=> item.key==="longitude")[0].value * 1],
                         "floor_area": JSON.parse(data.filter(item=> item.key==="total_useful_floor_area")[0].value),
-                        "devices": devices_data,
                         "address": data.filter(item=> item.key==="address")[0].value,
                         "assessor": data.filter(item=> item.key==="assessor")[0].value,
                         "band": data.filter(item=> item.key==="band")[0].value,
@@ -199,10 +218,30 @@ export default new Vuex.Store({
                   }
               })
           })
-                                                                                                                                                                                                                                                                v 
+                                                                                                                                                                                                                                                      v 
       } catch(e) {
           log.log('error', 'Cannot fetch data from assets' +e)
           return e
+      }
+    },
+    async UPDATE_TELEMETRY(context) {
+      let co_body = '{"co_consumption": "23412", "co_unit": "Kg", "year":"2016"}'
+      let gas_body = '{"gas_consumption": "23412", "gas_unit": "kWh"}'
+      let electricity_body = '{"e_consumption": "23412", "e_unit": "kWh"}'
+      let water_body = '{"water_consumption": "23412", "water_unit": "L"}'
+      let device = context.state.devices_data
+      for(let i = 0; i < device.length; i++){
+        try {
+          const update_co = await ThingsboardService.postDatatoSensor(co_body, device[i].id)
+          const update_electricity = await ThingsboardService.postDatatoSensor(electricity_body, device[i].id)
+          const update_gas = await ThingsboardService.postDatatoSensor(gas_body, device[i].id)
+          const update_water = await ThingsboardService.postDatatoSensor(water_body, device[i].id)  
+          //const del = await ThingsboardService.deleteTelemetryData()
+        } catch (e) {
+          log.log('error', 'Cannot update data from sensors' +e)
+          return e          
+        }
+
       }
     }
   },

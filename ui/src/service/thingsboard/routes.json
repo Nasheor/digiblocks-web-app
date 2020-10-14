@@ -26,5 +26,13 @@
    "sensor_values": {
     "name": "/plugins/telemetry/DEVICE/%id%/values/attributes",
     "method": "get"
+   },
+   "update_telemetry": {
+       "name":"/plugins/telemetry/DEVICE/%id%/timeseries/LATEST_TELEMETRY",
+       "method": "post"
+   },
+   "delete_telemetry": {
+       "name": "/plugins/telemetry/DEVICE/2a775180-03ec-11eb-b122-536076a3744d/timeseries/delete?keys=unit,consumption",
+       "method": "delete"
    }
 }

@@ -102,6 +102,7 @@ export default {
         }
         if(this.building_data.length === 0)
           this.$store.dispatch("LOAD_CUSTOMER_DETAILS", payload )
+          
 
         if (this.login_status == true)
           this.$router.push({name: 'Dashboard'})

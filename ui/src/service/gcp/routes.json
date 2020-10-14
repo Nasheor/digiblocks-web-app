@@ -11,8 +11,8 @@
         "name": "/channels/mychannel/chaincodes/deccontract",
         "method": "post"
     },
-    "add_subject":{
-        "name": "/channels/mychannel/chaincodes/assetcontract",
+    "create_asset": {
+        "name": "/channels/mychannel/chaincodes/identitycontract",
         "method": "post"
     },
     "get_subject":{
@@ -25,6 +25,10 @@
     },
     "trace_dec" :{
         "name": "/channels/mychannel/chaincodes/deccontract?fcn=%fcn%&chainCodeName=%chainCodeName%&channelName=%channelName%&args=%args%",
+        "method": "get"
+    },
+    "get_asset" :{ 
+        "name": "/channels/mychannel/chaincodes/assetcontract?fcn=%fcn%&chainCodeName=%chainCodeName%&channelName=%channelName%&args=%args%",
         "method": "get"
     }
 }

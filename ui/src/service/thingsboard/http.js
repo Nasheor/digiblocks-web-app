@@ -19,8 +19,10 @@ const refreshAuthLogic = async failedRequest => {
   const body = {username: config.thingsboard.username, password: config.thingsboard.password};
   return await axios.post(HOST + routes.base_login_route.name, body, {headers: BASE_HEADERS})
     .then(async tokenRefreshResponse => {  
+        console.log(tokenRefreshResponse.data);
         localStorage.setItem('token', tokenRefreshResponse.data.token);
         failedRequest.response.config.headers['X-Authorization'] = 'Bearer ' + tokenRefreshResponse.data.token;
+        console.log(failedRequest)
         return await Promise.resolve();
         }).catch(err => {
               return Promise.reject(err);

@@ -68,4 +68,24 @@ export default class ThingsboardService {
             return await Promise.reject(err)
         }
     }
+    static async postDatatoSensor(body, id) {
+        body = JSON.parse(body)
+        // let ignore = ["2a775180-03ec-11eb-b122-536076a3744d", "52e24da0-03ec-11eb-b122-536076a3744d"]
+        let tmp_ro = routes.update_telemetry.name.replace("%id%", id)
+        try {
+            let r = await http.post(tmp_ro, body)
+            return await Promise.resolve(r.data)
+        } catch (err) {
+            return await Promise.reject(err)
+        }        
+    }
+    static async deleteTelemetryData(){
+        let tmp_ro = routes.delete_telemetry.name
+        try {
+            let r = await http.delete(tmp_ro)
+            return await Promise.resolve(r.data)
+        } catch (err) {
+            return await Promise.reject(err)
+        }          
+    }
 }
