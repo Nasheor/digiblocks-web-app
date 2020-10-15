@@ -22,7 +22,6 @@ const refreshAuthLogic = async failedRequest => {
         console.log(tokenRefreshResponse.data);
         localStorage.setItem('token', tokenRefreshResponse.data.token);
         failedRequest.response.config.headers['X-Authorization'] = 'Bearer ' + tokenRefreshResponse.data.token;
-        console.log(failedRequest)
         return await Promise.resolve();
         }).catch(err => {
               return Promise.reject(err);

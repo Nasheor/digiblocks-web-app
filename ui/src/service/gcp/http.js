@@ -16,11 +16,12 @@ let http = axios.create({
 });
 
 const refreshAuthLogic = async failedRequest => {
-  const body = {username: config.gcp.username, orgName: config.gcp.orgName};
+  const body = {username: config.gcp.username, orgName: config.gcp.orgName, role: config.gcp.role};
   return await axios.post(HOST + routes.base_login_route.name, body, {headers: BASE_HEADERS})
     .then(async tokenRefreshResponse => {  
         localStorage.setItem('token', tokenRefreshResponse.data.token);
         failedRequest.response.config.headers['Authorization'] = 'Bearer ' + tokenRefreshResponse.data.token;
+        console.log(failedRequest)
         return await Promise.resolve();
         }).catch(err => {
               return Promise.reject(err);
@@ -37,7 +38,7 @@ http.interceptors.request.use(function (config) {
 
     const token = localStorage.getItem('token');
     if (!_.isNil(token))
-      config.headers['Authorization'] = `Bearer ${token}`;
+      config.headers['X-Authorization'] = `Bearer ${token}`;
     return config;
   },
   (error) => {

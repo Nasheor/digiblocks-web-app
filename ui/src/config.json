@@ -7,6 +7,7 @@
     "gcp": {
         "username":"tharindu4",
         "orgName":"Org2",
-        "endpoint": "http://104.154.191.130:4000"
+        "role":"buildingOwner",
+        "endpoint": "http://35.239.176.245:4000"
     }
 }

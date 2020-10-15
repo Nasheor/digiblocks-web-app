@@ -25,7 +25,27 @@
               <v-card v-if="getCompareDialogStatus" >
                   <CompareView />
               </v-card>
-          </v-dialog>          
+          </v-dialog>
+          <v-dialog v-model="form_dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  class="ml-2"
+                  min-width="0"
+                  color="success"
+                  v-on="on"
+                >
+                  <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon>
+                  Add Building
+                </v-btn>
+              </template>
+                <v-card>
+                  <BuildingForm/>
+                  <v-card-actions>
+                  <v-spacer></v-spacer>
+                    <v-btn color="error" text @click="form_dialog = false">Close</v-btn>
+                  </v-card-actions>
+                </v-card>
+          </v-dialog>               
         </div>
       </v-toolbar>      
       <v-row>

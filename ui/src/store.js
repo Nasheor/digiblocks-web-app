@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import ThingsboardService from "./service/thingsboard/thingsboardService";
-import log from "./utils/logger";
+import ThingsboardService from "./service/thingsboard/thingsboardService"
+import gcpService from './service/gcp/gcpService'
+import log from "./utils/logger"
 
 Vue.use(Vuex)
 localStorage.setItem('isAdmin', false);
@@ -243,6 +244,14 @@ export default new Vuex.Store({
         }
 
       }
+    },
+    async REGISTER_ASSET(context, payload) {
+      try{
+        const assets = await gcpService.createAsset(payload)
+      } catch(e) {
+        log.log('error', 'Cannot '+e)
+      }
+
     }
   },
 })
