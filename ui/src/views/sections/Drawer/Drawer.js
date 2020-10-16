@@ -20,32 +20,36 @@ export default {
                 icon: 'mdi-view-dashboard',
                 title: 'dashboard',
                 to: '/dashboard',
-                isAdmin: false,
+                role: ["Community Manager"],
+                display: false,
             },
             {
                 icon: 'mdi-hospital-building',
                 title: 'Cork Institute of Technology',
                 to: '/buildings',
-                isAdmin: false,
+                role: ["Community Manager"],
+                display: false,
             },
             {
                 title: 'Certificate',
                 icon: 'mdi-format-font',
                 to: '/certificate',
-                isAdmin: false,
+                role: ["Community Manager"],
+                display: false,
             },
-            // {
-            //     title: 'All Assets',
-            //     icon: 'mdi-android-debug-bridge',
-            //     to: '/',
-            //     isAdmin: true,
-            // }
+            {
+                title: 'Verify Certificate',
+                icon: 'mdi-android-debug-bridge',
+                to: '/verify_certificate',
+                role: ["External Verifier"],
+                display: false,
+            },
         ],
     }),
 
     computed: {
         ...mapState(['barColor', 'barImage']),
-        ...mapGetters(['getPrivilegeStatus']),
+        ...mapGetters(["getRole"]),
         drawer: {
             get () {
                 return this.$store.state.drawer
@@ -74,4 +78,14 @@ export default {
             }
         },
     },
+
+    created() {
+        this.items.map(item => {
+            item.role.map(r => {
+                if (r === this.getRole) {
+                    item.display = true
+                } 
+            })
+        })
+    }
 }

@@ -57,7 +57,7 @@
         <base-item
           :key="`item-${i}`"
           :item="item"
-          v-if="getPrivilegeStatus"
+          v-if="item.display"
         />
         <base-item
           v-else-if="item.isAdmin === false"

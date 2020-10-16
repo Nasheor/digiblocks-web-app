@@ -13,8 +13,9 @@ export default {
         result: '',
         checkbox: '',
         show1: false,
-        admin: false,
+        role: '',
         valid: true,
+        user_category: ["Building Owner", "Community Manager", "External Verifier"],
         emailRules: [
           v => !!v || "E-mail is required",
           v => /.+@.+\..+/.test(v) || "E-mail must be valid"
@@ -31,7 +32,10 @@ export default {
       }),
       ...mapGetters({
         building_data: "getBuildingData"
-      })
+      }),
+      ...mapGetters([
+       "getRole",
+      ]),
     },
     methods: {
       initParticles () {
@@ -98,19 +102,29 @@ export default {
         }
         const payload = {
           "email": this.userEmail,
-          "password": this.password
+          "password": this.password,
+          "role": this.role
         }
         if(this.building_data.length === 0)
           this.$store.dispatch("LOAD_CUSTOMER_DETAILS", payload )
           
 
-        if (this.login_status == true)
-          this.$router.push({name: 'Dashboard'})
+        if (this.login_status == true  && this.getRole != "External Verifier")
+          this.$router.push({name: 'Home'})
+        
+        else if(this.login_status == true && this.getRole === "External Verifier")
+          this.$router.push({name: "Verify Certificate"})
 
         else {
-            this.result = "Email and Password can't be null."
-            this.showResult = true
-            return
+
+          let tmp = localStorage.getItem("login")
+          if(tmp === false) {
+            alert("Invalid Credentials. Try Again")
+          }
+          // alert("Invalid Credentials. Try Again")
+          this.result = "Email and Password can't be null."
+          this.showResult = true
+          return
         }
 
     },

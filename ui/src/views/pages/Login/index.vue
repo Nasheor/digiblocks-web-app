@@ -46,7 +46,13 @@
                     :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                     :type="show1 ? 'text' : 'password'"
                   ></v-text-field>
-
+                    <v-select
+                      :items="user_category"
+                      v-model="role"
+                      label="Select Category"
+                      required
+                      outlined
+                    ></v-select>
                   <v-row>
                     <v-col>
                       <v-checkbox

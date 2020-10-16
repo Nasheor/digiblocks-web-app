@@ -77,6 +77,7 @@ export default {
     },
     logout(){
       this.$store.commit("clearData")
+      window.location.reload(1)
     }
   },
   created() {

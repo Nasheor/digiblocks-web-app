@@ -16,19 +16,19 @@
         "method": "post"
     },
     "get_subject":{
-        "name":"channels/mychannel/chaincodes/assetcontract?fcn=%fcn%&chainCodeName=%chainCodeName%&channelName=%channelName%&args=%args%",
+        "name":"channels/mychannel/chaincodes/assetcontract?fcn=querySubject&chainCodeName=assetContract&channelName=myChannel&args=%args%",
         "method": "get"
     },
     "get_dec" :{
-        "name": "/channels/mychannel/chaincodes/deccontract?fcn=%fcn%&chainCodeName=%chainCodeName%&channelName=%channelName%&args=%args%",
+        "name": "/channels/mychannel/chaincodes/deccontract?fcn=getDEC&chainCodeName=decontract&channelName=mychannel&args=%args%",
         "method": "get"
     },
     "trace_dec" :{
-        "name": "/channels/mychannel/chaincodes/deccontract?fcn=%fcn%&chainCodeName=%chainCodeName%&channelName=%channelName%&args=%args%",
+        "name": "/channels/mychannel/chaincodes/deccontract?fcn=traceDEC&chainCodeName=decontract&channelName=mychannel&args=%args%",
         "method": "get"
     },
     "get_asset" :{ 
-        "name": "/channels/mychannel/chaincodes/assetcontract?fcn=%fcn%&chainCodeName=%chainCodeName%&channelName=%channelName%&args=%args%",
+        "name": "/channels/mychannel/chaincodes/assetcontract?fcn=fcn&chainCodeName=identitycontract&channelName=mychannel&args=%args%",
         "method": "get"
     }
 }

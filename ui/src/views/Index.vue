@@ -30,8 +30,5 @@
     data: () => ({
       expandOnHover: false,
     }),
-    computed: {
-      ...mapGetters(["getPrivilegeStatus"]),
-    },
   }
 </script>

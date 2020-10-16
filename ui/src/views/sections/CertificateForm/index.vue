@@ -54,5 +54,5 @@
         </v-card>
 </template>
 
- <script src='./BuildingForm.js' />
- <style scoped lang="scss" src="./BuildingForm.scss"></style>
+ <script src='./CertificateForm.js' />
+ <style scoped lang="scss" src="./CertificateForm.scss"></style>

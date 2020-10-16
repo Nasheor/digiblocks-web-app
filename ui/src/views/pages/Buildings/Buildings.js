@@ -1,7 +1,6 @@
 import BuildingCard from '../../sections/BuildingCard/index'
 import BCard from '../../widgets/BuildingCardComponents/index'
 import CompareView from '../../widgets/CompareView/index'
-import BuildingForm from '../../sections/BuildingForm/index'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -19,7 +18,6 @@ export default {
         BuildingCard,
         CompareView,
         BCard,
-        BuildingForm,
     },
     computed: {
         ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData']),
@@ -32,18 +30,44 @@ export default {
             } else {
                 alert("You need to select atleast two buildings to compare");
                 this.$store.commit("statusCompareDialog", false);
-                this.$router.push({name: "Dashboard"})
+                this.$router.push({name: "Home"})
             }
         },
         setName() {
             console.log("name is et");
         },
-        addBuilding() {
-            this.$refs.form.validate();
-            if (this.$refs.form.validate(true)) {
-                console.log("Contact Added")
-                alert("Contact Added")
-            }
+        // addBuilding() {
+        //     this.$refs.form.validate();
+        //     if (this.$refs.form.validate(true)) {
+        //         console.log("Contact Added")
+        //         alert("Contact Added")
+        //     }
+        // },
+        registerBuilding() {
+            let building_data;
+            this.getBuildingData.map(building => {
+                if (building.name === this.name) {
+                    building_data = building
+                }
+            })
+            this.$store.dispatch("REGISTER_ASSET", {
+                "fcn": "createAsset",
+                "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
+                "chaincodeName":"identitycontract",
+                "channelName" : "mychannel",
+                "args": [building.name, building.category, {
+                    "environment":building.environment,
+                    "date_of_issue": building.issue,
+                    "date_of_expiry": building.expiry,
+                    "ber": building.ber,
+                    "fuel": building.fuel,
+                    "assessor": building.assessor
+                }]
+            })
+            alert("Building Registered to the Ledger!")
         },
+        generateDec() {
+
+        }
     }
 }

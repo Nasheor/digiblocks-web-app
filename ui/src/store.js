@@ -5,7 +5,6 @@ import gcpService from './service/gcp/gcpService'
 import log from "./utils/logger"
 
 Vue.use(Vuex)
-localStorage.setItem('isAdmin', false);
 
 export default new Vuex.Store({
   state: {
@@ -25,7 +24,8 @@ export default new Vuex.Store({
     customer_id: '',
     username: '',
     address: '',
-    country: ''
+    country: '',
+    role: '',
   },
   mutations: {
     clearData(state) {
@@ -69,7 +69,7 @@ export default new Vuex.Store({
       let flag = false
       if(state.devices_data.length > 0) {
         state.devices_data.map(device => {
-          if(device.name === payload.name) {
+          if(device.id === payload.id) {
             flag = true 
           }
         })
@@ -82,6 +82,9 @@ export default new Vuex.Store({
     },
     setCustomerID(state, payload) {
       state.customer_id = payload;
+    },
+    setRole(state, payload) {
+      state.role = payload;
     }
    },
   getters: {
@@ -90,9 +93,6 @@ export default new Vuex.Store({
     },
     getCompareDialogStatus(state) {
       return state.compare_dialog_status;
-    },
-    getPrivilegeStatus(state) {
-      return state.admin;
     },
     getDashboardData(state) {
       return state.dashboard_data;
@@ -117,11 +117,15 @@ export default new Vuex.Store({
     },
     getCustomerID(state) {
       return state.customer_id;
+    },
+    getRole(state) {
+      return state.role;
     }
   },
   actions: {
     async LOAD_CUSTOMER_DETAILS(context, payload) {
       const customers = await ThingsboardService.getCustomers()
+      console.log(customers)
       let customer_id = ''
       customers.data.map(customer => {
         if (customer.email === payload.email) {
@@ -136,18 +140,24 @@ export default new Vuex.Store({
       })
 
       const customer_details = await ThingsboardService.getCustomerDetails(customer_id)
+      let password = ""
+      let role = ""
       customer_details.map(item => {
         if(item.key==="token")
-          if(item.value == payload.password) {
-            context.commit("setLoginStatus", true)
-            context.commit("setCustomerID", customer_id)
-            localStorage.setItem("login", true)
-            context.dispatch("LOAD_DATA", 999)
-          } else {
-            localStorage.setItem("login", false)
-            console.log("Passwords Don't match")
-          }
+          password = item.value
+        if(item.key==="role")
+          role=item.value
       })
+      if(password === payload.password && role === payload.role) {
+        context.commit("setLoginStatus", true)
+        context.commit("setCustomerID", customer_id)
+        context.commit("setRole", role)
+        localStorage.setItem("login", true)
+        context.dispatch("LOAD_DATA", 999)        
+      } else {
+        localStorage.setItem("login", false)
+        console.log("Credentials Don't match with existing records")        
+      }
     },
     async LOAD_DATA(context, payload) {
       try {
@@ -185,10 +195,14 @@ export default new Vuex.Store({
                     ThingsboardService.getAssetDevices(item.id.id).then(devices => {
                       devices.map(device => {
                         let tmp_holder = device.toName.split(" ")
-                        if(tmp_holder[1] === "Sensor" || tmp_holder[2] === "Sensor") {
-                          context.commit("setDevicesData", {
-                            'name': device.toName,
-                            'id': device.to.id,                     
+                        if(tmp_holder[2] === "Sensor") {
+                          ThingsboardService.getSensorData(device.to.id).then(sensor => {
+                            context.commit("setDevicesData", {
+                              'name': tmp_holder[0],
+                              'id': device.to.id,
+                              'unit': sensor[2].value,
+                              'type': tmp_holder[1]         
+                            })
                           })
                         }
                       })
@@ -226,24 +240,31 @@ export default new Vuex.Store({
       }
     },
     async UPDATE_TELEMETRY(context) {
-      let co_body = '{"co_consumption": "23412", "co_unit": "Kg", "year":"2016"}'
-      let gas_body = '{"gas_consumption": "23412", "gas_unit": "kWh"}'
-      let electricity_body = '{"e_consumption": "23412", "e_unit": "kWh"}'
-      let water_body = '{"water_consumption": "23412", "water_unit": "L"}'
+      let nimbus_e_2016_body = '{"ts":1483228740000, "values": {"sensorvalue": 185250}}'
+      let nimbus_gas_2016_body = '{"ts":1483228740000, "values": {"sensorvalue": 262050}}'
+      let co_body = '{"ts":1483228740000, "values": {"sensorvalue": 185240}}'
+      let water_body = '{"ts":1483228740000, "values": {"sensorvalue": 262040}}'     
       let device = context.state.devices_data
       for(let i = 0; i < device.length; i++){
         try {
-          const update_co = await ThingsboardService.postDatatoSensor(co_body, device[i].id)
-          const update_electricity = await ThingsboardService.postDatatoSensor(electricity_body, device[i].id)
-          const update_gas = await ThingsboardService.postDatatoSensor(gas_body, device[i].id)
-          const update_water = await ThingsboardService.postDatatoSensor(water_body, device[i].id)  
-          //const del = await ThingsboardService.deleteTelemetryData()
+          if(device.name = "Nimbus") {
+            const update_gas = await ThingsboardService.postDatatoSensor(nimbus_gas_2016_body, device[i].id)
+            const update_electricity = await ThingsboardService.postDatatoSensor(nimbus_e_2016_body, device[i].id)
+          } else {
+            const update_gas = await ThingsboardService.postDatatoSensor(nimbus_gas_2016_body, device[i].id)
+            const update_electricity = await ThingsboardService.postDatatoSensor(nimbus_e_2016_body, device[i].id)
+            const update_co = await ThingsboardService.postDatatoSensor(co_body, device[i].id)
+            const update_water = await ThingsboardService.postDatatoSensor(water_body, device[i].id)  
+          }
         } catch (e) {
           log.log('error', 'Cannot update data from sensors' +e)
           return e          
         }
 
       }
+    },
+    async LOAD_REGISTERED_ASSETS(context) {
+
     },
     async REGISTER_ASSET(context, payload) {
       try{

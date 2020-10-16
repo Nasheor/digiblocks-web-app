@@ -1,7 +1,21 @@
-[
-    {
-        "year": "2016",
-        "consumption": "23412",
-        "unit": "Kg"
-    }
+    Fuel types: "Electricity", "LPG", "Natural gas", "Coal", "Aviation fuels", "Kerosene", "Gasoil", "Biogas / landfill gas", "District heat", "Light, Medium and Heavy Fuel Oils", "Manufactured Ovoids", "Marked diesel, road diesel and petrol", "Peat", "Pure biodiesel / bioethanol", "Solar Thermal", "Wood briquettes / chips / logs / pellets"
+
+    "energy_use":[
+    {​​​​​​​"year":2016,"energy_use":[
+        {​​​​​​​"type":"Electricity","consumption":185250,"unit":"kWh"}​​​​​​​,
+        {​​​​​​​"type":"Natural gas","consumption":262050,"unit":"kWh"}​​​​​​​
+    ]}​​​​​​​,
+    {​​​​​​​"year":2017,"energy_use":[
+        {​​​​​​​"type":"Electricity","devices":[
+            {​​​​​​​"name":"LVEM10_JT_450780","unit":"kWh"}​​​​​​​
+        ]}​​​​​​​,
+        {​​​​​​​"type":"Natural gas","devices":[
+            {​​​​​​​"name":"UC32_No_2:5:26:A","unit":"m3"}​​​​​​​,
+            {​​​​​​​"name":"UC32_No_2:5:29:A","unit":"m3"}​​​​​​​,
+            {​​​​​​​"name":"UC32_No_2:5:30:A","unit":"m3"}​​​​​​​
+        ]}​​​​​​​
+    ]}​​​​​​​
 ]
+
+
+telemetry_data = {'ts': epoch_timestamp_ms, 'values': {'sensorvalue': value}}

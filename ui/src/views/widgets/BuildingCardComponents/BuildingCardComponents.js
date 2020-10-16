@@ -34,6 +34,11 @@ export default {
             buildings: "getBuildingData"
         })
     },
+    methods: {
+        generate_dec() {
+            
+        }
+    },
     created() {
         this.building_data = this.buildings.find(building => building.name === this.name)
     }

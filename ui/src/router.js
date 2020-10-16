@@ -6,6 +6,7 @@ import Login from '@/views/pages/Login/index'
 import Register from '@/views/pages/Register/index'
 import Buildings from '@/views/pages/Buildings/index'
 import Certificate from '@/views/pages/Certificate/index'
+import VerifyCertificate from '@/views/pages/VerifyCertificate/index'
 
 Vue.use(Router)
 
@@ -17,10 +18,9 @@ export default new Router({
       path: '/dashboard',
       component: Index,
       children: [
-        // Dashboard
         {
-          name: 'Dashboard',
-          path: '/dashboard',
+          name: 'Home',
+          path: '/home',
           component: Dashboard,
         },
         {
@@ -32,7 +32,13 @@ export default new Router({
           name: 'Energy Certificate',
           path: '/certificate',
           component: Certificate,
-        }
+
+        },
+        {
+          name: 'Verify Certificate',
+          path: '/verify_certificate',
+          component: VerifyCertificate
+        },
       ],
     },
     {

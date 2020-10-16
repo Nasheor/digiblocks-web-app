@@ -36,4 +36,39 @@ export default class ThingsboardService {
             return await Promise.reject(err)
         }
     }
+
+    static async getAsset(payload) {
+        let ro= routes.get_asset.name.replace("%args%", payload)
+        try {
+            const res = await http.post(ro, body)
+        } catch(err) {
+            return await Promise.reject(err)
+        }
+    }
+    static async getSubject(payload) {
+        let ro= routes.get_subject.name.replace("%args%", payload)
+        try {
+            const res = await http.post(ro, body)
+        } catch(err) {
+            return await Promise.reject(err)
+        }
+
+    }
+    static async getDec(payload) {
+        let ro= routes.get_dec.name.replace("%args%", payload)
+        try {
+            const res = await http.post(ro, body)
+        } catch(err) {
+            return await Promise.reject(err)
+        }
+    }
+    static async traceDec(payload) {
+        let ro= routes.trace_dec.name.replace("%args%", payload)
+        try {
+            const res = await http.post(ro, body)
+        } catch(err) {
+            return await Promise.reject(err)
+        }
+
+    }
 }
