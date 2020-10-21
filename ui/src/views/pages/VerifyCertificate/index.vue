@@ -1,6 +1,12 @@
 <template>
     <v-card>
-        <h1>Hello World</h1>
+      <v-data-table
+        :headers="headers"
+        :items="buildings"
+        multi-sort
+        hide-default-footer
+        class="elevation-0 border"
+      ></v-data-table>
     </v-card>
 </template>
 

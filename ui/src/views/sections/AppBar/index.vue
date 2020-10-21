@@ -56,7 +56,6 @@
       class="ml-2"
       min-width="0"
       text
-      to="/"
       @click="logout"
     >
       <v-icon>mdi-logout</v-icon>

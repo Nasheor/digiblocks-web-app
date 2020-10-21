@@ -75,9 +75,10 @@ export default {
     href() {
       return undefined;
     },
-    logout(){
+    logout() {
       this.$store.commit("clearData")
-      window.location.reload(1)
+      this.$router.push({name: "Login"})
+      location.reload();
     }
   },
   created() {
