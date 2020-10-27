@@ -1,0 +1,9 @@
+[
+{"fuel":"Natural gas","value":10.638888888889,"energy_unit":"kWh","fuel_unit":"m3"},
+{"fuel":"LPG","value":13098.888888889,"energy_unit":"kWh","fuel_unit":"t"},
+{"fuel":"Coal","value":7733.8888888889,"energy_unit":"kWh","fuel_unit":"t"},
+{"fuel":"Kerosene","value":12276.666666667,"energy_unit":"kWh","fuel_unit":"t"},
+{"fuel":"Aviation fuels","value":12250,"energy_unit":"kWh","fuel_unit":"t"},
+{"fuel":"Light, Medium and Heavy Fuel Oils","value":11454.444444444,"energy_unit":"kWh","fuel_unit":"t"},
+{"fuel":"Marked diesel, road diesel and petrol","value":12030,"energy_unit":"kWh","fuel_unit":"t"}
+]

@@ -19,3 +19,10 @@
 
 
 telemetry_data = {'ts': epoch_timestamp_ms, 'values': {'sensorvalue': value}}
+
+
+// Change the sensor names CIT.NIM.VIR.ELEC.ANNUAL - First 3 characters of every b
+// Certificate should be visualized the same way as present in the admin and energy consumption graph should be displayed to confirm the source
+// Transactions for certificate should be part of the certificate.
+// Building owner can generate DEC only after registering the building by a community manager
+// DEC Calculation

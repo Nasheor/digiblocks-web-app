@@ -1,0 +1,17 @@
+[
+{"band":"A1","min":0},
+{"band":"A2","min":8.5},
+{"band":"A3","min":17},
+{"band":"B1","min":25},
+{"band":"B2","min":33.5},
+{"band":"B3","min":42},
+{"band":"C1","min":50},
+{"band":"C2","min":58.5},
+{"band":"C3","min":67},
+{"band":"D1","min":75},
+{"band":"D2","min":87.5},
+{"band":"E1","min":100},
+{"band":"E2","min":112.5},
+{"band":"F","min":125},
+{"band":"G","min":150}
+]

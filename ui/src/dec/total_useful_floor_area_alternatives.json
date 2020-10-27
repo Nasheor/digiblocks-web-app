@@ -1,0 +1,7 @@
+[
+{"category":"General office","alternative":"Net lettable area","multiplier":1.25},
+{"category":"General retail","alternative":"Sales floor area","multiplier":1.80},
+{"category":"Large non-food shop","alternative":"Sales floor area","multiplier":1.80},
+{"category":"Small food store","alternative":"Sales floor area","multiplier":1.35},
+{"category":"Large food store","alternative":"Sales floor area","multiplier":2.00}
+]

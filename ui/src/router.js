@@ -39,6 +39,11 @@ export default new Router({
           path: '/verify_certificate',
           component: VerifyCertificate
         },
+        // {
+        //   name: 'Transactions',
+        //   path: '/transactions',
+        //   component: Transactions
+        // }
       ],
     },
     {
