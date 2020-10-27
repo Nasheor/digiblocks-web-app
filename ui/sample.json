@@ -1,6 +1,4 @@
-    Fuel types: "Electricity", "LPG", "Natural gas", "Coal", "Aviation fuels", "Kerosene", "Gasoil", "Biogas / landfill gas", "District heat", "Light, Medium and Heavy Fuel Oils", "Manufactured Ovoids", "Marked diesel, road diesel and petrol", "Peat", "Pure biodiesel / bioethanol", "Solar Thermal", "Wood briquettes / chips / logs / pellets"
-
-    "energy_use":[
+"energy_use": [
     {​​​​​​​"year":2016,"energy_use":[
         {​​​​​​​"type":"Electricity","consumption":185250,"unit":"kWh"}​​​​​​​,
         {​​​​​​​"type":"Natural gas","consumption":262050,"unit":"kWh"}​​​​​​​

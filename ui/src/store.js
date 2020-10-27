@@ -125,7 +125,6 @@ export default new Vuex.Store({
   actions: {
     async LOAD_CUSTOMER_DETAILS(context, payload) {
       const customers = await ThingsboardService.getCustomers()
-      console.log(customers)
       let customer_id = ''
       customers.data.map(customer => {
         if (customer.email === payload.email) {
@@ -194,17 +193,21 @@ export default new Vuex.Store({
                   } else {
                     ThingsboardService.getAssetDevices(item.id.id).then(devices => {
                       devices.map(device => {
-                        let tmp_holder = device.toName.split(" ")
-                        if(tmp_holder[2] === "Sensor") {
-                          ThingsboardService.getSensorData(device.to.id).then(sensor => {
+                        let tmp_holder = device.toName.split('.')
+                        ThingsboardService.getSensorData(device.to.id).then(sensor => {
+                          ThingsboardService.getTelemetryData(device.to.id).then( sensor_data => {
+                            console.log(sensor_data)
                             context.commit("setDevicesData", {
-                              'name': tmp_holder[0],
-                              'id': device.to.id,
+                              'asset_id': item.id.id,
+                              'device_id': device.to.id,
                               'unit': sensor[2].value,
-                              'type': tmp_holder[1]         
+                              'type': tmp_holder[3],
+                              'ts': sensor_data.sensorvalue[0].ts,
+                              'value': sensor_data.sensorvalue[0].value,       
                             })
-                          })
-                        }
+                           }
+                          )
+                        })
                       })
                       // context.dispatch("UPDATE_TELEMETRY")
                       context.commit("setBuildingData", {
@@ -226,8 +229,12 @@ export default new Vuex.Store({
                         "fuel":data.filter(item=> item.key==="main_fuel")[0].value,
                         "certificate_keys": data.filter(item=> item.key==="certificate_keys")[0].value.split(','),
                         "activity": JSON.parse(data.filter(item=> item.key==="activity")[0].value),
-                        "devices": data.filter(item=> item.key==="devices")[0].value,
-                        "color": data.filter(item => item.key==="color")[0].value
+                        "devices": data.filter(item => item.key==="devices")[0].value,
+                        "color": data.filter(item => item.key==="color")[0].value,
+                        "latitude": data.filter(item => item.key==="latitude")[0].value,
+                        "longitude": data.filter(item => item.key==="longitude")[0].value,
+                        "dlt_status": data.filter(item => item.key==="dlt_status")[0].value,
+                        "dec_category": data.filter(item => item.key === "dec_category")[0].value,
                       })
                     })
                   }

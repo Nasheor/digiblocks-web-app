@@ -52,7 +52,7 @@
                         <h2 class="mb-0 font-weight-light">{{dashboard_data[3].value}}</h2>
                         <small class>Devices</small>
                     </v-col>
-                    <v-col cols="2" class="ml-8">
+                    <v-col cols="3" class="ml-8">
                         <h2 class="font-weight-light">{{dashboard_data[0].value}}</h2>
                         <small class>Band</small>
                     </v-col>

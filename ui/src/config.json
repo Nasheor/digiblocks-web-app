@@ -8,6 +8,6 @@
         "username":"tharindu4",
         "orgName":"Org2",
         "role":"buildingOwner",
-        "endpoint": "http://35.239.176.245:4000"
+        "endpoint": "http://34.123.68.43:4000"
     }
 }

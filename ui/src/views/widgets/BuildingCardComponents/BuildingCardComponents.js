@@ -32,7 +32,10 @@ export default {
     computed: {
         ...mapGetters({
             buildings: "getBuildingData"
-        })
+        }),
+        getDltStatus() {
+            return this.building_data.dlt_status;
+        }
     },
     methods: {
         generate_dec() {

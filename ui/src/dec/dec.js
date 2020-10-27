@@ -33,19 +33,35 @@ function get_config_data(file_name) {
 	return data;
 }
 
-const get_weather_monthly_data = (url) => new Promise((resolve, reject) => {
-	request(url, { json: true }, function(error, response, body) {
-		if (error)
-			reject(error);
-		else {
-			try {
-				resolve(response.body);
-			} catch(e) {
-				reject(e);
+// const get_weather_monthly_data = (url) => new Promise((resolve, reject) => {
+// 	request(url, { json: true }, function(error, response, body) {
+// 		if (error)
+// 			reject(error);
+// 		else {
+// 			try {
+// 				resolve(response.body);
+// 			} catch(e) {
+// 				reject(e);
+// 			}
+// 		}
+// 	});
+// });
+
+function get_weather_monthly_data(url) {
+	return new Promise((resolve, reject) => {
+		request(url, { json: true }, function(error, response, body) {
+			if (error)
+				reject(error);
+			else {
+				try {
+					resolve(response.body);
+				} catch(e) {
+					reject(e);
+				}
 			}
-		}
-	});
-});
+		});
+	}) 
+}
 
 async function weather(latitude, longitude) {
 	var min = Number.MAX_VALUE;
