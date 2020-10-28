@@ -38,5 +38,9 @@
    "get_telemetry": {
     "name": "/plugins/telemetry/DEVICE/%id%/values/timeseries",
     "method": "get"
+   },
+   "update_asset_attribute": {
+       "name": "/plugins/telemetry/ASSET/%id%/attributes/SERVER_SCOPE",
+       "method": "post"
    }
 }

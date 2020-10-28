@@ -37,7 +37,8 @@ export default {
         BCard,
     },
     computed: {
-        ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData']),
+        ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData',
+                        'getDevicesData']),
         getDltStatus() {
             if(this.name.length > 1)
                 return this.getBuildingData.find(building => building.name === this.name).dlt_status;
@@ -83,33 +84,67 @@ export default {
             })
             alert("Building Registered to the Ledger!")
         },
-        generateDec() {
+        async generateDec() {
             if(this.name.length > 1) {
-                data = this.getBuildingData.find(building => building.name === this.name)
+                let data = this.getBuildingData.find(building => building.name === this.name)
+                let device_data = {
+                    'gas': '',
+                    'electricity': '',
+                }
 
-                dec.category = data.category
-                dec.environment = data.environment
-                dec.latitude = data.latitude
-                dec.longitude = data.longitude
-                dec.hours = data.hours[0]
-                dec.total_useful_floor_area = data.floor_area[0]
-                dec.sales_floor_area = 0
-                dec.net_lettable_area = 0
-                dec.electricity_energy_use = 0
-                dec.electricity_energy_unit = "kWh"
-                dec.fossil_use = 0
-                dec.fossil_type = "Natural gas",
-                dec.fossil_unit = "kWh",
-                year = data.expiry.split(" ")[2]
+                let years =  ''
+                let asset_id = ''
+                this.getDevicesData.map(device => {
+                    if (device.asset_id === data.id) {
+                        asset_id = device.asset_id
+                        if(device.type === "ELEC") {
+                            device_data.electricity = device.value
+                            years = new Date(device.ts)
+                            years = years.getFullYear()
+                        } else {
+                            device_data.gas = device.value
+                        }
+                    }
+                })
 
+                let default_unit = "kWh"
+                this.dec.category = data.category
+                this.dec.environment = data.environment
+                this.dec.latitude = parseFloat(data.latitude)
+                this.dec.longitude = parseFloat(data.longitude)
+                this.dec.hours = data.hours[0].value
+                this.dec.total_useful_floor_area = data.floor_area[0].value
+                this.dec.sales_floor_area = 0
+                this.dec.net_lettable_area = 0
+                this.dec.electricity_energy_use = parseFloat(device_data.electricity)
+                this.dec.electricity_energy_unit = default_unit
+                this.dec.fossil_use = parseFloat(device_data.gas)
+                this.dec.fossil_type = data.main_fuel,
+                this.dec.fossil_unit = default_unit,
+                this.dec.year = years
+                console.log(this.dec)
                 Dec.dec(
-                    dec.category, dec.environment, dec.latitude,
-                    dec.longitude, dec.hours, dec.total_useful_floor_area, 
-                    dec.sales_floor_area, dec.net_lettable_aream, dec.electricity_energy_use,
-                    dec.electricity_energy_unit, dec.fossil_use, dec.fossil_type,
-                    dec.fossil_unit. dec.year
+                    this.dec.category, this.dec.environment, this.dec.latitude,
+                    this.dec.longitude, this.dec.hours, this.dec.total_useful_floor_area, 
+                    this.dec.sales_floor_area, this.dec.net_lettable_aream, this.dec.electricity_energy_use,
+                    this.dec.electricity_energy_unit, this.dec.fossil_use, this.dec.fossil_type,
+                    this.dec.fossil_unit, this.dec.year
                 ).then(result => {
                    console.log(result)
+                   let body = {
+                       "ber": result.ber,
+                       "co2_performance": result.co2_performance,
+                       "band": result.rating_scale,
+                       "total_energy_use_per_area": result.total_energy_use_per_area,
+                       "annual_non_electrical": result.fossil_thermal_benchmark_degree_day_and_occupancy_adjusted,
+                       "annual_electrical": result.electricity_benchmark_converted,
+                       "building_electrical": result.electricity_typical_benchmark,
+                       "building_non_electrical": result.fossil_thermal_energy_use_per_area,
+                       "dlt_status": false,
+                       "certificate_verified": false,
+                       "assessor": 'Not Verified'
+                   }
+                   this.$store.dispatch("UPDATE_DEC", {"body": body, "id": asset_id} )
                })
             }
         }

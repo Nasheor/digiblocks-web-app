@@ -26,11 +26,13 @@ export default new Vuex.Store({
     address: '',
     country: '',
     role: '',
+    certificates: [],
   },
   mutations: {
     clearData(state) {
       state.dashboard_data = [];
       state.building_data = [];
+      state.devices_data = [];
     },
     setBarImage (state, payload) {
       state.barImage = payload;
@@ -66,15 +68,6 @@ export default new Vuex.Store({
         state.building_data.push(payload)
     },
     setDevicesData(state, payload) {
-      let flag = false
-      if(state.devices_data.length > 0) {
-        state.devices_data.map(device => {
-          if(device.id === payload.id) {
-            flag = true 
-          }
-        })
-      }
-      if(flag === false)
         state.devices_data.push(payload)
     },
     setLoginStatus(state, payload) {
@@ -85,6 +78,16 @@ export default new Vuex.Store({
     },
     setRole(state, payload) {
       state.role = payload;
+    },
+    setCertificates(state, payload) {
+      let flag = true
+      state.certificates.map(certificate => {
+        if(certificate.asset_id === payload.id) {
+          flag = false
+        }
+      })
+      if(flag == true)
+      state.certificates.push(certificate)
     }
    },
   getters: {
@@ -120,6 +123,12 @@ export default new Vuex.Store({
     },
     getRole(state) {
       return state.role;
+    },
+    getDevicesData(state) {
+      return state.devices_data
+    },
+    getCertificateData(state) {
+      return state.certificates;
     }
   },
   actions: {
@@ -195,8 +204,7 @@ export default new Vuex.Store({
                       devices.map(device => {
                         let tmp_holder = device.toName.split('.')
                         ThingsboardService.getSensorData(device.to.id).then(sensor => {
-                          ThingsboardService.getTelemetryData(device.to.id).then( sensor_data => {
-                            console.log(sensor_data)
+                          ThingsboardService.getTelemetryData(device.to.id).then(sensor_data => {
                             context.commit("setDevicesData", {
                               'asset_id': item.id.id,
                               'device_id': device.to.id,
@@ -209,7 +217,6 @@ export default new Vuex.Store({
                           )
                         })
                       })
-                      // context.dispatch("UPDATE_TELEMETRY")
                       context.commit("setBuildingData", {
                         "name": item.name,
                         "id": item.id.id,
@@ -222,7 +229,6 @@ export default new Vuex.Store({
                         "address": data.filter(item=> item.key==="address")[0].value,
                         "assessor": data.filter(item=> item.key==="assessor")[0].value,
                         "band": data.filter(item=> item.key==="band")[0].value,
-                        "rating": JSON.parse(data.filter(item=> item.key==="rating")[0].value),
                         "issue": data.filter(item=> item.key==="date_of_issue")[0].value,
                         "expiry": data.filter(item=> item.key==="valid_until")[0].value,
                         "ber": data.filter(item=> item.key==="ber")[0].value,
@@ -236,40 +242,43 @@ export default new Vuex.Store({
                         "dlt_status": data.filter(item => item.key==="dlt_status")[0].value,
                         "dec_category": data.filter(item => item.key === "dec_category")[0].value,
                       })
+                      // context.dispatch("UPDATE_TELEMETRY")          
                     })
                   }
               })
           })
-                                                                                                                                                                                                                                                      v 
+                                                                                                                                                                                                                                            v 
       } catch(e) {
           log.log('error', 'Cannot fetch data from assets' +e)
           return e
       }
     },
     async UPDATE_TELEMETRY(context) {
-      let nimbus_e_2016_body = '{"ts":1483228740000, "values": {"sensorvalue": 185250}}'
-      let nimbus_gas_2016_body = '{"ts":1483228740000, "values": {"sensorvalue": 262050}}'
-      let co_body = '{"ts":1483228740000, "values": {"sensorvalue": 185240}}'
-      let water_body = '{"ts":1483228740000, "values": {"sensorvalue": 262040}}'     
+      let nimbus_e_2016_body = '{"ts":1546257540000, "values": {"sensorvalue": 185150}}'
+      let nimbus_gas_2016_body = '{"ts":1546257540000, "values": {"sensorvalue": 162050}}'
+      // let co_body = '{"ts":1546257540000, "values": {"sensorvalue": 185240}}'
+      // let water_body = '{"ts":1546257540000, "values": {"sensorvalue": 262040}}'     
       let device = context.state.devices_data
       for(let i = 0; i < device.length; i++){
+        console.log(device[i])
         try {
-          if(device.name = "Nimbus") {
-            const update_gas = await ThingsboardService.postDatatoSensor(nimbus_gas_2016_body, device[i].id)
-            const update_electricity = await ThingsboardService.postDatatoSensor(nimbus_e_2016_body, device[i].id)
-          } else {
-            const update_gas = await ThingsboardService.postDatatoSensor(nimbus_gas_2016_body, device[i].id)
-            const update_electricity = await ThingsboardService.postDatatoSensor(nimbus_e_2016_body, device[i].id)
-            const update_co = await ThingsboardService.postDatatoSensor(co_body, device[i].id)
-            const update_water = await ThingsboardService.postDatatoSensor(water_body, device[i].id)  
-          }
-        } catch (e) {
+            const update_gas = await ThingsboardService.postDatatoSensor(nimbus_gas_2016_body, device[i].device_id)
+            const update_electricity = await ThingsboardService.postDatatoSensor(nimbus_e_2016_body, device[i].device_id)
+            // console.log(update_electricity)
+            // console.log(update_gas)
+          } catch (e) {
           log.log('error', 'Cannot update data from sensors' +e)
           return e          
         }
 
       }
     },
+    async UPDATE_DEC(context, payload) {
+      const update_dec_attr = ThingsboardService.updateDecData(payload.body, payload.id)
+      console.log(update_dec_attr)
+      context.dispatch("LOAD_DATA")
+    },
+    
     async LOAD_REGISTERED_ASSETS(context) {
 
     },
