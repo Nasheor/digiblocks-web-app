@@ -241,6 +241,12 @@ export default new Vuex.Store({
                         "longitude": data.filter(item => item.key==="longitude")[0].value,
                         "dlt_status": data.filter(item => item.key==="dlt_status")[0].value,
                         "dec_category": data.filter(item => item.key === "dec_category")[0].value,
+                        "annual_electrical": data.filter(item => item.key === "annual_electrical")[0].value,
+                        "annual_non_electrical": data.filter(item => item.key === "annual_non_electrical")[0].value,
+                        "building_electrical": data.filter(item => item.key === "building_electrical")[0].value,
+                        "building_non_electrical": data.filter(item => item.key === "building_non_electrical")[0].value,
+                        "certificate_verified": data.filter(item => item.key === "certificate_verified")[0].value,
+                        "co2_performance": data.filter(item => item.key === "co2_performance")[0].value,    
                       })
                       // context.dispatch("UPDATE_TELEMETRY")          
                     })
@@ -272,19 +278,20 @@ export default new Vuex.Store({
         }
 
       }
-    },
+    },    
     async UPDATE_DEC(context, payload) {
-      const update_dec_attr = ThingsboardService.updateDecData(payload.body, payload.id)
-      console.log(update_dec_attr)
-      context.dispatch("LOAD_DATA")
-    },
-    
-    async LOAD_REGISTERED_ASSETS(context) {
-
+      const update_dec_attr = ThingsboardService.updateAssetAttribute(payload.body, payload.id)
+      context.dispatch("LOAD_DATA", 999)
+    },    
+    async UPDATE_ASSET_STATUS(context, payload) {
+      const update_asset_status = ThingsboardService.updateAssetAttribute(payload.body, payload.id)
+      context.commit('clearData')
+      context.dispatch("LOAD_DATA", 999)
     },
     async REGISTER_ASSET(context, payload) {
       try{
         const assets = await gcpService.createAsset(payload)
+        return assets
       } catch(e) {
         log.log('error', 'Cannot '+e)
       }

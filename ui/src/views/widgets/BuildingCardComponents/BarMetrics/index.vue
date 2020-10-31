@@ -9,12 +9,12 @@
         </div>
         <div class="mr-4">
           <h3 class="card-title white--text title font-weight-regular">Gas Usage</h3>
-          <h6 class="card-subtitle white--text op-5 subtitle-2 font-weight-regular">March 2020</h6>
+          <h6 class="card-subtitle white--text op-5 subtitle-2 font-weight-regular">{{ building_data.expiry }}</h6>
         </div>
       </div>
       <v-row class="mt-2">
         <v-col cols="4" class="d-flex align-center">
-          <h2 class="font-weight-light white--text text-nowrap">{{building_data.rating[0].value}}</h2>
+          <h2 class="font-weight-light white--text text-nowrap">{{ building_data.annual_non_electrical }} kWh</h2>
         </v-col>
         <v-col cols="8">
           <div class="float-right" v-show="elementVisible">

@@ -27,9 +27,9 @@ export default {
             this.community_dialog = true;
         },
         setData(i) {
-            this.building_data[0].certificate_keys.map(key => {
-                this.certificate_keys.push({"text": key.toUpperCase(), "value": key})
-            })
+            // this.building_data[0].certificate_keys.map(key => {
+            //     this.certificate_keys.push({"text": key.toUpperCase(), "value": key})
+            // })
             this.building_data.map(building => {
                 if(building.id === this.building_data[i].id) {
                     localStorage.setItem('band', building.band);

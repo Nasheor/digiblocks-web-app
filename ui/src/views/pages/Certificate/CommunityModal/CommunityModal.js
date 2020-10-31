@@ -34,7 +34,7 @@ export default {
         this.buildings.push( {
           name: building.name,
           address: building.address,
-          ufa: building.floor_area[3].value,
+          ufa: building.floor_area,
           mhf: building.fuel,
           ber: building.ber,
           doi: building.issue,

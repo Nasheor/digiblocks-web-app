@@ -46,7 +46,7 @@ export default {
                     "name":found.name,
                     "fuel":found.fuel,
                     "band": found.band,
-                    "floor_area": found.floor_area[3].value,
+                    "floor_area": found.floor_area,
                     "devices": found.devices,
                     "assessor": found.assessor
                 })

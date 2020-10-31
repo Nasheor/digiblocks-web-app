@@ -111,6 +111,26 @@
                     </div>
                   </v-toolbar>
                   <BCard :name="name" />
+                <v-dialog v-model="togglePop" persistent max-width="290">
+                  <v-card>
+                      <v-card-title class="headline">DEC Generated</v-card-title>
+                      <v-card-text>Your Certificate is now available in the Certificate Section</v-card-text>
+                      <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn color="success" text @click="generate_dec = false">Close</v-btn>
+                      </v-card-actions>
+                  </v-card>
+                </v-dialog>
+                <v-dialog v-model="toggleBuildingPop" persistent max-width="290">
+                  <v-card>
+                      <v-card-title class="headline">Building Registered</v-card-title>
+                      <v-card-text>The building has been registered to the ledger</v-card-text>
+                      <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn color="success" text @click="register_building = false">Close</v-btn>
+                      </v-card-actions>
+                  </v-card>
+                </v-dialog>
               </v-card>
           </v-dialog>
           </v-row>

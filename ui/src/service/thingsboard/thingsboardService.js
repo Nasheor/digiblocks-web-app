@@ -87,7 +87,7 @@ export default class ThingsboardService {
             return await Promise.reject(err)
         }        
     }
-    
+
     static async deleteTelemetryData(){
         let tmp_ro = routes.delete_telemetry.name
         try {
@@ -98,8 +98,8 @@ export default class ThingsboardService {
         }          
     }
 
-    static async updateDecData(body, id) {
-        body = JSON.parse(body)
+    static async updateAssetAttribute(body, id) {
+        // body = JSON.parse(body)
         let tmp_ro = routes.update_asset_attribute.name.replace("%id%", id)
         try {
             let r = await http.post(tmp_ro, body)

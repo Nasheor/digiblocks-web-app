@@ -28,7 +28,10 @@ export default {
                 "fossil_type":"",
                 "fossil_unit": "",
                 "year": 0
-            }
+            },
+            generate_dec: false,
+            register_building: false,
+            dlt_status: false,
         }
     },
     components: {
@@ -40,12 +43,14 @@ export default {
         ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData',
                         'getDevicesData']),
         getDltStatus() {
-            if(this.name.length > 1)
-                return this.getBuildingData.find(building => building.name === this.name).dlt_status;
-            else {
-                return false
-            }
+            return this.dlt_status;
          },
+         togglePop() {
+             return this.generate_dec
+         },
+         toggleBuildingPop() {
+             return this.register_building
+         }
     },
     methods: {
         open() {
@@ -58,6 +63,9 @@ export default {
                 this.$router.push({name: "Home"})
             }
         },
+        close() {
+            this.generate_dec = false
+        },
         setName() {
             console.log("name is et");
         },
@@ -68,21 +76,41 @@ export default {
                     building_data = building
                 }
             })
+            let status = ""
+            if(building_data.assessor === 'Not Verified') {
+                status = "Pending"
+            } else {
+                status = "Verified"
+            }
+
             this.$store.dispatch("REGISTER_ASSET", {
                 "fcn": "createAsset",
                 "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
                 "chaincodeName":"identitycontract",
                 "channelName" : "mychannel",
-                "args": [building.name, building.category, {
-                    "environment":building.environment,
-                    "date_of_issue": building.issue,
-                    "date_of_expiry": building.expiry,
-                    "ber": building.ber,
-                    "fuel": building.fuel,
-                    "assessor": building.assessor
+                "args": [building_data.name, building_data.category, status, {
+                    "environment":building_data.environment,
+                    "fuel": building_data.fuel,
+                    "id": building_data.id,
+                    "category": building_data.dec_category,
+                    "main_fuel": building_data.main_fuel,
+                    "hours": building_data.hours,
+                    "floor": building_data.floor
                 }]
+            }).then(result => {
+                console.log(result)
+                let payload = {
+                    "body": {
+                        "dlt_status": true
+                    },
+                    "id": building_data.id
+                }
+                this.$store.dispatch("UPDATE_ASSET_STATUS", payload)
+                building_data.dlt_status = true
+                this.dlt_status = true
             })
             alert("Building Registered to the Ledger!")
+            this.register_building = true
         },
         async generateDec() {
             if(this.name.length > 1) {
@@ -112,17 +140,17 @@ export default {
                 this.dec.environment = data.environment
                 this.dec.latitude = parseFloat(data.latitude)
                 this.dec.longitude = parseFloat(data.longitude)
-                this.dec.hours = data.hours[0].value
-                this.dec.total_useful_floor_area = data.floor_area[0].value
+                this.dec.hours = data.hours
+                this.dec.total_useful_floor_area = data.floor_area
                 this.dec.sales_floor_area = 0
                 this.dec.net_lettable_area = 0
                 this.dec.electricity_energy_use = parseFloat(device_data.electricity)
                 this.dec.electricity_energy_unit = default_unit
                 this.dec.fossil_use = parseFloat(device_data.gas)
-                this.dec.fossil_type = data.main_fuel,
+                console.log(data.fuel)
+                this.dec.fossil_type = data.fuel,
                 this.dec.fossil_unit = default_unit,
                 this.dec.year = years
-                console.log(this.dec)
                 Dec.dec(
                     this.dec.category, this.dec.environment, this.dec.latitude,
                     this.dec.longitude, this.dec.hours, this.dec.total_useful_floor_area, 
@@ -145,8 +173,12 @@ export default {
                        "assessor": 'Not Verified'
                    }
                    this.$store.dispatch("UPDATE_DEC", {"body": body, "id": asset_id} )
+                   this.generate_dec = true
                })
             }
         }
+    },
+    created() {
+        this.dlt_status = this.getBuildingData.find(building => building.name === this.name).dlt_status;
     }
 }
