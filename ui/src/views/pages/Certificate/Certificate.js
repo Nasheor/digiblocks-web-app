@@ -15,6 +15,8 @@ export default {
             certificate_data: {},
             certificate_keys: [],
             community_dialog: false,
+            certificate_key_data: [],
+            selected_building: ''
         };
     },
     components: {
@@ -26,21 +28,12 @@ export default {
         open() {
             this.community_dialog = true;
         },
-        setData(i) {
-            // this.building_data[0].certificate_keys.map(key => {
-            //     this.certificate_keys.push({"text": key.toUpperCase(), "value": key})
-            // })
-            this.building_data.map(building => {
-                if(building.id === this.building_data[i].id) {
-                    localStorage.setItem('band', building.band);
-                    localStorage.setItem('rating', building.rating[0].value );
-                    this.certificate_keys.map(item => {
-                        Object.assign(this.certificate_data, {[item.value]: building[item.value]})
-                    })
-                }
-            })
-            this.name = this.building_data[i].name;
-            this.id=this.building_data[i].id;
+        setData(building) {
+             let id = "id"
+            console.log(building)
+            this.selected_building = building
+            this.certificate_keys = building.certificate_keys.split(",")
+            console.log(this.certificate_keys)
         }
     },
     computed: {

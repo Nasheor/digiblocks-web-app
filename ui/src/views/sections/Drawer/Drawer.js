@@ -27,14 +27,14 @@ export default {
                 icon: 'mdi-hospital-building',
                 title: 'Cork Institute of Technology',
                 to: '/buildings',
-                role: ["Community Manager"],
+                role: ["Community Manager", "External Verifier"],
                 display: false,
             },
             {
                 title: 'Certificate',
                 icon: 'mdi-format-font',
                 to: '/certificate',
-                role: ["Community Manager"],
+                role: ["Community Manager", "External Verifier"],
                 display: false,
             },
             {

@@ -45,12 +45,12 @@
                   class="display"
                 >
                   <BuildingCard 
-                    v-for="(building, index) of building_data"
+                    v-for="building of building_data"
                     :key="building.src"
                     class="ma-3 pa-2"
                     :src="building.image"
                     :name="building.name"
-                    @click.native="setData(index)"
+                    @click.native="setData(building)"
                     outlined
                     tile
                   />                    
@@ -61,12 +61,12 @@
                       <v-btn icon dark @click="dialog = false">
                           <v-icon>mdi-close</v-icon>
                       </v-btn>
-                      <v-toolbar-title>{{ name }}</v-toolbar-title>
+                      <v-toolbar-title>{{ selected_building.name }}</v-toolbar-title>
                   </v-toolbar>
                   <CertificateModal 
                     :chartData="data.barChart" 
                     :certificate_keys="certificate_keys"
-                    :certificate_data="certificate_data"/>
+                    :building_data="selected_building"/>
               </v-card>
           </v-dialog>
           </v-row>

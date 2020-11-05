@@ -26,6 +26,7 @@ export default new Vuex.Store({
     address: '',
     country: '',
     role: '',
+    email: '',
     certificates: [],
   },
   mutations: {
@@ -88,6 +89,9 @@ export default new Vuex.Store({
       })
       if(flag == true)
       state.certificates.push(certificate)
+    },
+    setEmail(state, payload) {
+      state.email = payload
     }
    },
   getters: {
@@ -129,6 +133,9 @@ export default new Vuex.Store({
     },
     getCertificateData(state) {
       return state.certificates;
+    },
+    getEmail(state) {
+      return state.email;
     }
   },
   actions: {
@@ -146,7 +153,6 @@ export default new Vuex.Store({
           localStorage.setItem("country", customer.country)
         }
       })
-
       const customer_details = await ThingsboardService.getCustomerDetails(customer_id)
       let password = ""
       let role = ""
@@ -154,12 +160,15 @@ export default new Vuex.Store({
         if(item.key==="token")
           password = item.value
         if(item.key==="role")
-          role=item.value
+          role = item.value
       })
       if(password === payload.password && role === payload.role) {
         context.commit("setLoginStatus", true)
         context.commit("setCustomerID", customer_id)
-        context.commit("setRole", role)
+        if(payload.flag === true)
+          context.commit("setRole", "External Verifier")
+        else
+          context.commit("setRole", role)
         localStorage.setItem("login", true)
         context.dispatch("LOAD_DATA", 999)        
       } else {
@@ -167,6 +176,7 @@ export default new Vuex.Store({
         console.log("Credentials Don't match with existing records")        
       }
     },
+
     async LOAD_DATA(context, payload) {
       try {
         const assets = await ThingsboardService.getAssetsMetaData(context.state.customer_id, payload)
@@ -246,7 +256,8 @@ export default new Vuex.Store({
                         "building_electrical": data.filter(item => item.key === "building_electrical")[0].value,
                         "building_non_electrical": data.filter(item => item.key === "building_non_electrical")[0].value,
                         "certificate_verified": data.filter(item => item.key === "certificate_verified")[0].value,
-                        "co2_performance": data.filter(item => item.key === "co2_performance")[0].value,    
+                        "co2_performance": data.filter(item => item.key === "co2_performance")[0].value,   
+                        "certificate_keys": data.filter(item => item.key === "certificate_keys")[0].value 
                       })
                       // context.dispatch("UPDATE_TELEMETRY")          
                     })

@@ -4,7 +4,7 @@ export default {
     props: {
         chartData: Object,
         certificate_keys: Array,
-        certificate_data: Object,
+        building_data: Object
     },
     components: {
         VueApexCharts,

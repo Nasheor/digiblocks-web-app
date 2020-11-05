@@ -3,10 +3,10 @@
     <v-row class="pa-4">
         <v-col 
           cols="12" sm="12" lg="4"
-          v-for="i of 10"
+          v-for="i of certificate_keys.length"
           :key="i"
         >
-            <v-card flat v-if="certificate_keys[i].value != 'rating'">
+            <v-card flat v-if="certificate_keys[i] != 'rating'">
                 <v-card-text class="pa-0">
                 <div class="">
                     <v-row>
@@ -14,7 +14,7 @@
                         <div class="d-flex align-center">
                         <div class="ml-4">
                             <h1 class="font-weight-light info--text mb-0 display-1">
-                              {{certificate_keys[i].text}}
+                              {{ certificate_keys[i] }}
                             </h1>
                         </div>
                         </div>
@@ -22,7 +22,7 @@
                     <v-divider vertical></v-divider>
                     <v-col cols="4" sm="4" lg="8" class="text-center border-left">
                         <h1 class="font-weight-light display-1 ml-0">
-                        {{certificate_data[certificate_keys[i].value]}}
+                        {{building_data[certificate_keys[i]]}}
                         </h1>
                     </v-col>
                     </v-row>
@@ -34,28 +34,27 @@
                 <v-col cols="4" sm="4" lg="7">
                   <v-card-text>
                     <h4 class="font-weight-light mb-0 display-1">
-                      {{certificate_keys[i].text}}
-                    </h4>
+                      {{certificate_keys[i]}}
+                    </h4> 
                   </v-card-text>
                 </v-col>
                 <v-divider certical></v-divider>
                 <v-col cols="4" sm="4" lg="5">
-                  <h5 class="font-weight-light display-1 mt-4">  {{certificate_data[certificate_keys[i].value][0].value}} </h5>
+                  <h5 class="font-weight-light display-1 mt-4">  {{ building_data["band"]}} </h5>
                 </v-col>
               </v-row>
             </v-card>
-
         </v-col>
-        <v-col cols="12" sm="12" lg="12" class="py-0" >
+        <v-col cols="12" sm="12" lg="12" class="py-0">
             <v-card outlined color="#21c1d6" class="text-center mb-7">
                 <v-card-text>
                     <h4 class="font-weight-light mb-0 display-1">BAND</h4>
                       <div style="width: 90px;margin: 0 auto;" class="mt-3">
-                          <h2 font-weight-light text--secondary display-1 mt-4>{{certificate_data.band}}</h2>
+                          <h2 font-weight-light text--secondary display-1 mt-4>{{building_data.band}}</h2>
                       </div>
                     <div class="pa-2 text-center">
                         <h4 class="mb-0 font-weight-regular">
-                        {{certificate_data.rating[0].key}} kWh/m
+                        {{building_data.building_electrical}} kWh/m
                         <sup>2</sup>/yr
                         </h4>
                     </div>
@@ -64,7 +63,7 @@
                   <h4 class="font-weight-light mb-0 display-1 text-uppercase">
                     Carbon Dioxide emissions indicator</h4>
                   <div class="pa-2 text-center">
-                    Annual Co<sub>2</sub> emissions {{certificate_data.rating[0].value}} kgCo<sub>2</sub>/m<sup>2</sup>/yr
+                    Annual Co<sub>2</sub> emissions {{ building_data.co2_performance}} kgCo<sub>2</sub>/m<sup>2</sup>/yr
                   </div>
                 </v-card-text>
         </v-card>
@@ -120,12 +119,12 @@
         <v-row class="pa-3">
             <v-col cols="12" sm="12" lg="6">
                 <v-card flat color="#21c1d6" height="50px" class="pa-3">
-                    Non Electrical(kWh/m<sup>2</sup>/yr<sup>2</sup>): 87.35
+                    Non Electrical(kWh/m<sup>2</sup>/yr<sup>2</sup>): {{building_data.annual_non_electrical}}
                 </v-card>
             </v-col>
             <v-col cols="12" sm="12" lg="6">
                 <v-card flat color="#21c1d6" height="50px" class="pa-3">                    
-                  Electrical(kWh/m<sup>2</sup>/yr<sup>2</sup>): 61.75
+                  Electrical(kWh/m<sup>2</sup>/yr<sup>2</sup>): {{building_data.annual_electrical}}
                 </v-card>
             </v-col>
         </v-row>
@@ -133,12 +132,12 @@
         <v-row class="pa-3">
             <v-col cols="12" sm="12" lg="6">
                 <v-card flat color="#21c1d6" height="50px" class="pa-3">                    
-                  Non Electrical(kWh/m<sup>2</sup>/yr<sup>2</sup>): 273.2
+                  Non Electrical(kWh/m<sup>2</sup>/yr<sup>2</sup>): <br/> {{building_data.building_electrical}}
                 </v-card>
             </v-col>
             <v-col cols="12" sm="12" lg="6">
                 <v-card flat color="#21c1d6" height="50px" class="pa-3">                    
-                  Electrical(kWh/m<sup>2</sup>/yr<sup>2</sup>): 196
+                  Electrical(kWh/m<sup>2</sup>/yr<sup>2</sup>): {{building_data.building_non_electrical}}
                 </v-card>
             </v-col>
         </v-row>

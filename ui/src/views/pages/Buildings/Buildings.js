@@ -179,6 +179,6 @@ export default {
         }
     },
     created() {
-        this.dlt_status = this.getBuildingData.find(building => building.name === this.name).dlt_status;
+        // this.dlt_status = this.getBuildingData.find(building => building.name === this.name).dlt_status;
     }
 }

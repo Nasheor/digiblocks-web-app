@@ -6,7 +6,12 @@
         multi-sort
         hide-default-footer
         class="elevation-0 border"
-      ></v-data-table>
+      >
+      <template v-slot:[`item.actions`]="{ item }">
+        <v-icon small class="mr-2" @click="accept(item.id)">mdi-check</v-icon>
+        <v-icon small @click="deleteCertificate(item.id)">mdi-delete</v-icon>
+      </template>
+      </v-data-table>
     </v-card>
 </template>
 
