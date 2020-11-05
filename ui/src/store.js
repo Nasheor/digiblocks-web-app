@@ -250,6 +250,7 @@ export default new Vuex.Store({
                         "latitude": data.filter(item => item.key==="latitude")[0].value,
                         "longitude": data.filter(item => item.key==="longitude")[0].value,
                         "dlt_status": data.filter(item => item.key==="dlt_status")[0].value,
+                        "dlt_cert_status": data.filter(item => item.key==="dlt_cert_status")[0].value,
                         "dec_category": data.filter(item => item.key === "dec_category")[0].value,
                         "annual_electrical": data.filter(item => item.key === "annual_electrical")[0].value,
                         "annual_non_electrical": data.filter(item => item.key === "annual_non_electrical")[0].value,
@@ -306,7 +307,14 @@ export default new Vuex.Store({
       } catch(e) {
         log.log('error', 'Cannot '+e)
       }
-
+    },
+    async REGISTER_DEC(context, payload) {
+      try{
+        const dec = await gcpService.createDec(payload)
+        return dec
+      } catch(e) {
+        log.log('error', 'Cannot '+e)
+      }      
     }
   },
 })

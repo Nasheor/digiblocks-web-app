@@ -20,7 +20,6 @@ export default {
                 { text: "Band", value: "band" },
                 { text: "Category", value: "category" },
                 {text: "Verify", value: "actions"},
-                // {text: "Decline", value: "decline"}
               ],
               buildings: []
         };
@@ -31,7 +30,6 @@ export default {
     },
     methods: {
       async accept(id) {
-        console.log()
         let body = {
           "assessor": this.email
         }
@@ -46,7 +44,7 @@ export default {
             index = i
           }
         });
-        confirm("Are you sure you want to cancel this item?") &&
+        confirm("Are you sure you want to verify this certificate?") &&
           this.buildings.splice(index, 1);
       },
       deleteCertificate(id) {
@@ -57,7 +55,7 @@ export default {
           }
         });
         console.log(index)
-        confirm("Are you sure you want to cancel this item?") &&
+        confirm("Are you sure you want to cancel this certificate?") &&
           this.buildings.splice(index, 1);
       },
     },

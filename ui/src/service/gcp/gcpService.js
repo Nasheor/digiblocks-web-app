@@ -5,6 +5,7 @@ export default class ThingsboardService {
 
     static async createDec(body) {
         let ro = routes.create_dec.name
+        console.log(ro)
         try {
             const res = await http.post(ro, body)
             return await Promise.resolve(res.data)

@@ -69,13 +69,18 @@ export default {
         setName() {
             console.log("name is et");
         },
-        registerBuilding() {
+        async registerBuilding() {
+
             let building_data;
             this.getBuildingData.map(building => {
                 if (building.name === this.name) {
                     building_data = building
                 }
             })
+            if(building_data.dlt_status === true) {
+                confirm("Building already registered to the ledger!")
+                return 
+            }
             let status = ""
             if(building_data.assessor === 'Not Verified') {
                 status = "Pending"
@@ -97,24 +102,27 @@ export default {
                     "hours": building_data.hours,
                     "floor": building_data.floor
                 }]
-            }).then(result => {
-                console.log(result)
-                let payload = {
-                    "body": {
-                        "dlt_status": true
-                    },
-                    "id": building_data.id
-                }
-                this.$store.dispatch("UPDATE_ASSET_STATUS", payload)
+            })
+            let payload = {
+                "body": {
+                    "dlt_status": true
+                },
+                "id": building_data.id
+            }
+            this.$store.dispatch("UPDATE_ASSET_STATUS", payload).then(tb => {
+                this.register_building = true
                 building_data.dlt_status = true
                 this.dlt_status = true
+                confirm("Ledger Registration ID: "+building_data.id+". Please Login again to see changes.")
+                this.$store.commit("clearData")
+                this.$router.push({name: "Login"})
+                location.reload();                    
             })
-            alert("Building Registered to the Ledger!")
-            this.register_building = true
         },
         async generateDec() {
+            let data = ""
             if(this.name.length > 1) {
-                let data = this.getBuildingData.find(building => building.name === this.name)
+                data = this.getBuildingData.find(building => building.name === this.name)
                 let device_data = {
                     'gas': '',
                     'electricity': '',
@@ -134,7 +142,7 @@ export default {
                         }
                     }
                 })
-
+                console.log(data)
                 let default_unit = "kWh"
                 this.dec.category = data.category
                 this.dec.environment = data.environment
@@ -147,10 +155,10 @@ export default {
                 this.dec.electricity_energy_use = parseFloat(device_data.electricity)
                 this.dec.electricity_energy_unit = default_unit
                 this.dec.fossil_use = parseFloat(device_data.gas)
-                console.log(data.fuel)
                 this.dec.fossil_type = data.fuel,
                 this.dec.fossil_unit = default_unit,
                 this.dec.year = years
+                let body
                 Dec.dec(
                     this.dec.category, this.dec.environment, this.dec.latitude,
                     this.dec.longitude, this.dec.hours, this.dec.total_useful_floor_area, 
@@ -158,8 +166,7 @@ export default {
                     this.dec.electricity_energy_unit, this.dec.fossil_use, this.dec.fossil_type,
                     this.dec.fossil_unit, this.dec.year
                 ).then(result => {
-                   console.log(result)
-                   let body = {
+                   body = {
                        "ber": result.ber,
                        "co2_performance": result.co2_performance,
                        "band": result.rating_scale,
@@ -172,9 +179,34 @@ export default {
                        "certificate_verified": false,
                        "assessor": 'Not Verified'
                    }
-                   this.$store.dispatch("UPDATE_DEC", {"body": body, "id": asset_id} )
-                   this.generate_dec = true
+                   this.$store.dispatch("UPDATE_DEC", {"body": body, "id": asset_id} ).then(r => {
+                    this.generate_dec = true              
+                })
                })
+               console.log(data)
+               this.$store.dispatch("REGISTER_DEC", {
+                "fcn": "createDEC",
+                "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
+                "chaincodeName":"deccontract",
+                "channelName" : "mychannel",
+                "args": [data.id, data.name, data.category, data.ber,
+                        data.annual_electrical, data.annual_non_electrical, data.date_of_issue,
+                        data.expiry, data.band]
+                })
+                let payload = {
+                    "body": {
+                        "dlt_cert_status": true
+                    },
+                    "id": data.id
+                }
+                this.$store.dispatch("UPDATE_ASSET_STATUS", payload).then(_ => {
+                   data.dlt_cert_status = true
+                   this.dlt_status = true
+                   confirm("Certification Registration ID: "+data.id+". Please Login again to see changes.")
+                   this.$store.commit("clearData")
+                   this.$router.push({name: "Login"})
+                   location.reload();
+                })
             }
         }
     },
