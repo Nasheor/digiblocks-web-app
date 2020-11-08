@@ -7,6 +7,7 @@ import Register from '@/views/pages/Register/index'
 import Buildings from '@/views/pages/Buildings/index'
 import Certificate from '@/views/pages/Certificate/index'
 import VerifyCertificate from '@/views/pages/VerifyCertificate/index'
+import Transactions from '@/views/pages/Transactions/index'
 
 Vue.use(Router)
 
@@ -39,11 +40,11 @@ export default new Router({
           path: '/verify_certificate',
           component: VerifyCertificate
         },
-        // {
-        //   name: 'Transactions',
-        //   path: '/transactions',
-        //   component: Transactions
-        // }
+        {
+          name: 'Transactions',
+          path: '/transactions',
+          component: Transactions
+        }
       ],
     },
     {

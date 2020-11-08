@@ -88,24 +88,25 @@ export default {
                 status = "Verified"
             }
 
-            this.$store.dispatch("REGISTER_ASSET", {
-                "fcn": "createAsset",
-                "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
-                "chaincodeName":"identitycontract",
-                "channelName" : "mychannel",
-                "args": [building_data.name, building_data.category, status, {
-                    "environment":building_data.environment,
-                    "fuel": building_data.fuel,
-                    "id": building_data.id,
-                    "category": building_data.dec_category,
-                    "main_fuel": building_data.main_fuel,
-                    "hours": building_data.hours,
-                    "floor": building_data.floor
-                }]
-            })
+            // this.$store.dispatch("REGISTER_ASSET", {
+            //     "fcn": "createAsset",
+            //     "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
+            //     "chaincodeName":"identitycontract",
+            //     "channelName" : "mychannel",
+            //     "args": [building_data.name, building_data.category, status, {
+            //         "environment":building_data.environment,
+            //         "fuel": building_data.fuel,
+            //         "id": building_data.id,
+            //         "category": building_data.dec_category,
+            //         "main_fuel": building_data.main_fuel,
+            //         "hours": building_data.hours,
+            //         "floor": building_data.floor
+            //     }]
+            // })
+            
             let payload = {
                 "body": {
-                    "dlt_status": true
+                    "dlt_status": false
                 },
                 "id": building_data.id
             }
@@ -166,6 +167,7 @@ export default {
                     this.dec.electricity_energy_unit, this.dec.fossil_use, this.dec.fossil_type,
                     this.dec.fossil_unit, this.dec.year
                 ).then(result => {
+                    console.log(result)
                    body = {
                        "ber": result.ber,
                        "co2_performance": result.co2_performance,
@@ -184,29 +186,35 @@ export default {
                 })
                })
                console.log(data)
-               this.$store.dispatch("REGISTER_DEC", {
-                "fcn": "createDEC",
-                "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
-                "chaincodeName":"deccontract",
-                "channelName" : "mychannel",
-                "args": [data.id, data.name, data.category, data.ber,
-                        data.annual_electrical, data.annual_non_electrical, data.date_of_issue,
-                        data.expiry, data.band]
-                })
-                let payload = {
-                    "body": {
-                        "dlt_cert_status": true
-                    },
-                    "id": data.id
-                }
-                this.$store.dispatch("UPDATE_ASSET_STATUS", payload).then(_ => {
-                   data.dlt_cert_status = true
-                   this.dlt_status = true
-                   confirm("Certification Registration ID: "+data.id+". Please Login again to see changes.")
-                   this.$store.commit("clearData")
-                   this.$router.push({name: "Login"})
-                   location.reload();
-                })
+            //    try {
+            //     this.$store.dispatch("REGISTER_DEC", {
+            //         "fcn": "createDEC",
+            //         "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
+            //         "chaincodeName":"deccontract",
+            //         "channelName" : "mychannel",
+            //         "args": [data.id, data.name, data.category, data.ber,
+            //                 data.annual_electrical, data.annual_non_electrical, data.date_of_issue,
+            //                 data.expiry, data.band]
+            //         })
+            //         let payload = {
+            //             "body": {
+            //                 "dlt_cert_status": true
+            //             },
+            //             "id": data.id
+            //         }
+            //         setTimeout(() => { confirm("Writing to the Ledger..");}, 5000)
+            //         this.$store.dispatch("UPDATE_ASSET_STATUS", payload).then(_ => {
+            //            data.dlt_cert_status = true
+            //            this.dlt_status = true
+            //            confirm("Certification Registration ID: "+data.id+". Please Login again to see changes.")
+            //            this.$store.commit("clearData")
+            //            this.$router.push({name: "Login"})
+            //            location.reload();
+            //         })
+            //    } catch(Exception) {
+            //        return 
+            //    }
+
             }
         }
     },

@@ -62,6 +62,8 @@
                           <v-icon>mdi-close</v-icon>
                       </v-btn>
                       <v-toolbar-title>{{ selected_building.name }}</v-toolbar-title>
+                      <v-spacer></v-spacer>
+                      <v-btn color="green" v-if="role==='External Verifier'" @click="verifyCert">Verify</v-btn>
                   </v-toolbar>
                   <CertificateModal 
                     :chartData="data.barChart" 

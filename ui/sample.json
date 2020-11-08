@@ -24,3 +24,13 @@ telemetry_data = {'ts': epoch_timestamp_ms, 'values': {'sensorvalue': value}}
 // Transactions for certificate should be part of the certificate.
 // Building owner can generate DEC only after registering the building by a community manager
 // DEC Calculation
+
+
+
+// Add the documentation for the digiblocks onto the document on the SVN server
+// Relate the DEC calculation to the blockchain
+// System architecture is very important
+// Have a DEC Sensor for the buildings
+// Individual cert component should allow verification
+// Transaction view with the certificate
+// User roles - documentation

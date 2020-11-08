@@ -16,7 +16,7 @@ export default {
             certificate_keys: [],
             community_dialog: false,
             certificate_key_data: [],
-            selected_building: ''
+            selected_building: '',
         };
     },
     components: {
@@ -29,14 +29,28 @@ export default {
             this.community_dialog = true;
         },
         setData(building) {
-             let id = "id"
             console.log(building)
             this.selected_building = building
             this.certificate_keys = building.certificate_keys.split(",")
             console.log(this.certificate_keys)
-        }
+        },
+        verifyCert(){
+            let body = {
+                "assessor": this.email,
+                "certificate_verified": true
+              }
+              let payload = {
+                "id": this.selected_building.id,
+                "body": body
+              }
+              this.$store.dispatch("UPDATE_ASSET_STATUS", payload)
+
+              confirm("Are you sure you want to verify this certificate?");
+        },
     },
     computed: {
-        ...mapGetters({ building_data: "getBuildingData"})
+        ...mapGetters({ building_data: "getBuildingData"}),
+        ...mapGetters({ role: "getRole"}),
+        ...mapGetters({ email: "getEmail"})
     }
 }

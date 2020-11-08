@@ -44,6 +44,13 @@ export default {
                 role: ["External Verifier"],
                 display: false,
             },
+            {
+                title: 'Transactions',
+                icon: 'mdi-sort',
+                to: '/transactions',
+                role: ["Community Manager", "External Verifier"],
+                display: false,            
+            },
         ],
     }),
 
