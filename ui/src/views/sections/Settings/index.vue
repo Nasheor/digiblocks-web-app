@@ -142,7 +142,7 @@
       border-color: transparent !important
 
       &--active
-        border-color: #00cae3 !important
+        border-color: #1e88e5 !important
 </style>
 <script src='./Settings.js' />
 <style scoped lang="scss" src="./Settings.scss"></style>

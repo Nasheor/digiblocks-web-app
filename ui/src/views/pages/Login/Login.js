@@ -152,6 +152,6 @@ export default {
     }
   },
   mounted() {
-    this.initParticles();
+    //this.initParticles();
   },
 }
