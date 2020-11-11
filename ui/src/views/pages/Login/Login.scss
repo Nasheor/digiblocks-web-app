@@ -1,19 +1,15 @@
-#particles-js {
+#particle-js {
     height: 100%;
     width: 100%;
     background-color: black;
     z-index:0;
 
-    .loc {
-        z-index: 999;
-        margin-left:60%;
+    
+}
 
-        @media only screen and (max-width: 1600px) {
-            margin-left: 25%;
-            width: 900px;
-        }
-        // width:900px;
-    }
+.loc {
+    z-index: 999;
+    width:60%;
 }
 
 .login-logo img {
