@@ -108,4 +108,15 @@ export default class ThingsboardService {
             return await Promise.reject(err)
         }       
     }
+    static async updateDeviceAttribute(body, id) {
+        // body = JSON.parse(body)
+        // console.log(routes.update_dec_device_attribute)
+        let tmp_ro = routes.update_dec_device_attribute.name.replace("%id%", id)
+        try {
+            let r = await http.post(tmp_ro, body)
+            return await Promise.resolve(r.data)
+        } catch (err) {
+            return await Promise.reject(err)
+        }       
+    }
 }

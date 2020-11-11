@@ -1,7 +1,7 @@
 <template>
 <v-app  id="particles-js">
   <v-container class="fill-height fill-width justify-center loc">
-        <v-card class="align-center" min-width="900px">
+        <v-card class="align-center" min-width="1000px">
           <v-row>
             <v-col lg="7" class="info d-none d-md-flex align-center justify-center">
               <div class="d-none d-sm-block">
@@ -12,7 +12,7 @@
                       class="display-1 white--text font-weight-medium"
                     >DLT for smarter energy communities</h2>
                     <h6
-                      class="subtitle-1 mt-4 white--text op-5 font-weight-regular"
+                      class="align-left subtitle-1 mt-4 white--text op-5 font-weight-regular"
                     >DigiBlocks will help facilitate the transformation of the energy sector through digitisation and support the fundamental shift in the energy landscape from a rigid centralised infrastructure towards decentralisation and energy-based communities, motivated in part by the increasing penetration of renewables and need for cities to move towards being positive energy districts.</h6>
                     <v-btn @click="openWebsite" class="mt-4 text-capitalize" x-large outlined color="white">Learn More</v-btn>
                   </div>

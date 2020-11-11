@@ -73,7 +73,7 @@
                     :longitude="building.longitude"
                     :id="building.id"
                     :compare="true"
-                    @click.native="name=building.name"
+                    @click.native="setName(building)"
                     outlined
                     tile
                   />              

@@ -10,6 +10,7 @@ export default {
             dialog: false,
             add_building_status: false,
             name: '', 
+            id: '',
             valid: false,
             form_dialog: false,
             building_data: '',
@@ -41,7 +42,7 @@ export default {
     },
     computed: {
         ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData',
-                        'getDevicesData']),
+                        'getDevicesData', 'getDecIds']),
         getDltStatus() {
             return this.dlt_status;
          },
@@ -66,11 +67,11 @@ export default {
         close() {
             this.generate_dec = false
         },
-        setName() {
-            console.log("name is et");
+        setName(building) {
+            this.name = building.name
+            this.id = building.id
         },
         async registerBuilding() {
-
             let building_data;
             this.getBuildingData.map(building => {
                 if (building.name === this.name) {
@@ -103,21 +104,23 @@ export default {
             //         "floor": building_data.floor
             //     }]
             // })
-            
+            console.log(building_data.dec_id)
             let payload = {
                 "body": {
-                    "dlt_status": false
+                    "dlt_status": true
                 },
-                "id": building_data.id
+                "id": building_data.dec_id
             }
-            this.$store.dispatch("UPDATE_ASSET_STATUS", payload).then(tb => {
+            console.log(payload.id)
+            this.$store.dispatch("UPDATE_DEC", {"body": payload.body, "id": payload.id}).then(tb => {
                 this.register_building = true
                 building_data.dlt_status = true
-                this.dlt_status = true
-                confirm("Ledger Registration ID: "+building_data.id+". Please Login again to see changes.")
-                this.$store.commit("clearData")
-                this.$router.push({name: "Login"})
-                location.reload();                    
+                this.dlt_status = true                   
+            }).then(a => {
+                // confirm("Ledger Registration ID: "+building_data.id+". Please Login again to see changes.")
+                // this.$store.commit("clearData")
+                // this.$router.push({name: "Login"})
+                // location.reload(); 
             })
         },
         async generateDec() {
@@ -128,6 +131,9 @@ export default {
                     'gas': '',
                     'electricity': '',
                 }
+                
+                let dec_sensor = this.getDecIds.find(sensor => sensor.asset_id === this.id)
+                console.log(this.getDecIds)
 
                 let years =  ''
                 let asset_id = ''
@@ -178,10 +184,13 @@ export default {
                        "building_electrical": result.electricity_typical_benchmark,
                        "building_non_electrical": result.fossil_thermal_energy_use_per_area,
                        "dlt_status": false,
+                       "dlt_cert_status": false,
                        "certificate_verified": false,
                        "assessor": 'Not Verified'
                    }
-                   this.$store.dispatch("UPDATE_DEC", {"body": body, "id": asset_id} ).then(r => {
+                   console.log(data.dec_id)
+                   console.log(data.name)
+                   this.$store.dispatch("UPDATE_DEC", {"body": body, "id": data.dec_id} ).then(r => {
                     this.generate_dec = true              
                 })
                })

@@ -1,6 +1,9 @@
 <template>
     <v-card>
-        <h1>Hello World!</h1>
+        <h2
+            class="display-3  font-weight-medium loc"
+        >DLT for smarter energy communities</h2>
+        <h1>JHello Worlkd</h1>
     </v-card>
 </template>
 

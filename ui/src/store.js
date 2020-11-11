@@ -28,6 +28,7 @@ export default new Vuex.Store({
     role: '',
     email: '',
     certificates: [],
+    dec_ids: [],
   },
   mutations: {
     clearData(state) {
@@ -92,7 +93,17 @@ export default new Vuex.Store({
     },
     setEmail(state, payload) {
       state.email = payload
-    }
+    },
+    setDecIds(state, payload) {
+      let flag = true
+      state.dec_ids.map(dec => {
+        if(dec.asset_id === payload.asset_id) {
+          flag = false
+        }
+      })
+      if(flag == true)
+        state.dec_ids.push(payload)
+    },
    },
   getters: {
     getCompareBuildings(state) {
@@ -136,6 +147,9 @@ export default new Vuex.Store({
     },
     getEmail(state) {
       return state.email;
+    },
+    getDecIds(state) {
+      return state.dec_ids;
     }
   },
   actions: {
@@ -178,6 +192,7 @@ export default new Vuex.Store({
     },
 
     async LOAD_DATA(context, payload) {
+      let dec_data = {}   
       try {
         const assets = await ThingsboardService.getAssetsMetaData(context.state.customer_id, payload)
         if(context.state.building_data.length < assets.data.length)
@@ -191,7 +206,7 @@ export default new Vuex.Store({
                             case 'Gas':
                               context.state.gas_value = [sensor[2].value, sensor[5].value,  sensor[1].value, sensor[3].value ]
                             break
-                            
+                           
                             case 'Electricity':
                               context.state.electricity_value = [sensor[2].value, sensor[5].value,  sensor[1].value, sensor[3].value ]
                             break
@@ -210,55 +225,108 @@ export default new Vuex.Store({
                     })
                     context.commit("setDashboardData", data)
                   } else {
-                    ThingsboardService.getAssetDevices(item.id.id).then(devices => {
+                    ThingsboardService.getAssetDevices(item.id.id).then(devices => { 
                       devices.map(device => {
                         let tmp_holder = device.toName.split('.')
+                        dec_data = {
+                          'asset_id': item.id.id,
+                          'device_id': device.to.id,
+                          'annual_electrical': 0,
+                          'annual_non_electrical': 0,
+                          'assessor': "Not Verified",
+                          'band': 'B1',
+                          'ber': 0,
+                          'building_electrical': 0,
+                          'building_non_electrical': 0,
+                          'certificate_verified': 0,
+                          'co2_performance': 0,
+                          'dlt_cert_status': false,
+                          'dlt_status': false,
+                          'total_energy_use_per_area': 0
+                        }
+                        console.log(tmp_holder)                             
                         ThingsboardService.getSensorData(device.to.id).then(sensor => {
-                          ThingsboardService.getTelemetryData(device.to.id).then(sensor_data => {
-                            context.commit("setDevicesData", {
-                              'asset_id': item.id.id,
-                              'device_id': device.to.id,
-                              'unit': sensor[2].value,
-                              'type': tmp_holder[3],
-                              'ts': sensor_data.sensorvalue[0].ts,
-                              'value': sensor_data.sensorvalue[0].value,       
-                            })
-                           }
-                          )
+                          if(tmp_holder[2] === "DEC") {
+                            console.log(sensor)
+                            if(sensor.length > 2) {
+
+                              sensor.map(attr => {
+                                if(attr.key === "annual_non_electrical")
+                                  dec_data.annual_non_electrical = attr.value
+                                else if(attr.key === "building_electrical") 
+                                  dec_data.building_electrical = attr.value
+                                else if(attr.key === "building_non_electrical") 
+                                  dec_data.building_non_electrical = attr.value
+                                else if(attr.key === "annual_electrical") 
+                                  dec_data.annual_electrical = attr.value 
+                                else if(attr.key === "assessor") 
+                                  dec_data.assessor = attr.value    
+                                else if(attr.key === "band") 
+                                  dec_data.band = attr.value 
+                                else if(attr.key === "ber") 
+                                  dec_data.ber = attr.value
+                                else if(attr.key === "certificate_verified") 
+                                  dec_data.certificate_verified = attr.value
+                                else if(attr.key === "co2_performance") 
+                                  dec_data.co2_performance = attr.value    
+                                else if(attr.key === "dlt_cert_status") 
+                                  dec_data.dlt_cert_status = attr.value  
+                                else if(attr.key === "dlt_status") 
+                                  dec_data.dlt_status = attr.value    
+                                else if(attr.key === "total_energy_use_per_area") 
+                                  dec_data.total_energy_use_per_area = attr.value                                                                                                                                                                                                                                                                           
+                              })
+                              context.commit("setDecIds", dec_data)
+                            } 
+                          } else {
+                            ThingsboardService.getTelemetryData(device.to.id).then(sensor_data => {
+                              context.commit("setDevicesData", {
+                                'asset_id': item.id.id,
+                                'device_id': device.to.id,
+                                'unit': sensor[2].value,
+                                'type': tmp_holder[3],
+                                'ts': sensor_data.sensorvalue[0].ts,
+                                'value': sensor_data.sensorvalue[0].value,       
+                              })
+                             }
+                            )                            
+                          }
+                        }).then(r => {
+                          context.commit("setBuildingData", {
+                            "name": item.name,
+                            "id": item.id.id,
+                            "category": data.filter(item=> item.key==="category")[0].value,
+                            "environment":data.filter(item=> item.key==="environment")[0].value,
+                            "image": data.filter(item=> item.key==="image")[0].value,
+                            "hours": JSON.parse(data.filter(item=> item.key==="hours_of_occupancy")[0].value),
+                            "coordinates": [data.filter(item=> item.key==="latitude")[0].value *1, data.filter(item=> item.key==="longitude")[0].value * 1],
+                            "floor_area": JSON.parse(data.filter(item=> item.key==="total_useful_floor_area")[0].value),
+                            "address": data.filter(item=> item.key==="address")[0].value,
+                            "assessor": dec_data.assessor,
+                            "band": dec_data.band,
+                            "issue": data.filter(item=> item.key==="date_of_issue")[0].value,
+                            "expiry": data.filter(item=> item.key==="valid_until")[0].value,
+                            "ber": dec_data.ber,
+                            "fuel":data.filter(item=> item.key==="main_fuel")[0].value,
+                            "certificate_keys": data.filter(item=> item.key==="certificate_keys")[0].value.split(','),
+                            "activity": JSON.parse(data.filter(item=> item.key==="activity")[0].value),
+                            "devices": data.filter(item => item.key==="devices")[0].value,
+                            "color": data.filter(item => item.key==="color")[0].value,
+                            "latitude": data.filter(item => item.key==="latitude")[0].value,
+                            "longitude": data.filter(item => item.key==="longitude")[0].value,
+                            "dlt_status": dec_data.dlt_status,
+                            "dlt_cert_status": dec_data.dlt_cert_status,
+                            "dec_category": data.filter(item => item.key === "dec_category")[0].value,
+                            "annual_electrical": dec_data.annual_electrical,
+                            "annual_non_electrical": dec_data.annual_non_electrical,
+                            "building_electrical": dec_data.building_electrical,
+                            "building_non_electrical": dec_data.building_non_electrical,
+                            "certificate_verified": dec_data.certificate_verified,
+                            "co2_performance": dec_data.co2_performance,   
+                            "certificate_keys": data.filter(item => item.key === "certificate_keys")[0].value,
+                            "dec_id": dec_data.device_id
+                          })
                         })
-                      })
-                      context.commit("setBuildingData", {
-                        "name": item.name,
-                        "id": item.id.id,
-                        "category": data.filter(item=> item.key==="category")[0].value,
-                        "environment":data.filter(item=> item.key==="environment")[0].value,
-                        "image": data.filter(item=> item.key==="image")[0].value,
-                        "hours": JSON.parse(data.filter(item=> item.key==="hours_of_occupancy")[0].value),
-                        "coordinates": [data.filter(item=> item.key==="latitude")[0].value *1, data.filter(item=> item.key==="longitude")[0].value * 1],
-                        "floor_area": JSON.parse(data.filter(item=> item.key==="total_useful_floor_area")[0].value),
-                        "address": data.filter(item=> item.key==="address")[0].value,
-                        "assessor": data.filter(item=> item.key==="assessor")[0].value,
-                        "band": data.filter(item=> item.key==="band")[0].value,
-                        "issue": data.filter(item=> item.key==="date_of_issue")[0].value,
-                        "expiry": data.filter(item=> item.key==="valid_until")[0].value,
-                        "ber": data.filter(item=> item.key==="ber")[0].value,
-                        "fuel":data.filter(item=> item.key==="main_fuel")[0].value,
-                        "certificate_keys": data.filter(item=> item.key==="certificate_keys")[0].value.split(','),
-                        "activity": JSON.parse(data.filter(item=> item.key==="activity")[0].value),
-                        "devices": data.filter(item => item.key==="devices")[0].value,
-                        "color": data.filter(item => item.key==="color")[0].value,
-                        "latitude": data.filter(item => item.key==="latitude")[0].value,
-                        "longitude": data.filter(item => item.key==="longitude")[0].value,
-                        "dlt_status": data.filter(item => item.key==="dlt_status")[0].value,
-                        "dlt_cert_status": data.filter(item => item.key==="dlt_cert_status")[0].value,
-                        "dec_category": data.filter(item => item.key === "dec_category")[0].value,
-                        "annual_electrical": data.filter(item => item.key === "annual_electrical")[0].value,
-                        "annual_non_electrical": data.filter(item => item.key === "annual_non_electrical")[0].value,
-                        "building_electrical": data.filter(item => item.key === "building_electrical")[0].value,
-                        "building_non_electrical": data.filter(item => item.key === "building_non_electrical")[0].value,
-                        "certificate_verified": data.filter(item => item.key === "certificate_verified")[0].value,
-                        "co2_performance": data.filter(item => item.key === "co2_performance")[0].value,   
-                        "certificate_keys": data.filter(item => item.key === "certificate_keys")[0].value 
                       })
                       // context.dispatch("UPDATE_TELEMETRY")          
                     })
@@ -292,11 +360,11 @@ export default new Vuex.Store({
       }
     },    
     async UPDATE_DEC(context, payload) {
-      const update_dec_attr = ThingsboardService.updateAssetAttribute(payload.body, payload.id)
-      context.dispatch("LOAD_DATA", 999)
+      ThingsboardService.updateDeviceAttribute(payload.body, payload.id).then(t=> 
+        {context.dispatch("LOAD_DATA", 999)})
     },    
     async UPDATE_ASSET_STATUS(context, payload) {
-      const update_asset_status = ThingsboardService.updateAssetAttribute(payload.body, payload.id)
+      ThingsboardService.updateAssetAttribute(payload.body, payload.id)
       context.commit('clearData')
       context.dispatch("LOAD_DATA", 999)
     },

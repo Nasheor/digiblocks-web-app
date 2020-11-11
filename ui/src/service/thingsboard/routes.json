@@ -42,5 +42,9 @@
    "update_asset_attribute": {
        "name": "/plugins/telemetry/ASSET/%id%/attributes/SERVER_SCOPE",
        "method": "post"
+   },
+   "update_dec_device_attribute" : {
+       "name": "/plugins/telemetry/DEVICE/%id%/attributes/SERVER_SCOPE",
+       "method": "post"
    }
 }
