@@ -104,14 +104,13 @@ export default {
             //         "floor": building_data.floor
             //     }]
             // })
-            console.log(building_data.dec_id)
+
             let payload = {
                 "body": {
                     "dlt_status": true
                 },
                 "id": building_data.dec_id
             }
-            console.log(payload.id)
             this.$store.dispatch("UPDATE_DEC", {"body": payload.body, "id": payload.id}).then(tb => {
                 this.register_building = true
                 building_data.dlt_status = true
@@ -131,9 +130,9 @@ export default {
                     'gas': '',
                     'electricity': '',
                 }
-                
-                let dec_sensor = this.getDecIds.find(sensor => sensor.asset_id === this.id)
                 console.log(this.getDecIds)
+                let dec_sensor = this.getDecIds.find(sensor => sensor.asset_id === this.id)
+                console.log(dec_sensor)
 
                 let years =  ''
                 let asset_id = ''
@@ -149,7 +148,6 @@ export default {
                         }
                     }
                 })
-                console.log(data)
                 let default_unit = "kWh"
                 this.dec.category = data.category
                 this.dec.environment = data.environment
@@ -188,9 +186,8 @@ export default {
                        "certificate_verified": false,
                        "assessor": 'Not Verified'
                    }
-                   console.log(data.dec_id)
-                   console.log(data.name)
-                   this.$store.dispatch("UPDATE_DEC", {"body": body, "id": data.dec_id} ).then(r => {
+                   console.log(dec_sensor.device_id)
+                   this.$store.dispatch("UPDATE_DEC", {"body": body, "id": dec_sensor.device_id} ).then(r => {
                     this.generate_dec = true              
                 })
                })

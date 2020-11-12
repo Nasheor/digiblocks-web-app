@@ -15,17 +15,32 @@
     ]}​​​​​​​
 ]
 
-
+0: {lastUpdateTs: 1604825878399, key: "active", value: false}
+1: {lastUpdateTs: 1604917056550, key: "annual_electrical", value: 182.0495654939759}
+2:
+key: "annual_non_electrical"
+lastUpdateTs: 1604917056550
+value: 258.2734969566539
+__proto__: Object
+3: {lastUpdateTs: 1604917056550, key: "assessor", value: "Not Verified"}
+4: {lastUpdateTs: 1604917056550, key: "band", value: "B1"}
+5: {lastUpdateTs: 1604917056550, key: "ber", value: 26.479292974344812}
+6: {lastUpdateTs: 1604917056550, key: "building_electrical", value: 80}
+7: {lastUpdateTs: 1604917056550, key: "building_non_electrical", value: 61.71666666666667}
+8: {lastUpdateTs: 1604917056550, key: "certificate_verified", value: false}
+9: {lastUpdateTs: 1604917056550, key: "co2_performance", value: 28.30255320809387}
+10: {lastUpdateTs: 1604920909113, key: "dlt_cert_status", value: false}
+11: {lastUpdateTs: 1604917056550, key: "dlt_status", value: false}
+12: {lastUpdateTs: 1604825878399, key: "inactivityAlarmTime", value: 1604825878399}
+13: {lastUpdateTs: 1604917056550, key: "total_energy_use_per_area", value: 123.43333333333334}
 telemetry_data = {'ts': epoch_timestamp_ms, 'values': {'sensorvalue': value}}
 
-
+870f9bf0-e399-11ea-bdd4-376cbbd450da
 // Change the sensor names CIT.NIM.VIR.ELEC.ANNUAL - First 3 characters of every b
 // Certificate should be visualized the same way as present in the admin and energy consumption graph should be displayed to confirm the source
 // Transactions for certificate should be part of the certificate.
 // Building owner can generate DEC only after registering the building by a community manager
 // DEC Calculation
-
-
 
 // Add the documentation for the digiblocks onto the document on the SVN server
 // Relate the DEC calculation to the blockchain
@@ -34,3 +49,8 @@ telemetry_data = {'ts': epoch_timestamp_ms, 'values': {'sensorvalue': value}}
 // Individual cert component should allow verification
 // Transaction view with the certificate
 // User roles - documentation
+
+// Finish of the roles
+// Finish of the transactions
+// Get the schema sorted. Everything else is tied to that!!! 
+// Test deploy on firebase, github, gcp,
