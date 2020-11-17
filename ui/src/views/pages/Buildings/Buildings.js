@@ -33,6 +33,7 @@ export default {
             generate_dec: false,
             register_building: false,
             dlt_status: false,
+            b_card_data: '',
         }
     },
     components: {
@@ -42,9 +43,9 @@ export default {
     },
     computed: {
         ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData',
-                        'getDevicesData', 'getDecIds']),
+                        'getDevicesData']),
         getDltStatus() {
-            return this.dlt_status;
+            return this.b_card_data.dlt_status;
          },
          togglePop() {
              return this.generate_dec
@@ -70,6 +71,7 @@ export default {
         setName(building) {
             this.name = building.name
             this.id = building.id
+            this.b_card_data = building
         },
         async registerBuilding() {
             let building_data;
@@ -104,14 +106,12 @@ export default {
             //         "floor": building_data.floor
             //     }]
             // })
-            console.log(building_data.dec_id)
             let payload = {
                 "body": {
                     "dlt_status": true
                 },
                 "id": building_data.dec_id
             }
-            console.log(payload.id)
             this.$store.dispatch("UPDATE_DEC", {"body": payload.body, "id": payload.id}).then(tb => {
                 this.register_building = true
                 building_data.dlt_status = true
@@ -132,9 +132,6 @@ export default {
                     'electricity': '',
                 }
                 
-                let dec_sensor = this.getDecIds.find(sensor => sensor.asset_id === this.id)
-                console.log(this.getDecIds)
-
                 let years =  ''
                 let asset_id = ''
                 this.getDevicesData.map(device => {
@@ -173,7 +170,6 @@ export default {
                     this.dec.electricity_energy_unit, this.dec.fossil_use, this.dec.fossil_type,
                     this.dec.fossil_unit, this.dec.year
                 ).then(result => {
-                    console.log(result)
                    body = {
                        "ber": result.ber,
                        "co2_performance": result.co2_performance,
@@ -188,13 +184,10 @@ export default {
                        "certificate_verified": false,
                        "assessor": 'Not Verified'
                    }
-                   console.log(data.dec_id)
-                   console.log(data.name)
                    this.$store.dispatch("UPDATE_DEC", {"body": body, "id": data.dec_id} ).then(r => {
                     this.generate_dec = true              
                 })
                })
-               console.log(data)
             //    try {
             //     this.$store.dispatch("REGISTER_DEC", {
             //         "fcn": "createDEC",

@@ -29,10 +29,8 @@ export default {
             this.community_dialog = true;
         },
         setData(building) {
-            console.log(building)
             this.selected_building = building
             this.certificate_keys = building.certificate_keys.split(",")
-            console.log(this.certificate_keys)
         },
         verifyCert(){
             let body = {
@@ -51,6 +49,9 @@ export default {
     computed: {
         ...mapGetters({ building_data: "getBuildingData"}),
         ...mapGetters({ role: "getRole"}),
-        ...mapGetters({ email: "getEmail"})
+        ...mapGetters({ email: "getEmail"}),
+        getSelectedBuilding() {
+            return this.selected_building
+        }
     }
 }

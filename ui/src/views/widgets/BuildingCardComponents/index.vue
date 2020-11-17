@@ -1,7 +1,7 @@
 <template>
   <v-card class="pa-4">
       <v-row >
-        <v-col cols="4" sm="12"  class="mt-12" v-if="getDltStatus==false">
+        <v-col cols="4" sm="12"  class="mt-12" v-if="getDltStatus===false">
           <v-chip class="mr-2" color="red lighten-3" text-color="gray">
              <h4> Register Building to the Ledger </h4>
           </v-chip>
@@ -12,20 +12,20 @@
           </v-chip>
         </v-col>
         <v-col cols="12" sm="12">
-          <TimeSeries :building_data="building_data"/>
+          <TimeSeries :building_data="getBuilding"/>
         </v-col>
         <v-col cols="12" lg="7">
-          <BarGraph :building_data="building_data"/>
+          <BarGraph :building_data="getBuilding"/>
         </v-col>
         <v-col cols="12" lg="5">
-          <LineMetrics :building_data="building_data"/>
-          <BarMetrics :building_data="building_data"/>
+          <LineMetrics :building_data="getBuilding"/>
+          <BarMetrics :building_data="getBuilding"/>
         </v-col>
         <v-col cols="12" sm="12" lg="8">
-          <Timeline :building_data="building_data"/>
+          <Timeline :building_data="getBuilding"/>
         </v-col>
         <v-col cols="12" lg="4">
-          <Profile :building_data="building_data"/>
+          <Profile :building_data="getBuilding"/>
         </v-col>
       </v-row>
   </v-card>

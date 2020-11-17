@@ -110,7 +110,7 @@
                         </v-btn>   
                     </div>
                   </v-toolbar>
-                  <BCard :name="name" />
+                  <BCard :name="name" :building="b_card_data" />
                 <v-dialog v-model="togglePop" persistent max-width="290">
                   <v-card>
                       <v-card-title class="headline">DEC Generated</v-card-title>

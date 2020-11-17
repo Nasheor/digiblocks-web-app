@@ -6,15 +6,14 @@ import MetricsTable from './MetricsTable/index'
 import PieChart from './Piechart/index'
 import Timeline from './Timeline/index'
 import Profile from './Profile/index'
-import { mapGetters } from 'vuex'
 
 export default {
     props: [
         "name",
+        "building",
     ],
     data() {
         return {
-            building_data: '',
         };
     },
     components: {
@@ -30,19 +29,11 @@ export default {
         Profile,
     },
     computed: {
-        ...mapGetters({
-            buildings: "getBuildingData"
-        }),
         getDltStatus() {
-            return this.building_data.dlt_status;
+            return this.building.dlt_status;
+        },
+        getBuilding() {
+            return this.building
         }
     },
-    methods: {
-        generate_dec() {
-            
-        }
-    },
-    created() {
-        this.building_data = this.buildings.find(building => building.name === this.name)
-    }
 }

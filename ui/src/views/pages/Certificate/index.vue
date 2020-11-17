@@ -56,7 +56,7 @@
                   />                    
                 </div>
               </template>
-              <v-card  >
+              <v-card v-if="getSelectedBuilding.certificate_generated === true" >
                   <v-toolbar class="an-toolbar-position" dark  color="#f79026">
                       <v-btn icon dark @click="dialog = false">
                           <v-icon>mdi-close</v-icon>
@@ -69,6 +69,16 @@
                     :chartData="data.barChart" 
                     :certificate_keys="certificate_keys"
                     :building_data="selected_building"/>
+              </v-card>
+              <v-card v-else>
+                <v-card-title class="headline">Certificate Not Generated</v-card-title>
+                <v-card-text>
+                  Generate Certificate before access! 
+                </v-card-text>
+                <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="success" text @click="dialog = false">Close</v-btn>
+                </v-card-actions>
               </v-card>
           </v-dialog>
           </v-row>
