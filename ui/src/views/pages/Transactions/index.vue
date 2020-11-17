@@ -32,20 +32,43 @@
                 </div>
               </template>
               <v-card  >
-                  <v-toolbar class="an-toolbar-position" dark  color="#f79026">
-                      <v-btn icon dark @click="dialog = false">
-                          <v-icon>mdi-close</v-icon>
-                      </v-btn>
-                      <v-toolbar-title>{{ name }}</v-toolbar-title>
-                    <v-spacer />
-                  </v-toolbar>
-                    <v-data-table
-                        :headers="headers"
-                        :items="getBuildings"
-                        multi-sort
-                        hide-default-footer
-                        class="elevation-0 border"
-                    />
+                <v-tabs
+                    v-model="tab"
+                    background-color="#f79026"
+                    centered
+                    center-active
+                    icons-and-text
+                >
+                    <v-tabs-slider></v-tabs-slider>
+                    <v-tab
+                        v-for="view in views"
+                        :key="view.name"
+                    >
+                        {{view.name}}
+                        <v-icon>{{view.icon}}</v-icon>
+                    </v-tab>
+                </v-tabs>
+
+                <v-tabs-items v-model="tab">
+                    <v-tab-item
+                        v-for="view in views"
+                        :key="view.name"
+                    >
+                        <v-card flat>
+                            <template v-if="tab===0">
+                                <Dec :buildings="buildings" />
+                            </template>
+                            <template v-else>
+                                <Registration :buildings="buildings" />
+                            </template>
+                        </v-card>
+                    </v-tab-item>
+                </v-tabs-items>
+                <v-footer class="d-flex justify-center" padless>
+                    <v-btn align-center dark @click="dialog=false">
+                        Close
+                    </v-btn>
+                </v-footer>
               </v-card>
           </v-dialog>
           </v-row>

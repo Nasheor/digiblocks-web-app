@@ -1,9 +1,13 @@
 import { mapGetters } from 'vuex'
 import BuildingCard from '../../sections/BuildingCard/index'
+import Dec from './Dec/index'
+import Registration from './Registration/index'
 
 export default {
     components: {
     BuildingCard,
+    Dec,
+    Registration,
 },
 data() {
     return {
@@ -29,6 +33,17 @@ data() {
         { text: "Category", value: "category" },
         ],
         transactions: [],
+        views: [
+            {
+                'name': 'Dec',
+                'icon': 'mdi-newspaper'
+            }, 
+            {
+                'name': 'Asset Registration',
+                'icon': 'mdi-chart-bar'
+            }
+        ],
+        tab: null,
     };
 },
 computed: {
