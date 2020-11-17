@@ -58,7 +58,8 @@ export default {
       },
       async deleteCertificate(item) {
         let body = {
-          "assessor": "Rejected by "+this.email 
+          "assessor": "Rejected by "+this.email,
+          "certificate_verified": false,
         }
         let payload = {
           "id": item.dec_id,
@@ -81,8 +82,7 @@ export default {
     },
     created() {
       this.building_data.map(building => {
-        if(building.assessor === "Not Verified" || building.certificate_verified === false)
-        console.log("Reached")
+        if(building.assessor === "Not Verified" && building.certificate_verified === false)
           this.buildings.push( {
             "id": building.id,
             "name": building.name,
