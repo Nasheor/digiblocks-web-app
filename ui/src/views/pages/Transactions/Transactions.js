@@ -27,7 +27,6 @@ data() {
         { text: "Assessor", value: "assessor" },
         { text: "Band", value: "band" },
         { text: "Category", value: "category" },
-        {text: "Verify", value: "actions"},
         ],
         transactions: [],
     };

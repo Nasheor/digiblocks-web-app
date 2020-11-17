@@ -33,60 +33,55 @@ export default {
       }
     },
     methods: {
-      async accept(id) {
+      async accept(item) {
         let body = {
-          "assessor": this.email
+          "assessor": this.email,
+          "certificate_verified": true,
         }
-        let device_id
-        this.buildings.map(b => {
-          if(b.id === id) {
-            device_id = b.dec_id
-          }
-        })
         let payload = {
-          "id": device_id,
+          "id": item.dec_id,
           "body": body
         }
+
         this.$store.dispatch("UPDATE_DEC", payload)
         let index = 0
         this.buildings.map((building, i) => {
-          if(building.id === id) {
+          if(building.id === item.id) {
             index = i
           }
         });
         confirm("Are you sure you want to verify this certificate?") &&
           this.buildings.splice(index, 1);
+        this.$store.commit("clearData")
+        this.$router.push({name: "Login"})
+        location.reload(); 
       },
-      async deleteCertificate(id) {
-        let device_id
-        this.buildings.map(b => {
-          if(b.id === id) {
-            device_id = b.dec_id
-          }
-        })
+      async deleteCertificate(item) {
         let body = {
           "assessor": "Rejected by "+this.email 
         }
         let payload = {
-          "id": device_id,
+          "id": item.dec_id,
           "body": body
         }
         this.$store.dispatch("UPDATE_DEC", payload)
         let index = 0
         this.buildings.map((building, i) => {
-          if(building.id === id) {
+          if(building.id === item.id) {
             index = i
             this.buildings[i].assesor = "Rejected by "+this.email 
           }
         });
-        console.log(index)
         confirm("Are you sure you want to cancel this certificate?") &&
           this.buildings.splice(index, 1);
+        this.$store.commit("clearData")
+        this.$router.push({name: "Login"})
+        location.reload(); 
       },
     },
     created() {
       this.building_data.map(building => {
-        if(building.assessor === "Not Verified")
+        if(building.assessor === "Not Verified" || building.certificate_verified === false)
         console.log("Reached")
           this.buildings.push( {
             "id": building.id,
@@ -100,6 +95,7 @@ export default {
             "assessor": building.assessor,
             "band": building.band,
             "category": building.category,
+            "dec_id": building.dec_id
           })
       })
     }

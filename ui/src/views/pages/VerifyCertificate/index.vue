@@ -8,7 +8,7 @@
         class="elevation-0 border"
       >
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon small class="mr-2" @click="accept(item.id)">mdi-check</v-icon>
+        <v-icon small class="mr-2" @click="accept(item)">mdi-check</v-icon>
         <v-icon small @click="deleteCertificate(item.id)">mdi-delete</v-icon>
       </template>
       </v-data-table>

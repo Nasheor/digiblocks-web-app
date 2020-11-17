@@ -12,8 +12,8 @@
       <v-col cols="12" lg="3" sm="4" class="border-right py-0">
         <div class="d-flex align-items-center pa-5">
           <div class="mx-3">
-            <h3 class="font-weight-regular">$31568</h3>
-            <h5 class="blue-grey--text text--lighten-2 font-weight-regular subtitle-1">Total Cost</h5>
+            <h3 class="font-weight-regular">{{building_data.annual_electrical}}</h3>
+            <h5 class="blue-grey--text text--lighten-2 font-weight-regular subtitle-1">Building Electrical</h5>
           </div>
           <v-spacer></v-spacer>
           <div class="ml-auto">
@@ -26,8 +26,8 @@
       <v-col cols="12" lg="3" sm="4" class="py-0">
         <div class="d-flex align-items-center py-5 px-sm-5 pa-5">
           <div class>
-            <h3 class="font-weight-regular">$15478</h3>
-            <h5 class="blue-grey--text text--lighten-2 font-weight-regular subtitle-1">Saved</h5>
+            <h3 class="font-weight-regular">{{building_data.annual_non_electrical}}</h3>
+            <h5 class="blue-grey--text text--lighten-2 font-weight-regular subtitle-1">Building Non Electrical</h5>
           </div>
           <v-spacer></v-spacer>
           <div class="ml-auto">
