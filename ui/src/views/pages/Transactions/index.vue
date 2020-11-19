@@ -56,11 +56,11 @@
                     >
                         <v-card flat>
                             <template v-if="tab===0">
-                                <Dec :buildings="buildings" />
+                                <Dec :buildings="selected_building" :transaction_data="transactions" />
                             </template>
-                            <template v-else>
-                                <Registration :buildings="buildings" />
-                            </template>
+                            <!-- <template v-else>
+                                <Registration :buildings="selected_building" />
+                            </template> -->
                         </v-card>
                     </v-tab-item>
                 </v-tabs-items>

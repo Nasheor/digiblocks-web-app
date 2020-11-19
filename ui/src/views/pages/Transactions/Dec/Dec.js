@@ -2,7 +2,8 @@ import { mapGetters } from "vuex";
 
 export default {
     props: [
-        "building_data"
+        "building_data",
+        "transaction_data"
     ],
     data() {
         return {
@@ -24,7 +25,7 @@ export default {
                 { text: "Band", value: "band" },
                 { text: "Category", value: "category" },
             ],
-            transaction_data: []
+            transactions: []
         };
     },
     methods: {
@@ -33,22 +34,4 @@ export default {
     computed: {
         ...mapGetters({buildings: 'getBuildingData'})
     },
-    created() {
-        this.buildings.map(building => {
-            this.buildings.push( {
-                "transaction_id": building.id,
-                "name": building.name,
-                "address": building.address,
-                "ufa": building.floor_area,
-                "mhf": building.fuel,
-                "ber": building.ber,
-                "doi": building.issue,
-                "expiry":  building.expiry,
-                "assessor": building.assessor,
-                "band": building.band,
-                "category": building.category,
-                "dec_id": building.dec_id
-            })
-        })
-    }
 }

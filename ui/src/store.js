@@ -369,7 +369,7 @@ export default new Vuex.Store({
     async REGISTER_ASSET(context, payload) {
       try{
         const assets = await gcpService.createAsset(payload)
-        return assets
+        return assets 
       } catch(e) {
         log.log('error', 'Cannot '+e)
       }
@@ -381,6 +381,15 @@ export default new Vuex.Store({
       } catch(e) {
         log.log('error', 'Cannot '+e)
       }      
+    },
+    async TRACE_DEC(context, payload) {
+      try {
+        const dec = await gcpService.traceDec(payload)
+        console.log(dec)
+        return dec
+      } catch(e) {
+        log.log('error', 'Cannot '+e)
+      }
     }
   },
 })

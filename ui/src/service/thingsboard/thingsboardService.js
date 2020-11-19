@@ -2,7 +2,7 @@ import routes from './routes.json';
 import http from './http';
 
 export default class ThingsboardService {
-
+    
     static async getCustomers() {
         let ro = routes.customer_route.name.replace()
         try {
@@ -58,6 +58,7 @@ export default class ThingsboardService {
             return await Promise.reject(err)
         }
     }
+
     static async getSensorData(device_id) {
         let tmp_ro = routes.sensor_values.name.replace("%id%", device_id)
         try {
@@ -88,7 +89,7 @@ export default class ThingsboardService {
         }        
     }
 
-    static async deleteTelemetryData(){
+    static async deleteTelemetryData() {
         let tmp_ro = routes.delete_telemetry.name
         try {
             let r = await http.delete(tmp_ro)
@@ -99,7 +100,6 @@ export default class ThingsboardService {
     }
 
     static async updateAssetAttribute(body, id) {
-        // body = JSON.parse(body)
         let tmp_ro = routes.update_asset_attribute.name.replace("%id%", id)
         try {
             let r = await http.post(tmp_ro, body)
@@ -108,9 +108,8 @@ export default class ThingsboardService {
             return await Promise.reject(err)
         }       
     }
+
     static async updateDeviceAttribute(body, id) {
-        // body = JSON.parse(body)
-        // console.log(routes.update_dec_device_attribute)
         let tmp_ro = routes.update_dec_device_attribute.name.replace("%id%", id)
         try {
             let r = await http.post(tmp_ro, body)

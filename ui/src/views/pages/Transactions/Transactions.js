@@ -11,27 +11,8 @@ export default {
 },
 data() {
     return {
-        id: '',
-        name: '',
         selected_building:[],
         dialog: false,
-        headers: [
-        {
-        text: "Name",
-        align: "start",
-        sortable: false,
-        value: "name"
-        },
-        { text: "Address", value: "address" },
-        { text: "Useful Floor Area", value: "ufa" },
-        { text: "Main Heating Fuel", value: "mhf" },
-        { text: "BER Number", value: "ber" },
-        { text: "DOI", value: "doi" },
-        { text: "Expiry", value: "expiry" },
-        { text: "Assessor", value: "assessor" },
-        { text: "Band", value: "band" },
-        { text: "Category", value: "category" },
-        ],
         transactions: [],
         views: [
             {
@@ -49,29 +30,26 @@ data() {
 computed: {
     ...mapGetters({buildings: 'getBuildingData'}),
     getBuildings() {
-    return this.selected_building
+        return this.selected_building
     }
 },
 methods: {
     setName(b) {
-        this.name = b.name
-        this.id = b.id
-        this.selected_building = []
-        this.buildings.map(building => {
-            if(building.id === this.id)
-                this.selected_building.push({
-                    "id": building.id,
-                    "name": building.name,
-                    "address": building.address,
-                    "ufa": building.floor_area,
-                    "mhf": building.fuel,
-                    "ber": building.ber,
-                    "doi": building.issue,
-                    "expiry": building.expiry,
-                    "assessor": building.assessor,
-                    "band": building.band,
-                    "category": building.category,
-                })
+        this.selected_building.push({
+            "transaction_id": b.id,
+            "name": b.name,
+            "address": b.address,
+            "ufa": b.floor_area,
+            "mhf": b.fuel,
+            "ber": b.ber,
+            "doi": b.issue,
+            "expiry": b.expiry,
+            "assessor": b.assessor,
+            "band": b.band,
+            "category": b.category,
+        })
+        this.$store.dispatch("TRACE_DEC", b.id).then(result => {
+            this.transactions = result
         })
     },
 }

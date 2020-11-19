@@ -80,32 +80,24 @@ export default {
                     building_data = building
                 }
             })
+
             if(building_data.dlt_status === true) {
                 confirm("Building already registered to the ledger!")
                 return 
             }
-            let status = ""
-            if(building_data.assessor === 'Not Verified') {
-                status = "Pending"
-            } else {
-                status = "Verified"
-            }
 
-            // this.$store.dispatch("REGISTER_ASSET", {
-            //     "fcn": "createAsset",
-            //     "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
-            //     "chaincodeName":"identitycontract",
-            //     "channelName" : "mychannel",
-            //     "args": [building_data.name, building_data.category, status, {
-            //         "environment":building_data.environment,
-            //         "fuel": building_data.fuel,
-            //         "id": building_data.id,
-            //         "category": building_data.dec_category,
-            //         "main_fuel": building_data.main_fuel,
-            //         "hours": building_data.hours,
-            //         "floor": building_data.floor
-            //     }]
-            // })
+            let status = "Approved"
+
+            this.$store.dispatch("REGISTER_ASSET", {
+                "fcn": "createAsset",
+                "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
+                "chaincodeName":"identitycontract",
+                "channelName" : "mychannel",
+                "args": [building_data.id, building_data.category, status, `{\"environment\": \"${building_data.environment}\",\"name\": \"${building_data.name}\",\"main_fuel\": \"${building_data.fuel}\"}`
+                ]
+            }).then(result => {
+                console.log(result)
+            })
             let payload = {
                 "body": {
                     "dlt_status": true
@@ -116,12 +108,8 @@ export default {
                 this.register_building = true
                 building_data.dlt_status = true
                 this.dlt_status = true                   
-            }).then(a => {
-                // confirm("Ledger Registration ID: "+building_data.id+". Please Login again to see changes.")
-                // this.$store.commit("clearData")
-                // this.$router.push({name: "Login"})
-                // location.reload(); 
             })
+            confirm("Ledger Registration ID: "+building_data.id+".")
         },
         async generateDec() {
             let data = ""
@@ -146,7 +134,6 @@ export default {
                         }
                     }
                 })
-                console.log(data)
                 let default_unit = "kWh"
                 this.dec.category = data.category
                 this.dec.environment = data.environment
@@ -162,61 +149,54 @@ export default {
                 this.dec.fossil_type = data.fuel,
                 this.dec.fossil_unit = default_unit,
                 this.dec.year = years
+
                 let body
-                Dec.dec(
+                let result = Dec.dec(
                     this.dec.category, this.dec.environment, this.dec.latitude,
                     this.dec.longitude, this.dec.hours, this.dec.total_useful_floor_area, 
                     this.dec.sales_floor_area, this.dec.net_lettable_aream, this.dec.electricity_energy_use,
                     this.dec.electricity_energy_unit, this.dec.fossil_use, this.dec.fossil_type,
                     this.dec.fossil_unit, this.dec.year
-                ).then(result => {
-                   body = {
-                       "ber": result.ber,
-                       "co2_performance": result.co2_performance,
-                       "band": result.rating_scale,
-                       "total_energy_use_per_area": result.total_energy_use_per_area,
-                       "annual_non_electrical": result.fossil_thermal_benchmark_degree_day_and_occupancy_adjusted,
-                       "annual_electrical": result.electricity_benchmark_converted,
-                       "building_electrical": result.electricity_typical_benchmark,
-                       "building_non_electrical": result.fossil_thermal_energy_use_per_area,
-                       "dlt_status": false,
-                       "dlt_cert_status": false,
-                       "certificate_verified": false,
-                       "assessor": 'Not Verified'
-                   }
-                   this.$store.dispatch("UPDATE_DEC", {"body": body, "id": data.dec_id} ).then(r => {
-                    this.generate_dec = true              
-                })
-               })
-            //    try {
-            //     this.$store.dispatch("REGISTER_DEC", {
-            //         "fcn": "createDEC",
-            //         "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
-            //         "chaincodeName":"deccontract",
-            //         "channelName" : "mychannel",
-            //         "args": [data.id, data.name, data.category, data.ber,
-            //                 data.annual_electrical, data.annual_non_electrical, data.date_of_issue,
-            //                 data.expiry, data.band]
-            //         })
-            //         let payload = {
-            //             "body": {
-            //                 "dlt_cert_status": true
-            //             },
-            //             "id": data.id
-            //         }
-            //         setTimeout(() => { confirm("Writing to the Ledger..");}, 5000)
-            //         this.$store.dispatch("UPDATE_ASSET_STATUS", payload).then(_ => {
-            //            data.dlt_cert_status = true
-            //            this.dlt_status = true
-            //            confirm("Certification Registration ID: "+data.id+". Please Login again to see changes.")
-            //            this.$store.commit("clearData")
-            //            this.$router.push({name: "Login"})
-            //            location.reload();
-            //         })
-            //    } catch(Exception) {
-            //        return 
-            //    }
+                )
 
+                body = {
+                    "ber": result.ber,
+                    "co2_performance": result.co2_performance,
+                    "band": result.rating_scale,
+                    "total_energy_use_per_area": result.total_energy_use_per_area,
+                    "annual_non_electrical": result.fossil_thermal_benchmark_degree_day_and_occupancy_adjusted,
+                    "annual_electrical": result.electricity_benchmark_converted,
+                    "building_electrical": result.electricity_typical_benchmark,
+                    "building_non_electrical": result.fossil_thermal_energy_use_per_area,
+                    "dlt_status": false,
+                    "dlt_cert_status": false,
+                    "certificate_verified": false,
+                    "assessor": 'Not Verified'
+                }
+
+                this.$store.dispatch("UPDATE_DEC", {"body": body, "id": data.dec_id} ).then(r => {
+                    this.generate_dec = true 
+                })
+
+                // this.$store.dispatch("REGISTER_DEC", {
+                //     "fcn": "createDEC",
+                //     "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
+                //     "chaincodeName":"deccontract",
+                //     "channelName" : "mychannel",
+                //     "args": [data.id, data.name, data.category, data.ber,
+                //             data.annual_electrical, data.annual_non_electrical, data.date_of_issue,
+                //             data.expiry, data.band]
+                //     })
+                //     let payload = {
+                //         "body": {
+                //             "dlt_cert_status": true
+                //         },
+                //         "id": data.id
+                //     }
+                //     this.$store.dispatch("UPDATE_ASSET_STATUS", payload).then( _ => {
+                //        data.dlt_cert_status = true
+                //     })
+                // confirm("Certification Registration ID: "+data.id+". Please Login again to see changes.")
             }
         }
     },
