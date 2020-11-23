@@ -337,6 +337,7 @@ export default new Vuex.Store({
           return e
       }
     },
+
     async UPDATE_TELEMETRY(context) {
       let nimbus_e_2016_body = '{"ts":1546257540000, "values": {"sensorvalue": 185150}}'
       let nimbus_gas_2016_body = '{"ts":1546257540000, "values": {"sensorvalue": 162050}}'
@@ -356,16 +357,19 @@ export default new Vuex.Store({
         }
 
       }
-    },    
+    },
+
     async UPDATE_DEC(context, payload) {
       ThingsboardService.updateDeviceAttribute(payload.body, payload.id).then(t=> 
         {context.dispatch("LOAD_DATA", 999)})
-    },    
+    },  
+
     async UPDATE_ASSET_STATUS(context, payload) {
       ThingsboardService.updateAssetAttribute(payload.body, payload.id)
       context.commit('clearData')
       context.dispatch("LOAD_DATA", 999)
     },
+
     async REGISTER_ASSET(context, payload) {
       try{
         const assets = await gcpService.createAsset(payload)
@@ -374,6 +378,7 @@ export default new Vuex.Store({
         log.log('error', 'Cannot '+e)
       }
     },
+
     async REGISTER_DEC(context, payload) {
       try{
         const dec = await gcpService.createDec(payload)
@@ -382,6 +387,7 @@ export default new Vuex.Store({
         log.log('error', 'Cannot '+e)
       }      
     },
+
     async TRACE_DEC(context, payload) {
       try {
         const dec = await gcpService.traceDec(payload)

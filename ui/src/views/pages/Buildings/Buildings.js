@@ -87,7 +87,7 @@ export default {
             }
 
             let status = "Approved"
-
+            console.log(building_data)
             this.$store.dispatch("REGISTER_ASSET", {
                 "fcn": "createAsset",
                 "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
@@ -104,6 +104,7 @@ export default {
                 },
                 "id": building_data.dec_id
             }
+            console.log(building_data)
             this.$store.dispatch("UPDATE_DEC", {"body": payload.body, "id": payload.id}).then(tb => {
                 this.register_building = true
                 building_data.dlt_status = true
@@ -151,52 +152,44 @@ export default {
                 this.dec.year = years
 
                 let body
-                let result = Dec.dec(
+                Dec.dec(
                     this.dec.category, this.dec.environment, this.dec.latitude,
                     this.dec.longitude, this.dec.hours, this.dec.total_useful_floor_area, 
                     this.dec.sales_floor_area, this.dec.net_lettable_aream, this.dec.electricity_energy_use,
                     this.dec.electricity_energy_unit, this.dec.fossil_use, this.dec.fossil_type,
                     this.dec.fossil_unit, this.dec.year
-                )
-
-                body = {
-                    "ber": result.ber,
-                    "co2_performance": result.co2_performance,
-                    "band": result.rating_scale,
-                    "total_energy_use_per_area": result.total_energy_use_per_area,
-                    "annual_non_electrical": result.fossil_thermal_benchmark_degree_day_and_occupancy_adjusted,
-                    "annual_electrical": result.electricity_benchmark_converted,
-                    "building_electrical": result.electricity_typical_benchmark,
-                    "building_non_electrical": result.fossil_thermal_energy_use_per_area,
-                    "dlt_status": false,
-                    "dlt_cert_status": false,
-                    "certificate_verified": false,
-                    "assessor": 'Not Verified'
-                }
-
-                this.$store.dispatch("UPDATE_DEC", {"body": body, "id": data.dec_id} ).then(r => {
-                    this.generate_dec = true 
+                ).then(result => {
+                    body = {
+                        "ber": result.ber,
+                        "co2_performance": result.co2_performance,
+                        "band": result.rating_scale,
+                        "total_energy_use_per_area": result.total_energy_use_per_area,
+                        "annual_non_electrical": result.fossil_thermal_benchmark_degree_day_and_occupancy_adjusted,
+                        "annual_electrical": result.electricity_benchmark_converted,
+                        "building_electrical": result.electricity_typical_benchmark,
+                        "building_non_electrical": result.fossil_thermal_energy_use_per_area,
+                        "dlt_status": false,
+                        "dlt_cert_status": true,
+                        "certificate_verified": false,
+                        "assessor": 'Not Verified'
+                    }
+    
+                    this.$store.dispatch("UPDATE_DEC", {"body": body, "id": data.dec_id} ).then(r => {
+                        this.generate_dec = true 
+                    })
                 })
-
-                // this.$store.dispatch("REGISTER_DEC", {
-                //     "fcn": "createDEC",
-                //     "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
-                //     "chaincodeName":"deccontract",
-                //     "channelName" : "mychannel",
-                //     "args": [data.id, data.name, data.category, data.ber,
-                //             data.annual_electrical, data.annual_non_electrical, data.date_of_issue,
-                //             data.expiry, data.band]
-                //     })
-                //     let payload = {
-                //         "body": {
-                //             "dlt_cert_status": true
-                //         },
-                //         "id": data.id
-                //     }
-                //     this.$store.dispatch("UPDATE_ASSET_STATUS", payload).then( _ => {
-                //        data.dlt_cert_status = true
-                //     })
-                // confirm("Certification Registration ID: "+data.id+". Please Login again to see changes.")
+                console.log(data)
+                this.$store.dispatch("REGISTER_DEC", {
+                    "fcn": "createDEC",
+                    "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
+                    "chaincodeName":"deccontract",
+                    "channelName" : "mychannel",
+                    "args": [data.dec_id, data.id, data.category, data.ber,
+                            data.annual_electrical, data.annual_non_electrical, data.date_of_issue,
+                            data.expiry, data.band]
+                    }).then(result => {
+                        console.log(result)
+                    })
             }
         }
     },
