@@ -34,7 +34,8 @@ computed: {
     }
 },
 methods: {
-    setName(b) {
+    async setName(b) {
+        console.log(b)
         this.selected_building.push({
             "transaction_id": b.id,
             "name": b.name,
@@ -48,7 +49,17 @@ methods: {
             "band": b.band,
             "category": b.category,
         })
-        this.$store.dispatch("TRACE_DEC", b.id).then(result => {
+        let payload = {
+            "params": {
+                fcn: "traceDEC",
+                chainCodeName: "deccontract",
+                channelName: "mychannel",
+                // args: JSON.stringify([b.dec_id]),
+                args: [b.dec_id],
+            },
+        }
+        this.$store.dispatch("TRACE_DEC", payload).then(result => {
+            console.log(result)
             this.transactions = result
         })
     },

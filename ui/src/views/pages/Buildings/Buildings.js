@@ -115,6 +115,7 @@ export default {
             })
             confirm("Ledger Registration ID: "+building_data.id+".")
         },
+
         async generateDec() {
             let data = ""
             if(this.name.length > 1) {

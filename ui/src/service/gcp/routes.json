@@ -19,8 +19,8 @@
         "name": "/channels/mychannel/chaincodes/deccontract?fcn=getDEC&chainCodeName=decontract&channelName=mychannel&args=%args%",
         "method": "get"
     },
-    "trace_dec" :{
-        "name": "/channels/mychannel/chaincodes/deccontract?fcn=traceDEC&chainCodeName=decontract&channelName=mychannel&args=[%args%]",
+    "trace_dec" : {
+        "name": "/channels/mychannel/chaincodes/deccontract",
         "method": "get"
     },
     "get_asset" :{ 

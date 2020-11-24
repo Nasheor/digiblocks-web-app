@@ -40,6 +40,7 @@ export default class ThingsboardService {
         let ro= routes.get_asset.name.replace("%args%", payload)
         try {
             const res = await http.get(ro)
+            return await Promise.resolve(res.data)
         } catch(err) {
             return await Promise.reject(err)
         }
@@ -49,15 +50,21 @@ export default class ThingsboardService {
         let ro= routes.get_dec.name.replace("%args%", payload)
         try {
             const res = await http.get(ro)
+            return await Promise.resolve(res.data)
         } catch(err) {
             return await Promise.reject(err)
         }
     }
 
     static async traceDec(payload) {
-        let ro= routes.trace_dec.name.replace("%args%", payload)
+        const qs = require('qs')
+        let ro= routes.trace_dec.name
         try {
-            const res = await http.post(ro, body)
+            const res = await http.get(ro, {params: payload.params, paramsSerializer: function(params) {
+                    return qs.stringify(params)
+                } 
+            })
+            return await Promise.resolve(res.data)
         } catch(err) {
             return await Promise.reject(err)
         }

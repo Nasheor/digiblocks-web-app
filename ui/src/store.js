@@ -275,6 +275,7 @@ export default new Vuex.Store({
                                 else if(attr.key === "certificate_generated") 
                                   dec_data.certificate_generated = attr.value                                                                                                                                                                                                                                                                                                                                            
                               })
+
                               context.commit("setBuildingData", {
                                 "name": item.name,
                                 "id": item.id.id,
@@ -309,7 +310,8 @@ export default new Vuex.Store({
                                 "certificate_keys": data.filter(item => item.key === "certificate_keys")[0].value,
                                 "dec_id": dec_data.device_id,
                                 "certificate_generated": dec_data.certificate_generated
-                              })  
+                              })
+
                             } 
                           } else {
                             ThingsboardService.getTelemetryData(device.to.id).then(sensor_data => {
@@ -357,6 +359,8 @@ export default new Vuex.Store({
         }
 
       }
+
+      context.dispatch("LOAD_DATA", 999)   
     },
 
     async UPDATE_DEC(context, payload) {
@@ -365,9 +369,9 @@ export default new Vuex.Store({
     },  
 
     async UPDATE_ASSET_STATUS(context, payload) {
-      ThingsboardService.updateAssetAttribute(payload.body, payload.id)
-      context.commit('clearData')
-      context.dispatch("LOAD_DATA", 999)
+      ThingsboardService.updateAssetAttribute(payload.body, payload.id).then( r => {
+        context.dispatch("LOAD_DATA", 999)   
+      })
     },
 
     async REGISTER_ASSET(context, payload) {
@@ -400,10 +404,27 @@ export default new Vuex.Store({
     async TRACE_DEC(context, payload) {
       try {
         const dec = await gcpService.traceDec(payload)
-        console.log(dec)
         return dec
       } catch(e) {
         log.log('error', 'Cannot '+e)
+      }
+    },
+
+    async GET_REGISTERED_ASSETS(context, payload) {
+      try {
+        const transaction_data = await gcpService.getAsset(payload)
+        return transaction_data
+      } catch(e) {
+        log.log('error', 'Cannot '+e)
+      }
+    },
+
+    async GET_DEC_TRANSACTIONS(context, payload) {
+      try {
+        const transaction_data = await gcpService.getDec(payload)       
+        return transaction_data
+      } catch(e) {
+          log.log('error', 'Cannot '+e)
       }
     }
   },
