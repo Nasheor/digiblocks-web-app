@@ -58,9 +58,9 @@
                             <template v-if="tab===0">
                                 <Dec :buildings="selected_building" :transaction_data="transactions" />
                             </template>
-                            <!-- <template v-else>
-                                <Registration :buildings="selected_building" />
-                            </template> -->
+                            <template v-else>
+                                <Registration :buildings="selected_building" :transaction_data="transactions" />
+                            </template>
                         </v-card>
                     </v-tab-item>
                 </v-tabs-items>

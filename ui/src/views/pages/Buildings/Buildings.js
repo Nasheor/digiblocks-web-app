@@ -45,7 +45,7 @@ export default {
         ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData',
                         'getDevicesData']),
         getDltStatus() {
-            return this.b_card_data.dlt_status;
+            return this.b_card_data.dlt_status && this.b_card_data.dlt_cert_status;
          },
          togglePop() {
              return this.generate_dec
@@ -168,7 +168,7 @@ export default {
                         "annual_electrical": result.electricity_benchmark_converted,
                         "building_electrical": result.electricity_typical_benchmark,
                         "building_non_electrical": result.fossil_thermal_energy_use_per_area,
-                        "dlt_status": false,
+                        "dlt_status": true,
                         "dlt_cert_status": true,
                         "certificate_verified": false,
                         "assessor": 'Not Verified'
@@ -176,20 +176,24 @@ export default {
     
                     this.$store.dispatch("UPDATE_DEC", {"body": body, "id": data.dec_id} ).then(r => {
                         this.generate_dec = true 
+                    }).then(r => {
+                        console.log("Updated Thingsboard!")
                     })
                 })
-                console.log(data)
-                this.$store.dispatch("REGISTER_DEC", {
+                let register_dec_body = {
                     "fcn": "createDEC",
                     "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
                     "chaincodeName":"deccontract",
                     "channelName" : "mychannel",
-                    "args": [data.dec_id, data.id, data.category, data.ber,
-                            data.annual_electrical, data.annual_non_electrical, data.date_of_issue,
-                            data.expiry, data.band]
-                    }).then(result => {
-                        console.log(result)
-                    })
+                    "args": [data.dec_id, data.id, data.category, data.ber.toString(),
+                            data.annual_electrical.toString(), data.annual_non_electrical.toString(), data.issue,
+                            data.expiry, data.band]                    
+                }
+                this.$store.dispatch("REGISTER_DEC", {
+                    "body": register_dec_body
+                }).then(result => {
+                    console.log(result)
+                })
             }
         }
     },

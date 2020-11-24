@@ -270,8 +270,8 @@ export default new Vuex.Store({
                                   dec_data.total_energy_use_per_area = attr.value
                                 else if(attr.key === "date_of_issue") 
                                   dec_data.date_of_issue = attr.value   
-                                else if(attr.key === "valid_until") 
-                                  dec_data.valid_until = attr.value 
+                                else if(attr.key === "date_of_expiry") 
+                                  dec_data.date_of_expiry = attr.value 
                                 else if(attr.key === "certificate_generated") 
                                   dec_data.certificate_generated = attr.value                                                                                                                                                                                                                                                                                                                                            
                               })
@@ -288,7 +288,7 @@ export default new Vuex.Store({
                                 "assessor": dec_data.assessor,
                                 "band": dec_data.band,
                                 "issue": dec_data.date_of_issue,
-                                "expiry": dec_data.valid_until,
+                                "expiry": dec_data.date_of_expiry,
                                 "ber": dec_data.ber,
                                 "fuel":data.filter(item=> item.key==="main_fuel")[0].value,
                                 "certificate_keys": data.filter(item=> item.key==="certificate_keys")[0].value.split(','),
@@ -371,7 +371,7 @@ export default new Vuex.Store({
     },
 
     async REGISTER_ASSET(context, payload) {
-      try{
+      try {
         const assets = await gcpService.createAsset(payload)
         return assets 
       } catch(e) {
@@ -380,8 +380,9 @@ export default new Vuex.Store({
     },
 
     async REGISTER_DEC(context, payload) {
-      try{
-        const dec = await gcpService.createDec(payload)
+      try {
+        console.log(payload.body)
+        const dec = await gcpService.createDec(payload.body)
         return dec
       } catch(e) {
         log.log('error', 'Cannot '+e)
