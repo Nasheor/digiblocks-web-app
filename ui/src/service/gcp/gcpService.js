@@ -30,7 +30,6 @@ export default class ThingsboardService {
         console.log(ro)
         try {
             const res = await http.post(ro, body)
-            console.log(res)
             return await Promise.resolve(res.data)
         } catch(err) {
             return await Promise.reject(err)

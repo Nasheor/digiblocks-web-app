@@ -73,7 +73,7 @@
                             min-width="0"
                             color="error"
                             @click="generateDec"
-                            v-if="getDltStatus === false"
+                            v-if="getDltCertStatus === false"
                           >
                             <v-icon class="mr-3">mdi-certificate</v-icon>
                             Generate DEC

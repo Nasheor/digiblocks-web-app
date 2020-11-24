@@ -45,7 +45,10 @@ export default {
         ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData',
                         'getDevicesData']),
         getDltStatus() {
-            return this.b_card_data.dlt_status && this.b_card_data.dlt_cert_status;
+            return this.b_card_data.dlt_status;
+         },
+         getDltCertStatus() {
+             return this.b_card_data.dlt_cert_status;
          },
          togglePop() {
              return this.generate_dec

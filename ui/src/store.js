@@ -381,12 +381,20 @@ export default new Vuex.Store({
 
     async REGISTER_DEC(context, payload) {
       try {
-        console.log(payload.body)
         const dec = await gcpService.createDec(payload.body)
         return dec
       } catch(e) {
         log.log('error', 'Cannot '+e)
       }      
+    },
+
+    async CONFIRM_DEC(context, payload) {
+      try {
+        const dec = await gcpService.createDec(payload)
+        return dec
+      } catch(e) {
+        log.log('error', 'Cannot '+e)
+      }  
     },
 
     async TRACE_DEC(context, payload) {
