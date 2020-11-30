@@ -59,10 +59,13 @@ export default class ThingsboardService {
     static async traceDec(payload) {
         const qs = require('qs')
         let ro= routes.trace_dec.name
+        console.log(payload)
         try {
-            const res = await http.get(ro, {params: payload.params, paramsSerializer: function(params) {
-                    return qs.stringify(params)
-                } 
+            const res = await http.get(ro, {
+                params: payload.params, 
+                paramsSerializer: params => {
+                    return qs.stringify(params, {arrayFormat: 'repeat'})
+                  }
             })
             return await Promise.resolve(res.data)
         } catch(err) {

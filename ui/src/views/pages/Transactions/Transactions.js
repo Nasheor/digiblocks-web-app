@@ -35,7 +35,6 @@ computed: {
 },
 methods: {
     async setName(b) {
-        console.log(b)
         this.selected_building.push({
             "transaction_id": b.id,
             "name": b.name,
@@ -54,7 +53,7 @@ methods: {
                 fcn: "traceDEC",
                 chainCodeName: "deccontract",
                 channelName: "mychannel",
-                // args: JSON.stringify([b.dec_id]),
+                //args: [JSON.stringify(b.dec_id)],
                 args: [b.dec_id],
             },
         }
