@@ -22,7 +22,7 @@
                     <v-divider vertical></v-divider>
                     <v-col cols="4" sm="4" lg="8" class="text-center border-left">
                         <h1 class="font-weight-light display-1 ml-0">
-                        {{building_data[certificate_keys[i]]}}
+                          {{building_data[certificate_keys[i]]}}
                         </h1>
                     </v-col>
                     </v-row>

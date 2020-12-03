@@ -43,7 +43,7 @@ export default {
     },
     computed: {
         ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData',
-                        'getDevicesData']),
+                        'getDevicesData', 'getRole']),
         getDltStatus() {
             return this.b_card_data.dlt_status;
          },
@@ -123,8 +123,7 @@ export default {
                 let device_data = {
                     'gas': '',
                     'electricity': '',
-                }
-                
+                }               
                 let years =  ''
                 let asset_id = ''
                 this.getDevicesData.map(device => {

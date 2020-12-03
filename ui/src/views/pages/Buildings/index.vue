@@ -73,7 +73,7 @@
                             min-width="0"
                             color="error"
                             @click="generateDec"
-                            v-if="getDltCertStatus === false"
+                            v-if="getDltCertStatus === false && getRole === 'Community Manager'"
                           >
                             <v-icon class="mr-3">mdi-certificate</v-icon>
                             Generate DEC
@@ -83,7 +83,7 @@
                           min-width="0"
                           color="error"
                           @click="registerBuilding"
-                          v-if="getDltStatus === false"
+                          v-if="getDltStatus === false && getRole === 'Community Manager'"
                         >
                           <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon>
                           Register Building
