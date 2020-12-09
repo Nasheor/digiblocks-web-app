@@ -54,8 +54,8 @@ methods: {
                 chainCodeName: "deccontract",
                 channelName: "mychannel",
                 // args: [JSON.stringify(b.dec_id)],
-                //args: JSON.stringify([b.dec_id]),
-                args: "[\"7e15e460-21a0-11eb-a1f6-dba677a2c98e\"]"
+                // args: JSON.stringify([b.dec_id]),
+                // args: "[\"7e15e460-21a0-11eb-a1f6-dba677a2c98e\"]"
                 // args: [b.dec_id]
             },
         }

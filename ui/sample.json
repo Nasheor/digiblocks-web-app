@@ -1,4 +1,4 @@
-"energy_use": [
+"energy_use" : [
     {​​​​​​​"year":2016,"energy_use":[
         {​​​​​​​"type":"Electricity","consumption":185250,"unit":"kWh"}​​​​​​​,
         {​​​​​​​"type":"Natural gas","consumption":262050,"unit":"kWh"}​​​​​​​
@@ -35,7 +35,6 @@ telemetry_data = {'ts': epoch_timestamp_ms, 'values': {'sensorvalue': value}}
 
 // Timeline visualization for transactions
 // Focus on Data services 
-
 
 // Deliverables for Work Package 3
 // Add the table about user roles to the documentation
