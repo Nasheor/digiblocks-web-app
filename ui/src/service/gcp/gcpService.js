@@ -81,4 +81,21 @@ export default class ThingsboardService {
             return await Promise.reject(err)
         }
     }
+
+    static async traceAsset(payload) {
+        const qs = require('qs')
+        let ro= routes.trace_asset.name
+        console.log(payload)
+        try {
+            const res = await http.get(ro, {
+                params: payload.params, 
+                paramsSerializer: params => {
+                    return qs.stringify(params, {arrayFormat: 'repeat'})
+                  }
+            })
+            return await Promise.resolve(res.data)
+        } catch(err) {
+            return await Promise.reject(err)
+        }
+    }
 }

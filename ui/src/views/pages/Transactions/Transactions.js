@@ -13,7 +13,8 @@ data() {
     return {
         selected_building:[],
         dialog: false,
-        transactions: [],
+        transactions_dec: [],
+        transactions_asset: [],
         views: [
             {
                 'name': 'Dec',
@@ -48,20 +49,31 @@ methods: {
             "band": b.band,
             "category": b.category,
         })
-        let payload = {
+        let payload_dec = {
             "params": {
                 fcn: "traceDEC",
                 chainCodeName: "deccontract",
                 channelName: "mychannel",
-                // args: [JSON.stringify(b.dec_id)],
-                // args: JSON.stringify([b.dec_id]),
-                // args: "[\"7e15e460-21a0-11eb-a1f6-dba677a2c98e\"]"
-                // args: [b.dec_id]
+                args: `["${b.dec_id}"]`
             },
         }
-        this.$store.dispatch("TRACE_DEC", payload).then(result => {
-            console.log(result)
-            this.transactions = result
+        let payload_asset = {
+            "params" :{
+                fcn: "traceAsset",
+                chainCodeName: "identitycontract",
+                channelName: "mychannel",
+                args: `["${b.asset_id}"]`
+            }
+        }
+
+        this.$store.dispatch("TRACE_DEC", payload_dec).then(result => {
+            this.transactions_dec = result.result
+            console.log(this.transactions_dec)
+            // this.$store.dispatch("TRACE_ASSET", payload_asset).then(result => {
+            //     console.log(result)
+            //     this.transactions_asset = Object.entries(result.result)
+            //     console.log(this.transactions_asset)
+            // })
         })
     },
 }

@@ -47,6 +47,9 @@ export default {
 
     },
     computed: {
-        ...mapGetters({buildings: 'getBuildingData'})
+        ...mapGetters({buildings: 'getBuildingData'}),
+        getValues() {
+            return Object.entries(this.transaction_data.Value)
+        }
     },
 }

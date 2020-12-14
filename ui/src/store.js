@@ -409,6 +409,15 @@ export default new Vuex.Store({
         log.log('error', 'Cannot '+e)
       }
     },
+    
+    async TRACE_ASSET(context, payload) {
+      try {
+        const asset = await gcpService.traceAsset(payload)
+        return asset
+      } catch(e) {
+        log.log('error', 'Cannot '+e)
+      }      
+    },
 
     async GET_REGISTERED_ASSETS(context, payload) {
       try {

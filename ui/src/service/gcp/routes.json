@@ -30,5 +30,9 @@
     "update_asset_status" :{
         "name": "/channels/mychannel/chaincodes/identitycontract",
         "method": "post"
+    }, 
+    "trace_asset": {
+        "name": "/channels/mychannel/chaincodes/identitycontract",
+        "method": "get"
     }
 }

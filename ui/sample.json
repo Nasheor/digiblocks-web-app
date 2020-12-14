@@ -45,3 +45,8 @@ telemetry_data = {'ts': epoch_timestamp_ms, 'values': {'sensorvalue': value}}
 // gives you insight on where the energy is being consumed.
 // DEC calculations - explain the sequence of activities. 
 // Default icon and then different icon for every activity on the transaction view
+
+
+// Walkthrough next week all the features
+// Get the documentation done
+// 
