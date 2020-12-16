@@ -3,7 +3,6 @@ import { mapGetters } from "vuex";
 export default {
     props: [
         "building_data",
-        "transaction_data"
     ],
     data() {
         return {
@@ -48,8 +47,9 @@ export default {
     },
     computed: {
         ...mapGetters({buildings: 'getBuildingData'}),
-        getValues() {
-            return Object.entries(this.transaction_data.Value)
-        }
+        ...mapGetters({transaction_data: 'getTransactionData'}),
     },
+    created() {
+        console.log(this.transaction_data)
+    }
 }

@@ -29,6 +29,7 @@ export default new Vuex.Store({
     email: '',
     certificates: [],
     dec_ids: [],
+    transaction_data_dec: [],
   },
   mutations: {
     clearData(state) {
@@ -94,6 +95,9 @@ export default new Vuex.Store({
     setEmail(state, payload) {
       state.email = payload
     },
+    setTransactionData(state, payload) {
+      state.transaction_data_dec = payload
+    }
    },
   getters: {
     getCompareBuildings(state) {
@@ -138,6 +142,9 @@ export default new Vuex.Store({
     getEmail(state) {
       return state.email;
     },
+    getTransactionData(state) {
+      return state.transaction_data_dec;
+    }
   },
   actions: {
     async LOAD_CUSTOMER_DETAILS(context, payload) {

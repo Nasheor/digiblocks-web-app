@@ -40,7 +40,58 @@
                       >
                           <v-expansion-panel-header>{{transaction.TxId}}</v-expansion-panel-header>
                           <v-expansion-panel-content>
-                            {{getValues}}
+                            <v-list subheader>
+                                <v-list-content>
+                                  <v-list-title>
+                                    Building Category:
+                                  </v-list-title>
+                                  <v-list-subtitle>
+                                   {{ transaction.Value.BuildingCategory }},
+                                  </v-list-subtitle>
+                                  <v-list-title>
+                                    Energy Consumption:
+                                  </v-list-title>
+                                  <v-list-subtitle>
+                                   {{ transaction.Value.EnergyConsumption }},
+                                  </v-list-subtitle>
+                                  <v-list-title>
+                                    Floor Area: 
+                                  </v-list-title>
+                                  <v-list-subtitle>
+                                   {{ transaction.Value.FloorArea }},
+                                  </v-list-subtitle>
+                                  <v-list-title>
+                                    Grade:
+                                  </v-list-title>
+                                  <v-list-subtitle>
+                                   {{ transaction.Value.Grade }},
+                                  </v-list-subtitle> 
+                                  <v-list-title>
+                                    Hours of Occupancy:
+                                  </v-list-title>
+                                  <v-list-subtitle>
+                                   {{ transaction.Value.HoursOfOccupancy }},
+                                  </v-list-subtitle>
+                                  <v-list-title>
+                                    Meter Start Date:
+                                  </v-list-title>
+                                  <v-list-subtitle>
+                                   {{ transaction.Value.MeterStartDate }},
+                                  </v-list-subtitle>  
+                                  <v-list-title>
+                                    Meter End Date:
+                                  </v-list-title>
+                                  <v-list-subtitle>
+                                   {{ transaction.Value.MetereEndDate }},
+                                  </v-list-subtitle>  
+                                  <v-list-title>
+                                    Status:
+                                  </v-list-title>
+                                  <v-list-subtitle>
+                                   {{ transaction.Value.status }}
+                                  </v-list-subtitle>                                                                                                                              
+                              </v-list-content>
+                            </v-list>
                           </v-expansion-panel-content>
                       </v-expansion-panel>
                     <v-divider class="my-4"></v-divider>

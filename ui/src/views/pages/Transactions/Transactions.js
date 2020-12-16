@@ -68,7 +68,9 @@ methods: {
 
         this.$store.dispatch("TRACE_DEC", payload_dec).then(result => {
             this.transactions_dec = result.result
+            
             console.log(this.transactions_dec)
+            this.$store.commit("setTransactionData", this.transactions_dec);
             // this.$store.dispatch("TRACE_ASSET", payload_asset).then(result => {
             //     console.log(result)
             //     this.transactions_asset = Object.entries(result.result)
