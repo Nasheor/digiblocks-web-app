@@ -40,58 +40,120 @@
                       >
                           <v-expansion-panel-header>{{transaction.TxId}}</v-expansion-panel-header>
                           <v-expansion-panel-content>
-                            <v-list subheader>
-                                <v-list-content>
-                                  <v-list-title>
-                                    Building Category:
-                                  </v-list-title>
-                                  <v-list-subtitle>
-                                   {{ transaction.Value.BuildingCategory }},
-                                  </v-list-subtitle>
-                                  <v-list-title>
-                                    Energy Consumption:
-                                  </v-list-title>
-                                  <v-list-subtitle>
-                                   {{ transaction.Value.EnergyConsumption }},
-                                  </v-list-subtitle>
-                                  <v-list-title>
-                                    Floor Area: 
-                                  </v-list-title>
-                                  <v-list-subtitle>
-                                   {{ transaction.Value.FloorArea }},
-                                  </v-list-subtitle>
-                                  <v-list-title>
-                                    Grade:
-                                  </v-list-title>
-                                  <v-list-subtitle>
-                                   {{ transaction.Value.Grade }},
-                                  </v-list-subtitle> 
-                                  <v-list-title>
-                                    Hours of Occupancy:
-                                  </v-list-title>
-                                  <v-list-subtitle>
-                                   {{ transaction.Value.HoursOfOccupancy }},
-                                  </v-list-subtitle>
-                                  <v-list-title>
-                                    Meter Start Date:
-                                  </v-list-title>
-                                  <v-list-subtitle>
-                                   {{ transaction.Value.MeterStartDate }},
-                                  </v-list-subtitle>  
-                                  <v-list-title>
-                                    Meter End Date:
-                                  </v-list-title>
-                                  <v-list-subtitle>
-                                   {{ transaction.Value.MetereEndDate }},
-                                  </v-list-subtitle>  
-                                  <v-list-title>
-                                    Status:
-                                  </v-list-title>
-                                  <v-list-subtitle>
-                                   {{ transaction.Value.status }}
-                                  </v-list-subtitle>                                                                                                                              
-                              </v-list-content>
-                            </v-list>
+                            <v-row>
+                              <v-col cols="12" sm="6" lg="3" class="py-0">
+                                <v-card height="150" class="mb-2">
+                                  <v-card-text>
+                                    <v-row class="d-flex align-center">
+                                      <v-col cols="6">
+                                        <h2 class="font-weight-light headline">Building Category</h2>
+                                        <h5
+                                          class="subtitle-2 text-no-wrap blue-grey--text text--lighten-2 font-weight-regular"
+                                        > {{ transaction.Value.BuildingCategory }}</h5>
+                                      </v-col>
+                                    </v-row>
+                                  </v-card-text>
+                                </v-card>
+                              </v-col> 
+                              <v-col cols="12" sm="6" lg="3" class="py-0">
+                                <v-card height="150">
+                                  <v-card-text>
+                                    <v-row class="d-flex align-center">
+                                      <v-col cols="6">
+                                        <h2 class="font-weight-light headline">Energy Consumption</h2>
+                                        <h5
+                                          class="subtitle-2 text-no-wrap blue-grey--text text--lighten-2 font-weight-regular"
+                                        > {{ transaction.Value.EnergyConsumption }}</h5>
+                                      </v-col>
+                                    </v-row>
+                                  </v-card-text>
+                                </v-card>
+                              </v-col>
+                              <v-col cols="12" sm="6" lg="3" class="py-0">
+                                <v-card height="150">
+                                  <v-card-text>
+                                    <v-row class="d-flex align-center">
+                                      <v-col cols="6">
+                                        <h2 class="font-weight-light headline">Floor Area</h2>
+                                        <h5
+                                          class="subtitle-2 text-no-wrap blue-grey--text text--lighten-2 font-weight-regular"
+                                        >  {{ transaction.Value.FloorArea }}</h5>
+                                      </v-col>
+                                    </v-row>
+                                  </v-card-text>
+                                </v-card>
+                              </v-col> 
+                              <v-col cols="12" sm="6" lg="3" class="py-0">
+                                <v-card height="150">
+                                  <v-card-text>
+                                    <v-row class="d-flex align-center">
+                                      <v-col cols="6">
+                                        <h2 class="font-weight-light headline">Grade</h2>
+                                        <h5
+                                          class="subtitle-2 text-no-wrap blue-grey--text text--lighten-2 font-weight-regular"
+                                        >  {{ transaction.Value.Grade }}</h5>
+                                      </v-col>
+                                    </v-row>
+                                  </v-card-text>
+                                </v-card>
+                              </v-col>
+                              <v-col cols="12" sm="6" lg="3" class="py-0">
+                                <v-card height="150">
+                                  <v-card-text>
+                                    <v-row class="d-flex align-center">
+                                      <v-col cols="6">
+                                        <h2 class="font-weight-light headline">Hours of Occupancy</h2>
+                                        <h5
+                                          class="subtitle-2 text-no-wrap blue-grey--text text--lighten-2 font-weight-regular"
+                                        >   {{ transaction.Value.HoursOfOccupancy }}</h5>
+                                      </v-col>
+                                    </v-row>
+                                  </v-card-text>
+                                </v-card>
+                              </v-col> 
+                              <v-col cols="12" sm="6" lg="3" class="py-0">
+                                <v-card height="150">
+                                  <v-card-text>
+                                    <v-row class="d-flex align-center">
+                                      <v-col cols="6">
+                                        <h2 class="font-weight-light headline">Meter Start Date</h2>
+                                        <h5
+                                          class="subtitle-2 text-no-wrap blue-grey--text text--lighten-2 font-weight-regular"
+                                        >   {{ transaction.Value.MeterStartDate }}</h5>
+                                      </v-col>
+                                    </v-row>
+                                  </v-card-text>
+                                </v-card>
+                              </v-col> 
+                              <v-col cols="12" sm="6" lg="3" class="py-0">
+                                <v-card height="150">
+                                  <v-card-text>
+                                    <v-row class="d-flex align-center">
+                                      <v-col cols="6">
+                                        <h2 class="font-weight-light headline">Meter End Date</h2>
+                                        <h5
+                                          class="subtitle-2 text-no-wrap blue-grey--text text--lighten-2 font-weight-regular"
+                                        > {{ transaction.Value.MetereEndDate }}</h5>
+                                      </v-col>
+                                    </v-row>
+                                  </v-card-text>
+                                </v-card>
+                              </v-col>   
+                              <v-col cols="12" sm="6" lg="3" class="py-0">
+                                <v-card height="150">
+                                  <v-card-text>
+                                    <v-row class="d-flex align-center">
+                                      <v-col cols="6">
+                                        <h2 class="font-weight-light headline">Status</h2>
+                                        <h5
+                                          class="subtitle-2 text-no-wrap blue-grey--text text--lighten-2 font-weight-regular"
+                                        >{{ transaction.Value.status }}</h5>
+                                      </v-col>
+                                    </v-row>
+                                  </v-card-text>
+                                </v-card>
+                              </v-col>                                         
+                            </v-row>
                           </v-expansion-panel-content>
                       </v-expansion-panel>
                     <v-divider class="my-4"></v-divider>

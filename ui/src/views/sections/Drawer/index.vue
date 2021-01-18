@@ -31,7 +31,7 @@
           contain
         >
           <v-img
-            src="https://i.ibb.co/T16ZtGW/homer.png"
+            src="https://i.ibb.co/P5tsQk2/profile-placeholder.png"
             max-height="30"
           />
         </v-list-item-avatar>

@@ -70,7 +70,7 @@
         </v-btn>
       </template>
 
-      <v-list class="pa-5 pl-9">
+      <v-list class="pa-5 pl-9">        
         <h4 class="px-5 py-3 pt-2 font-weight-medium">Notifications</h4>
         <v-divider></v-divider>
         <v-list-item v-for="(notification, i) in notifications" :key="i" @click="href">
@@ -113,7 +113,7 @@
             contain
           >
             <v-img
-              src="https://i.ibb.co/T16ZtGW/homer.png"
+              src="https://i.ibb.co/P5tsQk2/profile-placeholder.png"
               max-height="30"
             />
           </v-list-item-avatar>

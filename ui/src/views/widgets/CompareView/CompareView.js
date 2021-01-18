@@ -48,7 +48,8 @@ export default {
                     "band": found.band,
                     "floor_area": found.floor_area,
                     "devices": found.devices,
-                    "assessor": found.assessor
+                    "assessor": found.assessor,
+                    "id": found.id,
                 })
         })
     }
