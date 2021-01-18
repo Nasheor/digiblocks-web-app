@@ -49,4 +49,18 @@ telemetry_data = {'ts': epoch_timestamp_ms, 'values': {'sensorvalue': value}}
 
 // Walkthrough next week all the features
 // Get the documentation done
+<<<<<<< HEAD
 // <a href="https://imgbb.com/"><img src="https://i.ibb.co/P5tsQk2/profile-placeholder.png" alt="profile-placeholder" border="0"></a>
+=======
+
+// Better UI for he DEC transactions
+// Change the UI of the transactions to a vertical output - it'll be useful to superimpose more information on the left hand side on the timeline. 
+// Add the certificate keys to the documentation
+// Add a generic marker to all the buildings 
+// In the section for the building summary data for the graphs for the buildings in the only that we know how it is possible
+// Add dlt status of the building to the asset itself. 
+// rating on the building can be hyperlinked to the building's DEC data itself
+// Add the work flow of the external verifier to the building modal
+// Icons can be changed on the left hand side for the building itself.
+// Building owners can also generate DEC data. 
+>>>>>>> 6dd3f90e6fcd405f8981b7f2f89fbe122b78b940
