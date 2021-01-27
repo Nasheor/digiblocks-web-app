@@ -9,6 +9,9 @@ import vuetify from './plugins/vuetify'
 import i18n from './i18n'
 import VueLayers from 'vuelayers'
 import 'vuelayers/lib/style.css' // needs css-loader
+import { MultiPointGeom } from 'vuelayers'
+
+Vue.use(MultiPointGeom)
 
 Vue.use(VueLayers)
 // all input/output coordinates, GeoJSON features in EPSG:4326 projection

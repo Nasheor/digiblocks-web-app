@@ -11,21 +11,20 @@
                 <v-col cols="4" sm="4" lg="6">
                     <div class="d-flex align-center">
                     <div class="ml-3">
-                        <h1 class="font-weight-light info--text mb-0 display-1">
-                            {{dashboard_data[7].value}}
-                        <sup>0</sup>
+                        <h1 class="font-weight-light mb-0 display-1">
+                            {{temperature.main.temp}}
+                        <sup>0</sup>F
                         </h1>
-                        <small class>Sunny Rainy day</small>
+                        <small class>{{temperature.weather[0].description}}</small>
                     </div>
                     </div>
                 </v-col>
                 <v-divider vertical></v-divider>
                 <v-col cols="4" sm="4" lg="5" class="text-center border-left">
-                    <h1 class="font-weight-light mb-0 display-1">
-                        {{ dashboard_data[8].value }}
+                    <h3 class="font-weight-light mb-0 display-1">
+                       FEELS LIKE {{temperature.main.feels_like}}
                     <sup>0</sup>
-                    </h1>
-                    <small class>Tonight</small>
+                    </h3>F
                 </v-col>
                 </v-row>
             </div>

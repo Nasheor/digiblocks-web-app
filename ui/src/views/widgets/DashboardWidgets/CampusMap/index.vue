@@ -3,15 +3,19 @@
     <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
              data-projection="EPSG:4326" style="height: 430px" class="mt-4">
       <vl-view :zoom.sync="zoom" :center.sync="center" :rotation.sync="rotation"></vl-view>
+
+
+      <vl-layer-tile>
+        <vl-source-osm></vl-source-osm>
+      </vl-layer-tile>
+
+      
       <vl-feature>
         <vl-geom-multi-point  :coordinates="markers"></vl-geom-multi-point>
         <vl-style-box v-for="marker of markers" :key="marker[0]">
-          <vl-style-icon  :src="require('@/assets/images/marker.png')" :scale="0.12"></vl-style-icon>
+          <vl-style-icon  :src="require('../../../../assets/images/marker.png')" :scale="0.12"></vl-style-icon>
         </vl-style-box>        
       </vl-feature>
-      <vl-layer-tile id="osm">
-        <vl-source-osm></vl-source-osm>
-      </vl-layer-tile>
     </vl-map>
     <v-card-text>
       <v-simple-table class="month-table">

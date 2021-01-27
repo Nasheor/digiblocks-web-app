@@ -1,30 +1,51 @@
-"energy_use" : [
-    {​​​​​​​"year":2016,"energy_use":[
-        {​​​​​​​"type":"Electricity","consumption":185250,"unit":"kWh"}​​​​​​​,
-        {​​​​​​​"type":"Natural gas","consumption":262050,"unit":"kWh"}​​​​​​​
-    ]}​​​​​​​,
-    {​​​​​​​"year":2017,"energy_use":[
-        {​​​​​​​"type":"Electricity","devices":[
-            {​​​​​​​"name":"LVEM10_JT_450780","unit":"kWh"}​​​​​​​
-        ]}​​​​​​​,
-        {​​​​​​​"type":"Natural gas","devices":[
-            {​​​​​​​"name":"UC32_No_2:5:26:A","unit":"m3"}​​​​​​​,
-            {​​​​​​​"name":"UC32_No_2:5:29:A","unit":"m3"}​​​​​​​,
-            {​​​​​​​"name":"UC32_No_2:5:30:A","unit":"m3"}​​​​​​​
-        ]}​​​​​​​
-    ]}​​​​​​​
-]
-
-
-telemetry_data = {'ts': epoch_timestamp_ms, 'values': {'sensorvalue': value}}
-
-
+{
+    "coord": {
+        "lon": -8.4706,
+        "lat": 51.898
+    },
+    "weather": [
+        {
+            "id": 741,
+            "main": "Fog",
+            "description": "fog",
+            "icon": "50d"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 283.15,
+        "feels_like": 281.4,
+        "temp_min": 283.15,
+        "temp_max": 283.15,
+        "pressure": 1008,
+        "humidity": 100
+    },
+    "visibility": 300,
+    "wind": {
+        "speed": 2.57,
+        "deg": 190
+    },
+    "clouds": {
+        "all": 90
+    },
+    "dt": 1611759957,
+    "sys": {
+        "type": 1,
+        "id": 1563,
+        "country": "IE",
+        "sunrise": 1611735642,
+        "sunset": 1611767543
+    },
+    "timezone": 0,
+    "id": 2965140,
+    "name": "Cork",
+    "cod": 200
+}
 // Change the sensor names CIT.NIM.VIR.ELEC.ANNUAL - First 3 characters of every b
 // Certificate should be visualized the same way as present in the admin and energy consumption graph should be displayed to confirm the source
 // Transactions for certificate should be part of the certificate.
 // Building owner can generate DEC only after registering the building by a community manager
 // DEC Calculation
-
 // Add the documentation for the digiblocks onto the document on the SVN server
 // Relate the DEC calculation to the blockchain
 // System architecture is very important
@@ -32,10 +53,8 @@ telemetry_data = {'ts': epoch_timestamp_ms, 'values': {'sensorvalue': value}}
 // Individual cert component should allow verification
 // Transaction view with the certificate
 // User roles - documentation
-
 // Timeline visualization for transactions
 // Focus on Data services 
-
 // Deliverables for Work Package 3
 // Add the table about user roles to the documentation
 // Add the management view description to the Management View - the process of adding a building, user and assigning user to building. 
@@ -45,14 +64,9 @@ telemetry_data = {'ts': epoch_timestamp_ms, 'values': {'sensorvalue': value}}
 // gives you insight on where the energy is being consumed.
 // DEC calculations - explain the sequence of activities. 
 // Default icon and then different icon for every activity on the transaction view
-
-
 // Walkthrough next week all the features
 // Get the documentation done
-<<<<<<< HEAD
 // <a href="https://imgbb.com/"><img src="https://i.ibb.co/P5tsQk2/profile-placeholder.png" alt="profile-placeholder" border="0"></a>
-=======
-
 // Better UI for he DEC transactions
 // Change the UI of the transactions to a vertical output - it'll be useful to superimpose more information on the left hand side on the timeline. 
 // Add the certificate keys to the documentation
@@ -63,4 +77,3 @@ telemetry_data = {'ts': epoch_timestamp_ms, 'values': {'sensorvalue': value}}
 // Add the work flow of the external verifier to the building modal
 // Icons can be changed on the left hand side for the building itself.
 // Building owners can also generate DEC data. 
->>>>>>> 6dd3f90e6fcd405f8981b7f2f89fbe122b78b940
