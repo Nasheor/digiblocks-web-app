@@ -1,6 +1,7 @@
 import BuildingCard from '../../sections/BuildingCard/index'
 import BCard from '../../widgets/BuildingCardComponents/index'
 import CompareView from '../../widgets/CompareView/index'
+import EditBuildingForm from '../../widgets/EditBuilding/index'
 import { mapGetters } from 'vuex'
 import Dec from '../../../service/dec/dec'
 
@@ -40,10 +41,11 @@ export default {
         BuildingCard,
         CompareView,
         BCard,
+        EditBuildingForm,
     },
     computed: {
         ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData',
-                        'getDevicesData', 'getRole']),
+                        'getDevicesData', 'getRole', 'getEditFormStatus']),
         getDltStatus() {
             return this.b_card_data.dlt_status;
          },
@@ -55,7 +57,7 @@ export default {
          },
          toggleBuildingPop() {
              return this.register_building
-         }
+         },
     },
     methods: {
         open() {
@@ -75,6 +77,9 @@ export default {
             this.name = building.name
             this.id = building.id
             this.b_card_data = building
+        },
+        setEditFormStatus() {
+            this.$store.commit("setEditFormStatus", true)
         },
         async registerBuilding() {
             let building_data;

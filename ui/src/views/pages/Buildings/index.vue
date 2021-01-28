@@ -59,7 +59,7 @@
                 </div>
               </template>
               <v-card  >
-                  <v-toolbar class="an-toolbar-position" dark  color="#f79026">
+                  <v-toolbar height="100px" class="an-toolbar-position" dark  color="#f79026">
                       <v-btn icon dark @click="dialog = false">
                           <v-icon>mdi-close</v-icon>
                       </v-btn>
@@ -88,10 +88,30 @@
                           <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon>
                           Register Building
                         </v-btn>   
+                        <div>
+                          <v-dialog fullscreen hide-overlay transition="dialog-bottom-transition">
+                              <template v-slot:activator="{ on }">
+                                <v-btn
+                                  class="ml-2"
+                                  min-width="0"
+                                  color="error"
+                                  v-on="on"
+                                  @click.native="setEditFormStatus"
+                                  v-if="getRole === 'Community Manager'"
+                                >
+                                  <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon>
+                                  Edit Building Data
+                                </v-btn> 
+                              </template>
+                              <v-card v-if="getEditFormStatus" >
+                                  <EditBuildingForm :building_data="b_card_data"/>
+                              </v-card>
+                          </v-dialog>
+                        </div>  
                     </div>
                   </v-toolbar>
                   <BCard :name="name" :building="b_card_data" />
-                <v-dialog v-model="togglePop" persistent max-width="290">
+                <v-dialog v-model="togglePop" persistent max-width="290" class="mt-3">
                   <v-card>
                       <v-card-title class="headline">DEC Generated</v-card-title>
                       <v-card-text>Your Certificate is now available in the Certificate Section</v-card-text>

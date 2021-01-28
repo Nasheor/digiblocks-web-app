@@ -30,6 +30,7 @@ export default new Vuex.Store({
     certificates: [],
     dec_ids: [],
     transaction_data_dec: [],
+    edit_form_status: false,
   },
   mutations: {
     clearData(state) {
@@ -97,6 +98,9 @@ export default new Vuex.Store({
     },
     setTransactionData(state, payload) {
       state.transaction_data_dec = payload
+    },
+    setEditFormStatus(state, payload) {
+      state.edit_form_status = payload
     }
    },
   getters: {
@@ -144,6 +148,9 @@ export default new Vuex.Store({
     },
     getTransactionData(state) {
       return state.transaction_data_dec;
+    },
+    getEditFormStatus(state) {
+      return state.edit_form_status;
     }
   },
   actions: {

@@ -1,6 +1,6 @@
 <template>
   <v-card class="pa-4">
-      <v-row >
+      <v-row class="mt-8">
         <v-col cols="4" sm="12"  class="mt-12" v-if="getDltStatus===false">
           <v-chip class="mr-2" color="red lighten-3" text-color="gray">
              <h4> Register Building to the Ledger </h4>
