@@ -156,6 +156,7 @@ export default new Vuex.Store({
   actions: {
     async LOAD_CUSTOMER_DETAILS(context, payload) {
       const customers = await ThingsboardService.getCustomers()
+      console.log(customers)
       let customer_id = ''
       customers.data.map(customer => {
         if (customer.email === payload.email) {
@@ -166,6 +167,8 @@ export default new Vuex.Store({
           localStorage.setItem("address", customer.zip)
           context.state.country = customer.country
           localStorage.setItem("country", customer.country)
+          // context.commit("setRole", customer.additionalInfo.description )
+          // console.log(customer.additionalInfo.description)
         }
       })
       const customer_details = await ThingsboardService.getCustomerDetails(customer_id)
@@ -177,13 +180,14 @@ export default new Vuex.Store({
         if(item.key==="role")
           role = item.value
       })
-      if(password === payload.password && role === payload.role) {
+      if(password === payload.password)  {
         context.commit("setLoginStatus", true)
+        if(role === "External Verifier") {
+          customer_id = "71440220-f10e-11ea-88c1-933cebe6d407"
+        }
         context.commit("setCustomerID", customer_id)
-        if(payload.flag === true)
-          context.commit("setRole", "External Verifier")
-        else
-          context.commit("setRole", role)
+        context.commit("setRole", role )
+        console.log(role)
         localStorage.setItem("login", true)
         context.dispatch("LOAD_DATA", 999)        
       } else {

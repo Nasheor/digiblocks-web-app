@@ -111,6 +111,7 @@ export default {
     },
     created() {
       this.building_data.map(building => {
+        console.log(building)
         if(building.dlt_cert_status === true && building.certificate_verified === false)
           this.buildings.push( {
             "id": building.id,

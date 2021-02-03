@@ -179,7 +179,8 @@ export default {
                         "dlt_status": true,
                         "dlt_cert_status": true,
                         "certificate_verified": false,
-                        "assessor": 'Not Verified'
+                        "assessor": 'Not Verified',
+                        "certificate_generated": true
                     }
     
                     this.$store.dispatch("UPDATE_DEC", {"body": body, "id": data.dec_id} ).then(r => {

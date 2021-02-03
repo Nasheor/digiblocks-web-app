@@ -100,36 +100,39 @@ export default {
           this.showResult = true
           return
         }
-        let email, pass, r, payload
-        if(this.role === "External Verifier") {
-          email = "admin@yopmail.com"
-          pass = "admin@123"
-          r = "Community Manager"
-          payload = {
-            "email": email,
-            "password": pass,
-            "role": r,
-            "flag": true
-          }
-        } else {
-          payload = {
-            "email": this.userEmail,
-            "password": this.password,
-            "role": this.role,
-            "flag": false
-          }
+        // let email, pass, r, payload
+        // if(this.role === "External Verifier") {
+        //   email = "admin@yopmail.com"
+        //   pass = "admin@123"
+        //   r = "Community Manager"
+        //   payload = {
+        //     "email": email,
+        //     "password": pass,
+        //     "role": r,
+        //     "flag": true
+        //   }
+        // } else {
+        //   payload = {
+        //     "email": this.userEmail,
+        //     "password": this.password,
+        //     "role": this.role,
+        //     "flag": false
+        //   }
+        // }
+        let payload = {
+          "email": this.userEmail,
+          "password": this.password,
         }
         this.$store.commit("setEmail", this.userEmail)
         if(this.building_data.length === 0)        
-          this.$store.dispatch("LOAD_CUSTOMER_DETAILS", payload )
+          this.$store.dispatch("LOAD_CUSTOMER_DETAILS", payload ).then(r => {
+            if (this.login_status == true  && this.getRole != "External Verifier")
+              this.$router.push({name: 'Home'})
           
-
-        if (this.login_status == true  && this.getRole != "External Verifier")
-          this.$router.push({name: 'Home'})
-        
-        else if(this.login_status == true && this.getRole === "External Verifier")
-          this.$router.push({name: "Verify Certificate"})
-
+            else if(this.login_status == true && this.getRole === "External Verifier")
+              this.$router.push({name: "Verify Certificate"})
+          })       
+          
         else {
 
           let tmp = localStorage.getItem("login")
