@@ -88,7 +88,7 @@ export default {
                     building_data = building
                 }
             })
-
+            console.log(building_data)
             if(building_data.dlt_status === true) {
                 confirm("Building already registered to the ledger!")
                 return 
@@ -110,10 +110,10 @@ export default {
                 "body": {
                     "dlt_status": true
                 },
-                "id": building_data.dec_id
+                "id": building_data.id
             }
             console.log(building_data)
-            this.$store.dispatch("UPDATE_DEC", {"body": payload.body, "id": payload.id}).then(tb => {
+            this.$store.dispatch("UPDATE_ASSET_STATUS", {"body": payload.body, "id": payload.id}).then(tb => {
                 this.register_building = true
                 building_data.dlt_status = true
                 this.dlt_status = true                   

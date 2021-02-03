@@ -230,6 +230,7 @@ export default new Vuex.Store({
                     })
                     context.commit("setDashboardData", data)
                   } else {
+                    console.log(data)
                     ThingsboardService.getAssetDevices(item.id.id).then(devices => { 
                       devices.map(device => {
                         let tmp_holder = device.toName.split('.')
@@ -246,7 +247,6 @@ export default new Vuex.Store({
                           'certificate_verified': 0,
                           'co2_performance': 0,
                           'dlt_cert_status': '',
-                          'dlt_status': '',
                           'total_energy_use_per_area': 0,
                           'date_of_issue': '',
                           'valid_until': '',
@@ -316,7 +316,7 @@ export default new Vuex.Store({
                                 "color": data.filter(item => item.key==="color")[0].value,
                                 "latitude": data.filter(item => item.key==="latitude")[0].value,
                                 "longitude": data.filter(item => item.key==="longitude")[0].value,
-                                "dlt_status": dec_data.dlt_status,
+                                "dlt_status": data.filter(item=> item.key==="dlt_status")[0].value,
                                 "dlt_cert_status": dec_data.dlt_cert_status,
                                 "dec_category": data.filter(item => item.key === "dec_category")[0].value,
                                 "annual_electrical": dec_data.annual_electrical,
