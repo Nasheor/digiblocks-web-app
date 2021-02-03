@@ -1,9 +1,6 @@
 import { mapGetters } from "vuex";
 
 export default {
-    props: [
-        "building_data",
-    ],
     data() {
         return {
             headers: [

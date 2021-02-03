@@ -57,18 +57,74 @@
                 </div>
               </template>
               <v-card v-if="getSelectedBuilding.certificate_generated === true" >
-                  <v-toolbar class="an-toolbar-position" dark  color="#f79026">
-                      <v-btn icon dark @click="dialog = false">
-                          <v-icon>mdi-close</v-icon>
-                      </v-btn>
-                      <v-toolbar-title>{{ selected_building.name }}</v-toolbar-title>
-                      <v-spacer></v-spacer>
-                      <v-btn color="green" v-if="role==='External Verifier'" @click="verifyCert">Verify</v-btn>
-                  </v-toolbar>
+                <v-toolbar class="an-toolbar-position" dark  color="#f79026">
+                    <v-btn icon dark @click="dialog = false">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                    <v-toolbar-title>{{ selected_building.name }}</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-btn color="green" v-if="role==='External Verifier'" @click="verifyCert">Verify</v-btn>
+                  <v-dialog v-model="history" fullscreen hide-overlay transition="dialog-bottom-transition">
+                    <template v-slot:activator="{ on }">
+                      <div
+                        v-on="on"
+                        class="display ml-12"
+                      >                        
+                          <v-btn 
+                            color="green"  
+                            @click.native="openCertHistory"
+                            v-on="on"
+                          >
+                            History
+                          </v-btn>
+                    </div>
+                    </template>
+                      <v-card v-if="getHistoryStatus">
+                        <v-tabs
+                            v-model="tab"
+                            background-color="#f79026"
+                            centered
+                            center-active
+                            icons-and-text
+                        >
+                            <v-tabs-slider></v-tabs-slider>
+                            <v-tab
+                                v-for="view in views"
+                                :key="view.name"
+                            >
+                                {{view.name}}
+                                <v-icon>{{view.icon}}</v-icon>
+                            </v-tab>
+                        </v-tabs>
+
+                        <v-tabs-items v-model="tab">
+                            <v-tab-item
+                                v-for="view in views"
+                                :key="view.name"
+                            >
+                                <v-card flat>
+                                    <template v-if="tab===0">
+                                        <Dec/>
+                                    </template>
+                                    <template v-else>
+                                        <Registration />
+                                    </template>
+                                </v-card>
+                            </v-tab-item>
+                        </v-tabs-items>
+                        <v-footer class="d-flex justify-center" padless>
+                            <v-btn align-center dark @click="close">
+                                Close
+                            </v-btn>
+                        </v-footer>
+                      </v-card>
+                  </v-dialog>
+                </v-toolbar>
                   <CertificateModal 
                     :chartData="data.barChart" 
                     :certificate_keys="certificate_keys"
-                    :building_data="selected_building"/>
+                    :building_data="selected_building"
+                  />
               </v-card>
               <v-card v-else>
                 <v-card-title class="headline">Certificate Not Generated</v-card-title>

@@ -11,7 +11,6 @@ export default {
 },
 data() {
     return {
-        selected_building:[],
         dialog: false,
         transactions_dec: [],
         transactions_asset: [],
@@ -36,19 +35,6 @@ computed: {
 },
 methods: {
     async setName(b) {
-        this.selected_building.push({
-            "transaction_id": b.id,
-            "name": b.name,
-            "address": b.address,
-            "ufa": b.floor_area,
-            "mhf": b.fuel,
-            "ber": b.ber,
-            "doi": b.issue,
-            "expiry": b.expiry,
-            "assessor": b.assessor,
-            "band": b.band,
-            "category": b.category,
-        })
         let payload_dec = {
             "params": {
                 fcn: "traceDEC",
@@ -57,6 +43,7 @@ methods: {
                 args: `["${b.dec_id}"]`
             },
         }
+        console.log(payload_dec)
         let payload_asset = {
             "params" :{
                 fcn: "traceAsset",
