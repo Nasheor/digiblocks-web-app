@@ -25,6 +25,28 @@
                   <CompareView />
               </v-card>
           </v-dialog>
+          <v-dialog v-model="community_status" fullscreen hide-overlay transition="dialog-bottom-transition">
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  class="ml-2"
+                  min-width="0"
+                  color="success"
+                  v-on="on"
+                  @click.native="community_status = true"
+                >
+                  Community View
+                </v-btn>
+              </template>
+              <v-card v-if="community_status" >
+                  <v-toolbar height="100px" class="an-toolbar-position" dark  color="#f79026">
+                      <v-btn icon dark @click.native="community_status=false">
+                          <v-icon>mdi-close</v-icon>
+                      </v-btn>
+                      <v-toolbar-title>Community View</v-toolbar-title>
+                  </v-toolbar>
+                  <CommunityView /> 
+              </v-card>
+          </v-dialog>
         </div>
       </v-toolbar>      
       <v-row>

@@ -2,6 +2,7 @@ import BuildingCard from '../../sections/BuildingCard/index'
 import BCard from '../../widgets/BuildingCardComponents/index'
 import CompareView from '../../widgets/CompareView/index'
 import EditBuildingForm from '../../widgets/EditBuilding/index'
+import CommunityView from '../../widgets/CommunityView/index'
 import { mapGetters } from 'vuex'
 import Dec from '../../../service/dec/dec'
 
@@ -35,6 +36,7 @@ export default {
             register_building: false,
             dlt_status: false,
             b_card_data: '',
+            community_status: false,
         }
     },
     components: {
@@ -42,6 +44,7 @@ export default {
         CompareView,
         BCard,
         EditBuildingForm,
+        CommunityView,
     },
     computed: {
         ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData',

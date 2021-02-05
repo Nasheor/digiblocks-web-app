@@ -32,6 +32,10 @@ export default new Vuex.Store({
     transaction_data_dec: [],
     edit_form_status: false,
     history_status: false,
+    buildings_electrical: [],
+    buildings_non_electrical: [],
+    buildings_co2: [],
+    buildings_energy_use_per_area: [],
   },
   mutations: {
     clearData(state) {
@@ -105,6 +109,18 @@ export default new Vuex.Store({
     },
     setHistoryStatus(state, payload) {
       state.history_status = payload
+    },
+    setBuildingsElectrical(state, payload) {
+      state.buildings_electrical.push(payload);
+    },
+    setBuildingsNonElectrical(state, payload) {
+      state.buildings_non_electrical.push(payload);;
+    },
+    setBuildingsCo2(state, payload) {
+      state.buildings_co2.push(payload);;
+    },
+    setBuildingsEnergyUsePerArea(state, payload) {
+      state.buildings_energy_use_per_area.push(payload);;
     }
    },
   getters: {
@@ -158,6 +174,18 @@ export default new Vuex.Store({
     },
     getHistoryStatus(state) {
       return state.history_status;
+    },
+    getBuildingsElectrical(state) {
+      return state.buildings_electrical;
+    },
+    getBuildingsNonElectrical(state) {
+      return state.buildings_non_electrical;
+    },
+    getBuildingsCo2(state) {
+      return state.buildings_co2;
+    },
+    getBuildingsEnergyUsePerArea(state) {
+      return state.buildings_energy_use_per_area;
     }
   },
   actions: {
@@ -336,7 +364,11 @@ export default new Vuex.Store({
                                 "dec_id": dec_data.device_id,
                                 "certificate_generated": dec_data.certificate_generated
                               })
+                              // let paylaod = {
+                              //   "name": "",
+                              //   "building"
 
+                              // }
                             } 
                           } else {
                             ThingsboardService.getTelemetryData(device.to.id).then(sensor_data => {
