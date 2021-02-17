@@ -129,6 +129,101 @@
                                   <EditBuildingForm :building_data="b_card_data"/>
                               </v-card>
                           </v-dialog>
+                          <v-dialog v-model="certificate_dialog" persistent max-width="650" transition="dialog-bottom-transition">
+                              <template v-slot:activator="{ on }">
+                                <v-btn
+                                  class="ml-2"
+                                  min-width="0"
+                                  color="error"
+                                  v-on="on"
+                                  @click.native="certificate_dialog=true"
+                                  v-if="getRole === 'Community Manager'"
+                                >
+                                  <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon>
+                                  View Certificate
+                                </v-btn> 
+                              </template>
+                              <v-card v-if="b_card_data.certificate_generated === true" >
+                                <v-toolbar class="an-toolbar-position" dark  color="#f79026">
+                                    <v-btn icon dark @click="certificate_dialog = false">
+                                        <v-icon>mdi-close</v-icon>
+                                    </v-btn>
+                                    <v-toolbar-title>{{ b_card_data.name }}</v-toolbar-title>
+                                    <v-spacer></v-spacer>
+                                    <v-btn color="green" v-if="role==='External Verifier'" @click="verifyCert">Verify</v-btn>
+                                  <v-dialog v-model="history" fullscreen hide-overlay transition="dialog-bottom-transition">
+                                    <template v-slot:activator="{ on }">
+                                      <div
+                                        v-on="on"
+                                        class="display ml-12"
+                                      >                        
+                                          <v-btn 
+                                            color="green"  
+                                            @click.native="openCertHistory"
+                                            v-on="on"
+                                          >
+                                            History
+                                          </v-btn>
+                                    </div>
+                                    </template>
+                                      <v-card v-if="getHistoryStatus">
+                                        <v-tabs
+                                            v-model="tab"
+                                            background-color="#f79026"
+                                            centered
+                                            center-active
+                                            icons-and-text
+                                        >
+                                            <v-tabs-slider></v-tabs-slider>
+                                            <v-tab
+                                                v-for="view in views"
+                                                :key="view.name"
+                                            >
+                                                {{view.name}}
+                                                <v-icon>{{view.icon}}</v-icon>
+                                            </v-tab>
+                                        </v-tabs>
+
+                                        <v-tabs-items v-model="tab">
+                                            <v-tab-item
+                                                v-for="view in views"
+                                                :key="view.name"
+                                            >
+                                                <v-card flat>
+                                                    <template v-if="tab===0">
+                                                        <Dec/>
+                                                    </template>
+                                                    <template v-else>
+                                                        <Registration />
+                                                    </template>
+                                                </v-card>
+                                            </v-tab-item>
+                                        </v-tabs-items>
+                                        <v-footer class="d-flex justify-center" padless>
+                                            <v-btn align-center dark @click="closeHistory">
+                                                Close
+                                            </v-btn>
+                                        </v-footer>
+                                      </v-card>
+                                  </v-dialog>
+                                </v-toolbar>
+                                  <CertificateModal 
+                                    :chartData="data.barChart" 
+                                    :certificate_keys="certificate_keys"
+                                    :building_data="b_card_data"
+                                  />
+                              </v-card>
+                              <v-card v-else>
+                                <v-card-title class="headline">Certificate Not Generated</v-card-title>
+                                <v-card-text>
+                                  Generate Certificate before access! 
+                                </v-card-text>
+                                <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="success" text @click="dialog = false">Close</v-btn>
+                                </v-card-actions>
+                              </v-card>
+                          </v-dialog>
                         </div>  
                     </div>
                   </v-toolbar>

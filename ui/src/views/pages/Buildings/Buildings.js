@@ -5,6 +5,8 @@ import EditBuildingForm from '../../widgets/EditBuilding/index'
 import CommunityView from '../../widgets/CommunityView/index'
 import { mapGetters } from 'vuex'
 import Dec from '../../../service/dec/dec'
+import chartData from '../Certificate/energyData'
+import CertificateModal from '../Certificate/CertificateModal/index.vue'
 
 export default {
     data() {
@@ -14,8 +16,10 @@ export default {
             name: '', 
             id: '',
             valid: false,
+            data: chartData,
             form_dialog: false,
             building_data: '',
+            certificate_dialog: false,
             dec: {
                 "category": "",
                 "environment": "",
@@ -37,6 +41,20 @@ export default {
             dlt_status: false,
             b_card_data: '',
             community_status: false,
+            views: [
+                {
+                    'name': 'Dec',
+                    'icon': 'mdi-newspaper'
+                }, 
+                {
+                    'name': 'Asset Registration',
+                    'icon': 'mdi-chart-bar'
+                }
+            ],
+            tab: null,
+            transactions_dec: [],
+            history: false,
+
         }
     },
     components: {
@@ -45,10 +63,12 @@ export default {
         BCard,
         EditBuildingForm,
         CommunityView,
+        CertificateModal,
     },
     computed: {
         ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData',
                         'getDevicesData', 'getRole', 'getEditFormStatus']),
+        ...mapGetters(["getHistoryStatus"]),
         getDltStatus() {
             return this.b_card_data.dlt_status;
          },
@@ -80,6 +100,7 @@ export default {
             this.name = building.name
             this.id = building.id
             this.b_card_data = building
+            this.certificate_keys = building.certificate_keys.split(",")
         },
         setEditFormStatus() {
             this.$store.commit("setEditFormStatus", true)
@@ -207,6 +228,42 @@ export default {
                     console.log(result)
                 })
             }
+        },
+        async openCertHistory() {
+            this.history = true
+            this.$store.commit("setHistoryStatus", true)
+            console.log("DEC ID:"+this.b_card_data.dec_id)
+            let payload_dec = {
+                "params": {
+                    fcn: "traceDEC",
+                    chainCodeName: "deccontract",
+                    channelName: "mychannel",
+                    args: `["${this.b_card_data.dec_id}"]`
+                },
+            }   
+            console.log(payload_dec)
+            this.$store.dispatch("TRACE_DEC", payload_dec).then(result => {
+                this.transactions_dec = result.result                
+                console.log(this.transactions_dec)
+                this.$store.commit("setTransactionData", this.transactions_dec);
+            })
+        },
+        verifyCert() {
+            let body = {
+                "assessor": this.email,
+                "certificate_verified": true
+              }
+              let payload = {
+                "id": this.b_card_data.id,
+                "body": body
+              }
+              this.$store.dispatch("UPDATE_ASSET_STATUS", payload)
+
+              confirm("Are you sure you want to verify this certificate?");
+        },
+        closeHistory() {
+            this.$store.commit("setHistoryStatus", false)
+            this.$router.push({name: "Home"})
         }
     },
     created() {

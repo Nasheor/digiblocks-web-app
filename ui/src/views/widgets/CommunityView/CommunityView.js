@@ -2,6 +2,22 @@ import { mapGetters } from "vuex"
 import VueApexCharts from "vue-apexcharts";
 
 
+function generateDataHeatMap(count, yrange) {
+    var i = 0;
+    var series = [];
+    while (i < count) {
+        var x = 'w' + (i + 1).toString();
+        var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+
+        series.push({
+            x: x,
+            y: y
+        });
+        i++;
+    }
+    return series;
+}
+
 export default {
     components: {
         VueApexCharts,    
@@ -116,6 +132,82 @@ export default {
                     }]
                 }
             },
+            heat_map_energy: {
+                series: [{
+                    name: '2010',
+                    data: generateDataHeatMap(18, {
+                        min: 0,
+                        max: 90
+                    })
+                },
+                {
+                    name: '2011',
+                    data: generateDataHeatMap(18, {
+                        min: 0,
+                        max: 90
+                    })
+                },
+                {
+                    name: '2012',
+                    data: generateDataHeatMap(18, {
+                        min: 0,
+                        max: 90
+                    })
+                },
+                {
+                    name: '2013',
+                    data: generateDataHeatMap(18, {
+                        min: 0,
+                        max: 90
+                    })
+                },
+                {
+                    name: '2014',
+                    data: generateDataHeatMap(18, {
+                        min: 0,
+                        max: 90
+                    })
+                },
+                {
+                    name: '2015',
+                    data: generateDataHeatMap(18, {
+                        min: 0,
+                        max: 90
+                    })
+                },
+                {
+                    name: '2016',
+                    data: generateDataHeatMap(18, {
+                        min: 0,
+                        max: 90
+                    })
+                },
+                {
+                    name: '2017',
+                    data: generateDataHeatMap(18, {
+                        min: 0,
+                        max: 90
+                    })
+                },
+                {
+                    name: '2018',
+                    data: generateDataHeatMap(18, {
+                        min: 0,
+                        max: 90
+                    })
+                }
+                ],
+                chartOptions: {
+                    dataLabels: {
+                        enabled: false
+                    },
+                    colors: ["#1e88e5"],
+                    tooltip: {
+                        theme: "dark"
+                    }
+                }
+            },
+
         }
     },
     methods: {

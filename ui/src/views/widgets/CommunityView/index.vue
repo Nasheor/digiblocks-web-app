@@ -55,7 +55,7 @@
             </v-col>
             <v-col cols="12" class="py-0">
                 <v-card class="mt-4" color="#e3e9ed"> 
-                <h1 class="font-weight-medium">Breakdown</h1>
+                <h1 class="font-weight-medium mb-5">Breakdown</h1>
                 <v-row>
                     <v-col cols="12" sm="6" lg="6" class="py-0">
                         <v-card class="mb-7">
@@ -109,6 +109,18 @@
                 </v-card>
             </v-col>
             <v-col cols="12" class="py-0">
+                <v-card>
+                    <v-toolbar flat>
+                        <v-toolbar-title>Electricity breakdown</v-toolbar-title>
+                    </v-toolbar>
+                    <v-divider></v-divider>
+                    <vue-apex-charts
+                        type="heatmap"
+                        height="350"
+                        :options="heat_map_energy.chartOptions"
+                        :series="heat_map_energy.series"
+                    ></vue-apex-charts>                   
+                </v-card>
             </v-col>
         </v-row>
     </v-container>
