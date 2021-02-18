@@ -36,6 +36,7 @@ export default new Vuex.Store({
     buildings_non_electrical: [],
     buildings_co2: [],
     buildings_energy_use_per_area: [],
+    transactions_asset: [],
   },
   mutations: {
     clearData(state) {
@@ -117,10 +118,13 @@ export default new Vuex.Store({
       state.buildings_non_electrical.push(payload);;
     },
     setBuildingsCo2(state, payload) {
-      state.buildings_co2.push(payload);;
+      state.buildings_co2.push(payload);
     },
     setBuildingsEnergyUsePerArea(state, payload) {
-      state.buildings_energy_use_per_area.push(payload);;
+      state.buildings_energy_use_per_area.push(payload);
+    },
+    setAssetTransactionData(state, payload) {
+      state.transactions_asset = payload;
     }
    },
   getters: {
@@ -176,7 +180,7 @@ export default new Vuex.Store({
       return state.history_status;
     },
     getBuildingsElectrical(state) {
-      return state.buildings_electrical;
+      return state.buildings_electrical;  
     },
     getBuildingsNonElectrical(state) {
       return state.buildings_non_electrical;
@@ -186,6 +190,9 @@ export default new Vuex.Store({
     },
     getBuildingsEnergyUsePerArea(state) {
       return state.buildings_energy_use_per_area;
+    },
+    getTransactionsAssetData(state) {
+      return state.transactions_asset;
     }
   },
   actions: {

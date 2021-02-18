@@ -43,26 +43,26 @@ methods: {
                 args: `["${b.dec_id}"]`
             },
         }
-        console.log(payload_dec)
+
         let payload_asset = {
             "params" :{
                 fcn: "traceAsset",
                 chainCodeName: "identitycontract",
                 channelName: "mychannel",
-                args: `["${b.asset_id}"]`
+                args: `["${b.id}"]`
             }
         }
-
+        console.log(payload_asset)
         this.$store.dispatch("TRACE_DEC", payload_dec).then(result => {
             this.transactions_dec = result.result
-            
             console.log(this.transactions_dec)
             this.$store.commit("setTransactionData", this.transactions_dec);
-            // this.$store.dispatch("TRACE_ASSET", payload_asset).then(result => {
-            //     console.log(result)
-            //     this.transactions_asset = Object.entries(result.result)
-            //     console.log(this.transactions_asset)
-            // })
+        }).then(r => {
+            this.$store.dispatch("TRACE_ASSET", payload_asset).then(result => {
+                this.transactions_asset = result.result
+                console.log(this.transactions_asset)
+                this.$store.commit("setAssetTransactionData", this.transactions_asset)
+            })
         })
     },
 }

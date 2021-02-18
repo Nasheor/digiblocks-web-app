@@ -1,10 +1,6 @@
 import { mapGetters } from 'vuex'
 
 export default {
-    props: [
-        "building_data",
-        "transaction_data"
-    ],
     data() {
         return {
             reverse: false,
@@ -22,9 +18,11 @@ export default {
             ],
             select: null,
             items: ["India", "United Kingdom", "Africa", "California"],
+            icons: ["mdi-star", "mdi-book-variant", "mdi-airballoon", "mdi-buffer"]
         };
     },
     computed: {
-        ...mapGetters({buildings: "getBuildingData"})
+        ...mapGetters({buildings: "getBuildingData"}),
+        ...mapGetters({transaction_data: 'getTransactionsAssetData'}),
     }
 }
