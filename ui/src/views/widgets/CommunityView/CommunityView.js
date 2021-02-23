@@ -201,10 +201,43 @@ export default {
                     dataLabels: {
                         enabled: false
                     },
-                    colors: ["#1e88e5"],
-                    tooltip: {
-                        theme: "dark"
-                    }
+                    useFillColorAsStroke: true,
+                    colorScale: {
+                        ranges: [{
+                            from: 0,
+                            to: 5,
+                            color: '#00A100',
+                            name: 'low',
+                          },
+                          {
+                            from: 6,
+                            to: 20,
+                            color: '#128FD9',
+                            name: 'medium',
+                          },
+                          {
+                            from: 21,
+                            to: 45,
+                            color: '#FFB200',
+                            name: 'high',
+                          },
+                          {
+                            from: 46,
+                            to: 66,
+                            color: '#e3092d',
+                            name: 'high',
+                          },
+                          {
+                            from: 67,
+                            to: 87,
+                            color: '#e309c2',
+                            name: 'high',
+                          },
+                        ]
+                      },
+                      chart: {
+                        type: 'heatmap',
+                      },              
                 }
             },
 

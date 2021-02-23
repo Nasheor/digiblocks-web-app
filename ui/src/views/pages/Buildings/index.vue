@@ -25,7 +25,7 @@
                   <CompareView />
               </v-card>
           </v-dialog>
-          <v-dialog v-model="community_status" fullscreen hide-overlay transition="dialog-bottom-transition">
+          <!-- <v-dialog v-model="community_status" fullscreen hide-overlay transition="dialog-bottom-transition">
               <template v-slot:activator="{ on }">
                 <v-btn
                   class="ml-2"
@@ -46,7 +46,7 @@
                   </v-toolbar>
                   <CommunityView /> 
               </v-card>
-          </v-dialog>
+          </v-dialog> -->
         </div>
       </v-toolbar>      
       <v-row>

@@ -12,6 +12,7 @@ export default {
             valueDeterminate2: 90,
             valueDeterminate3: 50,
             valueDeterminate4: 70,
+            meta_status: false, 
             rules: [
               value => !!value || "Required.",
               value => (value && value.length >= 3) || "Min 3 characters"

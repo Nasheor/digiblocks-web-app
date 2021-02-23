@@ -2,7 +2,7 @@ module.exports = {
   devServer: {
     disableHostCheck: true,
     host: '0.0.0.0',
-    port: 8090, // CHANGE YOUR PORT HERE!
+    port: 8091, // CHANGE YOUR PORT HERE!
     https: false,
     hotOnly: false,
   },

@@ -18,14 +18,14 @@ export default {
         items: [
             {
                 icon: 'mdi-view-dashboard',
-                title: 'dashboard',
+                title: 'Communituy Dashboard',
                 to: '/dashboard',
                 role: ["Community Manager"],
                 display: false,
             },
             {
                 icon: 'mdi-hospital-building',
-                title: 'Cork Institute of Technology',
+                title: 'Building Analysis',
                 to: '/buildings',
                 role: ["Community Manager", "External Verifier", "Building Owner"],
                 display: false,

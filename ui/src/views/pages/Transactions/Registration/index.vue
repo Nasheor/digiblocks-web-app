@@ -36,6 +36,37 @@
                       >
                           <v-expansion-panel-header>{{transaction.TxId}}</v-expansion-panel-header>
                           <v-expansion-panel-content>
+                            <v-toolbar
+                              dense
+                              elevation="0"
+                              class="toolbar-position"
+                            >
+                                <v-spacer />
+                                <v-dialog v-model="meta_status" persistent max-width="650" transition="dialog-bottom-transition">
+                                    <template v-slot:activator="{ on }">
+                                      <v-btn
+                                        class="mb-10"
+                                        min-width="0"
+                                        color="success"
+                                        v-on="on"
+                                        @click.native="meta_status = true"
+                                      >
+                                         Meta Data
+                                      </v-btn>
+                                    </template>
+                                    <v-card v-if="meta_status" >
+                                        <v-toolbar height="100px" class="an-toolbar-position" dark  color="#f79026">
+                                            <v-btn icon dark @click.native="meta_status=false">
+                                                <v-icon>mdi-close</v-icon>
+                                            </v-btn>
+                                            <v-toolbar-title>DEC Calculation Data</v-toolbar-title>
+                                        </v-toolbar>
+                                        <v-card>
+                                          <h1>Hello World!</h1>
+                                        </v-card> 
+                                    </v-card>
+                                </v-dialog>
+                            </v-toolbar>
                             <v-row>
                               <v-col cols="12" sm="6" lg="3" class="py-0">
                                 <v-card height="150" width="650" class="mb-2">

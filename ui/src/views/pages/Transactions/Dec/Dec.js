@@ -21,6 +21,7 @@ export default {
                 { text: "Band", value: "band" },
                 { text: "Category", value: "category" },
             ],
+            meta_status: false, 
             transactions: [],
             reverse: false,
             tab: null,
@@ -37,6 +38,7 @@ export default {
             ],
             select: null,
             items: ["India", "United Kingdom", "Africa", "California"],
+            icons: ["mdi-star", "mdi-book-variant", "mdi-airballoon", "mdi-buffer"]
         };
     },
     methods: {
