@@ -21,6 +21,38 @@ export default {
                 { text: "Band", value: "band" },
                 { text: "Category", value: "category" },
             ],
+            // this.dec.environment, this.dec.hours, this.dec.total_useful_floor_area, 
+            // this.dec.sales_floor_area, this.dec.net_lettable_aream, this.dec.electricity_energy_use,
+            // this.dec.electricity_energy_unit, this.dec.fossil_use, this.dec.fossil_type,
+            // this.dec.fossil_unit, this.dec.year
+            meta_data: [
+                {
+                    "key": "Environment",
+                    "value": "Heating and Natural Ventilation" 
+                },
+                {
+                    "key": "Hours",
+                    "value": "1500" 
+                },
+                {
+                    "key": "Total Useful Floor Area in meters",
+                    "value": "1200" 
+                },
+                {
+                    "key": "Sales Floor Area",
+                    "value": "0" 
+                },
+                {
+                    "key": "Net Lettable Area",
+                    "value": "0" 
+                },
+                {
+                    "key": "Fossil Type",
+                    "value": "Natural Gas" 
+                },
+
+            ],
+            model: 1,
             meta_status: false, 
             transactions: [],
             reverse: false,

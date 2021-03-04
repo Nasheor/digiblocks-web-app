@@ -221,10 +221,11 @@ export default {
                     "args": [data.dec_id, data.id, data.category, data.ber.toString(),
                             data.annual_electrical.toString(), data.annual_non_electrical.toString(), data.issue,
                             data.expiry, data.band, this.dec.environment, this.dec.hours, this.dec.total_useful_floor_area, 
-                            this.dec.sales_floor_area, this.dec.net_lettable_aream, this.dec.electricity_energy_use,
+                            this.dec.sales_floor_area, this.dec.net_lettable_area, this.dec.electricity_energy_use,
                             this.dec.electricity_energy_unit, this.dec.fossil_use, this.dec.fossil_type,
                             this.dec.fossil_unit, this.dec.year ]                    
                 }
+                console.log(register_dec_body)
                 this.$store.dispatch("REGISTER_DEC", {
                     "body": register_dec_body
                 }).then(result => {

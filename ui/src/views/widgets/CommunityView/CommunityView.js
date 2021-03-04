@@ -199,7 +199,7 @@ export default {
                 ],
                 chartOptions: {
                     dataLabels: {
-                        enabled: false
+                        enabled: true
                     },
                     useFillColorAsStroke: true,
                     colorScale: {

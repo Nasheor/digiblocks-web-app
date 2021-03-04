@@ -62,7 +62,22 @@
                                             <v-toolbar-title>DEC Calculation Data</v-toolbar-title>
                                         </v-toolbar>
                                         <v-card>
-                                          <h1>Hello World!</h1>
+                                          <v-list flat>
+                                              <v-list-item-group color="info">
+                                                  <v-list-item
+                                                  v-for="(item, i) in meta_data"
+                                                  :key="i"
+                                                  >
+                                                    <v-card-text>
+                                                      <strong>{{ item.key}}: </strong> {{item.value}}
+                                                    </v-card-text>
+
+                                                    <v-list-item-content>
+                                                        <v-list-item-title> {{ item.value }}</v-list-item-title>
+                                                    </v-list-item-content>
+                                                  </v-list-item>
+                                              </v-list-item-group>
+                                              </v-list>
                                         </v-card> 
                                     </v-card>
                                 </v-dialog>
