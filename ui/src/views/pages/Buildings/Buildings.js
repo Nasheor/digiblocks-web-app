@@ -181,6 +181,7 @@ export default {
                 this.dec.fossil_use = parseFloat(device_data.gas)
                 this.dec.fossil_type = data.fuel,
                 this.dec.fossil_unit = default_unit,
+                this.dec.energy_usage = default_fuel
                 this.dec.year = years
 
                 let body
@@ -223,7 +224,7 @@ export default {
                             data.expiry, data.band, this.dec.environment, this.dec.hours, this.dec.total_useful_floor_area, 
                             this.dec.sales_floor_area, this.dec.net_lettable_area, this.dec.electricity_energy_use,
                             this.dec.electricity_energy_unit, this.dec.fossil_use, this.dec.fossil_type,
-                            this.dec.fossil_unit, this.dec.year ]                    
+                            this.dec.fossil_unit, this.dec.year, this.dec_fossil_unit]                    
                 }
                 console.log(register_dec_body)
                 this.$store.dispatch("REGISTER_DEC", {

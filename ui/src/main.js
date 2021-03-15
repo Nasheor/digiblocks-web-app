@@ -7,17 +7,16 @@ import './plugins/chartist'
 import './plugins/vee-validate'
 import vuetify from './plugins/vuetify'
 import i18n from './i18n'
-import VueLayers from 'vuelayers'
-import 'vuelayers/lib/style.css' // needs css-loader
-import { MultiPointGeom } from 'vuelayers'
+import 'leaflet/dist/leaflet.css'
+import { Icon } from 'leaflet';
 
-Vue.use(MultiPointGeom)
+delete Icon.Default.prototype._getIconUrl;
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+});
 
-Vue.use(VueLayers)
-// all input/output coordinates, GeoJSON features in EPSG:4326 projection
-Vue.use(VueLayers, {
-  dataProjection: 'EPSG:4326',
-})
 
 Vue.config.productionTip = false
 

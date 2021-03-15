@@ -1,9 +1,8 @@
 <template>
   <v-card flat class="pa-2 d-flex" color="#eef5f9">
-    <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
+    <!-- <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
              data-projection="EPSG:4326" style="height: 430px" class="mt-4">
       <vl-view :zoom.sync="zoom" :center.sync="center" :rotation.sync="rotation"></vl-view>
-
 
       <vl-layer-tile>
         <vl-source-osm></vl-source-osm>
@@ -16,7 +15,24 @@
           <vl-style-icon  :src="require('../../../../assets/images/marker.png')" :scale="0.12"></vl-style-icon>
         </vl-style-box>        
       </vl-feature>
-    </vl-map>
+    </vl-map> -->
+    <l-map
+      :zoom="zoom"
+      :center="center"
+      style="height: 430px; width: 100%"
+      class="mt-4"
+    >
+      <l-tile-layer
+        :url="url"
+        :attribution="attribution"
+      />
+      <l-marker 
+        v-for="marker of markers"
+        :key="marker"
+        :lat-lng="marker"
+      >
+      </l-marker>
+    </l-map>
     <v-card-text>
       <v-simple-table class="month-table">
         <template v-slot:default>

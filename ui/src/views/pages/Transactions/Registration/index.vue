@@ -88,7 +88,7 @@
                                   <v-card-text>
                                     <v-row class="d-flex align-center">
                                       <v-col cols="6">
-                                        <h2 class="font-weight-light headline">Building Environment</h2>
+                                        <h2 class="font-weight-light headline"> Name</h2>
                                         <h5
                                           class="subtitle-2 text-no-wrap blue-grey--text text--lighten-2 font-weight-regular"
                                         > {{ transaction.Value.attributes.name }}</h5>

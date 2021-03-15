@@ -1,14 +1,23 @@
 import { mapGetters } from 'vuex'
+import { LMap, LTileLayer, LMarker } from 'vue2-leaflet';
 
 export default {
+    components: {
+      LMap,
+      LTileLayer,
+      LMarker,
+    },
     data() {
         return {
           markers: [],
           headers: ["Name", "Band"],
           campus_data: [],
           zoom: 17,
-          center: [ -8.533763936897916, 51.88524466008951],
+          center: [51.885297, -8.534519],
           rotation: 0,
+          url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          attribution:
+            '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         };
       },  
       methods: {
