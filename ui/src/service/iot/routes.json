@@ -1,0 +1,22 @@
+{
+    "register_user" :{
+        "name": "/register",
+        "method": "post"
+    },
+    "base_login_route": {
+        "name": "/login",
+        "method": "post"
+    },
+    "certificate_route" : {
+        "name": "/certfiers",
+        "method": "post"
+    },
+    "dec_request": {
+        "name": "/send_dec",
+        "method": "post"
+    },
+    "read_message": {
+        "name": "/messages",
+        "method": "post"
+    }
+}

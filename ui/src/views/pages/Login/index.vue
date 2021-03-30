@@ -1,4 +1,4 @@
-<template>
+   <template>
 <v-app  id="particles-js">
   <v-container class="fill-height fill-width justify-center loc">
         <v-card class="align-center" min-width="1000px">
