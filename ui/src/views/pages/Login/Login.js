@@ -100,25 +100,7 @@ export default {
           this.showResult = true
           return
         }
-        // let email, pass, r, payload
-        // if(this.role === "External Verifier") {
-        //   email = "admin@yopmail.com"
-        //   pass = "admin@123"
-        //   r = "Community Manager"
-        //   payload = {
-        //     "email": email,
-        //     "password": pass,
-        //     "role": r,
-        //     "flag": true
-        //   }
-        // } else {
-        //   payload = {
-        //     "email": this.userEmail,
-        //     "password": this.password,
-        //     "role": this.role,
-        //     "flag": false
-        //   }
-        // }
+        
         let payload = {
           "email": this.userEmail,
           "password": this.password,
