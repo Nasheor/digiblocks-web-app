@@ -14,8 +14,9 @@ export default class ThingsboardService {
         }           
     }
 
-    static async getCustomerDetails(id) {
+    static async getCustomerDetails(id, community_id) {
         let ro = routes.customer_details_route.name.replace("%id%", id)
+        console.log(community_id)
         try {
             const res = await http.get(ro)
             return await Promise.resolve(res.data)
@@ -117,5 +118,16 @@ export default class ThingsboardService {
         } catch (err) {
             return await Promise.reject(err)
         }       
+    }
+
+    static async getAssetType(id) {
+        let r = routes.get_asset_types.name.replace("%id%", id)
+        try {
+            const res = await http.get(r)
+            return await Promise.resolve(res.data)
+        }
+        catch (err) {
+            return await Promise.reject(err)
+        } 
     }
 }

@@ -181,7 +181,7 @@ export default {
                 this.dec.fossil_use = parseFloat(device_data.gas)
                 this.dec.fossil_type = data.fuel,
                 this.dec.fossil_unit = default_unit,
-                this.dec.energy_usage = default_fuel
+                // this.dec.energy_usage = default_fuel
                 this.dec.year = years
 
                 let body

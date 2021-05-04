@@ -37,6 +37,9 @@ export default new Vuex.Store({
     buildings_co2: [],
     buildings_energy_use_per_area: [],
     transactions_asset: [],
+    communities: [],
+    community: "",
+    community_id: "",
   },
   mutations: {
     clearData(state) {
@@ -162,7 +165,7 @@ export default new Vuex.Store({
       return state.role;
     },
     getDevicesData(state) {
-      return state.devices_data
+      return state.devices_data;
     },
     getCertificateData(state) {
       return state.certificates;
@@ -209,18 +212,22 @@ export default new Vuex.Store({
           localStorage.setItem("address", customer.zip)
           context.state.country = customer.country
           localStorage.setItem("country", customer.country)
-          // context.commit("setRole", customer.additionalInfo.description )
-          // console.log(customer.additionalInfo.description)
         }
       })
-      const customer_details = await ThingsboardService.getCustomerDetails(customer_id)
+      const customer_details = await ThingsboardService.getCustomerDetails(customer_id, "Nil")
+      //console.log(customer_details)
       let password = ""
       let role = ""
+      console.log(customer_details)
       customer_details.map(item => {
         if(item.key==="token")
           password = item.value
         if(item.key==="role")
-          role = item.value
+          context.state.role = item.value
+        if(item.key==="assets")
+          context.state.community = item.value
+        if(item.key==="community_id")
+          context.state.community_id = item.value
       })
       if(password === payload.password)  {
         context.commit("setLoginStatus", true)
@@ -228,8 +235,7 @@ export default new Vuex.Store({
           customer_id = "71440220-f10e-11ea-88c1-933cebe6d407"
         }
         context.commit("setCustomerID", customer_id)
-        context.commit("setRole", role )
-        console.log(role)
+        // context.commit("setRole", role )
         localStorage.setItem("login", true)
         context.dispatch("LOAD_DATA", 999)        
       } else {
@@ -241,9 +247,19 @@ export default new Vuex.Store({
     async LOAD_DATA(context, payload) {
       let dec_data = {}   
       try {
-        const assets = await ThingsboardService.getAssetsMetaData(context.state.customer_id, payload)
-        if(context.state.building_data.length < assets.data.length)
-          assets.data.map(item => {
+        const assets_data_t = await ThingsboardService.getCustomerDetails(context.state.community_id, context.state.community)
+        // console.log(assets_data_t)
+        let asset_ids = JSON.parse(assets_data_t[0].value)
+        //console.log(asset_ids)
+        let asset_data = new Array(asset_ids.length)
+        for(let i = 0; i < asset_data.length; i++) {
+          asset_data[i] = await ThingsboardService.getAssetType(asset_ids[i])
+        }
+        console.log(asset_data)
+        // const assets = await ThingsboardService.getAssetsMetaData(context.state.customer_id, payload)
+        if(context.state.building_data.length < asset_data.length)
+          asset_data.map(item => {
+                  console.log(item)
                   ThingsboardService.getAssetData(item.id.id).then((data) => {
                   if(item.type === "DASHBOARD") {
                     ThingsboardService.getAssetDevices(item.id.id).then(devices => {
