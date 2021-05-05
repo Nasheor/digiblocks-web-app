@@ -3,7 +3,7 @@ import http from './http';
 
 export default class IOTAservice {
 
-    static async getMessages() {
+    static async readMessages() {
         let ro = routes.read_message.name.replace()
         try {
             const res = await http.post(ro)
@@ -14,7 +14,7 @@ export default class IOTAservice {
         }
     }
 
-    static async sendDEC() {
+    static async sendDec() {
         let ro = routes.dec_request.name.replace()
         try {
             const res = await http.post(ro)
@@ -25,8 +25,8 @@ export default class IOTAservice {
         } 
     }
 
-    static async certifiersRequest() {
-        let ro = routes.certificate_route.name.replace()
+    static async getCertifiers() {
+        let ro = routes.get_certifiers.name.replace()
         try {
             const res = await http.post(ro)
             return await Promise.resolve(res.data)
@@ -34,5 +34,16 @@ export default class IOTAservice {
         catch(err) {
             return await Promise.reject(err)
         }
-    }    
+    }
+    
+    static async certify() {
+        let ro = routes.certify.name.replace()
+        try {
+            const res = await http.post(ro)
+            return await Promise.resolve(res.data)
+        }
+        catch(err) {
+            return await Promise.reject(err)
+        }
+    }
 }

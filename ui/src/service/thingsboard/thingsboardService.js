@@ -14,9 +14,8 @@ export default class ThingsboardService {
         }           
     }
 
-    static async getCustomerDetails(id, community_id) {
+    static async getCustomerDetails(id) {
         let ro = routes.customer_details_route.name.replace("%id%", id)
-        console.log(community_id)
         try {
             const res = await http.get(ro)
             return await Promise.resolve(res.data)

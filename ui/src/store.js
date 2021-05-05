@@ -214,11 +214,11 @@ export default new Vuex.Store({
           localStorage.setItem("country", customer.country)
         }
       })
-      const customer_details = await ThingsboardService.getCustomerDetails(customer_id, "Nil")
+      const customer_details = await ThingsboardService.getCustomerDetails(customer_id)
       //console.log(customer_details)
       let password = ""
       let role = ""
-      console.log(customer_details)
+      //console.log(customer_details)
       customer_details.map(item => {
         if(item.key==="token")
           password = item.value
@@ -231,9 +231,9 @@ export default new Vuex.Store({
       })
       if(password === payload.password)  {
         context.commit("setLoginStatus", true)
-        if(role === "External Verifier") {
-          customer_id = "71440220-f10e-11ea-88c1-933cebe6d407"
-        }
+        // if(role === "External Verifier") {
+        //   customer_id = "71440220-f10e-11ea-88c1-933cebe6d407"
+        // }
         context.commit("setCustomerID", customer_id)
         // context.commit("setRole", role )
         localStorage.setItem("login", true)
@@ -247,19 +247,25 @@ export default new Vuex.Store({
     async LOAD_DATA(context, payload) {
       let dec_data = {}   
       try {
-        const assets_data_t = await ThingsboardService.getCustomerDetails(context.state.community_id, context.state.community)
-        // console.log(assets_data_t)
-        let asset_ids = JSON.parse(assets_data_t[0].value)
+        const assets_data_t = await ThingsboardService.getCustomerDetails(context.state.community_id)
+        console.log(assets_data_t)
+        let asset_ids = ""
+        
+        assets_data_t.map(item => {
+          if(item.key === context.state.community)
+            asset_ids = JSON.parse(assets_data_t[0].value)
+        })
+
         //console.log(asset_ids)
         let asset_data = new Array(asset_ids.length)
         for(let i = 0; i < asset_data.length; i++) {
           asset_data[i] = await ThingsboardService.getAssetType(asset_ids[i])
         }
-        console.log(asset_data)
+        //console.log(asset_data)
         // const assets = await ThingsboardService.getAssetsMetaData(context.state.customer_id, payload)
         if(context.state.building_data.length < asset_data.length)
           asset_data.map(item => {
-                  console.log(item)
+                  //console.log(item)
                   ThingsboardService.getAssetData(item.id.id).then((data) => {
                   if(item.type === "DASHBOARD") {
                     ThingsboardService.getAssetDevices(item.id.id).then(devices => {

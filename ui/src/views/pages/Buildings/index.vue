@@ -110,6 +110,16 @@
                           <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon>
                           Register Building
                         </v-btn>   
+                        <v-btn
+                          class="ml-2"
+                          min-width="0"
+                          color="error"
+                          @click="storeDataIOTA"
+                          v-if="getDltStatus === false && getRole === 'Community Manager'"
+                        >
+                          <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon>
+                          Store IOTA Data
+                        </v-btn> 
                         <div>
                           <v-dialog fullscreen hide-overlay transition="dialog-bottom-transition">
                               <template v-slot:activator="{ on }">

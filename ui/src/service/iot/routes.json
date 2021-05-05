@@ -7,7 +7,7 @@
         "name": "/login",
         "method": "post"
     },
-    "certificate_route" : {
+    "get_certifiers" : {
         "name": "/certfiers",
         "method": "post"
     },
@@ -17,6 +17,14 @@
     },
     "read_message": {
         "name": "/messages",
+        "method": "post"
+    },
+    "certify": {
+        "name": "/certify",
+        "method": "post"
+    },
+    "register_certifier": {
+        "name": "/register_certifier",
         "method": "post"
     }
 }

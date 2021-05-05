@@ -269,6 +269,9 @@ export default {
         closeHistory() {
             this.$store.commit("setHistoryStatus", false)
             this.$router.push({name: "Home"})
+        },
+        storeDataIOTA() {
+            
         }
     },
     created() {
