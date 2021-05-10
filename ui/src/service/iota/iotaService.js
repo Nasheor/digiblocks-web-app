@@ -37,7 +37,7 @@ export default class IOTAservice {
     }
     
     static async certify() {
-        let ro = routes.certify.name.replace()
+        let ro = routes.dec_request.name
         try {
             const res = await http.post(ro)
             return await Promise.resolve(res.data)

@@ -129,4 +129,26 @@ export default class ThingsboardService {
             return await Promise.reject(err)
         } 
     }
+
+    static async getAllDevices() {
+        let r = routes.get_device_metadata.name
+        try{
+            let result = await http.get(r)
+            return await Promise.resolve(result.data)
+        }
+        catch(err) {
+            return await Promise.reject(err)
+        }
+    }
+
+    static async getDeviceData(id) {
+        let r = routes.get_tenant_devices.name.replace("%id%", id)
+        try {
+            let result = await http.get(r)
+            return await Promise.resolve(result.data)
+        }
+        catch(err) {
+            return Promise.reject(err)
+        }
+    }
 }

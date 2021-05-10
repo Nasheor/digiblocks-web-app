@@ -1,7 +1,28 @@
 <template>
-  <v-card class="pa-4">
+  <v-card class="pa-2">
+    <v-spacer />
       <v-row class="mt-8">
-        <v-col cols="4" sm="12"  class="mt-12" v-if="getDltStatus===false">
+        <v-col cols="4" sm="12"  class="mt-12">
+          <v-card-text class="format mt-5">
+            <v-file-input 
+                label="Telemetry File"
+                dense
+                outlined
+                show-size
+                @change="filePicked">
+            </v-file-input>
+            <v-btn
+              class="ml-2"
+              min-width="0"
+              color="success"
+              v-on="on"
+              @click="open"
+            >
+              Submit
+            </v-btn>
+          </v-card-text>
+        </v-col>
+        <v-col cols="4" sm="12" v-if="getDltStatus===false">
           <v-chip class="mr-2" color="red lighten-3" text-color="gray">
              <h4> Register Building to the Ledger </h4>
           </v-chip>

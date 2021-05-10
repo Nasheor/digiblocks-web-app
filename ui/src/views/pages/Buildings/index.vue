@@ -115,7 +115,7 @@
                           min-width="0"
                           color="error"
                           @click="storeDataIOTA"
-                          v-if="getDltStatus === false && getRole === 'Community Manager'"
+                          v-if="getRole === 'Community Manager'"
                         >
                           <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon>
                           Store IOTA Data

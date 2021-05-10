@@ -9,6 +9,9 @@ import vuetify from './plugins/vuetify'
 import i18n from './i18n'
 import 'leaflet/dist/leaflet.css'
 import { Icon } from 'leaflet';
+import XLSX from 'xlsx';
+
+Vue.use(XLSX)
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import ThingsboardService from "./service/thingsboard/thingsboardService"
 import gcpService from './service/gcp/gcpService'
+import iotaService from './service/iota/iotaService'
 import log from "./utils/logger"
 
 Vue.use(Vuex)
@@ -40,6 +41,7 @@ export default new Vuex.Store({
     communities: [],
     community: "",
     community_id: "",
+    all_devices: [],
   },
   mutations: {
     clearData(state) {
@@ -128,6 +130,9 @@ export default new Vuex.Store({
     },
     setAssetTransactionData(state, payload) {
       state.transactions_asset = payload;
+    },
+    setTenantDevices(state, payload) {
+      state.all_devices.push(payload)
     }
    },
   getters: {
@@ -196,6 +201,12 @@ export default new Vuex.Store({
     },
     getTransactionsAssetData(state) {
       return state.transactions_asset;
+    },
+    getAddress(state) {
+      return state.address;
+    },
+    getTenantDevices(state) {
+      return state.all_devices
     }
   },
   actions: {
@@ -237,6 +248,7 @@ export default new Vuex.Store({
         context.commit("setCustomerID", customer_id)
         // context.commit("setRole", role )
         localStorage.setItem("login", true)
+        context.dispatch("LOAD_DEVICES")
         context.dispatch("LOAD_DATA", 999)        
       } else {
         localStorage.setItem("login", false)
@@ -261,7 +273,7 @@ export default new Vuex.Store({
         for(let i = 0; i < asset_data.length; i++) {
           asset_data[i] = await ThingsboardService.getAssetType(asset_ids[i])
         }
-        //console.log(asset_data)
+        console.log(asset_data)
         // const assets = await ThingsboardService.getAssetsMetaData(context.state.customer_id, payload)
         if(context.state.building_data.length < asset_data.length)
           asset_data.map(item => {
@@ -294,7 +306,6 @@ export default new Vuex.Store({
                     })
                     context.commit("setDashboardData", data)
                   } else {
-                    console.log(data)
                     ThingsboardService.getAssetDevices(item.id.id).then(devices => { 
                       devices.map(device => {
                         let tmp_holder = device.toName.split('.')
@@ -520,6 +531,32 @@ export default new Vuex.Store({
         return transaction_data
       } catch(e) {
           log.log('error', 'Cannot '+e)
+      }
+    },
+
+    async SEND_DEC_IOTA(context, payload) {
+      try {
+        const iota_dec = await iotaService.sendDec(payload)
+        return iota_dec
+      } catch(e) {
+          log.log('error', 'Cannot '+e)
+      }
+    },
+
+    async LOAD_DEVICES(context) {
+      try {
+        ThingsboardService.getAllDevices().then(data => {
+          console.log(data)
+          // let devices = []
+          data.data.map(device => {
+            ThingsboardService.getDeviceData(device.id.id).then(result => {
+              context.commit("setTenantDevices", result)
+            })
+          })
+        })
+      }
+      catch(e) {
+        log.log('error', 'Cannot '+e)
       }
     }
   },

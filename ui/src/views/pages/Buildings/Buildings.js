@@ -54,7 +54,10 @@ export default {
             tab: null,
             transactions_dec: [],
             history: false,
-
+            data_dec: "",
+            co2: 0.0,
+            energy_use_per_area: 0.0,
+            default_unit: "kWh",
         }
     },
     components: {
@@ -67,7 +70,7 @@ export default {
     },
     computed: {
         ...mapGetters(['getCompareDialogStatus', 'getCompareBuildings', 'getBuildingData',
-                        'getDevicesData', 'getRole', 'getEditFormStatus']),
+                        'getDevicesData', 'getRole', 'getEditFormStatus', 'getAddress']),
         ...mapGetters(["getHistoryStatus"]),
         getDltStatus() {
             return this.b_card_data.dlt_status;
@@ -167,7 +170,6 @@ export default {
                         }
                     }
                 })
-                let default_unit = "kWh"
                 this.dec.category = data.category
                 this.dec.environment = data.environment
                 this.dec.latitude = parseFloat(data.latitude)
@@ -207,7 +209,8 @@ export default {
                         "assessor": 'Not Verified',
                         "certificate_generated": true
                     }
-    
+                    this.co2 = body.co2_performance
+                    this.energy_use_per_area = body.total_energy_use_per_area
                     this.$store.dispatch("UPDATE_DEC", {"body": body, "id": data.dec_id} ).then(r => {
                         this.generate_dec = true 
                     }).then(r => {
@@ -271,7 +274,65 @@ export default {
             this.$router.push({name: "Home"})
         },
         storeDataIOTA() {
-            
+            let data = this.getBuildingData.find(building => building.name === this.name)
+            console.log(data)
+            let payload = {
+                "user_id": 16,
+                "certifier_id": 3,
+                "dec": {
+                    "building": this.name,
+                    "address" : this.getAddress,
+                    "category": data.category,
+                    "environment": data.environment,
+                    "latitude": parseFloat(data.latitude),
+                    "longitude": parseFloat(data.longitude),
+                    "hours_of_occupancy": data.hours,
+                    "floor_area_m2": data.floor_area,
+                    "floor_area_type": "Total useful floor area",
+                    "electricity_energy_use": data.building_electrical,
+                    "electricity_energy_units": this.default_unit,
+                    "fossil_thermal_energy_use": data.building_non_electrical,
+                    "fossil_thermal_energy_type": data.fuel,
+                    "year": data.issue.split("/")[2],
+                    "electricity_typical_benchmark_kwh_m2_yr": 80,
+                    "fossil_thermal_typical_benchmark_kwh_m2_yr": 240,
+                    "portion_electricity_benchmark_pro_rated_to_degree_days": 0,
+                    "portion_fossil_thermal_benchmark_pro_rated_to_degree_days": 0.55,
+                    "degree_days": 2138,
+                    "electricity_benchmark_degree_days_adjusted_kwh_m2_yr": 80,
+                    "fossil_thermal_benchmark_degree_days_adjusted_kwh_m2_yr": 247.64176150420582,
+                    "benchmark_hours_per_year": 2450,
+                    "maximum_allowed_hours_per_year": 5355,
+                    "portion_increase_in_electricity_benchmark_at_maximum_allowed_hours_per_year": 0.48,
+                    "portion_increase_in_fossil_thermal_benchmark_at_maximum_allowed_hours_per_year": 0.22,
+                    "electricity_benchmark_degree_days_and_occupancy_adjusted_kwh_m2_yr": 93.87951807228916,
+                    "fossil_thermal_benchmark_degree_days_and_occupancy_adjusted_kwh_m2_yr": 267.33375699731135,
+                    "electricity_conversion_factor": 1.939183,
+                    "electricity_benchmark_converted_kwh_m2_yr": 182.0495654939759,
+                    "fossil_thermal_conversion_factor": 1.1,
+                    "fossil_thermal_benchmark_converted_kwh_m2_yr": 294.0671326970425,
+                    "electricity_energy_use_kwh_yr": 256283,
+                    "fossil_thermal_energy_use_kwh_yr": 138848.13888889033,
+                    "useful_floor_area_m2": 3000,
+                    "electricity_energy_use_per_area_kwh_m2_yr": 85.42766666666667,
+                    "fossil_thermal_energy_use_per_area_kwh_m2_yr": 46.282712962963444,
+                    "total_energy_use_per_area_kwh_m2_yr": 131.7103796296301,
+                    "ber": 27.66346572805724,
+                    "electricity_emissions_factor_kg_co2_kwh": 0.3754,
+                    "electricity_benchmark_emissions_kg_co2_m2_yr": 68.34140688643856,
+                    "fossil_thermal_emissions_factor_kg_co2_kwh": 0.2047,
+                    "fossil_thermal_benchmark_emissions_kg_co2_m2_yr": 60.195542063084595,
+                    "electricity_energy_use_per_area_emissions_kg_co2_m2_yr": 32.06954606666667,
+                    "fossil_thermal_energy_use_per_area_emissions_kg_co2_m2_yr": 9.474071343518617,
+                    "total_energy_use_per_area_emissions_kg_co2_m2_yr": (data.annual_non_electrical + data.annual_electrical),
+                    "co2_performance": data.co2_performance,
+                    "rating_scale": data.ber                   
+                }
+            }
+            console.log(payload)
+            this.$store.dispatch("SEND_DEC_IOTA", payload).then(result => {
+                 console.log(result)
+            })
         }
     },
     created() {

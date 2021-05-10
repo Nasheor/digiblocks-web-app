@@ -8,15 +8,18 @@ const BASE_HEADERS = {
   "Content-Type": "application/json",
   Accept: "application/json"
 },
-  HOST = config.thingsboard.endpoint;
+  HOST = config.iota.endpoint;
 
 let http = axios.create({
   baseURL: HOST,
   headers: BASE_HEADERS
 });
 
+// process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+
 const refreshAuthLogic = async failedRequest => {
-  const body = { username: config.iot.username, password: config.iot.password };
+  process.env["NODE_TLS_REJECT_UNAUTHORIZED"]  = 0;
+  const body = { username: config.iota.user_id, password: config.iota.password };
   return await axios.post(HOST + routes.base_login_route.name, body, { headers: BASE_HEADERS })
     .then(async tokenRefreshResponse => {
       console.log(tokenRefreshResponse.data);
@@ -25,7 +28,7 @@ const refreshAuthLogic = async failedRequest => {
       return await Promise.resolve();
     }).catch(err => {
       return Promise.reject(err);
-    });
+    }); 
 };
 /**
  * Automatically refresh the user token on 401 error.
@@ -35,7 +38,7 @@ createAuthRefreshInterceptor(http, refreshAuthLogic);
  * Add the token to every call.
  */
 http.interceptors.request.use(function (config) {
-
+  process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
   const token = localStorage.getItem('token');
   if (!_.isNil(token))
     config.headers['X-Authorization'] = `Bearer ${token}`;

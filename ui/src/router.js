@@ -8,6 +8,7 @@ import Buildings from '@/views/pages/Buildings/index'
 import Certificate from '@/views/pages/Certificate/index'
 import VerifyCertificate from '@/views/pages/VerifyCertificate/index'
 import Transactions from '@/views/pages/Transactions/index'
+import Devices from '@/views/pages/Devices/index'
 
 Vue.use(Router)
 
@@ -44,6 +45,11 @@ export default new Router({
           name: 'Transactions',
           path: '/transactions',
           component: Transactions
+        },
+        {
+          name: 'Devices',
+          path: '/devices',
+          component: Devices
         }
       ],
     },

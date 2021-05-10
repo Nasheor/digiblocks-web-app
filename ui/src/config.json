@@ -10,9 +10,10 @@
         "role":"admin",
         "endpoint": "http://35.225.13.131:4000"
     },
-    "iot": {
-        "username": "avinash",
-        "password":  "Test@456",
-        "endpoint": "https://157.190.54.205/dec_authority/api"
+    "iota": {
+        "username": "admin",
+        "user_id": 16,
+        "password":  "123456789",
+        "endpoint": "https://157.190.54.205/dec_authority/api"  
     }
 }

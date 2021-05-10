@@ -6,6 +6,7 @@ import MetricsTable from './MetricsTable/index'
 import PieChart from './Piechart/index'
 import Timeline from './Timeline/index'
 import Profile from './Profile/index'
+import XLSX from 'xlsx'
 
 export default {
     props: [
@@ -36,4 +37,22 @@ export default {
             return this.building
         }
     },
+    methods: {
+        filePicked(file) {
+            const reader = new FileReader()
+            if(typeof file !== 'undefined') {
+                reader.readAsBinaryString(file)
+                reader.onloadend = async (e) => {
+                    let workbook = XLSX.read(e.target.result, {
+                        type: 'binary'
+                    })
+                    let sheet = workbook.SheetNames[0]
+                    let json_data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet])
+                }
+            }
+        },
+        async convertToBuffer(reader) {
+            return Buffer.from(reader);
+        },
+    }
 }

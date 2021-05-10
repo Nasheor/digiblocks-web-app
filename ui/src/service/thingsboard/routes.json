@@ -50,5 +50,13 @@
    "get_asset_types": {
        "name": "/asset/%id%",
        "method": "get"
+   },
+   "get_device_metadata": {
+       "name": "/tenant/devices?limit=9999",
+       "method": "get"
+   },
+   "get_tenant_devices": {
+       "name": "/plugins/telemetry/DEVICE/%id%/values/attributes/SERVER_SCOPE",
+       "method": "get"
    }
 }
