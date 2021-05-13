@@ -1,1 +1,62 @@
-(687) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, …]
+[
+    {
+        "lastUpdateTs": 1594465530290,
+        "key": "BMSType",
+        "value": "EgyMet"
+    },
+    {
+        "lastUpdateTs": 1594465530290,
+        "key": "Category",
+        "value": "Energy Meter"
+    },
+    {
+        "lastUpdateTs": 1594465530290,
+        "key": "Floor",
+        "value": "Ground"
+    },
+    {
+        "lastUpdateTs": 1594465530290,
+        "key": "OPCTag",
+        "value": "UC32_No_1:1:1:A"
+    },
+    {
+        "lastUpdateTs": 1594465530290,
+        "key": "RoomName",
+        "value": "LV Switch Room"
+    },
+    {
+        "lastUpdateTs": 1594465530290,
+        "key": "SourceDescription",
+        "value": "Active Energy "
+    },
+    {
+        "lastUpdateTs": 1594465530290,
+        "key": "SourceName",
+        "value": "Ground Floor Meter (D0010101)"
+    },
+    {
+        "lastUpdateTs": 1594465530290,
+        "key": "SourceType",
+        "value": "BMS"
+    },
+    {
+        "lastUpdateTs": 1594465530290,
+        "key": "Unit",
+        "value": "kWh"
+    },
+    {
+        "lastUpdateTs": 1594465530290,
+        "key": "Zone",
+        "value": "RN179"
+    },
+    {
+        "lastUpdateTs": 1564760431407,
+        "key": "active",
+        "value": false
+    },
+    {
+        "lastUpdateTs": 1564760431403,
+        "key": "inactivityAlarmTime",
+        "value": 1564760431359
+    }
+]

@@ -1,7 +1,7 @@
 <template>
     <v-card
       class="d-flex flex-column justify-space-between pa-0"
-      max-width="275"
+      max-width="250"
     >
         <v-list-item-action>
             <v-checkbox
@@ -14,8 +14,7 @@
                 <v-img
                     :src="require(`../../../assets/images/${src}`)"
                     height="200px"
-                    dark 
-                    
+                    dark                   
                 ></v-img> 
       
         <v-card-subtitle class="overline">

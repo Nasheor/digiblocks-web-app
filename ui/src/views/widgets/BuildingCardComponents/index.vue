@@ -15,8 +15,7 @@
               class="ml-2"
               min-width="0"
               color="success"
-              v-on="on"
-              @click="open"
+              @click="submit"
             >
               Submit
             </v-btn>

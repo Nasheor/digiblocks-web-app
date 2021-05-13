@@ -542,15 +542,26 @@ export default new Vuex.Store({
           log.log('error', 'Cannot '+e)
       }
     },
-
     async LOAD_DEVICES(context) {
       try {
         ThingsboardService.getAllDevices().then(data => {
           console.log(data)
           // let devices = []
           data.data.map(device => {
+            let payload = {
+              "name": device.name,
+              "id":  device.id.id,
+              "data": []
+            }
             ThingsboardService.getDeviceData(device.id.id).then(result => {
-              context.commit("setTenantDevices", result)
+              if(result.length>5) {
+                result.map((r, index) => {
+                  result[index].lastUpdateTs = new Date(r.lastUpdateTs)
+                })
+                console.log(result)
+                payload.data = result
+                context.commit("setTenantDevices", payload)
+              }
             })
           })
         })
