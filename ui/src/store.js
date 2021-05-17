@@ -212,7 +212,6 @@ export default new Vuex.Store({
   actions: {
     async LOAD_CUSTOMER_DETAILS(context, payload) {
       const customers = await ThingsboardService.getCustomers()
-      console.log(customers)
       let customer_id = ''
       customers.data.map(customer => {
         if (customer.email === payload.email) {
@@ -260,7 +259,6 @@ export default new Vuex.Store({
       let dec_data = {}   
       try {
         const assets_data_t = await ThingsboardService.getCustomerDetails(context.state.community_id)
-        console.log(assets_data_t)
         let asset_ids = ""
         
         assets_data_t.map(item => {
@@ -273,7 +271,6 @@ export default new Vuex.Store({
         for(let i = 0; i < asset_data.length; i++) {
           asset_data[i] = await ThingsboardService.getAssetType(asset_ids[i])
         }
-        console.log(asset_data)
         // const assets = await ThingsboardService.getAssetsMetaData(context.state.customer_id, payload)
         if(context.state.building_data.length < asset_data.length)
           asset_data.map(item => {
@@ -545,7 +542,6 @@ export default new Vuex.Store({
     async LOAD_DEVICES(context) {
       try {
         ThingsboardService.getAllDevices().then(data => {
-          console.log(data)
           // let devices = []
           data.data.map(device => {
             let payload = {
@@ -558,7 +554,6 @@ export default new Vuex.Store({
                 result.map((r, index) => {
                   result[index].lastUpdateTs = new Date(r.lastUpdateTs)
                 })
-                console.log(result)
                 payload.data = result
                 context.commit("setTenantDevices", payload)
               }

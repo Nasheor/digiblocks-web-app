@@ -6,7 +6,8 @@ export default {
         return {
             activity_data: [],
             url: 'https://api.openweathermap.org/data/2.5/weather',
-            temperature: ''
+            temperature: '',
+            loading: true,
         }
     },
     methods: { 

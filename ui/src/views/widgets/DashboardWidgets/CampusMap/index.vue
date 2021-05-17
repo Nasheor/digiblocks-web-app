@@ -28,7 +28,7 @@
       />
       <l-marker 
         v-for="marker of markers"
-        :key="marker"
+        :key="marker.key"
         :lat-lng="marker"
       >
       </l-marker>
