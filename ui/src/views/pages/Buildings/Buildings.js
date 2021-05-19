@@ -179,10 +179,10 @@ export default {
                 this.dec.sales_floor_area = 0
                 this.dec.net_lettable_area = 0
                 this.dec.electricity_energy_use = parseFloat(device_data.electricity)
-                this.dec.electricity_energy_unit = default_unit
+                this.dec.electricity_energy_unit = this.default_unit
                 this.dec.fossil_use = parseFloat(device_data.gas)
                 this.dec.fossil_type = data.fuel,
-                this.dec.fossil_unit = default_unit,
+                this.dec.fossil_unit = this.default_unit,
                 // this.dec.energy_usage = default_fuel
                 this.dec.year = years
 
