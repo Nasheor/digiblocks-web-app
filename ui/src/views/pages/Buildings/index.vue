@@ -160,7 +160,7 @@
                                     </v-btn>
                                     <v-toolbar-title>{{ b_card_data.name }}</v-toolbar-title>
                                     <v-spacer></v-spacer>
-                                    <v-btn color="green" v-if="role==='External Verifier'" @click="verifyCert">Verify</v-btn>
+                                    <v-btn color="green" v-if="getRole==='External Verifier'" @click="verifyCert">Verify</v-btn>
                                   <v-dialog v-model="history" fullscreen hide-overlay transition="dialog-bottom-transition">
                                     <template v-slot:activator="{ on }">
                                       <div

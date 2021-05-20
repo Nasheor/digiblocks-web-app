@@ -41,6 +41,18 @@
                             ></v-select>
                         </v-col>
                         <v-col cols="12" sm="6">
+                            <v-subheader v-text="'Type of Data'"></v-subheader>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                            <v-select
+                            v-model="selected_column.type"
+                            :items="energy_type"
+                            :menu-props="{ maxHeight: '400' }"
+                            label="Select"
+                            persistent-hint
+                            ></v-select>
+                        </v-col>
+                        <v-col cols="12" sm="6">
                             <v-subheader v-text="'Select Timestamp'"></v-subheader>
                         </v-col>
                         <v-col cols="12" sm="6">

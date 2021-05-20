@@ -10,6 +10,8 @@ export default {
             selected_column: {
                 timestamp: 2,
                 column_id: null,
+                device: "",
+                type: "",
             },
             timestamp: [],
         };
@@ -41,11 +43,8 @@ export default {
         close() {
             this.file_processed = false
         },
-        selectedColumn(column) {
-            console.log(column)
-        },
         async upload() {
-            
+
         } 
     },
     computed: {

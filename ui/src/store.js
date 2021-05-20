@@ -460,8 +460,18 @@ export default new Vuex.Store({
         }
 
       }
-
       context.dispatch("LOAD_DATA", 999)   
+    },
+
+    async UPLOAD_DATA_FROM_FILE(context, payload) {
+      try {
+            await ThingsboardService.postDatatoSensor(payload.data, payload.device_id).then(r => {
+              console.log(r)
+            })
+      } catch(e) {
+        log.log('error', 'Cannot update data to the device '+payload.device_name)
+      }
+      context.dispatch("LOAD_DATA", 999)
     },
 
     async UPDATE_DEC(context, payload) {

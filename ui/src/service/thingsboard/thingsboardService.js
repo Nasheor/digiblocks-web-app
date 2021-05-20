@@ -79,14 +79,19 @@ export default class ThingsboardService {
     }
 
     static async postDatatoSensor(body, id) {
-        body = JSON.parse(body)
-        let tmp_ro = routes.update_telemetry.name.replace("%id%", id)
-        try {
-            let r = await http.post(tmp_ro, body)
-            return await Promise.resolve(r.data)
-        } catch (err) {
-            return await Promise.reject(err)
-        }        
+        console.log(body.length)
+        for(let i = 0; i < body.length; i++) {
+            let data = JSON.parse(body[i])
+            let tmp_ro = routes.update_telemetry.name.replace("%id%", id)
+            let resolver = []
+            try {
+                    await http.post(tmp_ro, data).then( r => {
+                    resolver.push(Promise.resolve(r.data))
+                })
+            } catch (err) {
+                console.log(err)
+            }  
+        }
     }
 
     static async deleteTelemetryData() {
@@ -152,3 +157,4 @@ export default class ThingsboardService {
         }
     }
 }
+// POST /api/plugins/telemetry/{entityType}/{entityId}/timeseries/{scope}

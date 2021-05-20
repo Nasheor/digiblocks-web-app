@@ -22,9 +22,16 @@ export default {
                 timestamp: 2,
                 column_id: null,
                 device: "",
+                type: "",
             },
             timestamp: [],
             file_data: [],
+            energy_type: [
+                "Gas",
+                "Carbon",
+                "Electricity",
+                "Water"
+            ]
         };
     },
     components: {
@@ -62,15 +69,15 @@ export default {
         filePicked(file) {
             const reader = new FileReader()
             if(typeof file !== 'undefined') {
-                reader.readAsBinaryString(file)
+                reader.readAsArrayBuffer(file)
                 reader.onloadend = async (e) => {
                     let workbook = XLSX.read(e.target.result, {
-                        type: 'binary'
+                        type: "array"
                     })
                     let sheet = workbook.SheetNames[0]
                     let json_data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet])
                     let column_names = Object.keys(json_data[0])
-                    console.log(json_data[1])
+                    console.log(json_data[0])
                     console.log(column_names)
                     this.file_columns = column_names
                     this.timestamp.push(column_names[0])
@@ -85,30 +92,35 @@ export default {
         close() {
             this.file_processed = false
         },
-        selectedColumn(column) {
-            console.log(column)
-        },
         async upload() {
-            console.log(this.selected_column)
             let payload = {
                 "data": [], 
                 "device_id": "",
                 "device_name": "",
+                "type": this.selected_column.type
             }
             let device = this.device_data.filter(d => d.name === this.selected_column.device )
-            payload.device_id = device.device_id
-            payload.device_name = device.device_name
-            this.file_data.map(item => {
-                if(item.key === this.selected_column.column_id) {
-                    payload.data.push(
+            payload.device_id = device[0].id
+            payload.device_name = device[0].name
+            this.file_data.map((item, index) => {
+                let date = new Date(item[this.selected_column.timestamp])
+                let timestamp = date.getTime()
+                let key = "value-"+index
+                payload.data.push(
+                    JSON.stringify(
                         {
-                            "timestamp": item[this.selected_column.timestamp],
-                            "value": item[this.selected_column.column_id]
+                            "ts": timestamp,
+                            "values": {
+                                [key]: item[this.selected_column.column_id],
+                            }
                         }
                     )
-                }
+                )
+            })  
+            this.$store.dispatch("UPLOAD_DATA_FROM_FILE", payload).then(result => {
+                console.log(result)
             })
-            console.log(device_name)
+
         }
     },
 }

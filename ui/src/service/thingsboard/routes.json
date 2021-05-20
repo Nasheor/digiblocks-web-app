@@ -32,7 +32,7 @@
        "method": "post"
    },
    "delete_telemetry": {
-       "name": "/plugins/telemetry/DEVICE/2a775180-03ec-11eb-b122-536076a3744d/timeseries/delete?keys=unit,consumption",
+       "name": "/plugins/telemetry/DEVICE/%id%/timeseries/delete",
        "method": "delete"
    },
    "get_telemetry": {

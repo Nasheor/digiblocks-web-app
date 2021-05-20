@@ -41,6 +41,17 @@
                         ></v-select>
                     </v-col>
                     <v-col cols="12" sm="6">
+                        <v-subheader v-text="'Type of Data'"></v-subheader>
+                    </v-col>
+                    <v-col cols="12" sm="6">
+                        <v-text-field
+                            v-model="selected_column.type"
+                            single-line
+                            label="Eg. Gas"
+                            persistent-hint
+                        ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6">
                         <v-subheader v-text="'Select Timestamp'"></v-subheader>
                     </v-col>
                     <v-col cols="12" sm="6">
