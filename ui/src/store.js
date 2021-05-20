@@ -207,6 +207,13 @@ export default new Vuex.Store({
     },
     getTenantDevices(state) {
       return state.all_devices
+    },
+    getTenantDeviceNames(state) {
+      let device_names = []
+      state.all_devices.map(device => {
+        device_names.push(device.name)
+      })
+      return device_names
     }
   },
   actions: {

@@ -20,7 +20,7 @@
         <small class="blue-grey--text text--lighten-2 pt-4 d-block">Address</small>
         <h6 class="body-2">Bishopstown, Cork</h6>
       </div>
-      <div class="map-box">
+      <!-- <div class="map-box">
         <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
                 data-projection="EPSG:4326" style="height: 430px" class="mt-4">
           <vl-view :zoom.sync="zoom" :center.sync="center" :rotation.sync="rotation"></vl-view>
@@ -34,7 +34,7 @@
             <vl-source-osm></vl-source-osm>
           </vl-layer-tile>
         </vl-map>
-      </div>
+      </div> -->
       <!-- <small class="blue-grey--text text--lighten-2 py-4 d-block">Social Profile</small>
 
       <v-btn class="mx-2 elevation-0" fab dark small color="light-blue darken-4">

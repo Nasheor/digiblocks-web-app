@@ -11,14 +11,70 @@
                 show-size
                 @change="filePicked">
             </v-file-input>
-            <v-btn
-              class="ml-2"
-              min-width="0"
-              color="success"
-              @click="submit"
-            >
-              Submit
-            </v-btn>
+            <v-dialog v-model="file_processed" max-width="650" hide-overlay transition="dialog-bottom-transition">
+            <template v-slot:activator="{ on }">
+                <div
+                v-on="on"
+                class="display ml-12"
+                >                        
+                    <v-btn 
+                    color="green"  
+                    @click.native="submit"
+                    v-on="on"
+                    >
+                    Submit
+                    </v-btn>
+            </div>
+            </template>
+                <v-card v-if="getFileStatus">
+                    <v-row>
+                        <v-col cols="12" sm="6">
+                            <v-subheader v-text="'Select Data to Upload'"></v-subheader>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                            <v-select
+                            v-model="selected_column.column_id"
+                            :items="getFileColumns"
+                            :menu-props="{ maxHeight: '400' }"
+                            label="Select"
+                            persistent-hint
+                            ></v-select>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                            <v-subheader v-text="'Select Timestamp'"></v-subheader>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                            <v-select
+                            v-model="selected_column.timestamp"
+                            :items="getTimestamp"
+                            :menu-props="{ maxHeight: '400' }"
+                            label="Select"
+                            persistent-hint
+                            ></v-select>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                            <v-subheader v-text="'Select Device'"></v-subheader>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                            <v-select
+                              v-model="selected_column.device"
+                              :items="devices"
+                              :menu-props="{ maxHeight: '400' }"
+                              label="Select"
+                              persistent-hint
+                            ></v-select>
+                        </v-col>
+                    </v-row>
+                <v-footer class="d-flex justify-center" padless>
+                    <v-btn align-center color="success" @click="upload">
+                        Upload
+                    </v-btn>
+                    <v-btn class="ml-2" dark @click="close">
+                        Close
+                    </v-btn>
+                </v-footer>
+              </v-card>
+            </v-dialog>
           </v-card-text>
         </v-col>
         <v-col cols="4" sm="12" v-if="getDltStatus===false">
