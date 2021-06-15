@@ -6,6 +6,12 @@ export default {
             from_period: '',
             to_period: '',
             items: [],
+            icons: [
+                "mdi-arrow-down-bold",
+               "mdi-arrow-up-bold"
+            ],
+            total_electrical_usage: [541541],
+            total_non_electrical_usage: [554],
         }
     },
     methods: {
@@ -16,6 +22,8 @@ export default {
             this.items.push({name: 'Electricity', key: "mA",color: this.electricity_value[2], icon: this.electricity_value[3]})
             this.items.push({name: 'Water', key: "L", color: this.water_value[2], icon: this.water_value[3]})
             this.items.push({name: 'Carbon Dioxide', key: "Kg", color: this.co_value[2], icon: this.co_value[3]})
+            this.items.push({name: 'Total Electrical Usage'})
+            this.items.push({name: 'Total Non-Electrical Usage'})
         },
     },
     computed: {

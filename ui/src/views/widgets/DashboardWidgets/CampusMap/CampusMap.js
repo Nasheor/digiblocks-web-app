@@ -56,9 +56,45 @@ export default {
         }
       },
       computed: {
-        ...mapGetters({building_data: "getBuildingData"})
+        ...mapGetters({building_data: "getBuildingData"}),
+        getCampusData() {
+          return this.campus_data
+        },
+        getMarkers() {
+          return this.markers
+        }
       },
-      created() {
+      // watch: {
+      //   markers: function() {
+      //     this.building_data.map(building => {
+      //       this.campus_data.push({
+      //         "name": building.name,
+      //         "category": building.category,
+      //         "image": building.image,
+      //         "band": building.band,
+      //         "color": building.color
+
+      //       })
+      //     })          
+      //   },
+      //   campus_data: function() {
+      //     this.building_data.map(building => {
+      //       this.campus_data.push({
+      //         "name": building.name,
+      //         "category": building.category,
+      //         "image": building.image,
+      //         "band": building.band,
+      //         "color": building.color
+
+      //       })
+      //     })          
+      //   }
+      // },
+      // beforeCreate(){
+      //   this.populateMarkers()
+      //   this.populateTable()
+      // }
+      async created() {
         this.populateMarkers()
         this.populateTable()
       }

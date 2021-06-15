@@ -17,7 +17,8 @@ export default {
     },
     methods: {
         setData(device) {
-            this.name = device.name
+            console.log(device)
+            this.name = device.name + "" + device.data[4].value
             this.device_data = device.data
         }
     },

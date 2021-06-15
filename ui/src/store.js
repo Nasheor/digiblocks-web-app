@@ -211,7 +211,7 @@ export default new Vuex.Store({
     getTenantDeviceNames(state) {
       let device_names = []
       state.all_devices.map(device => {
-        device_names.push(device.name)
+        device_names.push(device.name + ""+ device.data[4].value)
       })
       return device_names
     }

@@ -82,7 +82,7 @@ export default {
                     this.file_columns = column_names
                     this.timestamp.push(column_names[0])
                     this.timestamp.push(column_names[1])
-                    this.file_data = json_data                   
+                    this.file_data = json_data
                 }
             }
         },
@@ -105,6 +105,8 @@ export default {
             this.file_data.map((item, index) => {
                 let date = new Date(item[this.selected_column.timestamp])
                 let timestamp = date.getTime()
+
+                // Keeep the key constant. 
                 let key = "value-"+index
                 payload.data.push(
                     JSON.stringify(

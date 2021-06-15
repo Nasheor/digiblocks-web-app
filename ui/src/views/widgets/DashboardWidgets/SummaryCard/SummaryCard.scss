@@ -1,0 +1,16 @@
+.kpi_metrics {
+    display: flex;
+    flex-flow: column wrap;
+    
+    .inner_display {
+        display: flex;
+        flex-flow: row nowrap;
+
+
+        .basic_format {
+            display:flex;
+            flex-flow: column nowrap;
+            margin-top: 25px;
+        }
+    }
+}

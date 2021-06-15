@@ -46,7 +46,7 @@
           </thead>
           <tbody>
             <tr
-              v-for="item in campus_data"
+              v-for="item of getCampusData"
               :key="item.text"
               class="month-item"
             >
