@@ -61,7 +61,7 @@
       <v-icon>mdi-logout</v-icon>
     </v-btn>
 
-    <v-menu bottom center offset-y origin="top right" min-width="300px" transition="scale-transition">
+    <!-- <v-menu bottom center offset-y origin="top right" min-width="300px" transition="scale-transition">
       <template v-slot:activator="{ on }">
         <v-btn icon v-on="on" class="mr-1">
           <v-badge>
@@ -140,7 +140,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-    </v-menu>
+    </v-menu> -->
   </v-app-bar>
 </template>
 

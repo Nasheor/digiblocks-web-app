@@ -2,6 +2,9 @@
     <v-container fluid class="down-top-padding background">
         <v-row>
             <v-col cols="12" class="py-0">
+                <TimelineTracker />
+            </v-col>
+            <v-col cols="12" class="py-0">
                 <CampusActivity />
             </v-col>
             <v-col cols="12" class="py-0">

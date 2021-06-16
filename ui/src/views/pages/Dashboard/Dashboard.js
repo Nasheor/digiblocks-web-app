@@ -1,4 +1,5 @@
 import { mapGetters } from 'vuex'
+import TimelineTracker from '../../widgets/DashboardWidgets/TimelineTracker/index'
 import SummaryCard from '../../widgets/DashboardWidgets/SummaryCard/index'
 import CampusMap from '../../widgets/DashboardWidgets/CampusMap/index'
 import CampusActivity from '../../widgets/DashboardWidgets/CampusActivity/index'
@@ -9,7 +10,8 @@ export default {
         SummaryCard,
         CampusMap,
         CampusActivity,
-        CommunityView
+        CommunityView,
+        TimelineTracker,
     },
     data () {
         return {

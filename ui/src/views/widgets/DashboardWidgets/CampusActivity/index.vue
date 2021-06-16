@@ -4,7 +4,7 @@
             <v-img
                 src="@/assets/images/weatherbg.jpg"
                 class="sundaycard-img-height rounded"
-                height="220px"
+                height="180px"
             ></v-img>
             <div class="px-5 py-1">
                 <v-row class="ml-8">

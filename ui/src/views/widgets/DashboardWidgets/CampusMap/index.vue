@@ -20,7 +20,7 @@
       :zoom="zoom"
       :center="center"
       style="height: 430px; width: 100%"
-      class="mt-4"
+      class="mt-4 overlay"
     >
       <l-tile-layer
         :url="url"

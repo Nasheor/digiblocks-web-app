@@ -5,8 +5,8 @@
     <dashboard-core-drawer />
 
     <dashboard-core-view />
-
-    <dashboard-core-settings />
+<!-- 
+    <dashboard-core-settings /> -->
   </v-app>
 </template>
 
@@ -14,7 +14,7 @@
   import { mapGetters } from 'vuex';
   import AppBar from './sections/AppBar/index'
   import Drawer from './sections/Drawer/index'
-  import Settings from './sections/Settings/index'
+  // import Settings from './sections/Settings/index'
   import View from './sections/View/index'
   
   export default {
@@ -23,7 +23,7 @@
     components: {
       DashboardCoreAppBar: AppBar,
       DashboardCoreDrawer: Drawer,
-      DashboardCoreSettings: Settings,
+      // DashboardCoreSettings: Settings,
       DashboardCoreView: View,
     },
 

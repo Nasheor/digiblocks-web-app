@@ -42,12 +42,16 @@ export default new Vuex.Store({
     community: "",
     community_id: "",
     all_devices: [],
+    timeline: null,
   },
   mutations: {
     clearData(state) {
       state.dashboard_data = [];
       state.building_data = [];
       state.devices_data = [];
+    },
+    setTimeline(state, payload) {
+      state.timeline = payload;
     },
     setBarImage (state, payload) {
       state.barImage = payload;
