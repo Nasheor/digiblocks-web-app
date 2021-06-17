@@ -42,7 +42,11 @@ export default new Vuex.Store({
     community: "",
     community_id: "",
     all_devices: [],
-    timeline: null,
+    timeline: {
+      "year": 2021,
+      "month": 5,
+      "day": 30
+    },
   },
   mutations: {
     clearData(state) {
@@ -51,7 +55,12 @@ export default new Vuex.Store({
       state.devices_data = [];
     },
     setTimeline(state, payload) {
-      state.timeline = payload;
+      state.timeline = {
+        "year": payload.split("-")[0],
+        "month": payload.split("-")[1],
+        "day": payload.split("-")[2]
+      }
+      console.log(state.timeline)
     },
     setBarImage (state, payload) {
       state.barImage = payload;
@@ -140,6 +149,9 @@ export default new Vuex.Store({
     }
    },
   getters: {
+    getTimelineTracker(state) {
+      return state.timeline;
+    },
     getCompareBuildings(state) {
       return state.compare_buildings; 
     },

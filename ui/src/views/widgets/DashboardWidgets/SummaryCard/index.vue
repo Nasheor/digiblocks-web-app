@@ -19,7 +19,7 @@
                         </v-list-item-avatar>
                         <div class="inner_display">
                             <v-list-item-title class="headline mb-1">
-                                YTD {{from_period[0].value}}
+                                YTD {{timeline.year}}
                             </v-list-item-title>
                             <div class="basic_format">
                                 <div><v-icon color="green" size="30">mdi-arrow-up-bold</v-icon></div>
@@ -57,7 +57,7 @@
                         </v-list-item-avatar>
                         <div class="inner_display">
                             <v-list-item-title class="headline mb-1">
-                                YTD {{from_period[0].value}}
+                                YTD {{timeline.year}}
                             </v-list-item-title>
                             <div class="basic_format">
                                 <div><v-icon color="green" size="30">mdi-arrow-down-bold</v-icon></div>
@@ -95,7 +95,7 @@
                         </v-list-item-avatar>
                         <div class="inner_display">
                             <v-list-item-title class="headline mb-1">
-                                YTD {{from_period[0].value}}
+                                YTD {{timeline.year}}
                             </v-list-item-title>
                             <div class="basic_format">
                                 <div><v-icon color="green" size="30">mdi-arrow-down-bold</v-icon></div>
@@ -133,7 +133,7 @@
                         </v-list-item-avatar>
                         <div class="inner_display">
                             <v-list-item-title class="headline mb-1">
-                                YTD {{from_period[0].value}}
+                                YTD {{timeline.year}}
                             </v-list-item-title>
                             <div class="basic_format">
                                 <div><v-icon color="green" size="30">mdi-arrow-up-bold</v-icon></div>
@@ -171,7 +171,7 @@
                         </v-list-item-avatar>
                         <div class="inner_display">
                             <v-list-item-title class="headline mb-1">
-                                YTD {{from_period[0].value}}
+                                YTD {{timeline.year}}
                             </v-list-item-title>
                             <div class="basic_format">
                                 <div><v-icon color="green" size="30">mdi-arrow-down-bold</v-icon></div>
@@ -212,7 +212,7 @@
                         </v-list-item-avatar>
                         <div class="inner_display">
                             <v-list-item-title class="headline mb-1">
-                                YTD {{from_period[0].value}}
+                                YTD {{timeline.year}}
                             </v-list-item-title>
                             <div class="basic_format">
                                 <div><v-icon color="green" size="30">mdi-arrow-down-bold</v-icon></div>

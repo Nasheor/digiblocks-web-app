@@ -32,6 +32,7 @@ export default {
         ...mapGetters({electricity_value: 'getElectricityValue'}),
         ...mapGetters({co_value: 'getCoValue'}),
         ...mapGetters({water_value: 'getWaterValue'}),
+        ...mapGetters({timeline: 'getTimelineTracker'})
     },
     mounted() {
         this.populateData()
