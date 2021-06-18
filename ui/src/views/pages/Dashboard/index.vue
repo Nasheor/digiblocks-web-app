@@ -8,10 +8,10 @@
                 <CampusActivity />
             </v-col>
             <v-col cols="12" class="py-0">
-                <CampusMap />
+                <SummaryCard />
             </v-col>
             <v-col cols="12" class="py-0">
-                <SummaryCard />
+                <CampusMap />
             </v-col>
             <v-col cols="12" class="py-0">
                 <CommunityView />
