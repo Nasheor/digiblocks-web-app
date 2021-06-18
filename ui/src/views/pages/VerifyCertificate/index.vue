@@ -2,7 +2,7 @@
     <v-card>
       <v-data-table
         :headers="headers"
-        :items="getBuildings"
+        :items="certifier_data"
         multi-sort
         hide-default-footer
         class="elevation-0 border"

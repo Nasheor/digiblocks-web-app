@@ -271,7 +271,11 @@ export default {
         },
         closeHistory() {
             this.$store.commit("setHistoryStatus", false)
-            this.$router.push({name: "Home"})
+            this.dialog = false;
+            if(this.getRole === "External Verifier")
+                this.$router.push({name: "Buildings"})
+            else
+                this.$router.push({name: "Home"})
         },
         storeDataIOTA() {
             let data = this.getBuildingData.find(building => building.name === this.name)

@@ -20,18 +20,17 @@
               <v-timeline :reverse="reverse" dense>
                 <v-timeline-item class="align-start" large>
                   <template v-slot:icon>
-                    <v-avatar>
+                    <v-avatar class="pos">
                       <img src="../../../../assets/images/cit.jpg" />
                     </v-avatar>
                   </template>
                   <v-card class="elevation-0">
                     <v-card-title class="subtitle-1 pa-0">
-                      John Doe
-                      <span class="subtitle-2 mx-1 font-weight-light">5 minutes ago</span>
+                      Community Manager
+                      <span class="subtitle-2 mx-1 font-weight-light">12/06/2021</span>
                     </v-card-title>
                     <v-card-text class="px-0">
-                      assign a new task
-                      <a href="javascript:void(0)">Energy web app design</a>
+                      Generated DEC and stored on IOTA
                     </v-card-text>
                     <v-divider class="my-4"></v-divider>
                   </v-card>
@@ -44,15 +43,13 @@
                   </template>
                   <v-card class="elevation-0">
                     <v-card-title class="subtitle-1 pa-0">
-                      Jacky Chain
-                      <span class="subtitle-2 mx-1 font-weight-light">14 minutes ago</span>
+                      Joe Blogs
+                      <span class="subtitle-2 mx-1 font-weight-light">11/06/2021</span>
                     </v-card-title>
                     <v-row class="mt-4">
                       <v-col lg="9" cols="12" sm="12">
                         <div class="subtitle-2 font-weight-regular mb-3">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Integer nec odio. Praesent libero. Sed cursus
-                          ante.
+                          Building Registered to the ledger
                         </div>
                       </v-col>
                     </v-row>
@@ -67,15 +64,11 @@
                   </template>
                   <v-card class="elevation-0">
                     <v-card-title class="subtitle-1 pa-0">
-                      Emma John
-                      <span class="subtitle-2 mx-1 font-weight-light">23 minutes ago</span>
+                      Joe Blogs
+                      <span class="subtitle-2 mx-1 font-weight-light">12/06/2021</span>
                     </v-card-title>
                     <div class="subtitle-2 font-weight-regular mt-4">
-                      Lorem ipsum dolor sit amet, consectetur
-                      adipiscing elit. Integer nec odio. Praesent libero. Sed
-                      cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh
-                      elementum imperdiet. Duis sagittis ipsum. Praesent mauris.
-                      Fusce nec tellus sed augue semper
+                      DEC verified by External Verifier 
                     </div>
                     <v-divider class="mb-4 mt-7"></v-divider>
                   </v-card>
@@ -88,15 +81,11 @@
                   </template>
                   <v-card class="elevation-0">
                     <v-card-title class="subtitle-1 pa-0">
-                      Charlotte Smith
+                      Community Manager
                       <span class="subtitle-2 mx-1 font-weight-light">1 hour ago</span>
                     </v-card-title>
                     <div class="subtitle-2 font-weight-regular mt-4 pa-4 border">
-                      Lorem ipsum dolor sit amet, consectetur
-                      adipiscing elit. Integer nec odio. Praesent libero. Sed
-                      cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh
-                      elementum imperdiet. Duis sagittis ipsum. Praesent mauris.
-                      Fusce nec tellus sed augue semper
+                      Building name has been changed
                     </div>
                   </v-card>
                 </v-timeline-item>

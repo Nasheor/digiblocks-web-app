@@ -51,6 +51,7 @@
                     :latitude="building.latitude"
                     :longitude="building.longitude"
                     :id="building.id"
+                    :entire_building="building"
                     :compare="true"
                     @click.native="setName(building)"
                     outlined
@@ -59,7 +60,7 @@
                 </div>
               </template>
               <v-card  >
-                  <v-toolbar height="100px" class="an-toolbar-position" dark  color="#f79026">
+                  <v-toolbar height="100px" class="an-toolbar-position pos" dark  color="#f79026">
                       <v-btn icon dark @click="dialog = false">
                           <v-icon>mdi-close</v-icon>
                       </v-btn>
@@ -78,7 +79,7 @@
                             <v-icon class="mr-3">mdi-certificate</v-icon>
                             Generate DEC
                         </v-btn>
-                        <v-btn
+                        <!-- <v-btn
                           class="ml-2"
                           min-width="0"
                           color="error"
@@ -87,8 +88,8 @@
                         >
                           <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon>
                           Register Building
-                        </v-btn>   
-                        <v-btn
+                        </v-btn>    -->
+                        <!-- <v-btn
                           class="ml-2"
                           min-width="0"
                           color="error"
@@ -97,9 +98,9 @@
                         >
                           <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon>
                           Store IOTA Data
-                        </v-btn> 
+                        </v-btn>  -->
                         <div>
-                          <v-dialog fullscreen hide-overlay transition="dialog-bottom-transition">
+                          <!-- <v-dialog fullscreen hide-overlay transition="dialog-bottom-transition">
                               <template v-slot:activator="{ on }">
                                 <v-btn
                                   class="ml-2"
@@ -116,7 +117,7 @@
                               <v-card v-if="getEditFormStatus" >
                                   <EditBuildingForm :building_data="b_card_data"/>
                               </v-card>
-                          </v-dialog>
+                          </v-dialog> -->
                           <v-dialog v-model="certificate_dialog" persistent max-width="650" transition="dialog-bottom-transition">
                               <template v-slot:activator="{ on }">
                                 <v-btn
@@ -125,7 +126,7 @@
                                   color="error"
                                   v-on="on"
                                   @click.native="certificate_dialog=true"
-                                  v-if="getRole === 'Community Manager'"
+                                  v-if="getRole === 'External Verifier' && b_card_data.certificate_generated===true"
                                 >
                                   <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon>
                                   View Certificate
@@ -138,12 +139,12 @@
                                     </v-btn>
                                     <v-toolbar-title>{{ b_card_data.name }}</v-toolbar-title>
                                     <v-spacer></v-spacer>
-                                    <v-btn color="green" v-if="getRole==='External Verifier'" @click="verifyCert">Verify</v-btn>
+                                    <v-btn color="green" v-if="getRole==='External Verifier'" class="ml-2" @click="verifyCert">Verify</v-btn>
                                   <v-dialog v-model="history" fullscreen hide-overlay transition="dialog-bottom-transition">
                                     <template v-slot:activator="{ on }">
                                       <div
                                         v-on="on"
-                                        class="display ml-12"
+                                        class="display ml-2"
                                       >                        
                                           <v-btn 
                                             color="green"  

@@ -1,4 +1,5 @@
 import BCard from '../../widgets/BuildingCardComponents/index.vue' 
+import { mapGetters } from 'vuex'
 
 export default {
     components: {
@@ -6,7 +7,7 @@ export default {
     },
     props: ["id", "name", "src","compare","floor_area", 
             "latitude", "longitude", "category", "environment",
-            "hours"], 
+            "hours", "entire_building"], 
     data() {
         return {
             show: false,
@@ -25,4 +26,7 @@ export default {
             }
         },
     },
+    computed: {
+        ...mapGetters(["getRole"]),
+    }
 }

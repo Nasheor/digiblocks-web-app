@@ -85,7 +85,11 @@ export default {
         },
         close() {
             this.$store.commit("setHistoryStatus", false)
-            this.$router.push({name: "Home"})
+            this.dialog = false;
+            if(this.role === "External Verifier")
+                this.$router.push({name: "Buildings"})
+            else
+                this.$router.push({name: "Home"})
         }
     },
     computed: {

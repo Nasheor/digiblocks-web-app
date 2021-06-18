@@ -1,6 +1,6 @@
 .toolbar-position {
     display: flex;
-    z-index: 1; 
+    z-index: 2; 
     flex-direction: row-reverse;
 }
 
@@ -13,5 +13,5 @@
 .an-toolbar-position {
     display: flex;
     position: fixed;
-    z-index: 1; 
+    z-index: 999; 
 }

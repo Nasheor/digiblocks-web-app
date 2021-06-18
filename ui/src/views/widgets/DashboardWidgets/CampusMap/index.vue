@@ -1,21 +1,5 @@
 <template>
   <v-card flat class="pa-2 d-flex" color="#eef5f9">
-    <!-- <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
-             data-projection="EPSG:4326" style="height: 430px" class="mt-4">
-      <vl-view :zoom.sync="zoom" :center.sync="center" :rotation.sync="rotation"></vl-view>
-
-      <vl-layer-tile>
-        <vl-source-osm></vl-source-osm>
-      </vl-layer-tile>
-
-      
-      <vl-feature>
-        <vl-geom-multi-point  :coordinates="markers"></vl-geom-multi-point>
-        <vl-style-box v-for="marker of markers" :key="marker[0]">
-          <vl-style-icon  :src="require('../../../../assets/images/marker.png')" :scale="0.12"></vl-style-icon>
-        </vl-style-box>        
-      </vl-feature>
-    </vl-map> -->
     <l-map
       :zoom="zoom"
       :center="center"
@@ -30,7 +14,7 @@
         v-for="marker of building_data"
         :key="marker.name"
         :lat-lng="marker.coordinates"
-        ref="markerRef"
+
       >
         <l-tooltip :content="marker.name+ ' BER: '+Math.round(marker.ber)"></l-tooltip>
       </l-marker>

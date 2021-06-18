@@ -27,7 +27,7 @@ export default {
     computed: {
       ...mapGetters({building_data: 'getBuildingData'}),
       ...mapGetters({email: "getEmail"}),
-
+      ...mapGetters({certifier_data: "getCertifierData"}),
       getBuildings() {
         return this.buildings;
       }

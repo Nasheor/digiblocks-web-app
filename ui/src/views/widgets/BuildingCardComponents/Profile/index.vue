@@ -1,6 +1,7 @@
 <template>
   <v-card>
     <v-card-text class="pa-7">
+
       <div class="d-flex justify-center mt-3">
         <div class="text-center">
           <img
@@ -20,6 +21,34 @@
         <small class="blue-grey--text text--lighten-2 pt-4 d-block">Address</small>
         <h6 class="body-2">Bishopstown, Cork</h6>
       </div>
+      <v-dialog fullscreen hide-overlay transition="dialog-bottom-transition">
+          <template v-slot:activator="{ on }">
+            <v-btn
+              class="ml-2"
+              min-width="0"
+              color="error"
+              v-on="on"
+              @click.native="setEditFormStatus"
+              v-if="getRole === 'Community Manager'"
+            >
+              <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon>
+              Edit 
+            </v-btn> 
+          </template>
+          <v-card v-if="getEditFormStatus" >
+              <EditBuildingForm :building_data="building_data"/>
+          </v-card>
+      </v-dialog>
+      <!-- <v-btn
+        class="ml-2"
+        min-width="0"
+        color="error"
+        @click="registerBuilding"
+        v-if="getDltStatus === false && getRole === 'Community Manager'"
+      >
+        <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon>
+        Register Building
+      </v-btn>  -->
       <!-- <div class="map-box">
         <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
                 data-projection="EPSG:4326" style="height: 430px" class="mt-4">

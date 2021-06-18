@@ -63,12 +63,12 @@
                     </v-btn>
                     <v-toolbar-title>{{ selected_building.name }}</v-toolbar-title>
                     <v-spacer></v-spacer>
-                    <v-btn color="green" v-if="role==='External Verifier'" @click="verifyCert">Verify</v-btn>
+                    <v-btn color="green" v-if="role==='External Verifier'" class="ml-3" @click="verifyCert">Verify</v-btn>
                   <v-dialog v-model="history" fullscreen hide-overlay transition="dialog-bottom-transition">
                     <template v-slot:activator="{ on }">
                       <div
                         v-on="on"
-                        class="display ml-12"
+                        class="display ml-3"
                       >                        
                           <v-btn 
                             color="green"  

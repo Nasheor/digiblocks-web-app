@@ -48,6 +48,7 @@ export default new Vuex.Store({
       "day": 30,
       "date": "2021-5-30"
     },
+    certifier_data: []
   },
   mutations: {
     clearData(state) {
@@ -101,6 +102,18 @@ export default new Vuex.Store({
       if(flag === false)
         state.building_data.push(payload)
     },
+    setCertifierData(state, payload) {
+      let flag = false
+      if(state.certifier_data.length > 0) {
+        state.certifier_data.map(building => {
+          if(building.name === payload.name) {
+            flag = true 
+          }
+        })
+      }
+      if(flag === false)
+        state.certifier_data.push(payload)
+    },      
     setDevicesData(state, payload) {
         state.devices_data.push(payload)
     },
@@ -248,6 +261,9 @@ export default new Vuex.Store({
         device_names.push(device.name + ""+ device.data[4].value)
       })
       return device_names
+    },
+    getCertifierData(state) {
+      return state.certifier_data
     }
   },
   actions: {
@@ -406,8 +422,7 @@ export default new Vuex.Store({
                                 else if(attr.key === "certificate_generated") 
                                   dec_data.certificate_generated = attr.value                                                                                                                                                                                                                                                                                                                                            
                               })
-
-                              context.commit("setBuildingData", {
+                              let tmp_holder = {
                                 "name": item.name,
                                 "id": item.id.id,
                                 "category": data.filter(item=> item.key==="category")[0].value,
@@ -441,7 +456,23 @@ export default new Vuex.Store({
                                 "certificate_keys": data.filter(item => item.key === "certificate_keys")[0].value,
                                 "dec_id": dec_data.device_id,
                                 "certificate_generated": dec_data.certificate_generated
-                              })
+                              }
+                              context.commit("setBuildingData", tmp_holder)
+                              if(tmp_holder.dlt_cert_status === true && tmp_holder.certificate_verified === false)
+                                context.commit("setCertifierData", {
+                                  "id": tmp_holder.id,
+                                  "name": tmp_holder.name,
+                                  "address": tmp_holder.address,
+                                  "ufa": tmp_holder.floor_area,
+                                  "mhf": tmp_holder.fuel,
+                                  "ber": tmp_holder.ber,
+                                  "doi": tmp_holder.issue,
+                                  "expiry":  tmp_holder.expiry,
+                                  "assessor": tmp_holder.assessor,
+                                  "band": tmp_holder.band,
+                                  "category": tmp_holder.category,
+                                  "dec_id": tmp_holder.dec                                
+                                })
                               // let paylaod = {
                               //   "name": "",
                               //   "building"

@@ -6,11 +6,20 @@
             align="start"
             justify="start"
           >
+            <v-chip-group
+              mandatory
+              active-class="primary--text"
+            >
+            <v-chip v-for="tag in categories" :key="tag">
+                {{ tag }}
+            </v-chip>
+            </v-chip-group>
           <v-dialog v-model="dialog" persistent max-width="650" transition="dialog-bottom-transition">
               <template v-slot:activator="{ on }">
                 <div
                   v-on="on"
                   class="display"
+                  v-if="getCategory!='Water Meter' && getCategory != 'Co Meter'"
                 >
                   <DeviceCard 
                     v-for="device of devices"

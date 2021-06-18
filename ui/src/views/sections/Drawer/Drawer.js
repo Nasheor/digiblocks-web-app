@@ -34,7 +34,7 @@ export default {
                 title: 'Certificate',
                 icon: 'mdi-format-font',
                 to: '/certificate',
-                role: ["Community Manager", "External Verifier", "Building Owner"],
+                role: ["Community Manager", "Building Owner"],
                 display: false,
             },
             {
@@ -44,13 +44,13 @@ export default {
                 role: ["External Verifier"],
                 display: false,
             },
-            {
-                title: 'Transactions',
-                icon: 'mdi-sort',
-                to: '/transactions',
-                role: ["Community Manager", "External Verifier", "Building Owner"],
-                display: false,            
-            },
+            // {
+            //     title: 'Transactions',
+            //     icon: 'mdi-sort',
+            //     to: '/transactions',
+            //     role: ["Community Manager", "External Verifier", "Building Owner"],
+            //     display: false,            
+            // },
             {
                 title: 'Devices',
                 icon: 'mdi-cellphone-android',

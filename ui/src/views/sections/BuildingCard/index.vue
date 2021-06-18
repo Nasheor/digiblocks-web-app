@@ -19,7 +19,29 @@
       
         <v-card-subtitle class="overline">
             {{name}}
-        </v-card-subtitle>    
+        </v-card-subtitle>
+        <v-card-text v-if="getRole==='External Verifier'">
+            <v-list disabled>
+                <v-list-item>
+                    <v-list-item-title>
+                        Status:
+                    </v-list-item-title>
+                    <v-list-content>
+                        <p v-if="entire_building.certificate_verified===false && entire_building.certificate_generated===true">Not Verified</p>
+                        <p v-else-if="entire_building.certificate_generated===false">No DEC Generated</p>
+                        <p v-else>Verified by {{entire_building.assessor}}</p>
+                    </v-list-content>
+                </v-list-item>
+                <!-- <v-list-item>
+                    <v-list-item-title>
+                        BER:
+                    </v-list-item-title>
+                    <v-list-content class="mt-4">
+                        <p>{{Math.round(entire_building.ber)}}</p>
+                    </v-list-content>
+                </v-list-item> -->
+            </v-list>
+        </v-card-text>
     </v-card>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
   <v-card class="pa-2">
     <v-spacer />
-      <v-row class="mt-8">
-        <v-col cols="4" sm="12"  class="mt-12">
+      <v-row class="mt-10">
+        <!-- <v-col cols="4" sm="12"  class="mt-12">
           <v-card-text class="format mt-5">
             <v-file-input 
                 label="Telemetry File"
@@ -88,13 +88,24 @@
               </v-card>
             </v-dialog>
           </v-card-text>
-        </v-col>
-        <v-col cols="4" sm="12" v-if="getDltStatus===false">
+        </v-col> -->
+        <v-col class="mt-12" cols="4" sm="12" v-if="getDltStatus===false">
           <v-chip class="mr-2" color="red lighten-3" text-color="gray">
              <h4> Register Building to the Ledger </h4>
+            <v-btn
+              class="ml-2"
+              min-width="0"
+              color="deep-purple"
+              text
+              @click="registerBuilding"
+              v-if="getDltStatus === false && getRole === 'Community Manager'"
+            >
+              <!-- <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon> -->
+              Register Building
+            </v-btn> 
           </v-chip>
         </v-col>
-        <v-col cols="4" sm="12" v-else>
+        <v-col class="mt-12" cols="4" sm="12" v-else>
           <v-chip class="mr-2" color="green lighten-3" text-color="gray">
              <h4> Building already registered to the ledger </h4>
           </v-chip>

@@ -12,7 +12,9 @@ export default {
             dialog: false,
             name: "",
             device_data: "",
-            src: "sensor.png"
+            src: "sensor.png",
+            categories: ["All", "Energy Meter", "Water Meter", "Co Meter"],
+            category: "All",
         };
     },
     methods: {
@@ -20,6 +22,9 @@ export default {
             console.log(device)
             this.name = device.name + "" + device.data[4].value
             this.device_data = device.data
+        },
+        selectedCategory(item) {
+            console.log(item)
         }
     },
     computed: {
@@ -29,6 +34,9 @@ export default {
         },
         getData() {
             return this.device_data
+        },
+        getCategory() {
+            return this.category
         }
     }
 }
