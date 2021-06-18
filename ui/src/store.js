@@ -45,7 +45,8 @@ export default new Vuex.Store({
     timeline: {
       "year": 2021,
       "month": 5,
-      "day": 30
+      "day": 30,
+      "date": "2021-5-30"
     },
   },
   mutations: {
@@ -58,9 +59,14 @@ export default new Vuex.Store({
       state.timeline = {
         "year": payload.split("-")[0],
         "month": payload.split("-")[1],
-        "day": payload.split("-")[2]
+        "day": payload.split("-")[2],
+        "date": payload
       }
-      console.log(state.timeline)
+      let factor = ((2021 - state.timeline.year)+1) * 1000
+      state.gas_value[0] = state.gas_value[0] - factor 
+      state.electricity_value[0] = state.electricity_value[0] - factor
+      state.water_value[0] = state.water_value[0] - factor
+      state.co_value[0] = state.co_value[0] + state.timeline.year
     },
     setBarImage (state, payload) {
       state.barImage = payload;
@@ -167,14 +173,26 @@ export default new Vuex.Store({
     getGasValue(state) {
       return state.gas_value;
     },
+    getGas(state) {
+      return state.gas_value[0]
+    },
     getElectricityValue(state) {
       return state.electricity_value;
+    },
+    getElectricity(state) {
+      return state.electricity_value[0]
     },
     getWaterValue(state) {
       return state.water_value;
     },
+    getWater(state) {
+      return state.water_value[0]
+    },
     getCoValue(state) {
       return state.co_value;
+    },
+    getCo(state) {
+      return state.co_value[0]
     },
     getLoginStatus(state) {
       return state.login_status;

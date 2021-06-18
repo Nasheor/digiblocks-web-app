@@ -9,7 +9,7 @@
         </div>
         <div class="mx-4">
           <h3 class="card-title white--text title font-weight-regular">Electricity usage</h3>
-          <h6 class="card-subtitle white--text op-5 subtitle-2 font-weight-regular">{{building_data.expiry}}</h6>
+          <h6 class="card-subtitle white--text op-5 subtitle-2 font-weight-regular">{{timeline.date}}</h6>
         </div>
       </div>
       <v-row class="mt-1">

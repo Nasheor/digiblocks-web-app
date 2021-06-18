@@ -1,5 +1,6 @@
 import VueApexCharts from "vue-apexcharts";
 import DownloadChart from "./data";
+import { mapGetters } from 'vuex'
 
 export default {
   props: [
@@ -9,6 +10,9 @@ export default {
     elementVisible: false,
     DownloadChart: DownloadChart
   }),
+  computed: {
+    ...mapGetters({timeline: "getTimelineTracker"})
+  },
   created() {
     setTimeout(() => (this.elementVisible = true), 1000);
   },

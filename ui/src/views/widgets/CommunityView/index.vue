@@ -63,8 +63,9 @@
                     </v-toolbar>
                     <v-divider></v-divider>
                     <vue-apex-charts
-                        type="heatmap"
+                        class="position"
                         height="350"
+                        width="800"
                         :options="heat_map_energy.chartOptions"
                         :series="heat_map_energy.series"
                     ></vue-apex-charts>                   

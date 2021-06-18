@@ -25,7 +25,7 @@
                                 <div><v-icon color="green" size="30">mdi-arrow-up-bold</v-icon></div>
                                 <div><p>4.5%</p></div>
                             </div>   
-                            <p>{{gas_value[0]}} {{item.key}}</p>      
+                            <p>{{gas}} {{item.key}}</p>      
                         </div>                                           
                     </v-list-item-content>
                 </v-list-item>
@@ -63,7 +63,7 @@
                                 <div><v-icon color="green" size="30">mdi-arrow-down-bold</v-icon></div>
                                 <div><p>5%</p></div>
                             </div>   
-                            <p>{{electricity_value[0]}} {{item.key}}</p>      
+                            <p>{{electricity}} {{item.key}}</p>      
                         </div>                                           
                     </v-list-item-content>
                 </v-list-item>
@@ -101,7 +101,7 @@
                                 <div><v-icon color="green" size="30">mdi-arrow-down-bold</v-icon></div>
                                 <div><p>6%</p></div>
                             </div>   
-                            <p>{{water_value[0]}} {{item.key}}</p>      
+                            <p>{{water}} {{item.key}}</p>      
                         </div>                                           
                     </v-list-item-content>
                 </v-list-item>
@@ -139,7 +139,7 @@
                                 <div><v-icon color="green" size="30">mdi-arrow-up-bold</v-icon></div>
                                 <div><p>6%</p></div>
                             </div>   
-                            <p>{{co_value[0]}} {{item.key}}</p>      
+                            <p>{{co}} {{item.key}}</p>      
                         </div>                                           
                     </v-list-item-content>
                 </v-list-item>

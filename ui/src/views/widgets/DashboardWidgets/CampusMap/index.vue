@@ -27,10 +27,12 @@
         :attribution="attribution"
       />
       <l-marker 
-        v-for="marker of markers"
-        :key="marker.key"
-        :lat-lng="marker"
+        v-for="marker of building_data"
+        :key="marker.name"
+        :lat-lng="marker.coordinates"
+        ref="markerRef"
       >
+        <l-tooltip :content="marker.name+ ' BER: '+Math.round(marker.ber)"></l-tooltip>
       </l-marker>
     </l-map>
     <v-card-text>
@@ -46,7 +48,7 @@
           </thead>
           <tbody>
             <tr
-              v-for="item of getCampusData"
+              v-for="item of building_data"
               :key="item.text"
               class="month-item"
             >
@@ -68,10 +70,10 @@
                 </div>
               </td>
               <td>
-                <v-chip class="ma-2" :color="item.color" small label>{{ item.band }}</v-chip>
+                <v-chip class="ma-2" color="#5fd47f" small label>{{Math.round(item.ber) }}</v-chip>
               </td>
               <td>
-                <h5 class="font-weight-light subtitle-2">{{ item.money }}</h5>
+                <h5 class="font-weight-light subtitle-2">{{ Math.round(item.annual_electrical)}}</h5>
               </td>
             </tr>
           </tbody>

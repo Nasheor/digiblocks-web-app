@@ -26,7 +26,7 @@ export default {
         return {
             percentage: [74],
             total_electrical_usage: [541541],
-            total_non_electrical_usage: [554],
+            total_non_electrical_usage: [326],
             theme_colors: ['#1e88e5', '#00acc1', '#fc4b6c', '#7460ee', '#1d2126'],
             metric_options: {
                 colors: ["#7460ee"],
@@ -134,27 +134,6 @@ export default {
             },
             heat_map_energy: {
                 series: [{
-                    name: '2010',
-                    data: generateDataHeatMap(18, {
-                        min: 0,
-                        max: 90
-                    })
-                },
-                {
-                    name: '2011',
-                    data: generateDataHeatMap(18, {
-                        min: 0,
-                        max: 90
-                    })
-                },
-                {
-                    name: '2012',
-                    data: generateDataHeatMap(18, {
-                        min: 0,
-                        max: 90
-                    })
-                },
-                {
                     name: '2013',
                     data: generateDataHeatMap(18, {
                         min: 0,
@@ -195,44 +174,72 @@ export default {
                         min: 0,
                         max: 90
                     })
+                },
+                {
+                    name: '2019',
+                    data: generateDataHeatMap(18, {
+                        min: 0,
+                        max: 90
+                    })
+                },
+                {
+                    name: '2020',
+                    data: generateDataHeatMap(18, {
+                        min: 0,
+                        max: 90
+                    })
+                },
+                {
+                    name: '2021',
+                    data: generateDataHeatMap(18, {
+                        min: 0,
+                        max: 90
+                    })
                 }
                 ],
                 chartOptions: {
+                    chart: {
+                        type: 'heatmap',
+                    }, 
+                    stroke: {
+                        width: 1
+                    },
                     plotOptions: {
                         heatmap: {
                             shadeIntensity: 0.5,
                             radius: 0,
+                            enableShades: true,
                             useFillColorAsStroke: true,
                             colorScale: {
                                 ranges: [{
-                                    from: 0,
-                                    to: 5,
-                                    color: '#00A100',
-                                    name: 'low',
+                                        from: 0,
+                                        to: 5,
+                                        color: '#00A100',
+                                        // name: 'low',
                                     },
                                     {
-                                    from: 6,
-                                    to: 20,
-                                    color: '#128FD9',
-                                    name: 'medium',
+                                        from: 6,
+                                        to: 20,
+                                        color: '#128FD9',
+                                        // name: 'medium',
                                     },
                                     {
-                                    from: 21,
-                                    to: 45,
-                                    color: '#FFB200',
-                                    name: 'high',
+                                        from: 21,
+                                        to: 45,
+                                        color: '#FFB200',
+                                        // name: 'high',
                                     },
                                     {
-                                    from: 46,
-                                    to: 66,
-                                    color: '#e3092d',
-                                    name: 'very high',
+                                        from: 46,
+                                        to: 66,
+                                        color: '#e3092d',
+                                        // name: 'very high',
                                     },
                                     {
-                                    from: 67,
-                                    to: 87,
-                                    color: '#e309c2',
-                                    name: 'maximum',
+                                        from: 67,
+                                        to: 87,
+                                        color: '#e309c2',
+                                        // name: 'maximum',
                                     },
                                 ]
                                 },
@@ -241,12 +248,9 @@ export default {
                     dataLabels: {
                         enabled: true
                     },
-                    stroke: {
-                        width: 1
-                    },
-                    chart: {
-                        type: 'heatmap',
-                    },  
+                    xaxis: {
+                        type: 'category',
+                      } 
                 },
             
             },
