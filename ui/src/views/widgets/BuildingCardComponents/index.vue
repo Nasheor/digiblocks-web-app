@@ -98,7 +98,7 @@
               color="deep-purple"
               text
               @click="registerBuilding"
-              v-if="getDltStatus === false && getRole === 'Community Manager'"
+              v-if="getDltStatus === false && getRole === 'Community Manager' || getRole === 'Building Owner'"
             >
               <!-- <v-icon medium color="white" class="pa-2">mdi-battery-plus</v-icon> -->
               Register Building

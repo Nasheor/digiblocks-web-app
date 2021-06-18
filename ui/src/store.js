@@ -269,10 +269,12 @@ export default new Vuex.Store({
   actions: {
     async LOAD_CUSTOMER_DETAILS(context, payload) {
       const customers = await ThingsboardService.getCustomers()
+      console.log(customers)
+      console.log(payload)
       let customer_id = ''
       customers.data.map(customer => {
         if (customer.email === payload.email) {
-          customer_id = customer.id.id
+          context.state.customer_id = customer.id.id
           context.state.username = customer.title
           localStorage.setItem("title", customer.title)
           context.state.address = customer.zip
@@ -281,8 +283,8 @@ export default new Vuex.Store({
           localStorage.setItem("country", customer.country)
         }
       })
-      const customer_details = await ThingsboardService.getCustomerDetails(customer_id)
-      //console.log(customer_details)
+      const customer_details = await ThingsboardService.getCustomerDetails(context.state.customer_id)
+      console.log(customer_details)
       let password = ""
       let role = ""
       //console.log(customer_details)
@@ -301,7 +303,7 @@ export default new Vuex.Store({
         // if(role === "External Verifier") {
         //   customer_id = "71440220-f10e-11ea-88c1-933cebe6d407"
         // }
-        context.commit("setCustomerID", customer_id)
+        // context.commit("setCustomerID", customer_id)
         // context.commit("setRole", role )
         localStorage.setItem("login", true)
         context.dispatch("LOAD_DEVICES")
@@ -316,18 +318,37 @@ export default new Vuex.Store({
       let dec_data = {}   
       try {
         const assets_data_t = await ThingsboardService.getCustomerDetails(context.state.community_id)
+        console.log(assets_data_t)
         let asset_ids = ""
         
         assets_data_t.map(item => {
           if(item.key === context.state.community)
             asset_ids = JSON.parse(assets_data_t[0].value)
         })
-
+        let asset_data = []
         //console.log(asset_ids)
-        let asset_data = new Array(asset_ids.length)
-        for(let i = 0; i < asset_data.length; i++) {
-          asset_data[i] = await ThingsboardService.getAssetType(asset_ids[i])
+        if(context.state.role != "Building Owner") {
+          asset_data = new Array(asset_ids.length)
+          for(let i = 0; i < asset_data.length; i++) {
+            asset_data[i] = await ThingsboardService.getAssetType(asset_ids[i])
+          }
+        } else {
+          for(let i = 0; i < asset_ids.length; i++) {
+            if (asset_ids[i] === "4abe84d0-e39a-11ea-bdd4-376cbbd450da") {
+              asset_data.push(await ThingsboardService.getAssetType(asset_ids[i]))
+            }
+          }
+          console.log(asset_data)
+          // asset_data = [{
+          //   id: {
+          //     id: "4abe84d0-e39a-11ea-bdd4-376cbbd450da"
+          //   }
+          // }]          
         }
+        console.log(asset_data)
+        // if(state.role = "Building Owner") {
+        //   asset_data = ["4abe84d0-e39a-11ea-bdd4-376cbbd450da"]
+        // }
         // const assets = await ThingsboardService.getAssetsMetaData(context.state.customer_id, payload)
         if(context.state.building_data.length < asset_data.length)
           asset_data.map(item => {
@@ -361,6 +382,7 @@ export default new Vuex.Store({
                     context.commit("setDashboardData", data)
                   } else {
                     ThingsboardService.getAssetDevices(item.id.id).then(devices => { 
+                      console.log(devices)
                       devices.map(device => {
                         let tmp_holder = device.toName.split('.')
                         dec_data = {

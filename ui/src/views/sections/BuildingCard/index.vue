@@ -28,7 +28,7 @@
                     </v-list-item-title>
                     <v-list-content>
                         <p v-if="entire_building.certificate_verified===false && entire_building.certificate_generated===true">Not Verified</p>
-                        <p v-else-if="entire_building.certificate_generated===false">No DEC Generated</p>
+                        <p v-else-if="entire_building.certificate_generated===false">No Verification Request</p>
                         <p v-else>Verified by {{entire_building.assessor}}</p>
                     </v-list-content>
                 </v-list-item>
