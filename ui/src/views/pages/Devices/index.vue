@@ -10,7 +10,7 @@
               mandatory
               active-class="primary--text"
             >
-            <v-chip v-for="tag in categories" :key="tag">
+            <v-chip v-for="tag in categories" :key="tag" @click="selectedCategory(tag)">
                 {{ tag }}
             </v-chip>
             </v-chip-group>
@@ -22,7 +22,7 @@
                   v-if="getCategory!='Water Meter' && getCategory != 'Co Meter'"
                 >
                   <DeviceCard 
-                    v-for="device of devices"
+                    v-for="device of filtered_devices"
                     :key="device.name"
                     class="ma-3 pa-2"
                     :name="device.name"

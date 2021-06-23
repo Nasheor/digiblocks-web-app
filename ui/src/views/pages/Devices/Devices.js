@@ -13,7 +13,7 @@ export default {
             name: "",
             device_data: "",
             src: "sensor.png",
-            categories: ["All", "Energy Meter", "Water Meter", "Co Meter"],
+            categories: ["All", "Energy Meter", "Water Meter", "Co Meter", "Other"],
             category: "All",
         };
     },
@@ -25,10 +25,13 @@ export default {
         },
         selectedCategory(item) {
             console.log(item)
+            this.category = item
+            this.$store.commit("setCategorizedDevices", item)
         }
     },
     computed: {
         ...mapGetters({ devices: "getTenantDevices"}),
+        ...mapGetters({filtered_devices: "getCategorizedDevices"}),
         getName() {
             return this.name
         },

@@ -48,7 +48,9 @@ export default new Vuex.Store({
       "day": 30,
       "date": "2021-5-30"
     },
-    certifier_data: []
+    certifier_data: [],
+    device_category: "All",
+    filtered_devices: []
   },
   mutations: {
     clearData(state) {
@@ -165,6 +167,27 @@ export default new Vuex.Store({
     },
     setTenantDevices(state, payload) {
       state.all_devices.push(payload)
+      state.filtered_devices.push(payload)
+    },
+    setCategorizedDevices(state, category) {
+      state.filtered_devices = []
+      state.device_category = category
+      if(category === "All") {
+        state.filtered_devices = state.all_devices
+      }
+      state.all_devices.map(device => {
+        let category_flag = false
+        device.data.map(attr => {
+          if(attr.key === "Category" && attr.value === category) {
+            category_flag = true
+            state.filtered_devices.push(device)
+          }
+        })
+        if(category_flag === false && category === "Other" ) {
+          state.filtered_devices.push(device)
+        }
+
+      })
     }
    },
   getters: {
@@ -264,6 +287,9 @@ export default new Vuex.Store({
     },
     getCertifierData(state) {
       return state.certifier_data
+    },
+    getCategorizedDevices(state) {
+      return state.filtered_devices
     }
   },
   actions: {
