@@ -11,6 +11,9 @@
         <v-card-subtitle class="overline">
             {{name}}
         </v-card-subtitle>    
+        <v-card-subtitle class="overline">
+            Location: Nimbus Center
+        </v-card-subtitle>    
     </v-card>
 </template>
 
