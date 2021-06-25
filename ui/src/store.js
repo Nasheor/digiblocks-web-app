@@ -68,6 +68,7 @@ export default new Vuex.Store({
         "date": payload
       }
       let factor = ((2021 - state.timeline.year)+1) * 1000
+      console.log(factor)
       state.gas_value[0] = state.gas_value[0] - factor 
       state.electricity_value[0] = state.electricity_value[0] - factor
       state.water_value[0] = state.water_value[0] - factor

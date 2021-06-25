@@ -2,14 +2,20 @@
   <v-card class="mb-7">
     <v-card-text class="pa-5 accent-2">
       <v-file-input 
-          label="Asset Telemetry Data"
+          label="Upload Asset KPI File"
           dense
           color="white"
           outlined
           show-size
+          v-if="getRole === 'Community Manager' || getRole === 'Building Owner'"
           @change="filePicked">
       </v-file-input>
-      <v-dialog v-model="file_processed" max-width="650" hide-overlay transition="dialog-bottom-transition">
+      <v-dialog 
+        v-model="file_processed" 
+        max-width="650" hide-overlay 
+        transition="dialog-bottom-transition"
+        v-if="getRole === 'Community Manager' || getRole === 'Building Owner'"
+      >
       <template v-slot:activator="{ on }">
           <div
           v-on="on"

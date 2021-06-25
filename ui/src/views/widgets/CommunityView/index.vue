@@ -9,10 +9,12 @@
                     <v-divider></v-divider>
                     <div class="mt-4">
                         <vue-apex-charts
-                            type="pie"
-                            height = "250"
-                            :options="pie_chart_energy.chartOptions"
-                            :series="pie_chart_energy.series"
+                            type="treemap"
+                            height = "350"
+                            width="380"
+                            class="ma-2"
+                            :options="tree_map.chartOptions"
+                            :series="tree_map.series"
                         ></vue-apex-charts>
                     </div>
                 </v-card>                        
@@ -24,11 +26,11 @@
                     </v-toolbar>
                     <v-divider></v-divider>
                     <vue-apex-charts
-                        class="position"
-                        height="250"
-                        width="420"
+                        class="position ma-2"
+                        height="360"
+                        width="400"
                         :options="heat_map_energy.chartOptions"
-                        :series="heat_map_energy.series"
+                        :series="heatMapSeries"
                     ></vue-apex-charts>                   
                 </v-card>
             </v-col>

@@ -14,10 +14,101 @@
         v-for="marker of building_data"
         :key="marker.name"
         :lat-lng="marker.coordinates"
-
+        @click="showInfo(marker)"
       >
         <l-tooltip :content="marker.name+ ' BER: '+Math.round(marker.ber)"></l-tooltip>
       </l-marker>
+      <v-dialog v-model="getInfo" max-width="290">
+        <v-toolbar>
+          <v-btn icon @click="show_info = false">
+              <v-icon>mdi-close</v-icon>
+          </v-btn>      
+          <v-card-title  class="">
+            {{getB.name}}
+          </v-card-title>    
+        </v-toolbar>
+
+          <v-row justify="space-around">
+            <v-col md="4">
+              <v-card
+                class="pa-2"
+                outlined
+                tile
+              >
+                BER 
+              </v-card>
+            </v-col>
+            <v-col md="6">
+              <v-card
+                class="pa-2"
+                outlined
+                tile
+              >
+                {{Math.round(getB.ber)}} 
+              </v-card>
+            </v-col>
+          </v-row>
+          <v-row justify="space-around">
+            <v-col md="5">
+              <v-card
+                class="pa-2"
+                outlined
+                tile
+              >
+                Category
+              </v-card>
+            </v-col>
+            <v-col md="6">
+              <v-card
+                class="pa-1"
+                outlined
+                tile
+              >
+                {{getB.category}} 
+              </v-card>
+            </v-col>
+          </v-row>
+          <v-row justify="space-around">
+            <v-col md="6">
+              <v-card
+                class="pa-2"
+                outlined
+                tile
+              >
+                Environment
+              </v-card>
+            </v-col>
+            <v-col md="6">
+              <v-card
+                class="pa-2"
+                outlined
+                tile
+              >
+                {{getB.environment}} 
+              </v-card>
+            </v-col>
+          </v-row>
+          <v-row justify="space-around">
+            <v-col md="4">
+              <v-card
+                class="pa-2"
+                outlined
+                tile
+              >
+                Fuel
+              </v-card>
+            </v-col>
+            <v-col md="6">
+              <v-card
+                class="pa-2"
+                outlined
+                tile
+              >
+                {{getB.fuel}} 
+              </v-card>
+            </v-col>
+          </v-row>
+      </v-dialog>
     </l-map>
     <v-card-text>
       <v-simple-table class="month-table">

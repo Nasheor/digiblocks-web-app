@@ -35,6 +35,9 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(["getKpiType", "getPeriod"])
+        ...mapGetters(["getKpiType", "getPeriod", "getTimelineTracker"])
+    },
+    created() {
+        this.date = this.getTimelineTracker.date
     }
 }

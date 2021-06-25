@@ -31,6 +31,7 @@ export default {
       ...mapGetters({timeline: "getTimelineTracker"}),
       ...mapGetters({ devices: "getTenantDeviceNames"}),
       ...mapGetters({ device_data: "getTenantDevices"}),
+      ...mapGetters(["getRole"]),
       getDltStatus() {
           return this.building.dlt_status;
       },
