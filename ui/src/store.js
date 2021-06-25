@@ -50,7 +50,9 @@ export default new Vuex.Store({
     },
     certifier_data: [],
     device_category: "All",
-    filtered_devices: []
+    filtered_devices: [],
+    kpi: "Electrical",
+    period: "Weekly"
   },
   mutations: {
     clearData(state) {
@@ -188,9 +190,21 @@ export default new Vuex.Store({
         }
 
       })
+    },
+    setKpiType(state, payload) {
+      state.kpi = payload
+    },
+    setPeriod(state, payload) {
+      state.period = payload
     }
    },
   getters: {
+    getPeriod(state) {
+      return state.period
+    },
+    getKpiType(state) {
+      return state.kpi
+    },
     getTimelineTracker(state) {
       return state.timeline;
     },

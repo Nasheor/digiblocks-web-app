@@ -1,5 +1,5 @@
 <template>
-    <v-card flat tile color="#eef5f9" class="d-flex flex-row pa-2 mt-0 ml-3" >
+    <v-card flat tile color="#eef5f9" class="d-flex flex-row pa-2 mt-0 ml-12" >
         <v-card tile width="40%" height="320px" class="mr-8 ">
             <v-img
                 src="@/assets/images/weatherbg.jpg"
@@ -59,6 +59,36 @@
             </v-card>
             </v-card-text>
         </v-card>
+        <!-- <v-card width="45%" class="ml-4" height="320px" flat>
+            <v-card-text>
+            <v-card flat class="text-center ml-1" width="405px" >
+                <div class="d-flex justify-center mt-n5">
+                <img
+                    :src="require('@/assets/images/'+ dashboard_data[5].value)"
+                    alt="user"
+                    width="118px"
+                    height="100px"
+                    class="img-fluid rounded-circle elevation-1 mt-2"
+                />
+                </div>
+                <h2 class="mb-0 mt-4 font-weight-regular">{{dashboard_data[2].value}}</h2>
+                <v-row class="mt-4 pa-4 d-flex justify-center">
+                    <v-col cols="3">
+                        <h2 class="mb-0 font-weight-light">{{dashboard_data[1].value}}</h2>
+                        <small class>Buildings</small>
+                    </v-col>
+                    <v-col cols="3" class="ml-8">
+                        <h2 class="mb-0 font-weight-light">{{dashboard_data[3].value}}</h2>
+                        <small class>Devices</small>
+                    </v-col>
+                    <v-col cols="3" class="ml-8">
+                        <h2 class="font-weight-light">{{dashboard_data[0].value}}</h2>
+                        <small class>Band</small>
+                    </v-col>
+                </v-row>
+            </v-card>
+            </v-card-text>
+        </v-card> -->
     </v-card>
 </template>
 

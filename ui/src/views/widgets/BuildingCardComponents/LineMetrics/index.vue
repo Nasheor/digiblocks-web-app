@@ -1,6 +1,6 @@
 <template>
   <v-card class="mb-7">
-    <v-card-text class="pa-5 deep-purple accent-2">
+    <v-card-text class="pa-5 accent-2">
       <v-file-input 
           label="Asset Telemetry Data"
           dense
@@ -87,20 +87,20 @@
       </v-dialog>
       <div class="d-flex align-center">
         <div class="align-self-center">
-          <h1 class="white--text display-1">
+          <h1 class=" display-1">
             <i class="ti-pie-chart"></i>
           </h1>
         </div>
         <div class="mx-4">
-          <h3 class="card-title white--text title font-weight-regular">Electricity usage</h3>
-          <h6 class="card-subtitle white--text op-5 subtitle-2 font-weight-regular">{{timeline.date}}</h6>
+          <h3 class="card-title title font-weight-regular">Electricity usage</h3>
+          <h6 class="card-subtitle op-5 subtitle-2 font-weight-regular">{{timeline.date}}</h6>
         </div>
       </div>
       <v-row class="mt-1">
         <v-col cols="5" class="d-flex align-center">
-          <h2 class="font-weight-light white--text text-nowrap">{{building_data.building_electrical}} kWh</h2>
+          <h2 class="font-weight-light  text-nowrap">{{building_data.building_electrical}} kWh</h2>
         </v-col>
-        <v-col cols="7">
+        <!-- <v-col cols="7">
           <div class="float-right" v-show="elementVisible">
             <vue-apex-charts
               type="line"
@@ -110,7 +110,7 @@
               :series="BandwidthChart.BandwidthChart.series"
             ></vue-apex-charts>
           </div>
-        </v-col>
+        </v-col> -->
       </v-row>
     </v-card-text>
   </v-card>

@@ -25,7 +25,7 @@
           <thead>
             <tr>
               <th class="font-weight-regular subtitle-2"
-                  v-for="header of headers"
+                  v-for="header of getHeaders"
                   :key="header"
               >{{header}}</th>
             </tr>

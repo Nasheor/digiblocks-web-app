@@ -8,7 +8,7 @@ export default {
       }
     ],
     chartOptions: {
-      colors: ["#fff"],
+      // colors: ["#fff"],
       grid: {
         show: false,
         padding: {
@@ -30,10 +30,10 @@ export default {
       stroke: {
         curve: "smooth",
         width: 3,
-        colors: "rgba(255, 255, 255, 0.5)"
+        // colors: "rgba(255, 255, 255, 0.5)"
       },
       tooltip: {
-        theme: "dark"
+        // theme: "dark"
       }
     }
   }

@@ -21,6 +21,11 @@ export default {
       },  
       computed: {
         ...mapGetters({building_data: "getBuildingData"}),
+        ...mapGetters(["getKpiType"]),
+        getHeaders() {
+          this.headers = ["Name", "BER", this.getKpiType+" Usage"]
+          return this.headers
+        }
       },
       mounted: function() {
         L.Icon.Default.imagePath = "https://unpkg.com/leaflet@1.3.4/dist/images/";
