@@ -82,6 +82,15 @@ export default class ThingsboardService {
         }
     }
 
+    static async createPerformanceContract(payload) {
+        let ro = routes.performance_contract
+        try {
+            const res = await http.post(payload)
+        } catch(err) {
+            return await Promise.reject(err)
+        }
+    }
+
     static async traceAsset(payload) {
         const qs = require('qs')
         let ro= routes.trace_asset.name

@@ -16,22 +16,8 @@ export default {
     ],
     data() {
         return {
-            file_processed: false,
-            file_columns: [],
-            selected_column: {
-                timestamp: 2,
-                column_id: null,
-                device: "",
-                type: "",
-            },
-            timestamp: [],
-            file_data: [],
-            energy_type: [
-                "Gas",
-                "Carbon",
-                "Electricity",
-                "Water"
-            ]
+            dlt_status: false,
+            register_building: false,
         };
     },
     components: {
@@ -46,18 +32,16 @@ export default {
         Timeline,
         Profile,
     },
+    // "getBuildingData"
     computed: {
         ...mapGetters({ devices: "getTenantDeviceNames"}),
         ...mapGetters({ device_data: "getTenantDevices"}),
-        ...mapGetters(["getRole", "getDltStatus"]),
+        ...mapGetters(["getRole", "getDltStatus", ]),
         getDltStatus() {
             return this.building.dlt_status;
         },
         getBuilding() {
             return this.building
-        },
-        getFileStatus() {
-            return this.file_processed
         },
         getFileColumns() {
             return this.file_columns
@@ -67,85 +51,20 @@ export default {
         }
     },
     methods: {
-        filePicked(file) {
-            const reader = new FileReader()
-            if(typeof file !== 'undefined') {
-                reader.readAsArrayBuffer(file)
-                reader.onloadend = async (e) => {
-                    let workbook = XLSX.read(e.target.result, {
-                        type: "array"
-                    })
-                    let sheet = workbook.SheetNames[0]
-                    let json_data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet])
-                    let column_names = Object.keys(json_data[0])
-                    console.log(json_data[0])
-                    console.log(column_names)
-                    this.file_columns = column_names
-                    this.timestamp.push(column_names[0])
-                    this.timestamp.push(column_names[1])
-                    this.file_data = json_data
-                }
-            }
-        },
-        async submit(){
-            this.file_processed = true
-        },
-        close() {
-            this.file_processed = false
-        },
-        async upload() {
-            let payload = {
-                "data": [], 
-                "device_id": "",
-                "device_name": "",
-                "type": this.selected_column.type
-            }
-            let device = this.device_data.filter(d => d.name === this.selected_column.device )
-            payload.device_id = device[0].id
-            payload.device_name = device[0].name
-            this.file_data.map((item, index) => {
-                let date = new Date(item[this.selected_column.timestamp])
-                let timestamp = date.getTime()
-
-                // Keeep the key constant. 
-                let key = "value-"+index
-                payload.data.push(
-                    JSON.stringify(
-                        {
-                            "ts": timestamp,
-                            "values": {
-                                [key]: item[this.selected_column.column_id],
-                            }
-                        }
-                    )
-                )
-            })  
-            this.$store.dispatch("UPLOAD_DATA_FROM_FILE", payload).then(result => {
-                console.log(result)
-            })
-
-        },
         async registerBuilding() {
-            let building_data;
-            this.getBuildingData.map(building => {
-                if (building.name === this.name) {
-                    building_data = building
-                }
-            })
-            console.log(building_data)
-            if(building_data.dlt_status === true) {
+            console.log(this.building)
+            if(this.building.dlt_status === true) {
                 confirm("Building already registered to the ledger!")
                 return 
             }
       
             let status = "Approved"
-            console.log(building_data)
             this.$store.dispatch("REGISTER_ASSET", {
                 "fcn": "createAsset",
                 "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
                 "chaincodeName":"identitycontract",
                 "channelName" : "mychannel",
-                "args": [building_data.id, building_data.category, status, `{\"environment\": \"${building_data.environment}\",\"name\": \"${building_data.name}\",\"main_fuel\": \"${building_data.fuel}\"}`
+                "args": [this.building.id, this.building.category, status, `{\"environment\": \"${this.building.environment}\",\"name\": \"${this.building.name}\",\"main_fuel\": \"${this.building.fuel}\"}`
                 ]
             }).then(result => {
                 console.log(result)
@@ -154,15 +73,12 @@ export default {
                 "body": {
                     "dlt_status": true
                 },
-                "id": building_data.id
+                "id": this.building.id
             }
-            console.log(building_data)
-            this.$store.dispatch("UPDATE_ASSET_STATUS", {"body": payload.body, "id": payload.id}).then(tb => {
-                this.register_building = true
-                building_data.dlt_status = true
-                this.dlt_status = true                   
-            })
-            confirm("Ledger Registration ID: "+building_data.id+".")
+            console.log(this.building)
+            this.$store.dispatch("UPDATE_ASSET_STATUS", {"body": payload.body, "id": payload.id})
+            confirm("Ledger Registration ID: "+this.building.id+".")
+            this.building.dlt_status = true
         }
     },
 }

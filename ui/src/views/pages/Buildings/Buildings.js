@@ -108,46 +108,6 @@ export default {
         setEditFormStatus() {
             this.$store.commit("setEditFormStatus", true)
         },
-        async registerBuilding() {
-            let building_data;
-            this.getBuildingData.map(building => {
-                if (building.name === this.name) {
-                    building_data = building
-                }
-            })
-            console.log(building_data)
-            if(building_data.dlt_status === true) {
-                confirm("Building already registered to the ledger!")
-                return 
-            }
-
-            let status = "Approved"
-            console.log(building_data)
-            this.$store.dispatch("REGISTER_ASSET", {
-                "fcn": "createAsset",
-                "peer": ["peer0.org1.digiblocks.com", "peer0.org2.digiblocks.com"],
-                "chaincodeName":"identitycontract",
-                "channelName" : "mychannel",
-                "args": [building_data.id, building_data.category, status, `{\"environment\": \"${building_data.environment}\",\"name\": \"${building_data.name}\",\"main_fuel\": \"${building_data.fuel}\"}`
-                ]
-            }).then(result => {
-                console.log(result)
-            })
-            let payload = {
-                "body": {
-                    "dlt_status": true
-                },
-                "id": building_data.id
-            }
-            console.log(building_data)
-            this.$store.dispatch("UPDATE_ASSET_STATUS", {"body": payload.body, "id": payload.id}).then(tb => {
-                this.register_building = true
-                building_data.dlt_status = true
-                this.dlt_status = true                   
-            })
-            confirm("Ledger Registration ID: "+building_data.id+".")
-        },
-
         async generateDec() {
             let data = ""
             if(this.name.length > 1) {
@@ -155,7 +115,11 @@ export default {
                 let device_data = {
                     'gas': '',
                     'electricity': '',
-                }               
+                }
+                this.$store.commit("setCertificateStatus", {
+                 "name": this.name,
+                 "status": true,
+                })          
                 let years =  ''
                 let asset_id = ''
                 this.getDevicesData.map(device => {

@@ -131,6 +131,22 @@ export default new Vuex.Store({
     setRole(state, payload) {
       state.role = payload;
     },
+    setCertificateStatus(state, payload) {
+      // let name = payload.name
+      // let status = payload.status
+      // state.building_data.filter(building.name===name).then( item => {
+      //   item.certificate_generated = status
+      // })
+      console.log(state.building_data)
+      console.log(payload)
+      for(let i = 0; i < state.building_data.length; i++) {
+        if (state.building_data[i].name === payload.name) {
+          state.building_data[i].certificate_generated = true 
+          break
+        }
+      }
+      
+    },
     setCertificates(state, payload) {
       let flag = true
       state.certificates.map(certificate => {

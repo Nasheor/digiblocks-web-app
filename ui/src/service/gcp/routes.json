@@ -34,5 +34,29 @@
     "trace_asset": {
         "name": "/channels/mychannel/chaincodes/identitycontract",
         "method": "get"
+    },
+    "performance_contract" :{
+        "name": "/channels/mychannel/chaincodes/kpicontract",
+        "method": "post"
+    },
+    "energy_record":{
+        "name":"/channels/mychannel/chaincodes/kpicontract",
+        "method": "post"
+    },
+    "weekly_data":{
+        "name": "/channels/mychannel/chaincodes/kpicontract",
+        "method": "post"
+    },
+    "calculated_kpi": {
+        "name": "/channels/mychannel/chaincodes/kpicontract?fcn=getRecordByKey&chainCodeName=kpicontract&channelName=mychannel&args=%args%",
+        "method":"get"
+    },
+    "trace_transaction_history": {
+        "name": "/channels/mychannel/chaincodes/kpicontract?fcn=getRecordByKey&chainCodeName=kpicontract&channelName=mychannel&args=%args%",
+        "method": "get"
+    },
+    "private_hash_key" : {
+        "name": "/channels/mychannel/chaincodes/identitycontract?fcn=queryPrivateDataHash&chainCodeName=identitycontract&channelName=mychannel&args=%args%",
+        "method": "get"
     }
 }
