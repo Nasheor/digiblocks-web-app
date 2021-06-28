@@ -2,7 +2,7 @@
     <div>
         <v-tabs
             v-model="tab"
-            background-color="#f79026"
+            dark
             centered
             center-active
             icons-and-text

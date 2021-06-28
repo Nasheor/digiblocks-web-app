@@ -82,7 +82,7 @@
                       <v-card v-if="getHistoryStatus">
                         <v-tabs
                             v-model="tab"
-                            background-color="#f79026"
+                            dark
                             centered
                             center-active
                             icons-and-text
@@ -106,9 +106,9 @@
                                     <template v-if="tab===0">
                                         <Dec/>
                                     </template>
-                                    <template v-else>
+                                    <!-- <template v-else>
                                         <Registration />
-                                    </template>
+                                    </template> -->
                                 </v-card>
                             </v-tab-item>
                         </v-tabs-items>

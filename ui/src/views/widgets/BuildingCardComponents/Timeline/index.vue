@@ -18,11 +18,11 @@
           <v-card flat>
             <v-card-text>
               <v-timeline :reverse="reverse" dense>
-                <v-timeline-item class="align-start" large>
+                <v-timeline-item class="align-start" :icon="items[0].icon" large>
                   <template v-slot:icon>
-                    <v-avatar class="pos">
+                    <!-- <v-avatar class="pos">
                       <img src="../../../../assets/images/cit.jpg" />
-                    </v-avatar>
+                    </v-avatar> -->
                   </template>
                   <v-card class="elevation-0">
                     <v-card-title class="subtitle-1 pa-0">
@@ -35,32 +35,28 @@
                     <v-divider class="my-4"></v-divider>
                   </v-card>
                 </v-timeline-item>
-                <v-timeline-item class="align-start" large>
+                <v-timeline-item class="align-start" :icon="items[1].icon" large>
                   <template v-slot:icon>
-                    <v-avatar>
+                    <!-- <v-avatar>
                       <img src="../../../../assets/images/cit.jpg" />
-                    </v-avatar>
+                    </v-avatar> -->
                   </template>
                   <v-card class="elevation-0">
                     <v-card-title class="subtitle-1 pa-0">
                       Joe Blogs
                       <span class="subtitle-2 mx-1 font-weight-light">11/06/2021</span>
                     </v-card-title>
-                    <v-row class="mt-4">
-                      <v-col lg="9" cols="12" sm="12">
-                        <div class="subtitle-2 font-weight-regular mb-3">
-                          Building Registered to the ledger
-                        </div>
-                      </v-col>
-                    </v-row>
+                    <v-card-text class="px-0">
+                      Building name has registered
+                    </v-card-text>
                     <v-divider class="my-4"></v-divider>
                   </v-card>
                 </v-timeline-item>
-                <v-timeline-item class="align-start" large>
+                <v-timeline-item class="align-start" :icon="items[2].icon" large>
                   <template v-slot:icon>
-                    <v-avatar>
+                    <!-- <v-avatar>
                       <img src="../../../../assets/images/cit.jpg" />
-                    </v-avatar>
+                    </v-avatar> -->
                   </template>
                   <v-card class="elevation-0">
                     <v-card-title class="subtitle-1 pa-0">
@@ -73,11 +69,11 @@
                     <v-divider class="mb-4 mt-7"></v-divider>
                   </v-card>
                 </v-timeline-item>
-                <v-timeline-item class="align-start" large>
+                <v-timeline-item class="align-start" :icon="items[3].icon" large>
                   <template v-slot:icon>
-                    <v-avatar>
+                    <!-- <v-avatar>
                       <img src="../../../../assets/images/cit.jpg" />
-                    </v-avatar>
+                    </v-avatar> -->
                   </template>
                   <v-card class="elevation-0">
                     <v-card-title class="subtitle-1 pa-0">

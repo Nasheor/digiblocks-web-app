@@ -116,15 +116,15 @@
         <!-- <v-col cols="12" lg="7">
           <BarGraph :building_data="getBuilding"/>
         </v-col> -->
-        <v-col cols="12" lg="5">
+        <v-col cols="12" lg="7">
           <LineMetrics :building_data="getBuilding"/>
           <!-- <BarMetrics :building_data="getBuilding"/> -->
         </v-col>
-        <v-col cols="12" sm="12" lg="8">
-          <Timeline :building_data="getBuilding"/>
-        </v-col>
-        <v-col cols="12" lg="4">
+        <v-col class="ml-12" cols="12" lg="4">
           <Profile :building_data="getBuilding"/>
+        </v-col>
+        <v-col cols="12" sm="12" lg="12">
+          <Timeline :building_data="getBuilding"/>
         </v-col>
       </v-row>
   </v-card>

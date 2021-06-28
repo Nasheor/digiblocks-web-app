@@ -19,10 +19,10 @@ data() {
                 'name': 'Dec',
                 'icon': 'mdi-newspaper'
             }, 
-            {
-                'name': 'Asset Registration',
-                'icon': 'mdi-chart-bar'
-            }
+            // {
+            //     'name': 'Asset Registration',
+            //     'icon': 'mdi-chart-bar'
+            // }
         ],
         tab: null,
     };

@@ -17,7 +17,28 @@ export default {
         value => (value && value.length >= 3) || "Min 3 characters"
       ],
       select: null,
-      items: ["India", "United Kingdom", "Africa", "California"],
+      icon_one: "mdi-star",
+      icon_two: "mdi-book-variant",
+      icon_three: "mdi-airballoon",
+      icon_four: "mdi-buffer",
+      items: [
+        {
+          color: 'error lighten-2',
+          icon: 'mdi-star',
+        },
+        {
+          color: 'info darken-1',
+          icon: 'mdi-book-variant',
+        },
+        {
+          color: 'success lighten-1',
+          icon: 'mdi-airballoon',
+        },
+        {
+          color: 'indigo',
+          icon: 'mdi-buffer',
+        },
+      ],
     }),
     components: {}
   };
