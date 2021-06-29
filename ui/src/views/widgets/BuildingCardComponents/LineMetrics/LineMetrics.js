@@ -60,8 +60,6 @@ export default {
                   let sheet = workbook.SheetNames[0]
                   let json_data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet])
                   let column_names = Object.keys(json_data[0])
-                  console.log(json_data[0])
-                  console.log(column_names)
                   this.file_columns = column_names
                   this.timestamp.push(column_names[0])
                   this.timestamp.push(column_names[1])
@@ -82,7 +80,7 @@ export default {
               "device_name": "",
               "type": this.selected_column.type
           }
-          let device = this.device_data.filter(d => d.name === this.selected_column.device )
+          let device = this.device_data.filter(d => d.name === this.selected_column.device.split(" ")[0] )
           payload.device_id = device[0].id
           payload.device_name = device[0].name
           this.file_data.map((item, index) => {

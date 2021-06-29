@@ -106,17 +106,6 @@
         <v-col cols="5" class="d-flex align-center">
           <h2 class="font-weight-light  text-nowrap">{{building_data.building_electrical}} kWh</h2>
         </v-col>
-        <!-- <v-col cols="7">
-          <div class="float-right" v-show="elementVisible">
-            <vue-apex-charts
-              type="line"
-              height="70px"
-              width="150px"
-              :options="BandwidthChart.BandwidthChart.chartOptions"
-              :series="BandwidthChart.BandwidthChart.series"
-            ></vue-apex-charts>
-          </div>
-        </v-col> -->
       </v-row>
     </v-card-text>
   </v-card>

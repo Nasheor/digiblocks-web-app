@@ -21,6 +21,7 @@
     "fs": "0.0.1-security",
     "leaflet": "^1.7.1",
     "particles.js": "^2.0.0",
+    "read-excel-file": "^5.2.4",
     "request": "^2.88.2",
     "simple-node-logger": "^18.12.24",
     "vue": "^2.6.11",
